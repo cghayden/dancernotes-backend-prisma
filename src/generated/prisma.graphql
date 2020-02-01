@@ -1,0 +1,5544 @@
+type AccessRequest {
+  studio: Studio!
+  id: ID!
+  parent: Parent!
+}
+
+type AccessRequestConnection {
+  pageInfo: PageInfo!
+  edges: [AccessRequestEdge]!
+  aggregate: AggregateAccessRequest!
+}
+
+input AccessRequestCreateInput {
+  studio: StudioCreateOneInput!
+  id: ID
+  parent: ParentCreateOneInput!
+}
+
+type AccessRequestEdge {
+  node: AccessRequest!
+  cursor: String!
+}
+
+enum AccessRequestOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type AccessRequestPreviousValues {
+  id: ID!
+}
+
+type AccessRequestSubscriptionPayload {
+  mutation: MutationType!
+  node: AccessRequest
+  updatedFields: [String!]
+  previousValues: AccessRequestPreviousValues
+}
+
+input AccessRequestSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AccessRequestWhereInput
+  AND: [AccessRequestSubscriptionWhereInput!]
+  OR: [AccessRequestSubscriptionWhereInput!]
+  NOT: [AccessRequestSubscriptionWhereInput!]
+}
+
+input AccessRequestUpdateInput {
+  studio: StudioUpdateOneRequiredInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input AccessRequestWhereInput {
+  studio: StudioWhereInput
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  parent: ParentWhereInput
+  AND: [AccessRequestWhereInput!]
+  OR: [AccessRequestWhereInput!]
+  NOT: [AccessRequestWhereInput!]
+}
+
+input AccessRequestWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAccessRequest {
+  count: Int!
+}
+
+type AggregateCustomRoutine {
+  count: Int!
+}
+
+type AggregateDanceClass {
+  count: Int!
+}
+
+type AggregateDancer {
+  count: Int!
+}
+
+type AggregateEnrollmentRequest {
+  count: Int!
+}
+
+type AggregateHairStyle {
+  count: Int!
+}
+
+type AggregateMakeupSet {
+  count: Int!
+}
+
+type AggregateParent {
+  count: Int!
+}
+
+type AggregateParentNote {
+  count: Int!
+}
+
+type AggregateStudio {
+  count: Int!
+}
+
+type AggregateStudioEvent {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type CustomRoutine {
+  custom: Boolean!
+  id: ID!
+  name: String!
+  studio: Studio
+  parent: Parent!
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type CustomRoutineConnection {
+  pageInfo: PageInfo!
+  edges: [CustomRoutineEdge]!
+  aggregate: AggregateCustomRoutine!
+}
+
+input CustomRoutineCreateInput {
+  custom: Boolean!
+  id: ID
+  name: String!
+  studio: StudioCreateOneInput
+  parent: ParentCreateOneWithoutCustomRoutinesInput!
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers: DancerCreateManyWithoutCustomRoutinesInput
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineCreateManyWithoutDancersInput {
+  create: [CustomRoutineCreateWithoutDancersInput!]
+  connect: [CustomRoutineWhereUniqueInput!]
+}
+
+input CustomRoutineCreateManyWithoutParentInput {
+  create: [CustomRoutineCreateWithoutParentInput!]
+  connect: [CustomRoutineWhereUniqueInput!]
+}
+
+input CustomRoutineCreateWithoutDancersInput {
+  custom: Boolean!
+  id: ID
+  name: String!
+  studio: StudioCreateOneInput
+  parent: ParentCreateOneWithoutCustomRoutinesInput!
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineCreateWithoutParentInput {
+  custom: Boolean!
+  id: ID
+  name: String!
+  studio: StudioCreateOneInput
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers: DancerCreateManyWithoutCustomRoutinesInput
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type CustomRoutineEdge {
+  node: CustomRoutine!
+  cursor: String!
+}
+
+enum CustomRoutineOrderByInput {
+  custom_ASC
+  custom_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  music_ASC
+  music_DESC
+  musicId_ASC
+  musicId_DESC
+  style_ASC
+  style_DESC
+  competitiveLevel_ASC
+  competitiveLevel_DESC
+  ageDivision_ASC
+  ageDivision_DESC
+  performanceName_ASC
+  performanceName_DESC
+  day_ASC
+  day_DESC
+  startTime_ASC
+  startTime_DESC
+  endTime_ASC
+  endTime_DESC
+  shoes_ASC
+  shoes_DESC
+  tights_ASC
+  tights_DESC
+  notes_ASC
+  notes_DESC
+  type_ASC
+  type_DESC
+  entryNumber_ASC
+  entryNumber_DESC
+  entryTime_ASC
+  entryTime_DESC
+  entryDay_ASC
+  entryDay_DESC
+}
+
+type CustomRoutinePreviousValues {
+  custom: Boolean!
+  id: ID!
+  name: String!
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineScalarWhereInput {
+  custom: Boolean
+  custom_not: Boolean
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  music: String
+  music_not: String
+  music_in: [String!]
+  music_not_in: [String!]
+  music_lt: String
+  music_lte: String
+  music_gt: String
+  music_gte: String
+  music_contains: String
+  music_not_contains: String
+  music_starts_with: String
+  music_not_starts_with: String
+  music_ends_with: String
+  music_not_ends_with: String
+  musicId: String
+  musicId_not: String
+  musicId_in: [String!]
+  musicId_not_in: [String!]
+  musicId_lt: String
+  musicId_lte: String
+  musicId_gt: String
+  musicId_gte: String
+  musicId_contains: String
+  musicId_not_contains: String
+  musicId_starts_with: String
+  musicId_not_starts_with: String
+  musicId_ends_with: String
+  musicId_not_ends_with: String
+  style: String
+  style_not: String
+  style_in: [String!]
+  style_not_in: [String!]
+  style_lt: String
+  style_lte: String
+  style_gt: String
+  style_gte: String
+  style_contains: String
+  style_not_contains: String
+  style_starts_with: String
+  style_not_starts_with: String
+  style_ends_with: String
+  style_not_ends_with: String
+  competitiveLevel: String
+  competitiveLevel_not: String
+  competitiveLevel_in: [String!]
+  competitiveLevel_not_in: [String!]
+  competitiveLevel_lt: String
+  competitiveLevel_lte: String
+  competitiveLevel_gt: String
+  competitiveLevel_gte: String
+  competitiveLevel_contains: String
+  competitiveLevel_not_contains: String
+  competitiveLevel_starts_with: String
+  competitiveLevel_not_starts_with: String
+  competitiveLevel_ends_with: String
+  competitiveLevel_not_ends_with: String
+  ageDivision: String
+  ageDivision_not: String
+  ageDivision_in: [String!]
+  ageDivision_not_in: [String!]
+  ageDivision_lt: String
+  ageDivision_lte: String
+  ageDivision_gt: String
+  ageDivision_gte: String
+  ageDivision_contains: String
+  ageDivision_not_contains: String
+  ageDivision_starts_with: String
+  ageDivision_not_starts_with: String
+  ageDivision_ends_with: String
+  ageDivision_not_ends_with: String
+  performanceName: String
+  performanceName_not: String
+  performanceName_in: [String!]
+  performanceName_not_in: [String!]
+  performanceName_lt: String
+  performanceName_lte: String
+  performanceName_gt: String
+  performanceName_gte: String
+  performanceName_contains: String
+  performanceName_not_contains: String
+  performanceName_starts_with: String
+  performanceName_not_starts_with: String
+  performanceName_ends_with: String
+  performanceName_not_ends_with: String
+  day: String
+  day_not: String
+  day_in: [String!]
+  day_not_in: [String!]
+  day_lt: String
+  day_lte: String
+  day_gt: String
+  day_gte: String
+  day_contains: String
+  day_not_contains: String
+  day_starts_with: String
+  day_not_starts_with: String
+  day_ends_with: String
+  day_not_ends_with: String
+  startTime: String
+  startTime_not: String
+  startTime_in: [String!]
+  startTime_not_in: [String!]
+  startTime_lt: String
+  startTime_lte: String
+  startTime_gt: String
+  startTime_gte: String
+  startTime_contains: String
+  startTime_not_contains: String
+  startTime_starts_with: String
+  startTime_not_starts_with: String
+  startTime_ends_with: String
+  startTime_not_ends_with: String
+  endTime: String
+  endTime_not: String
+  endTime_in: [String!]
+  endTime_not_in: [String!]
+  endTime_lt: String
+  endTime_lte: String
+  endTime_gt: String
+  endTime_gte: String
+  endTime_contains: String
+  endTime_not_contains: String
+  endTime_starts_with: String
+  endTime_not_starts_with: String
+  endTime_ends_with: String
+  endTime_not_ends_with: String
+  shoes: String
+  shoes_not: String
+  shoes_in: [String!]
+  shoes_not_in: [String!]
+  shoes_lt: String
+  shoes_lte: String
+  shoes_gt: String
+  shoes_gte: String
+  shoes_contains: String
+  shoes_not_contains: String
+  shoes_starts_with: String
+  shoes_not_starts_with: String
+  shoes_ends_with: String
+  shoes_not_ends_with: String
+  tights: String
+  tights_not: String
+  tights_in: [String!]
+  tights_not_in: [String!]
+  tights_lt: String
+  tights_lte: String
+  tights_gt: String
+  tights_gte: String
+  tights_contains: String
+  tights_not_contains: String
+  tights_starts_with: String
+  tights_not_starts_with: String
+  tights_ends_with: String
+  tights_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  entryNumber: Int
+  entryNumber_not: Int
+  entryNumber_in: [Int!]
+  entryNumber_not_in: [Int!]
+  entryNumber_lt: Int
+  entryNumber_lte: Int
+  entryNumber_gt: Int
+  entryNumber_gte: Int
+  entryTime: DateTime
+  entryTime_not: DateTime
+  entryTime_in: [DateTime!]
+  entryTime_not_in: [DateTime!]
+  entryTime_lt: DateTime
+  entryTime_lte: DateTime
+  entryTime_gt: DateTime
+  entryTime_gte: DateTime
+  entryDay: String
+  entryDay_not: String
+  entryDay_in: [String!]
+  entryDay_not_in: [String!]
+  entryDay_lt: String
+  entryDay_lte: String
+  entryDay_gt: String
+  entryDay_gte: String
+  entryDay_contains: String
+  entryDay_not_contains: String
+  entryDay_starts_with: String
+  entryDay_not_starts_with: String
+  entryDay_ends_with: String
+  entryDay_not_ends_with: String
+  AND: [CustomRoutineScalarWhereInput!]
+  OR: [CustomRoutineScalarWhereInput!]
+  NOT: [CustomRoutineScalarWhereInput!]
+}
+
+type CustomRoutineSubscriptionPayload {
+  mutation: MutationType!
+  node: CustomRoutine
+  updatedFields: [String!]
+  previousValues: CustomRoutinePreviousValues
+}
+
+input CustomRoutineSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CustomRoutineWhereInput
+  AND: [CustomRoutineSubscriptionWhereInput!]
+  OR: [CustomRoutineSubscriptionWhereInput!]
+  NOT: [CustomRoutineSubscriptionWhereInput!]
+}
+
+input CustomRoutineUpdateInput {
+  custom: Boolean
+  name: String
+  studio: StudioUpdateOneInput
+  parent: ParentUpdateOneRequiredWithoutCustomRoutinesInput
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers: DancerUpdateManyWithoutCustomRoutinesInput
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineUpdateManyDataInput {
+  custom: Boolean
+  name: String
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineUpdateManyMutationInput {
+  custom: Boolean
+  name: String
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineUpdateManyWithoutDancersInput {
+  create: [CustomRoutineCreateWithoutDancersInput!]
+  delete: [CustomRoutineWhereUniqueInput!]
+  connect: [CustomRoutineWhereUniqueInput!]
+  set: [CustomRoutineWhereUniqueInput!]
+  disconnect: [CustomRoutineWhereUniqueInput!]
+  update: [CustomRoutineUpdateWithWhereUniqueWithoutDancersInput!]
+  upsert: [CustomRoutineUpsertWithWhereUniqueWithoutDancersInput!]
+  deleteMany: [CustomRoutineScalarWhereInput!]
+  updateMany: [CustomRoutineUpdateManyWithWhereNestedInput!]
+}
+
+input CustomRoutineUpdateManyWithoutParentInput {
+  create: [CustomRoutineCreateWithoutParentInput!]
+  delete: [CustomRoutineWhereUniqueInput!]
+  connect: [CustomRoutineWhereUniqueInput!]
+  set: [CustomRoutineWhereUniqueInput!]
+  disconnect: [CustomRoutineWhereUniqueInput!]
+  update: [CustomRoutineUpdateWithWhereUniqueWithoutParentInput!]
+  upsert: [CustomRoutineUpsertWithWhereUniqueWithoutParentInput!]
+  deleteMany: [CustomRoutineScalarWhereInput!]
+  updateMany: [CustomRoutineUpdateManyWithWhereNestedInput!]
+}
+
+input CustomRoutineUpdateManyWithWhereNestedInput {
+  where: CustomRoutineScalarWhereInput!
+  data: CustomRoutineUpdateManyDataInput!
+}
+
+input CustomRoutineUpdateWithoutDancersDataInput {
+  custom: Boolean
+  name: String
+  studio: StudioUpdateOneInput
+  parent: ParentUpdateOneRequiredWithoutCustomRoutinesInput
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineUpdateWithoutParentDataInput {
+  custom: Boolean
+  name: String
+  studio: StudioUpdateOneInput
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers: DancerUpdateManyWithoutCustomRoutinesInput
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input CustomRoutineUpdateWithWhereUniqueWithoutDancersInput {
+  where: CustomRoutineWhereUniqueInput!
+  data: CustomRoutineUpdateWithoutDancersDataInput!
+}
+
+input CustomRoutineUpdateWithWhereUniqueWithoutParentInput {
+  where: CustomRoutineWhereUniqueInput!
+  data: CustomRoutineUpdateWithoutParentDataInput!
+}
+
+input CustomRoutineUpsertWithWhereUniqueWithoutDancersInput {
+  where: CustomRoutineWhereUniqueInput!
+  update: CustomRoutineUpdateWithoutDancersDataInput!
+  create: CustomRoutineCreateWithoutDancersInput!
+}
+
+input CustomRoutineUpsertWithWhereUniqueWithoutParentInput {
+  where: CustomRoutineWhereUniqueInput!
+  update: CustomRoutineUpdateWithoutParentDataInput!
+  create: CustomRoutineCreateWithoutParentInput!
+}
+
+input CustomRoutineWhereInput {
+  custom: Boolean
+  custom_not: Boolean
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  studio: StudioWhereInput
+  parent: ParentWhereInput
+  music: String
+  music_not: String
+  music_in: [String!]
+  music_not_in: [String!]
+  music_lt: String
+  music_lte: String
+  music_gt: String
+  music_gte: String
+  music_contains: String
+  music_not_contains: String
+  music_starts_with: String
+  music_not_starts_with: String
+  music_ends_with: String
+  music_not_ends_with: String
+  musicId: String
+  musicId_not: String
+  musicId_in: [String!]
+  musicId_not_in: [String!]
+  musicId_lt: String
+  musicId_lte: String
+  musicId_gt: String
+  musicId_gte: String
+  musicId_contains: String
+  musicId_not_contains: String
+  musicId_starts_with: String
+  musicId_not_starts_with: String
+  musicId_ends_with: String
+  musicId_not_ends_with: String
+  style: String
+  style_not: String
+  style_in: [String!]
+  style_not_in: [String!]
+  style_lt: String
+  style_lte: String
+  style_gt: String
+  style_gte: String
+  style_contains: String
+  style_not_contains: String
+  style_starts_with: String
+  style_not_starts_with: String
+  style_ends_with: String
+  style_not_ends_with: String
+  competitiveLevel: String
+  competitiveLevel_not: String
+  competitiveLevel_in: [String!]
+  competitiveLevel_not_in: [String!]
+  competitiveLevel_lt: String
+  competitiveLevel_lte: String
+  competitiveLevel_gt: String
+  competitiveLevel_gte: String
+  competitiveLevel_contains: String
+  competitiveLevel_not_contains: String
+  competitiveLevel_starts_with: String
+  competitiveLevel_not_starts_with: String
+  competitiveLevel_ends_with: String
+  competitiveLevel_not_ends_with: String
+  ageDivision: String
+  ageDivision_not: String
+  ageDivision_in: [String!]
+  ageDivision_not_in: [String!]
+  ageDivision_lt: String
+  ageDivision_lte: String
+  ageDivision_gt: String
+  ageDivision_gte: String
+  ageDivision_contains: String
+  ageDivision_not_contains: String
+  ageDivision_starts_with: String
+  ageDivision_not_starts_with: String
+  ageDivision_ends_with: String
+  ageDivision_not_ends_with: String
+  performanceName: String
+  performanceName_not: String
+  performanceName_in: [String!]
+  performanceName_not_in: [String!]
+  performanceName_lt: String
+  performanceName_lte: String
+  performanceName_gt: String
+  performanceName_gte: String
+  performanceName_contains: String
+  performanceName_not_contains: String
+  performanceName_starts_with: String
+  performanceName_not_starts_with: String
+  performanceName_ends_with: String
+  performanceName_not_ends_with: String
+  day: String
+  day_not: String
+  day_in: [String!]
+  day_not_in: [String!]
+  day_lt: String
+  day_lte: String
+  day_gt: String
+  day_gte: String
+  day_contains: String
+  day_not_contains: String
+  day_starts_with: String
+  day_not_starts_with: String
+  day_ends_with: String
+  day_not_ends_with: String
+  startTime: String
+  startTime_not: String
+  startTime_in: [String!]
+  startTime_not_in: [String!]
+  startTime_lt: String
+  startTime_lte: String
+  startTime_gt: String
+  startTime_gte: String
+  startTime_contains: String
+  startTime_not_contains: String
+  startTime_starts_with: String
+  startTime_not_starts_with: String
+  startTime_ends_with: String
+  startTime_not_ends_with: String
+  endTime: String
+  endTime_not: String
+  endTime_in: [String!]
+  endTime_not_in: [String!]
+  endTime_lt: String
+  endTime_lte: String
+  endTime_gt: String
+  endTime_gte: String
+  endTime_contains: String
+  endTime_not_contains: String
+  endTime_starts_with: String
+  endTime_not_starts_with: String
+  endTime_ends_with: String
+  endTime_not_ends_with: String
+  shoes: String
+  shoes_not: String
+  shoes_in: [String!]
+  shoes_not_in: [String!]
+  shoes_lt: String
+  shoes_lte: String
+  shoes_gt: String
+  shoes_gte: String
+  shoes_contains: String
+  shoes_not_contains: String
+  shoes_starts_with: String
+  shoes_not_starts_with: String
+  shoes_ends_with: String
+  shoes_not_ends_with: String
+  tights: String
+  tights_not: String
+  tights_in: [String!]
+  tights_not_in: [String!]
+  tights_lt: String
+  tights_lte: String
+  tights_gt: String
+  tights_gte: String
+  tights_contains: String
+  tights_not_contains: String
+  tights_starts_with: String
+  tights_not_starts_with: String
+  tights_ends_with: String
+  tights_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  dancers_every: DancerWhereInput
+  dancers_some: DancerWhereInput
+  dancers_none: DancerWhereInput
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  entryNumber: Int
+  entryNumber_not: Int
+  entryNumber_in: [Int!]
+  entryNumber_not_in: [Int!]
+  entryNumber_lt: Int
+  entryNumber_lte: Int
+  entryNumber_gt: Int
+  entryNumber_gte: Int
+  entryTime: DateTime
+  entryTime_not: DateTime
+  entryTime_in: [DateTime!]
+  entryTime_not_in: [DateTime!]
+  entryTime_lt: DateTime
+  entryTime_lte: DateTime
+  entryTime_gt: DateTime
+  entryTime_gte: DateTime
+  entryDay: String
+  entryDay_not: String
+  entryDay_in: [String!]
+  entryDay_not_in: [String!]
+  entryDay_lt: String
+  entryDay_lte: String
+  entryDay_gt: String
+  entryDay_gte: String
+  entryDay_contains: String
+  entryDay_not_contains: String
+  entryDay_starts_with: String
+  entryDay_not_starts_with: String
+  entryDay_ends_with: String
+  entryDay_not_ends_with: String
+  AND: [CustomRoutineWhereInput!]
+  OR: [CustomRoutineWhereInput!]
+  NOT: [CustomRoutineWhereInput!]
+}
+
+input CustomRoutineWhereUniqueInput {
+  id: ID
+}
+
+type DanceClass {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  name: String!
+  studio: Studio!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
+  makeupSet: MakeupSet
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type DanceClassConnection {
+  pageInfo: PageInfo!
+  edges: [DanceClassEdge]!
+  aggregate: AggregateDanceClass!
+}
+
+input DanceClassCreateInput {
+  id: ID
+  name: String!
+  studio: StudioCreateOneWithoutDanceClassesInput!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerCreateManyWithoutDanceClassesInput
+  makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassCreateManyInput {
+  create: [DanceClassCreateInput!]
+  connect: [DanceClassWhereUniqueInput!]
+}
+
+input DanceClassCreateManyWithoutDancersInput {
+  create: [DanceClassCreateWithoutDancersInput!]
+  connect: [DanceClassWhereUniqueInput!]
+}
+
+input DanceClassCreateManyWithoutMakeupSetInput {
+  create: [DanceClassCreateWithoutMakeupSetInput!]
+  connect: [DanceClassWhereUniqueInput!]
+}
+
+input DanceClassCreateManyWithoutStudioInput {
+  create: [DanceClassCreateWithoutStudioInput!]
+  connect: [DanceClassWhereUniqueInput!]
+}
+
+input DanceClassCreateOneInput {
+  create: DanceClassCreateInput
+  connect: DanceClassWhereUniqueInput
+}
+
+input DanceClassCreateWithoutDancersInput {
+  id: ID
+  name: String!
+  studio: StudioCreateOneWithoutDanceClassesInput!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassCreateWithoutMakeupSetInput {
+  id: ID
+  name: String!
+  studio: StudioCreateOneWithoutDanceClassesInput!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerCreateManyWithoutDanceClassesInput
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassCreateWithoutStudioInput {
+  id: ID
+  name: String!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerCreateManyWithoutDanceClassesInput
+  makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type DanceClassEdge {
+  node: DanceClass!
+  cursor: String!
+}
+
+enum DanceClassOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  music_ASC
+  music_DESC
+  musicId_ASC
+  musicId_DESC
+  performanceName_ASC
+  performanceName_DESC
+  day_ASC
+  day_DESC
+  startTime_ASC
+  startTime_DESC
+  endTime_ASC
+  endTime_DESC
+  competitiveLevel_ASC
+  competitiveLevel_DESC
+  ageDivision_ASC
+  ageDivision_DESC
+  style_ASC
+  style_DESC
+  tights_ASC
+  tights_DESC
+  shoes_ASC
+  shoes_DESC
+  notes_ASC
+  notes_DESC
+  size_ASC
+  size_DESC
+  custom_ASC
+  custom_DESC
+  entryNumber_ASC
+  entryNumber_DESC
+  entryTime_ASC
+  entryTime_DESC
+  entryDay_ASC
+  entryDay_DESC
+}
+
+type DanceClassPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  name: String!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassScalarWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  music: String
+  music_not: String
+  music_in: [String!]
+  music_not_in: [String!]
+  music_lt: String
+  music_lte: String
+  music_gt: String
+  music_gte: String
+  music_contains: String
+  music_not_contains: String
+  music_starts_with: String
+  music_not_starts_with: String
+  music_ends_with: String
+  music_not_ends_with: String
+  musicId: String
+  musicId_not: String
+  musicId_in: [String!]
+  musicId_not_in: [String!]
+  musicId_lt: String
+  musicId_lte: String
+  musicId_gt: String
+  musicId_gte: String
+  musicId_contains: String
+  musicId_not_contains: String
+  musicId_starts_with: String
+  musicId_not_starts_with: String
+  musicId_ends_with: String
+  musicId_not_ends_with: String
+  performanceName: String
+  performanceName_not: String
+  performanceName_in: [String!]
+  performanceName_not_in: [String!]
+  performanceName_lt: String
+  performanceName_lte: String
+  performanceName_gt: String
+  performanceName_gte: String
+  performanceName_contains: String
+  performanceName_not_contains: String
+  performanceName_starts_with: String
+  performanceName_not_starts_with: String
+  performanceName_ends_with: String
+  performanceName_not_ends_with: String
+  day: String
+  day_not: String
+  day_in: [String!]
+  day_not_in: [String!]
+  day_lt: String
+  day_lte: String
+  day_gt: String
+  day_gte: String
+  day_contains: String
+  day_not_contains: String
+  day_starts_with: String
+  day_not_starts_with: String
+  day_ends_with: String
+  day_not_ends_with: String
+  startTime: String
+  startTime_not: String
+  startTime_in: [String!]
+  startTime_not_in: [String!]
+  startTime_lt: String
+  startTime_lte: String
+  startTime_gt: String
+  startTime_gte: String
+  startTime_contains: String
+  startTime_not_contains: String
+  startTime_starts_with: String
+  startTime_not_starts_with: String
+  startTime_ends_with: String
+  startTime_not_ends_with: String
+  endTime: String
+  endTime_not: String
+  endTime_in: [String!]
+  endTime_not_in: [String!]
+  endTime_lt: String
+  endTime_lte: String
+  endTime_gt: String
+  endTime_gte: String
+  endTime_contains: String
+  endTime_not_contains: String
+  endTime_starts_with: String
+  endTime_not_starts_with: String
+  endTime_ends_with: String
+  endTime_not_ends_with: String
+  competitiveLevel: String
+  competitiveLevel_not: String
+  competitiveLevel_in: [String!]
+  competitiveLevel_not_in: [String!]
+  competitiveLevel_lt: String
+  competitiveLevel_lte: String
+  competitiveLevel_gt: String
+  competitiveLevel_gte: String
+  competitiveLevel_contains: String
+  competitiveLevel_not_contains: String
+  competitiveLevel_starts_with: String
+  competitiveLevel_not_starts_with: String
+  competitiveLevel_ends_with: String
+  competitiveLevel_not_ends_with: String
+  ageDivision: String
+  ageDivision_not: String
+  ageDivision_in: [String!]
+  ageDivision_not_in: [String!]
+  ageDivision_lt: String
+  ageDivision_lte: String
+  ageDivision_gt: String
+  ageDivision_gte: String
+  ageDivision_contains: String
+  ageDivision_not_contains: String
+  ageDivision_starts_with: String
+  ageDivision_not_starts_with: String
+  ageDivision_ends_with: String
+  ageDivision_not_ends_with: String
+  style: String
+  style_not: String
+  style_in: [String!]
+  style_not_in: [String!]
+  style_lt: String
+  style_lte: String
+  style_gt: String
+  style_gte: String
+  style_contains: String
+  style_not_contains: String
+  style_starts_with: String
+  style_not_starts_with: String
+  style_ends_with: String
+  style_not_ends_with: String
+  tights: String
+  tights_not: String
+  tights_in: [String!]
+  tights_not_in: [String!]
+  tights_lt: String
+  tights_lte: String
+  tights_gt: String
+  tights_gte: String
+  tights_contains: String
+  tights_not_contains: String
+  tights_starts_with: String
+  tights_not_starts_with: String
+  tights_ends_with: String
+  tights_not_ends_with: String
+  shoes: String
+  shoes_not: String
+  shoes_in: [String!]
+  shoes_not_in: [String!]
+  shoes_lt: String
+  shoes_lte: String
+  shoes_gt: String
+  shoes_gte: String
+  shoes_contains: String
+  shoes_not_contains: String
+  shoes_starts_with: String
+  shoes_not_starts_with: String
+  shoes_ends_with: String
+  shoes_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  size: String
+  size_not: String
+  size_in: [String!]
+  size_not_in: [String!]
+  size_lt: String
+  size_lte: String
+  size_gt: String
+  size_gte: String
+  size_contains: String
+  size_not_contains: String
+  size_starts_with: String
+  size_not_starts_with: String
+  size_ends_with: String
+  size_not_ends_with: String
+  custom: Boolean
+  custom_not: Boolean
+  entryNumber: Int
+  entryNumber_not: Int
+  entryNumber_in: [Int!]
+  entryNumber_not_in: [Int!]
+  entryNumber_lt: Int
+  entryNumber_lte: Int
+  entryNumber_gt: Int
+  entryNumber_gte: Int
+  entryTime: DateTime
+  entryTime_not: DateTime
+  entryTime_in: [DateTime!]
+  entryTime_not_in: [DateTime!]
+  entryTime_lt: DateTime
+  entryTime_lte: DateTime
+  entryTime_gt: DateTime
+  entryTime_gte: DateTime
+  entryDay: String
+  entryDay_not: String
+  entryDay_in: [String!]
+  entryDay_not_in: [String!]
+  entryDay_lt: String
+  entryDay_lte: String
+  entryDay_gt: String
+  entryDay_gte: String
+  entryDay_contains: String
+  entryDay_not_contains: String
+  entryDay_starts_with: String
+  entryDay_not_starts_with: String
+  entryDay_ends_with: String
+  entryDay_not_ends_with: String
+  AND: [DanceClassScalarWhereInput!]
+  OR: [DanceClassScalarWhereInput!]
+  NOT: [DanceClassScalarWhereInput!]
+}
+
+type DanceClassSubscriptionPayload {
+  mutation: MutationType!
+  node: DanceClass
+  updatedFields: [String!]
+  previousValues: DanceClassPreviousValues
+}
+
+input DanceClassSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DanceClassWhereInput
+  AND: [DanceClassSubscriptionWhereInput!]
+  OR: [DanceClassSubscriptionWhereInput!]
+  NOT: [DanceClassSubscriptionWhereInput!]
+}
+
+input DanceClassUpdateDataInput {
+  name: String
+  studio: StudioUpdateOneRequiredWithoutDanceClassesInput
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerUpdateManyWithoutDanceClassesInput
+  makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateInput {
+  name: String
+  studio: StudioUpdateOneRequiredWithoutDanceClassesInput
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerUpdateManyWithoutDanceClassesInput
+  makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateManyDataInput {
+  name: String
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateManyInput {
+  create: [DanceClassCreateInput!]
+  update: [DanceClassUpdateWithWhereUniqueNestedInput!]
+  upsert: [DanceClassUpsertWithWhereUniqueNestedInput!]
+  delete: [DanceClassWhereUniqueInput!]
+  connect: [DanceClassWhereUniqueInput!]
+  set: [DanceClassWhereUniqueInput!]
+  disconnect: [DanceClassWhereUniqueInput!]
+  deleteMany: [DanceClassScalarWhereInput!]
+  updateMany: [DanceClassUpdateManyWithWhereNestedInput!]
+}
+
+input DanceClassUpdateManyMutationInput {
+  name: String
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateManyWithoutDancersInput {
+  create: [DanceClassCreateWithoutDancersInput!]
+  delete: [DanceClassWhereUniqueInput!]
+  connect: [DanceClassWhereUniqueInput!]
+  set: [DanceClassWhereUniqueInput!]
+  disconnect: [DanceClassWhereUniqueInput!]
+  update: [DanceClassUpdateWithWhereUniqueWithoutDancersInput!]
+  upsert: [DanceClassUpsertWithWhereUniqueWithoutDancersInput!]
+  deleteMany: [DanceClassScalarWhereInput!]
+  updateMany: [DanceClassUpdateManyWithWhereNestedInput!]
+}
+
+input DanceClassUpdateManyWithoutMakeupSetInput {
+  create: [DanceClassCreateWithoutMakeupSetInput!]
+  delete: [DanceClassWhereUniqueInput!]
+  connect: [DanceClassWhereUniqueInput!]
+  set: [DanceClassWhereUniqueInput!]
+  disconnect: [DanceClassWhereUniqueInput!]
+  update: [DanceClassUpdateWithWhereUniqueWithoutMakeupSetInput!]
+  upsert: [DanceClassUpsertWithWhereUniqueWithoutMakeupSetInput!]
+  deleteMany: [DanceClassScalarWhereInput!]
+  updateMany: [DanceClassUpdateManyWithWhereNestedInput!]
+}
+
+input DanceClassUpdateManyWithoutStudioInput {
+  create: [DanceClassCreateWithoutStudioInput!]
+  delete: [DanceClassWhereUniqueInput!]
+  connect: [DanceClassWhereUniqueInput!]
+  set: [DanceClassWhereUniqueInput!]
+  disconnect: [DanceClassWhereUniqueInput!]
+  update: [DanceClassUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [DanceClassUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [DanceClassScalarWhereInput!]
+  updateMany: [DanceClassUpdateManyWithWhereNestedInput!]
+}
+
+input DanceClassUpdateManyWithWhereNestedInput {
+  where: DanceClassScalarWhereInput!
+  data: DanceClassUpdateManyDataInput!
+}
+
+input DanceClassUpdateOneRequiredInput {
+  create: DanceClassCreateInput
+  update: DanceClassUpdateDataInput
+  upsert: DanceClassUpsertNestedInput
+  connect: DanceClassWhereUniqueInput
+}
+
+input DanceClassUpdateWithoutDancersDataInput {
+  name: String
+  studio: StudioUpdateOneRequiredWithoutDanceClassesInput
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateWithoutMakeupSetDataInput {
+  name: String
+  studio: StudioUpdateOneRequiredWithoutDanceClassesInput
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerUpdateManyWithoutDanceClassesInput
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateWithoutStudioDataInput {
+  name: String
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: DancerUpdateManyWithoutDanceClassesInput
+  makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
+  size: String
+  custom: Boolean
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+input DanceClassUpdateWithWhereUniqueNestedInput {
+  where: DanceClassWhereUniqueInput!
+  data: DanceClassUpdateDataInput!
+}
+
+input DanceClassUpdateWithWhereUniqueWithoutDancersInput {
+  where: DanceClassWhereUniqueInput!
+  data: DanceClassUpdateWithoutDancersDataInput!
+}
+
+input DanceClassUpdateWithWhereUniqueWithoutMakeupSetInput {
+  where: DanceClassWhereUniqueInput!
+  data: DanceClassUpdateWithoutMakeupSetDataInput!
+}
+
+input DanceClassUpdateWithWhereUniqueWithoutStudioInput {
+  where: DanceClassWhereUniqueInput!
+  data: DanceClassUpdateWithoutStudioDataInput!
+}
+
+input DanceClassUpsertNestedInput {
+  update: DanceClassUpdateDataInput!
+  create: DanceClassCreateInput!
+}
+
+input DanceClassUpsertWithWhereUniqueNestedInput {
+  where: DanceClassWhereUniqueInput!
+  update: DanceClassUpdateDataInput!
+  create: DanceClassCreateInput!
+}
+
+input DanceClassUpsertWithWhereUniqueWithoutDancersInput {
+  where: DanceClassWhereUniqueInput!
+  update: DanceClassUpdateWithoutDancersDataInput!
+  create: DanceClassCreateWithoutDancersInput!
+}
+
+input DanceClassUpsertWithWhereUniqueWithoutMakeupSetInput {
+  where: DanceClassWhereUniqueInput!
+  update: DanceClassUpdateWithoutMakeupSetDataInput!
+  create: DanceClassCreateWithoutMakeupSetInput!
+}
+
+input DanceClassUpsertWithWhereUniqueWithoutStudioInput {
+  where: DanceClassWhereUniqueInput!
+  update: DanceClassUpdateWithoutStudioDataInput!
+  create: DanceClassCreateWithoutStudioInput!
+}
+
+input DanceClassWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  studio: StudioWhereInput
+  music: String
+  music_not: String
+  music_in: [String!]
+  music_not_in: [String!]
+  music_lt: String
+  music_lte: String
+  music_gt: String
+  music_gte: String
+  music_contains: String
+  music_not_contains: String
+  music_starts_with: String
+  music_not_starts_with: String
+  music_ends_with: String
+  music_not_ends_with: String
+  musicId: String
+  musicId_not: String
+  musicId_in: [String!]
+  musicId_not_in: [String!]
+  musicId_lt: String
+  musicId_lte: String
+  musicId_gt: String
+  musicId_gte: String
+  musicId_contains: String
+  musicId_not_contains: String
+  musicId_starts_with: String
+  musicId_not_starts_with: String
+  musicId_ends_with: String
+  musicId_not_ends_with: String
+  performanceName: String
+  performanceName_not: String
+  performanceName_in: [String!]
+  performanceName_not_in: [String!]
+  performanceName_lt: String
+  performanceName_lte: String
+  performanceName_gt: String
+  performanceName_gte: String
+  performanceName_contains: String
+  performanceName_not_contains: String
+  performanceName_starts_with: String
+  performanceName_not_starts_with: String
+  performanceName_ends_with: String
+  performanceName_not_ends_with: String
+  day: String
+  day_not: String
+  day_in: [String!]
+  day_not_in: [String!]
+  day_lt: String
+  day_lte: String
+  day_gt: String
+  day_gte: String
+  day_contains: String
+  day_not_contains: String
+  day_starts_with: String
+  day_not_starts_with: String
+  day_ends_with: String
+  day_not_ends_with: String
+  startTime: String
+  startTime_not: String
+  startTime_in: [String!]
+  startTime_not_in: [String!]
+  startTime_lt: String
+  startTime_lte: String
+  startTime_gt: String
+  startTime_gte: String
+  startTime_contains: String
+  startTime_not_contains: String
+  startTime_starts_with: String
+  startTime_not_starts_with: String
+  startTime_ends_with: String
+  startTime_not_ends_with: String
+  endTime: String
+  endTime_not: String
+  endTime_in: [String!]
+  endTime_not_in: [String!]
+  endTime_lt: String
+  endTime_lte: String
+  endTime_gt: String
+  endTime_gte: String
+  endTime_contains: String
+  endTime_not_contains: String
+  endTime_starts_with: String
+  endTime_not_starts_with: String
+  endTime_ends_with: String
+  endTime_not_ends_with: String
+  competitiveLevel: String
+  competitiveLevel_not: String
+  competitiveLevel_in: [String!]
+  competitiveLevel_not_in: [String!]
+  competitiveLevel_lt: String
+  competitiveLevel_lte: String
+  competitiveLevel_gt: String
+  competitiveLevel_gte: String
+  competitiveLevel_contains: String
+  competitiveLevel_not_contains: String
+  competitiveLevel_starts_with: String
+  competitiveLevel_not_starts_with: String
+  competitiveLevel_ends_with: String
+  competitiveLevel_not_ends_with: String
+  ageDivision: String
+  ageDivision_not: String
+  ageDivision_in: [String!]
+  ageDivision_not_in: [String!]
+  ageDivision_lt: String
+  ageDivision_lte: String
+  ageDivision_gt: String
+  ageDivision_gte: String
+  ageDivision_contains: String
+  ageDivision_not_contains: String
+  ageDivision_starts_with: String
+  ageDivision_not_starts_with: String
+  ageDivision_ends_with: String
+  ageDivision_not_ends_with: String
+  style: String
+  style_not: String
+  style_in: [String!]
+  style_not_in: [String!]
+  style_lt: String
+  style_lte: String
+  style_gt: String
+  style_gte: String
+  style_contains: String
+  style_not_contains: String
+  style_starts_with: String
+  style_not_starts_with: String
+  style_ends_with: String
+  style_not_ends_with: String
+  tights: String
+  tights_not: String
+  tights_in: [String!]
+  tights_not_in: [String!]
+  tights_lt: String
+  tights_lte: String
+  tights_gt: String
+  tights_gte: String
+  tights_contains: String
+  tights_not_contains: String
+  tights_starts_with: String
+  tights_not_starts_with: String
+  tights_ends_with: String
+  tights_not_ends_with: String
+  shoes: String
+  shoes_not: String
+  shoes_in: [String!]
+  shoes_not_in: [String!]
+  shoes_lt: String
+  shoes_lte: String
+  shoes_gt: String
+  shoes_gte: String
+  shoes_contains: String
+  shoes_not_contains: String
+  shoes_starts_with: String
+  shoes_not_starts_with: String
+  shoes_ends_with: String
+  shoes_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  dancers_every: DancerWhereInput
+  dancers_some: DancerWhereInput
+  dancers_none: DancerWhereInput
+  makeupSet: MakeupSetWhereInput
+  size: String
+  size_not: String
+  size_in: [String!]
+  size_not_in: [String!]
+  size_lt: String
+  size_lte: String
+  size_gt: String
+  size_gte: String
+  size_contains: String
+  size_not_contains: String
+  size_starts_with: String
+  size_not_starts_with: String
+  size_ends_with: String
+  size_not_ends_with: String
+  custom: Boolean
+  custom_not: Boolean
+  entryNumber: Int
+  entryNumber_not: Int
+  entryNumber_in: [Int!]
+  entryNumber_not_in: [Int!]
+  entryNumber_lt: Int
+  entryNumber_lte: Int
+  entryNumber_gt: Int
+  entryNumber_gte: Int
+  entryTime: DateTime
+  entryTime_not: DateTime
+  entryTime_in: [DateTime!]
+  entryTime_not_in: [DateTime!]
+  entryTime_lt: DateTime
+  entryTime_lte: DateTime
+  entryTime_gt: DateTime
+  entryTime_gte: DateTime
+  entryDay: String
+  entryDay_not: String
+  entryDay_in: [String!]
+  entryDay_not_in: [String!]
+  entryDay_lt: String
+  entryDay_lte: String
+  entryDay_gt: String
+  entryDay_gte: String
+  entryDay_contains: String
+  entryDay_not_contains: String
+  entryDay_starts_with: String
+  entryDay_not_starts_with: String
+  entryDay_ends_with: String
+  entryDay_not_ends_with: String
+  AND: [DanceClassWhereInput!]
+  OR: [DanceClassWhereInput!]
+  NOT: [DanceClassWhereInput!]
+}
+
+input DanceClassWhereUniqueInput {
+  id: ID
+}
+
+type Dancer {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  firstName: String!
+  parent: Parent!
+  requests: EnrollmentRequest
+  danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+  customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine!]
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio!]
+}
+
+type DancerConnection {
+  pageInfo: PageInfo!
+  edges: [DancerEdge]!
+  aggregate: AggregateDancer!
+}
+
+input DancerCreateInput {
+  id: ID
+  firstName: String!
+  parent: ParentCreateOneWithoutDancersInput!
+  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  danceClasses: DanceClassCreateManyWithoutDancersInput
+  customRoutines: CustomRoutineCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioCreateManyWithoutDancersInput
+}
+
+input DancerCreateManyWithoutCustomRoutinesInput {
+  create: [DancerCreateWithoutCustomRoutinesInput!]
+  connect: [DancerWhereUniqueInput!]
+}
+
+input DancerCreateManyWithoutDanceClassesInput {
+  create: [DancerCreateWithoutDanceClassesInput!]
+  connect: [DancerWhereUniqueInput!]
+}
+
+input DancerCreateManyWithoutParentInput {
+  create: [DancerCreateWithoutParentInput!]
+  connect: [DancerWhereUniqueInput!]
+}
+
+input DancerCreateManyWithoutStudiosInput {
+  create: [DancerCreateWithoutStudiosInput!]
+  connect: [DancerWhereUniqueInput!]
+}
+
+input DancerCreateOneWithoutRequestsInput {
+  create: DancerCreateWithoutRequestsInput
+  connect: DancerWhereUniqueInput
+}
+
+input DancerCreateWithoutCustomRoutinesInput {
+  id: ID
+  firstName: String!
+  parent: ParentCreateOneWithoutDancersInput!
+  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  danceClasses: DanceClassCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioCreateManyWithoutDancersInput
+}
+
+input DancerCreateWithoutDanceClassesInput {
+  id: ID
+  firstName: String!
+  parent: ParentCreateOneWithoutDancersInput!
+  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  customRoutines: CustomRoutineCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioCreateManyWithoutDancersInput
+}
+
+input DancerCreateWithoutParentInput {
+  id: ID
+  firstName: String!
+  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  danceClasses: DanceClassCreateManyWithoutDancersInput
+  customRoutines: CustomRoutineCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioCreateManyWithoutDancersInput
+}
+
+input DancerCreateWithoutRequestsInput {
+  id: ID
+  firstName: String!
+  parent: ParentCreateOneWithoutDancersInput!
+  danceClasses: DanceClassCreateManyWithoutDancersInput
+  customRoutines: CustomRoutineCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioCreateManyWithoutDancersInput
+}
+
+input DancerCreateWithoutStudiosInput {
+  id: ID
+  firstName: String!
+  parent: ParentCreateOneWithoutDancersInput!
+  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  danceClasses: DanceClassCreateManyWithoutDancersInput
+  customRoutines: CustomRoutineCreateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+}
+
+type DancerEdge {
+  node: Dancer!
+  cursor: String!
+}
+
+enum DancerOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  avatar_ASC
+  avatar_DESC
+  avatarId_ASC
+  avatarId_DESC
+  lastName_ASC
+  lastName_DESC
+}
+
+type DancerPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  firstName: String!
+  avatar: String
+  avatarId: String
+  lastName: String
+}
+
+input DancerScalarWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  avatarId: String
+  avatarId_not: String
+  avatarId_in: [String!]
+  avatarId_not_in: [String!]
+  avatarId_lt: String
+  avatarId_lte: String
+  avatarId_gt: String
+  avatarId_gte: String
+  avatarId_contains: String
+  avatarId_not_contains: String
+  avatarId_starts_with: String
+  avatarId_not_starts_with: String
+  avatarId_ends_with: String
+  avatarId_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  AND: [DancerScalarWhereInput!]
+  OR: [DancerScalarWhereInput!]
+  NOT: [DancerScalarWhereInput!]
+}
+
+type DancerSubscriptionPayload {
+  mutation: MutationType!
+  node: Dancer
+  updatedFields: [String!]
+  previousValues: DancerPreviousValues
+}
+
+input DancerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DancerWhereInput
+  AND: [DancerSubscriptionWhereInput!]
+  OR: [DancerSubscriptionWhereInput!]
+  NOT: [DancerSubscriptionWhereInput!]
+}
+
+input DancerUpdateInput {
+  firstName: String
+  parent: ParentUpdateOneRequiredWithoutDancersInput
+  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  danceClasses: DanceClassUpdateManyWithoutDancersInput
+  customRoutines: CustomRoutineUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioUpdateManyWithoutDancersInput
+}
+
+input DancerUpdateManyDataInput {
+  firstName: String
+  avatar: String
+  avatarId: String
+  lastName: String
+}
+
+input DancerUpdateManyMutationInput {
+  firstName: String
+  avatar: String
+  avatarId: String
+  lastName: String
+}
+
+input DancerUpdateManyWithoutCustomRoutinesInput {
+  create: [DancerCreateWithoutCustomRoutinesInput!]
+  delete: [DancerWhereUniqueInput!]
+  connect: [DancerWhereUniqueInput!]
+  set: [DancerWhereUniqueInput!]
+  disconnect: [DancerWhereUniqueInput!]
+  update: [DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput!]
+  upsert: [DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput!]
+  deleteMany: [DancerScalarWhereInput!]
+  updateMany: [DancerUpdateManyWithWhereNestedInput!]
+}
+
+input DancerUpdateManyWithoutDanceClassesInput {
+  create: [DancerCreateWithoutDanceClassesInput!]
+  delete: [DancerWhereUniqueInput!]
+  connect: [DancerWhereUniqueInput!]
+  set: [DancerWhereUniqueInput!]
+  disconnect: [DancerWhereUniqueInput!]
+  update: [DancerUpdateWithWhereUniqueWithoutDanceClassesInput!]
+  upsert: [DancerUpsertWithWhereUniqueWithoutDanceClassesInput!]
+  deleteMany: [DancerScalarWhereInput!]
+  updateMany: [DancerUpdateManyWithWhereNestedInput!]
+}
+
+input DancerUpdateManyWithoutParentInput {
+  create: [DancerCreateWithoutParentInput!]
+  delete: [DancerWhereUniqueInput!]
+  connect: [DancerWhereUniqueInput!]
+  set: [DancerWhereUniqueInput!]
+  disconnect: [DancerWhereUniqueInput!]
+  update: [DancerUpdateWithWhereUniqueWithoutParentInput!]
+  upsert: [DancerUpsertWithWhereUniqueWithoutParentInput!]
+  deleteMany: [DancerScalarWhereInput!]
+  updateMany: [DancerUpdateManyWithWhereNestedInput!]
+}
+
+input DancerUpdateManyWithoutStudiosInput {
+  create: [DancerCreateWithoutStudiosInput!]
+  delete: [DancerWhereUniqueInput!]
+  connect: [DancerWhereUniqueInput!]
+  set: [DancerWhereUniqueInput!]
+  disconnect: [DancerWhereUniqueInput!]
+  update: [DancerUpdateWithWhereUniqueWithoutStudiosInput!]
+  upsert: [DancerUpsertWithWhereUniqueWithoutStudiosInput!]
+  deleteMany: [DancerScalarWhereInput!]
+  updateMany: [DancerUpdateManyWithWhereNestedInput!]
+}
+
+input DancerUpdateManyWithWhereNestedInput {
+  where: DancerScalarWhereInput!
+  data: DancerUpdateManyDataInput!
+}
+
+input DancerUpdateOneRequiredWithoutRequestsInput {
+  create: DancerCreateWithoutRequestsInput
+  update: DancerUpdateWithoutRequestsDataInput
+  upsert: DancerUpsertWithoutRequestsInput
+  connect: DancerWhereUniqueInput
+}
+
+input DancerUpdateWithoutCustomRoutinesDataInput {
+  firstName: String
+  parent: ParentUpdateOneRequiredWithoutDancersInput
+  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  danceClasses: DanceClassUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioUpdateManyWithoutDancersInput
+}
+
+input DancerUpdateWithoutDanceClassesDataInput {
+  firstName: String
+  parent: ParentUpdateOneRequiredWithoutDancersInput
+  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  customRoutines: CustomRoutineUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioUpdateManyWithoutDancersInput
+}
+
+input DancerUpdateWithoutParentDataInput {
+  firstName: String
+  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  danceClasses: DanceClassUpdateManyWithoutDancersInput
+  customRoutines: CustomRoutineUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioUpdateManyWithoutDancersInput
+}
+
+input DancerUpdateWithoutRequestsDataInput {
+  firstName: String
+  parent: ParentUpdateOneRequiredWithoutDancersInput
+  danceClasses: DanceClassUpdateManyWithoutDancersInput
+  customRoutines: CustomRoutineUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: StudioUpdateManyWithoutDancersInput
+}
+
+input DancerUpdateWithoutStudiosDataInput {
+  firstName: String
+  parent: ParentUpdateOneRequiredWithoutDancersInput
+  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  danceClasses: DanceClassUpdateManyWithoutDancersInput
+  customRoutines: CustomRoutineUpdateManyWithoutDancersInput
+  avatar: String
+  avatarId: String
+  lastName: String
+}
+
+input DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput {
+  where: DancerWhereUniqueInput!
+  data: DancerUpdateWithoutCustomRoutinesDataInput!
+}
+
+input DancerUpdateWithWhereUniqueWithoutDanceClassesInput {
+  where: DancerWhereUniqueInput!
+  data: DancerUpdateWithoutDanceClassesDataInput!
+}
+
+input DancerUpdateWithWhereUniqueWithoutParentInput {
+  where: DancerWhereUniqueInput!
+  data: DancerUpdateWithoutParentDataInput!
+}
+
+input DancerUpdateWithWhereUniqueWithoutStudiosInput {
+  where: DancerWhereUniqueInput!
+  data: DancerUpdateWithoutStudiosDataInput!
+}
+
+input DancerUpsertWithoutRequestsInput {
+  update: DancerUpdateWithoutRequestsDataInput!
+  create: DancerCreateWithoutRequestsInput!
+}
+
+input DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput {
+  where: DancerWhereUniqueInput!
+  update: DancerUpdateWithoutCustomRoutinesDataInput!
+  create: DancerCreateWithoutCustomRoutinesInput!
+}
+
+input DancerUpsertWithWhereUniqueWithoutDanceClassesInput {
+  where: DancerWhereUniqueInput!
+  update: DancerUpdateWithoutDanceClassesDataInput!
+  create: DancerCreateWithoutDanceClassesInput!
+}
+
+input DancerUpsertWithWhereUniqueWithoutParentInput {
+  where: DancerWhereUniqueInput!
+  update: DancerUpdateWithoutParentDataInput!
+  create: DancerCreateWithoutParentInput!
+}
+
+input DancerUpsertWithWhereUniqueWithoutStudiosInput {
+  where: DancerWhereUniqueInput!
+  update: DancerUpdateWithoutStudiosDataInput!
+  create: DancerCreateWithoutStudiosInput!
+}
+
+input DancerWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  parent: ParentWhereInput
+  requests: EnrollmentRequestWhereInput
+  danceClasses_every: DanceClassWhereInput
+  danceClasses_some: DanceClassWhereInput
+  danceClasses_none: DanceClassWhereInput
+  customRoutines_every: CustomRoutineWhereInput
+  customRoutines_some: CustomRoutineWhereInput
+  customRoutines_none: CustomRoutineWhereInput
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  avatarId: String
+  avatarId_not: String
+  avatarId_in: [String!]
+  avatarId_not_in: [String!]
+  avatarId_lt: String
+  avatarId_lte: String
+  avatarId_gt: String
+  avatarId_gte: String
+  avatarId_contains: String
+  avatarId_not_contains: String
+  avatarId_starts_with: String
+  avatarId_not_starts_with: String
+  avatarId_ends_with: String
+  avatarId_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  studios_every: StudioWhereInput
+  studios_some: StudioWhereInput
+  studios_none: StudioWhereInput
+  AND: [DancerWhereInput!]
+  OR: [DancerWhereInput!]
+  NOT: [DancerWhereInput!]
+}
+
+input DancerWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type EnrollmentRequest {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  dancer: Dancer!
+  studio: Studio!
+  classesRequested(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+  parent: Parent!
+}
+
+type EnrollmentRequestConnection {
+  pageInfo: PageInfo!
+  edges: [EnrollmentRequestEdge]!
+  aggregate: AggregateEnrollmentRequest!
+}
+
+input EnrollmentRequestCreateInput {
+  id: ID
+  dancer: DancerCreateOneWithoutRequestsInput!
+  studio: StudioCreateOneWithoutEnrollmentRequestsInput!
+  classesRequested: DanceClassCreateManyInput
+  parent: ParentCreateOneInput!
+}
+
+input EnrollmentRequestCreateManyWithoutStudioInput {
+  create: [EnrollmentRequestCreateWithoutStudioInput!]
+  connect: [EnrollmentRequestWhereUniqueInput!]
+}
+
+input EnrollmentRequestCreateOneWithoutDancerInput {
+  create: EnrollmentRequestCreateWithoutDancerInput
+  connect: EnrollmentRequestWhereUniqueInput
+}
+
+input EnrollmentRequestCreateWithoutDancerInput {
+  id: ID
+  studio: StudioCreateOneWithoutEnrollmentRequestsInput!
+  classesRequested: DanceClassCreateManyInput
+  parent: ParentCreateOneInput!
+}
+
+input EnrollmentRequestCreateWithoutStudioInput {
+  id: ID
+  dancer: DancerCreateOneWithoutRequestsInput!
+  classesRequested: DanceClassCreateManyInput
+  parent: ParentCreateOneInput!
+}
+
+type EnrollmentRequestEdge {
+  node: EnrollmentRequest!
+  cursor: String!
+}
+
+enum EnrollmentRequestOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+}
+
+type EnrollmentRequestPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+}
+
+input EnrollmentRequestScalarWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [EnrollmentRequestScalarWhereInput!]
+  OR: [EnrollmentRequestScalarWhereInput!]
+  NOT: [EnrollmentRequestScalarWhereInput!]
+}
+
+type EnrollmentRequestSubscriptionPayload {
+  mutation: MutationType!
+  node: EnrollmentRequest
+  updatedFields: [String!]
+  previousValues: EnrollmentRequestPreviousValues
+}
+
+input EnrollmentRequestSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EnrollmentRequestWhereInput
+  AND: [EnrollmentRequestSubscriptionWhereInput!]
+  OR: [EnrollmentRequestSubscriptionWhereInput!]
+  NOT: [EnrollmentRequestSubscriptionWhereInput!]
+}
+
+input EnrollmentRequestUpdateInput {
+  dancer: DancerUpdateOneRequiredWithoutRequestsInput
+  studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
+  classesRequested: DanceClassUpdateManyInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input EnrollmentRequestUpdateManyWithoutStudioInput {
+  create: [EnrollmentRequestCreateWithoutStudioInput!]
+  delete: [EnrollmentRequestWhereUniqueInput!]
+  connect: [EnrollmentRequestWhereUniqueInput!]
+  set: [EnrollmentRequestWhereUniqueInput!]
+  disconnect: [EnrollmentRequestWhereUniqueInput!]
+  update: [EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [EnrollmentRequestScalarWhereInput!]
+}
+
+input EnrollmentRequestUpdateOneWithoutDancerInput {
+  create: EnrollmentRequestCreateWithoutDancerInput
+  update: EnrollmentRequestUpdateWithoutDancerDataInput
+  upsert: EnrollmentRequestUpsertWithoutDancerInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: EnrollmentRequestWhereUniqueInput
+}
+
+input EnrollmentRequestUpdateWithoutDancerDataInput {
+  studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
+  classesRequested: DanceClassUpdateManyInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input EnrollmentRequestUpdateWithoutStudioDataInput {
+  dancer: DancerUpdateOneRequiredWithoutRequestsInput
+  classesRequested: DanceClassUpdateManyInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
+  where: EnrollmentRequestWhereUniqueInput!
+  data: EnrollmentRequestUpdateWithoutStudioDataInput!
+}
+
+input EnrollmentRequestUpsertWithoutDancerInput {
+  update: EnrollmentRequestUpdateWithoutDancerDataInput!
+  create: EnrollmentRequestCreateWithoutDancerInput!
+}
+
+input EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
+  where: EnrollmentRequestWhereUniqueInput!
+  update: EnrollmentRequestUpdateWithoutStudioDataInput!
+  create: EnrollmentRequestCreateWithoutStudioInput!
+}
+
+input EnrollmentRequestWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dancer: DancerWhereInput
+  studio: StudioWhereInput
+  classesRequested_every: DanceClassWhereInput
+  classesRequested_some: DanceClassWhereInput
+  classesRequested_none: DanceClassWhereInput
+  parent: ParentWhereInput
+  AND: [EnrollmentRequestWhereInput!]
+  OR: [EnrollmentRequestWhereInput!]
+  NOT: [EnrollmentRequestWhereInput!]
+}
+
+input EnrollmentRequestWhereUniqueInput {
+  id: ID
+}
+
+type HairStyle {
+  studio: Studio!
+  id: ID!
+  name: String!
+  description: String
+  image: String
+  link: String
+}
+
+type HairStyleConnection {
+  pageInfo: PageInfo!
+  edges: [HairStyleEdge]!
+  aggregate: AggregateHairStyle!
+}
+
+input HairStyleCreateInput {
+  studio: StudioCreateOneWithoutHairStylesInput!
+  id: ID
+  name: String!
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleCreateManyWithoutStudioInput {
+  create: [HairStyleCreateWithoutStudioInput!]
+  connect: [HairStyleWhereUniqueInput!]
+}
+
+input HairStyleCreateWithoutStudioInput {
+  id: ID
+  name: String!
+  description: String
+  image: String
+  link: String
+}
+
+type HairStyleEdge {
+  node: HairStyle!
+  cursor: String!
+}
+
+enum HairStyleOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  image_ASC
+  image_DESC
+  link_ASC
+  link_DESC
+}
+
+type HairStylePreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  link: String
+  link_not: String
+  link_in: [String!]
+  link_not_in: [String!]
+  link_lt: String
+  link_lte: String
+  link_gt: String
+  link_gte: String
+  link_contains: String
+  link_not_contains: String
+  link_starts_with: String
+  link_not_starts_with: String
+  link_ends_with: String
+  link_not_ends_with: String
+  AND: [HairStyleScalarWhereInput!]
+  OR: [HairStyleScalarWhereInput!]
+  NOT: [HairStyleScalarWhereInput!]
+}
+
+type HairStyleSubscriptionPayload {
+  mutation: MutationType!
+  node: HairStyle
+  updatedFields: [String!]
+  previousValues: HairStylePreviousValues
+}
+
+input HairStyleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: HairStyleWhereInput
+  AND: [HairStyleSubscriptionWhereInput!]
+  OR: [HairStyleSubscriptionWhereInput!]
+  NOT: [HairStyleSubscriptionWhereInput!]
+}
+
+input HairStyleUpdateInput {
+  studio: StudioUpdateOneRequiredWithoutHairStylesInput
+  name: String
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleUpdateManyDataInput {
+  name: String
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleUpdateManyMutationInput {
+  name: String
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleUpdateManyWithoutStudioInput {
+  create: [HairStyleCreateWithoutStudioInput!]
+  delete: [HairStyleWhereUniqueInput!]
+  connect: [HairStyleWhereUniqueInput!]
+  set: [HairStyleWhereUniqueInput!]
+  disconnect: [HairStyleWhereUniqueInput!]
+  update: [HairStyleUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [HairStyleUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [HairStyleScalarWhereInput!]
+  updateMany: [HairStyleUpdateManyWithWhereNestedInput!]
+}
+
+input HairStyleUpdateManyWithWhereNestedInput {
+  where: HairStyleScalarWhereInput!
+  data: HairStyleUpdateManyDataInput!
+}
+
+input HairStyleUpdateWithoutStudioDataInput {
+  name: String
+  description: String
+  image: String
+  link: String
+}
+
+input HairStyleUpdateWithWhereUniqueWithoutStudioInput {
+  where: HairStyleWhereUniqueInput!
+  data: HairStyleUpdateWithoutStudioDataInput!
+}
+
+input HairStyleUpsertWithWhereUniqueWithoutStudioInput {
+  where: HairStyleWhereUniqueInput!
+  update: HairStyleUpdateWithoutStudioDataInput!
+  create: HairStyleCreateWithoutStudioInput!
+}
+
+input HairStyleWhereInput {
+  studio: StudioWhereInput
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  link: String
+  link_not: String
+  link_in: [String!]
+  link_not_in: [String!]
+  link_lt: String
+  link_lte: String
+  link_gt: String
+  link_gte: String
+  link_contains: String
+  link_not_contains: String
+  link_starts_with: String
+  link_not_starts_with: String
+  link_ends_with: String
+  link_not_ends_with: String
+  AND: [HairStyleWhereInput!]
+  OR: [HairStyleWhereInput!]
+  NOT: [HairStyleWhereInput!]
+}
+
+input HairStyleWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type MakeupSet {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  studio: Studio!
+  applyTo: String
+  danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+}
+
+type MakeupSetConnection {
+  pageInfo: PageInfo!
+  edges: [MakeupSetEdge]!
+  aggregate: AggregateMakeupSet!
+}
+
+input MakeupSetCreateInput {
+  id: ID
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  studio: StudioCreateOneWithoutMakeupSetsInput!
+  applyTo: String
+  danceClasses: DanceClassCreateManyWithoutMakeupSetInput
+}
+
+input MakeupSetCreateManyWithoutStudioInput {
+  create: [MakeupSetCreateWithoutStudioInput!]
+  connect: [MakeupSetWhereUniqueInput!]
+}
+
+input MakeupSetCreateOneWithoutDanceClassesInput {
+  create: MakeupSetCreateWithoutDanceClassesInput
+  connect: MakeupSetWhereUniqueInput
+}
+
+input MakeupSetCreateWithoutDanceClassesInput {
+  id: ID
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  studio: StudioCreateOneWithoutMakeupSetsInput!
+  applyTo: String
+}
+
+input MakeupSetCreateWithoutStudioInput {
+  id: ID
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  applyTo: String
+  danceClasses: DanceClassCreateManyWithoutMakeupSetInput
+}
+
+type MakeupSetEdge {
+  node: MakeupSet!
+  cursor: String!
+}
+
+enum MakeupSetOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  lipstick_ASC
+  lipstick_DESC
+  eyeShadow_ASC
+  eyeShadow_DESC
+  applyTo_ASC
+  applyTo_DESC
+}
+
+type MakeupSetPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  applyTo: String
+}
+
+input MakeupSetScalarWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  lipstick: String
+  lipstick_not: String
+  lipstick_in: [String!]
+  lipstick_not_in: [String!]
+  lipstick_lt: String
+  lipstick_lte: String
+  lipstick_gt: String
+  lipstick_gte: String
+  lipstick_contains: String
+  lipstick_not_contains: String
+  lipstick_starts_with: String
+  lipstick_not_starts_with: String
+  lipstick_ends_with: String
+  lipstick_not_ends_with: String
+  eyeShadow: String
+  eyeShadow_not: String
+  eyeShadow_in: [String!]
+  eyeShadow_not_in: [String!]
+  eyeShadow_lt: String
+  eyeShadow_lte: String
+  eyeShadow_gt: String
+  eyeShadow_gte: String
+  eyeShadow_contains: String
+  eyeShadow_not_contains: String
+  eyeShadow_starts_with: String
+  eyeShadow_not_starts_with: String
+  eyeShadow_ends_with: String
+  eyeShadow_not_ends_with: String
+  applyTo: String
+  applyTo_not: String
+  applyTo_in: [String!]
+  applyTo_not_in: [String!]
+  applyTo_lt: String
+  applyTo_lte: String
+  applyTo_gt: String
+  applyTo_gte: String
+  applyTo_contains: String
+  applyTo_not_contains: String
+  applyTo_starts_with: String
+  applyTo_not_starts_with: String
+  applyTo_ends_with: String
+  applyTo_not_ends_with: String
+  AND: [MakeupSetScalarWhereInput!]
+  OR: [MakeupSetScalarWhereInput!]
+  NOT: [MakeupSetScalarWhereInput!]
+}
+
+type MakeupSetSubscriptionPayload {
+  mutation: MutationType!
+  node: MakeupSet
+  updatedFields: [String!]
+  previousValues: MakeupSetPreviousValues
+}
+
+input MakeupSetSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MakeupSetWhereInput
+  AND: [MakeupSetSubscriptionWhereInput!]
+  OR: [MakeupSetSubscriptionWhereInput!]
+  NOT: [MakeupSetSubscriptionWhereInput!]
+}
+
+input MakeupSetUpdateInput {
+  name: String
+  lipstick: String
+  eyeShadow: String
+  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
+  applyTo: String
+  danceClasses: DanceClassUpdateManyWithoutMakeupSetInput
+}
+
+input MakeupSetUpdateManyDataInput {
+  name: String
+  lipstick: String
+  eyeShadow: String
+  applyTo: String
+}
+
+input MakeupSetUpdateManyMutationInput {
+  name: String
+  lipstick: String
+  eyeShadow: String
+  applyTo: String
+}
+
+input MakeupSetUpdateManyWithoutStudioInput {
+  create: [MakeupSetCreateWithoutStudioInput!]
+  delete: [MakeupSetWhereUniqueInput!]
+  connect: [MakeupSetWhereUniqueInput!]
+  set: [MakeupSetWhereUniqueInput!]
+  disconnect: [MakeupSetWhereUniqueInput!]
+  update: [MakeupSetUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [MakeupSetUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [MakeupSetScalarWhereInput!]
+  updateMany: [MakeupSetUpdateManyWithWhereNestedInput!]
+}
+
+input MakeupSetUpdateManyWithWhereNestedInput {
+  where: MakeupSetScalarWhereInput!
+  data: MakeupSetUpdateManyDataInput!
+}
+
+input MakeupSetUpdateOneWithoutDanceClassesInput {
+  create: MakeupSetCreateWithoutDanceClassesInput
+  update: MakeupSetUpdateWithoutDanceClassesDataInput
+  upsert: MakeupSetUpsertWithoutDanceClassesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: MakeupSetWhereUniqueInput
+}
+
+input MakeupSetUpdateWithoutDanceClassesDataInput {
+  name: String
+  lipstick: String
+  eyeShadow: String
+  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
+  applyTo: String
+}
+
+input MakeupSetUpdateWithoutStudioDataInput {
+  name: String
+  lipstick: String
+  eyeShadow: String
+  applyTo: String
+  danceClasses: DanceClassUpdateManyWithoutMakeupSetInput
+}
+
+input MakeupSetUpdateWithWhereUniqueWithoutStudioInput {
+  where: MakeupSetWhereUniqueInput!
+  data: MakeupSetUpdateWithoutStudioDataInput!
+}
+
+input MakeupSetUpsertWithoutDanceClassesInput {
+  update: MakeupSetUpdateWithoutDanceClassesDataInput!
+  create: MakeupSetCreateWithoutDanceClassesInput!
+}
+
+input MakeupSetUpsertWithWhereUniqueWithoutStudioInput {
+  where: MakeupSetWhereUniqueInput!
+  update: MakeupSetUpdateWithoutStudioDataInput!
+  create: MakeupSetCreateWithoutStudioInput!
+}
+
+input MakeupSetWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  lipstick: String
+  lipstick_not: String
+  lipstick_in: [String!]
+  lipstick_not_in: [String!]
+  lipstick_lt: String
+  lipstick_lte: String
+  lipstick_gt: String
+  lipstick_gte: String
+  lipstick_contains: String
+  lipstick_not_contains: String
+  lipstick_starts_with: String
+  lipstick_not_starts_with: String
+  lipstick_ends_with: String
+  lipstick_not_ends_with: String
+  eyeShadow: String
+  eyeShadow_not: String
+  eyeShadow_in: [String!]
+  eyeShadow_not_in: [String!]
+  eyeShadow_lt: String
+  eyeShadow_lte: String
+  eyeShadow_gt: String
+  eyeShadow_gte: String
+  eyeShadow_contains: String
+  eyeShadow_not_contains: String
+  eyeShadow_starts_with: String
+  eyeShadow_not_starts_with: String
+  eyeShadow_ends_with: String
+  eyeShadow_not_ends_with: String
+  studio: StudioWhereInput
+  applyTo: String
+  applyTo_not: String
+  applyTo_in: [String!]
+  applyTo_not_in: [String!]
+  applyTo_lt: String
+  applyTo_lte: String
+  applyTo_gt: String
+  applyTo_gte: String
+  applyTo_contains: String
+  applyTo_not_contains: String
+  applyTo_starts_with: String
+  applyTo_not_starts_with: String
+  applyTo_ends_with: String
+  applyTo_not_ends_with: String
+  danceClasses_every: DanceClassWhereInput
+  danceClasses_some: DanceClassWhereInput
+  danceClasses_none: DanceClassWhereInput
+  AND: [MakeupSetWhereInput!]
+  OR: [MakeupSetWhereInput!]
+  NOT: [MakeupSetWhereInput!]
+}
+
+input MakeupSetWhereUniqueInput {
+  id: ID
+}
+
+type Mutation {
+  createAccessRequest(data: AccessRequestCreateInput!): AccessRequest!
+  updateAccessRequest(data: AccessRequestUpdateInput!, where: AccessRequestWhereUniqueInput!): AccessRequest
+  upsertAccessRequest(where: AccessRequestWhereUniqueInput!, create: AccessRequestCreateInput!, update: AccessRequestUpdateInput!): AccessRequest!
+  deleteAccessRequest(where: AccessRequestWhereUniqueInput!): AccessRequest
+  deleteManyAccessRequests(where: AccessRequestWhereInput): BatchPayload!
+  createCustomRoutine(data: CustomRoutineCreateInput!): CustomRoutine!
+  updateCustomRoutine(data: CustomRoutineUpdateInput!, where: CustomRoutineWhereUniqueInput!): CustomRoutine
+  updateManyCustomRoutines(data: CustomRoutineUpdateManyMutationInput!, where: CustomRoutineWhereInput): BatchPayload!
+  upsertCustomRoutine(where: CustomRoutineWhereUniqueInput!, create: CustomRoutineCreateInput!, update: CustomRoutineUpdateInput!): CustomRoutine!
+  deleteCustomRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
+  deleteManyCustomRoutines(where: CustomRoutineWhereInput): BatchPayload!
+  createDanceClass(data: DanceClassCreateInput!): DanceClass!
+  updateDanceClass(data: DanceClassUpdateInput!, where: DanceClassWhereUniqueInput!): DanceClass
+  updateManyDanceClasses(data: DanceClassUpdateManyMutationInput!, where: DanceClassWhereInput): BatchPayload!
+  upsertDanceClass(where: DanceClassWhereUniqueInput!, create: DanceClassCreateInput!, update: DanceClassUpdateInput!): DanceClass!
+  deleteDanceClass(where: DanceClassWhereUniqueInput!): DanceClass
+  deleteManyDanceClasses(where: DanceClassWhereInput): BatchPayload!
+  createDancer(data: DancerCreateInput!): Dancer!
+  updateDancer(data: DancerUpdateInput!, where: DancerWhereUniqueInput!): Dancer
+  updateManyDancers(data: DancerUpdateManyMutationInput!, where: DancerWhereInput): BatchPayload!
+  upsertDancer(where: DancerWhereUniqueInput!, create: DancerCreateInput!, update: DancerUpdateInput!): Dancer!
+  deleteDancer(where: DancerWhereUniqueInput!): Dancer
+  deleteManyDancers(where: DancerWhereInput): BatchPayload!
+  createEnrollmentRequest(data: EnrollmentRequestCreateInput!): EnrollmentRequest!
+  updateEnrollmentRequest(data: EnrollmentRequestUpdateInput!, where: EnrollmentRequestWhereUniqueInput!): EnrollmentRequest
+  upsertEnrollmentRequest(where: EnrollmentRequestWhereUniqueInput!, create: EnrollmentRequestCreateInput!, update: EnrollmentRequestUpdateInput!): EnrollmentRequest!
+  deleteEnrollmentRequest(where: EnrollmentRequestWhereUniqueInput!): EnrollmentRequest
+  deleteManyEnrollmentRequests(where: EnrollmentRequestWhereInput): BatchPayload!
+  createHairStyle(data: HairStyleCreateInput!): HairStyle!
+  updateHairStyle(data: HairStyleUpdateInput!, where: HairStyleWhereUniqueInput!): HairStyle
+  updateManyHairStyles(data: HairStyleUpdateManyMutationInput!, where: HairStyleWhereInput): BatchPayload!
+  upsertHairStyle(where: HairStyleWhereUniqueInput!, create: HairStyleCreateInput!, update: HairStyleUpdateInput!): HairStyle!
+  deleteHairStyle(where: HairStyleWhereUniqueInput!): HairStyle
+  deleteManyHairStyles(where: HairStyleWhereInput): BatchPayload!
+  createMakeupSet(data: MakeupSetCreateInput!): MakeupSet!
+  updateMakeupSet(data: MakeupSetUpdateInput!, where: MakeupSetWhereUniqueInput!): MakeupSet
+  updateManyMakeupSets(data: MakeupSetUpdateManyMutationInput!, where: MakeupSetWhereInput): BatchPayload!
+  upsertMakeupSet(where: MakeupSetWhereUniqueInput!, create: MakeupSetCreateInput!, update: MakeupSetUpdateInput!): MakeupSet!
+  deleteMakeupSet(where: MakeupSetWhereUniqueInput!): MakeupSet
+  deleteManyMakeupSets(where: MakeupSetWhereInput): BatchPayload!
+  createParent(data: ParentCreateInput!): Parent!
+  updateParent(data: ParentUpdateInput!, where: ParentWhereUniqueInput!): Parent
+  updateManyParents(data: ParentUpdateManyMutationInput!, where: ParentWhereInput): BatchPayload!
+  upsertParent(where: ParentWhereUniqueInput!, create: ParentCreateInput!, update: ParentUpdateInput!): Parent!
+  deleteParent(where: ParentWhereUniqueInput!): Parent
+  deleteManyParents(where: ParentWhereInput): BatchPayload!
+  createParentNote(data: ParentNoteCreateInput!): ParentNote!
+  updateParentNote(data: ParentNoteUpdateInput!, where: ParentNoteWhereUniqueInput!): ParentNote
+  updateManyParentNotes(data: ParentNoteUpdateManyMutationInput!, where: ParentNoteWhereInput): BatchPayload!
+  upsertParentNote(where: ParentNoteWhereUniqueInput!, create: ParentNoteCreateInput!, update: ParentNoteUpdateInput!): ParentNote!
+  deleteParentNote(where: ParentNoteWhereUniqueInput!): ParentNote
+  deleteManyParentNotes(where: ParentNoteWhereInput): BatchPayload!
+  createStudio(data: StudioCreateInput!): Studio!
+  updateStudio(data: StudioUpdateInput!, where: StudioWhereUniqueInput!): Studio
+  updateManyStudios(data: StudioUpdateManyMutationInput!, where: StudioWhereInput): BatchPayload!
+  upsertStudio(where: StudioWhereUniqueInput!, create: StudioCreateInput!, update: StudioUpdateInput!): Studio!
+  deleteStudio(where: StudioWhereUniqueInput!): Studio
+  deleteManyStudios(where: StudioWhereInput): BatchPayload!
+  createStudioEvent(data: StudioEventCreateInput!): StudioEvent!
+  updateStudioEvent(data: StudioEventUpdateInput!, where: StudioEventWhereUniqueInput!): StudioEvent
+  updateManyStudioEvents(data: StudioEventUpdateManyMutationInput!, where: StudioEventWhereInput): BatchPayload!
+  upsertStudioEvent(where: StudioEventWhereUniqueInput!, create: StudioEventCreateInput!, update: StudioEventUpdateInput!): StudioEvent!
+  deleteStudioEvent(where: StudioEventWhereUniqueInput!): StudioEvent
+  deleteManyStudioEvents(where: StudioEventWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Parent {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine!]
+  studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio!]
+  accessRequests: [ID!]!
+}
+
+type ParentConnection {
+  pageInfo: PageInfo!
+  edges: [ParentEdge]!
+  aggregate: AggregateParent!
+}
+
+input ParentCreateaccessRequestsInput {
+  set: [ID!]
+}
+
+input ParentCreateInput {
+  id: ID
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancers: DancerCreateManyWithoutParentInput
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: CustomRoutineCreateManyWithoutParentInput
+  studios: StudioCreateManyInput
+  accessRequests: ParentCreateaccessRequestsInput
+}
+
+input ParentCreateOneInput {
+  create: ParentCreateInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentCreateOneWithoutCustomRoutinesInput {
+  create: ParentCreateWithoutCustomRoutinesInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentCreateOneWithoutDancersInput {
+  create: ParentCreateWithoutDancersInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentCreateWithoutCustomRoutinesInput {
+  id: ID
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancers: DancerCreateManyWithoutParentInput
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  studios: StudioCreateManyInput
+  accessRequests: ParentCreateaccessRequestsInput
+}
+
+input ParentCreateWithoutDancersInput {
+  id: ID
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: CustomRoutineCreateManyWithoutParentInput
+  studios: StudioCreateManyInput
+  accessRequests: ParentCreateaccessRequestsInput
+}
+
+type ParentEdge {
+  node: Parent!
+  cursor: String!
+}
+
+type ParentNote {
+  id: ID!
+  parent: Parent!
+  dance: DanceClass!
+  note: String!
+}
+
+type ParentNoteConnection {
+  pageInfo: PageInfo!
+  edges: [ParentNoteEdge]!
+  aggregate: AggregateParentNote!
+}
+
+input ParentNoteCreateInput {
+  id: ID
+  parent: ParentCreateOneInput!
+  dance: DanceClassCreateOneInput!
+  note: String!
+}
+
+type ParentNoteEdge {
+  node: ParentNote!
+  cursor: String!
+}
+
+enum ParentNoteOrderByInput {
+  id_ASC
+  id_DESC
+  note_ASC
+  note_DESC
+}
+
+type ParentNotePreviousValues {
+  id: ID!
+  note: String!
+}
+
+type ParentNoteSubscriptionPayload {
+  mutation: MutationType!
+  node: ParentNote
+  updatedFields: [String!]
+  previousValues: ParentNotePreviousValues
+}
+
+input ParentNoteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ParentNoteWhereInput
+  AND: [ParentNoteSubscriptionWhereInput!]
+  OR: [ParentNoteSubscriptionWhereInput!]
+  NOT: [ParentNoteSubscriptionWhereInput!]
+}
+
+input ParentNoteUpdateInput {
+  parent: ParentUpdateOneRequiredInput
+  dance: DanceClassUpdateOneRequiredInput
+  note: String
+}
+
+input ParentNoteUpdateManyMutationInput {
+  note: String
+}
+
+input ParentNoteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  parent: ParentWhereInput
+  dance: DanceClassWhereInput
+  note: String
+  note_not: String
+  note_in: [String!]
+  note_not_in: [String!]
+  note_lt: String
+  note_lte: String
+  note_gt: String
+  note_gte: String
+  note_contains: String
+  note_not_contains: String
+  note_starts_with: String
+  note_not_starts_with: String
+  note_ends_with: String
+  note_not_ends_with: String
+  AND: [ParentNoteWhereInput!]
+  OR: [ParentNoteWhereInput!]
+  NOT: [ParentNoteWhereInput!]
+}
+
+input ParentNoteWhereUniqueInput {
+  id: ID
+}
+
+enum ParentOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  userType_ASC
+  userType_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+}
+
+type ParentPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  accessRequests: [ID!]!
+}
+
+type ParentSubscriptionPayload {
+  mutation: MutationType!
+  node: Parent
+  updatedFields: [String!]
+  previousValues: ParentPreviousValues
+}
+
+input ParentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ParentWhereInput
+  AND: [ParentSubscriptionWhereInput!]
+  OR: [ParentSubscriptionWhereInput!]
+  NOT: [ParentSubscriptionWhereInput!]
+}
+
+input ParentUpdateaccessRequestsInput {
+  set: [ID!]
+}
+
+input ParentUpdateDataInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  dancers: DancerUpdateManyWithoutParentInput
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: CustomRoutineUpdateManyWithoutParentInput
+  studios: StudioUpdateManyInput
+  accessRequests: ParentUpdateaccessRequestsInput
+}
+
+input ParentUpdateInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  dancers: DancerUpdateManyWithoutParentInput
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: CustomRoutineUpdateManyWithoutParentInput
+  studios: StudioUpdateManyInput
+  accessRequests: ParentUpdateaccessRequestsInput
+}
+
+input ParentUpdateManyMutationInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  accessRequests: ParentUpdateaccessRequestsInput
+}
+
+input ParentUpdateOneRequiredInput {
+  create: ParentCreateInput
+  update: ParentUpdateDataInput
+  upsert: ParentUpsertNestedInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentUpdateOneRequiredWithoutCustomRoutinesInput {
+  create: ParentCreateWithoutCustomRoutinesInput
+  update: ParentUpdateWithoutCustomRoutinesDataInput
+  upsert: ParentUpsertWithoutCustomRoutinesInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentUpdateOneRequiredWithoutDancersInput {
+  create: ParentCreateWithoutDancersInput
+  update: ParentUpdateWithoutDancersDataInput
+  upsert: ParentUpsertWithoutDancersInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentUpdateWithoutCustomRoutinesDataInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  dancers: DancerUpdateManyWithoutParentInput
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  studios: StudioUpdateManyInput
+  accessRequests: ParentUpdateaccessRequestsInput
+}
+
+input ParentUpdateWithoutDancersDataInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: CustomRoutineUpdateManyWithoutParentInput
+  studios: StudioUpdateManyInput
+  accessRequests: ParentUpdateaccessRequestsInput
+}
+
+input ParentUpsertNestedInput {
+  update: ParentUpdateDataInput!
+  create: ParentCreateInput!
+}
+
+input ParentUpsertWithoutCustomRoutinesInput {
+  update: ParentUpdateWithoutCustomRoutinesDataInput!
+  create: ParentCreateWithoutCustomRoutinesInput!
+}
+
+input ParentUpsertWithoutDancersInput {
+  update: ParentUpdateWithoutDancersDataInput!
+  create: ParentCreateWithoutDancersInput!
+}
+
+input ParentWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  userType: String
+  userType_not: String
+  userType_in: [String!]
+  userType_not_in: [String!]
+  userType_lt: String
+  userType_lte: String
+  userType_gt: String
+  userType_gte: String
+  userType_contains: String
+  userType_not_contains: String
+  userType_starts_with: String
+  userType_not_starts_with: String
+  userType_ends_with: String
+  userType_not_ends_with: String
+  dancers_every: DancerWhereInput
+  dancers_some: DancerWhereInput
+  dancers_none: DancerWhereInput
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: String
+  resetTokenExpiry_not: String
+  resetTokenExpiry_in: [String!]
+  resetTokenExpiry_not_in: [String!]
+  resetTokenExpiry_lt: String
+  resetTokenExpiry_lte: String
+  resetTokenExpiry_gt: String
+  resetTokenExpiry_gte: String
+  resetTokenExpiry_contains: String
+  resetTokenExpiry_not_contains: String
+  resetTokenExpiry_starts_with: String
+  resetTokenExpiry_not_starts_with: String
+  resetTokenExpiry_ends_with: String
+  resetTokenExpiry_not_ends_with: String
+  customRoutines_every: CustomRoutineWhereInput
+  customRoutines_some: CustomRoutineWhereInput
+  customRoutines_none: CustomRoutineWhereInput
+  studios_every: StudioWhereInput
+  studios_some: StudioWhereInput
+  studios_none: StudioWhereInput
+  AND: [ParentWhereInput!]
+  OR: [ParentWhereInput!]
+  NOT: [ParentWhereInput!]
+}
+
+input ParentWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+type Query {
+  accessRequest(where: AccessRequestWhereUniqueInput!): AccessRequest
+  accessRequests(where: AccessRequestWhereInput, orderBy: AccessRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AccessRequest]!
+  accessRequestsConnection(where: AccessRequestWhereInput, orderBy: AccessRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AccessRequestConnection!
+  customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
+  customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine]!
+  customRoutinesConnection(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CustomRoutineConnection!
+  danceClass(where: DanceClassWhereUniqueInput!): DanceClass
+  danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass]!
+  danceClassesConnection(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DanceClassConnection!
+  dancer(where: DancerWhereUniqueInput!): Dancer
+  dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer]!
+  dancersConnection(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DancerConnection!
+  enrollmentRequest(where: EnrollmentRequestWhereUniqueInput!): EnrollmentRequest
+  enrollmentRequests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest]!
+  enrollmentRequestsConnection(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EnrollmentRequestConnection!
+  hairStyle(where: HairStyleWhereUniqueInput!): HairStyle
+  hairStyles(where: HairStyleWhereInput, orderBy: HairStyleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HairStyle]!
+  hairStylesConnection(where: HairStyleWhereInput, orderBy: HairStyleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HairStyleConnection!
+  makeupSet(where: MakeupSetWhereUniqueInput!): MakeupSet
+  makeupSets(where: MakeupSetWhereInput, orderBy: MakeupSetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [MakeupSet]!
+  makeupSetsConnection(where: MakeupSetWhereInput, orderBy: MakeupSetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MakeupSetConnection!
+  parent(where: ParentWhereUniqueInput!): Parent
+  parents(where: ParentWhereInput, orderBy: ParentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parent]!
+  parentsConnection(where: ParentWhereInput, orderBy: ParentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentConnection!
+  parentNote(where: ParentNoteWhereUniqueInput!): ParentNote
+  parentNotes(where: ParentNoteWhereInput, orderBy: ParentNoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentNote]!
+  parentNotesConnection(where: ParentNoteWhereInput, orderBy: ParentNoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentNoteConnection!
+  studio(where: StudioWhereUniqueInput!): Studio
+  studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio]!
+  studiosConnection(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StudioConnection!
+  studioEvent(where: StudioEventWhereUniqueInput!): StudioEvent
+  studioEvents(where: StudioEventWhereInput, orderBy: StudioEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StudioEvent]!
+  studioEventsConnection(where: StudioEventWhereInput, orderBy: StudioEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StudioEventConnection!
+  node(id: ID!): Node
+}
+
+type Studio {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+  styles: [String!]!
+  competitiveLevels: [String!]!
+  ageDivisions: [String!]!
+  enrollmentRequests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest!]
+  makeupSets(where: MakeupSetWhereInput, orderBy: MakeupSetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [MakeupSet!]
+  hairStyles(where: HairStyleWhereInput, orderBy: HairStyleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HairStyle!]
+  dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
+  events(where: StudioEventWhereInput, orderBy: StudioEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StudioEvent!]
+}
+
+type StudioConnection {
+  pageInfo: PageInfo!
+  edges: [StudioEdge]!
+  aggregate: AggregateStudio!
+}
+
+input StudioCreateageDivisionsInput {
+  set: [String!]
+}
+
+input StudioCreatecompetitiveLevelsInput {
+  set: [String!]
+}
+
+input StudioCreateInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+input StudioCreateManyInput {
+  create: [StudioCreateInput!]
+  connect: [StudioWhereUniqueInput!]
+}
+
+input StudioCreateManyWithoutDancersInput {
+  create: [StudioCreateWithoutDancersInput!]
+  connect: [StudioWhereUniqueInput!]
+}
+
+input StudioCreateOneInput {
+  create: StudioCreateInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutDanceClassesInput {
+  create: StudioCreateWithoutDanceClassesInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutEnrollmentRequestsInput {
+  create: StudioCreateWithoutEnrollmentRequestsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutEventsInput {
+  create: StudioCreateWithoutEventsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutHairStylesInput {
+  create: StudioCreateWithoutHairStylesInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutMakeupSetsInput {
+  create: StudioCreateWithoutMakeupSetsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreatestylesInput {
+  set: [String!]
+}
+
+input StudioCreateWithoutDanceClassesInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+input StudioCreateWithoutDancersInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+input StudioCreateWithoutEnrollmentRequestsInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+input StudioCreateWithoutEventsInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+}
+
+input StudioCreateWithoutHairStylesInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+input StudioCreateWithoutMakeupSetsInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+}
+
+type StudioEdge {
+  node: Studio!
+  cursor: String!
+}
+
+type StudioEvent {
+  id: ID!
+  studio: Studio!
+  name: String!
+  type: String!
+  appliesTo: [String!]!
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type StudioEventConnection {
+  pageInfo: PageInfo!
+  edges: [StudioEventEdge]!
+  aggregate: AggregateStudioEvent!
+}
+
+input StudioEventCreateappliesToInput {
+  set: [String!]
+}
+
+input StudioEventCreateInput {
+  id: ID
+  studio: StudioCreateOneWithoutEventsInput!
+  name: String!
+  type: String!
+  appliesTo: StudioEventCreateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventCreateManyWithoutStudioInput {
+  create: [StudioEventCreateWithoutStudioInput!]
+  connect: [StudioEventWhereUniqueInput!]
+}
+
+input StudioEventCreateWithoutStudioInput {
+  id: ID
+  name: String!
+  type: String!
+  appliesTo: StudioEventCreateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type StudioEventEdge {
+  node: StudioEvent!
+  cursor: String!
+}
+
+enum StudioEventOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+  date_ASC
+  date_DESC
+  location_ASC
+  location_DESC
+  street1_ASC
+  street1_DESC
+  street2_ASC
+  street2_DESC
+  city_ASC
+  city_DESC
+  state_ASC
+  state_DESC
+  zip_ASC
+  zip_DESC
+  url_ASC
+  url_DESC
+  notes_ASC
+  notes_DESC
+}
+
+type StudioEventPreviousValues {
+  id: ID!
+  name: String!
+  type: String!
+  appliesTo: [String!]!
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  street1: String
+  street1_not: String
+  street1_in: [String!]
+  street1_not_in: [String!]
+  street1_lt: String
+  street1_lte: String
+  street1_gt: String
+  street1_gte: String
+  street1_contains: String
+  street1_not_contains: String
+  street1_starts_with: String
+  street1_not_starts_with: String
+  street1_ends_with: String
+  street1_not_ends_with: String
+  street2: String
+  street2_not: String
+  street2_in: [String!]
+  street2_not_in: [String!]
+  street2_lt: String
+  street2_lte: String
+  street2_gt: String
+  street2_gte: String
+  street2_contains: String
+  street2_not_contains: String
+  street2_starts_with: String
+  street2_not_starts_with: String
+  street2_ends_with: String
+  street2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  AND: [StudioEventScalarWhereInput!]
+  OR: [StudioEventScalarWhereInput!]
+  NOT: [StudioEventScalarWhereInput!]
+}
+
+type StudioEventSubscriptionPayload {
+  mutation: MutationType!
+  node: StudioEvent
+  updatedFields: [String!]
+  previousValues: StudioEventPreviousValues
+}
+
+input StudioEventSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StudioEventWhereInput
+  AND: [StudioEventSubscriptionWhereInput!]
+  OR: [StudioEventSubscriptionWhereInput!]
+  NOT: [StudioEventSubscriptionWhereInput!]
+}
+
+input StudioEventUpdateappliesToInput {
+  set: [String!]
+}
+
+input StudioEventUpdateInput {
+  studio: StudioUpdateOneRequiredWithoutEventsInput
+  name: String
+  type: String
+  appliesTo: StudioEventUpdateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventUpdateManyDataInput {
+  name: String
+  type: String
+  appliesTo: StudioEventUpdateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventUpdateManyMutationInput {
+  name: String
+  type: String
+  appliesTo: StudioEventUpdateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventUpdateManyWithoutStudioInput {
+  create: [StudioEventCreateWithoutStudioInput!]
+  delete: [StudioEventWhereUniqueInput!]
+  connect: [StudioEventWhereUniqueInput!]
+  set: [StudioEventWhereUniqueInput!]
+  disconnect: [StudioEventWhereUniqueInput!]
+  update: [StudioEventUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [StudioEventUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [StudioEventScalarWhereInput!]
+  updateMany: [StudioEventUpdateManyWithWhereNestedInput!]
+}
+
+input StudioEventUpdateManyWithWhereNestedInput {
+  where: StudioEventScalarWhereInput!
+  data: StudioEventUpdateManyDataInput!
+}
+
+input StudioEventUpdateWithoutStudioDataInput {
+  name: String
+  type: String
+  appliesTo: StudioEventUpdateappliesToInput
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input StudioEventUpdateWithWhereUniqueWithoutStudioInput {
+  where: StudioEventWhereUniqueInput!
+  data: StudioEventUpdateWithoutStudioDataInput!
+}
+
+input StudioEventUpsertWithWhereUniqueWithoutStudioInput {
+  where: StudioEventWhereUniqueInput!
+  update: StudioEventUpdateWithoutStudioDataInput!
+  create: StudioEventCreateWithoutStudioInput!
+}
+
+input StudioEventWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  studio: StudioWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  street1: String
+  street1_not: String
+  street1_in: [String!]
+  street1_not_in: [String!]
+  street1_lt: String
+  street1_lte: String
+  street1_gt: String
+  street1_gte: String
+  street1_contains: String
+  street1_not_contains: String
+  street1_starts_with: String
+  street1_not_starts_with: String
+  street1_ends_with: String
+  street1_not_ends_with: String
+  street2: String
+  street2_not: String
+  street2_in: [String!]
+  street2_not_in: [String!]
+  street2_lt: String
+  street2_lte: String
+  street2_gt: String
+  street2_gte: String
+  street2_contains: String
+  street2_not_contains: String
+  street2_starts_with: String
+  street2_not_starts_with: String
+  street2_ends_with: String
+  street2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  AND: [StudioEventWhereInput!]
+  OR: [StudioEventWhereInput!]
+  NOT: [StudioEventWhereInput!]
+}
+
+input StudioEventWhereUniqueInput {
+  id: ID
+}
+
+enum StudioOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  studioName_ASC
+  studioName_DESC
+  userType_ASC
+  userType_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+}
+
+type StudioPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID!
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  styles: [String!]!
+  competitiveLevels: [String!]!
+  ageDivisions: [String!]!
+}
+
+input StudioScalarWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  studioName: String
+  studioName_not: String
+  studioName_in: [String!]
+  studioName_not_in: [String!]
+  studioName_lt: String
+  studioName_lte: String
+  studioName_gt: String
+  studioName_gte: String
+  studioName_contains: String
+  studioName_not_contains: String
+  studioName_starts_with: String
+  studioName_not_starts_with: String
+  studioName_ends_with: String
+  studioName_not_ends_with: String
+  userType: String
+  userType_not: String
+  userType_in: [String!]
+  userType_not_in: [String!]
+  userType_lt: String
+  userType_lte: String
+  userType_gt: String
+  userType_gte: String
+  userType_contains: String
+  userType_not_contains: String
+  userType_starts_with: String
+  userType_not_starts_with: String
+  userType_ends_with: String
+  userType_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: String
+  resetTokenExpiry_not: String
+  resetTokenExpiry_in: [String!]
+  resetTokenExpiry_not_in: [String!]
+  resetTokenExpiry_lt: String
+  resetTokenExpiry_lte: String
+  resetTokenExpiry_gt: String
+  resetTokenExpiry_gte: String
+  resetTokenExpiry_contains: String
+  resetTokenExpiry_not_contains: String
+  resetTokenExpiry_starts_with: String
+  resetTokenExpiry_not_starts_with: String
+  resetTokenExpiry_ends_with: String
+  resetTokenExpiry_not_ends_with: String
+  AND: [StudioScalarWhereInput!]
+  OR: [StudioScalarWhereInput!]
+  NOT: [StudioScalarWhereInput!]
+}
+
+type StudioSubscriptionPayload {
+  mutation: MutationType!
+  node: Studio
+  updatedFields: [String!]
+  previousValues: StudioPreviousValues
+}
+
+input StudioSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StudioWhereInput
+  AND: [StudioSubscriptionWhereInput!]
+  OR: [StudioSubscriptionWhereInput!]
+  NOT: [StudioSubscriptionWhereInput!]
+}
+
+input StudioUpdateageDivisionsInput {
+  set: [String!]
+}
+
+input StudioUpdatecompetitiveLevelsInput {
+  set: [String!]
+}
+
+input StudioUpdateDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateManyDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+}
+
+input StudioUpdateManyInput {
+  create: [StudioCreateInput!]
+  update: [StudioUpdateWithWhereUniqueNestedInput!]
+  upsert: [StudioUpsertWithWhereUniqueNestedInput!]
+  delete: [StudioWhereUniqueInput!]
+  connect: [StudioWhereUniqueInput!]
+  set: [StudioWhereUniqueInput!]
+  disconnect: [StudioWhereUniqueInput!]
+  deleteMany: [StudioScalarWhereInput!]
+  updateMany: [StudioUpdateManyWithWhereNestedInput!]
+}
+
+input StudioUpdateManyMutationInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+}
+
+input StudioUpdateManyWithoutDancersInput {
+  create: [StudioCreateWithoutDancersInput!]
+  delete: [StudioWhereUniqueInput!]
+  connect: [StudioWhereUniqueInput!]
+  set: [StudioWhereUniqueInput!]
+  disconnect: [StudioWhereUniqueInput!]
+  update: [StudioUpdateWithWhereUniqueWithoutDancersInput!]
+  upsert: [StudioUpsertWithWhereUniqueWithoutDancersInput!]
+  deleteMany: [StudioScalarWhereInput!]
+  updateMany: [StudioUpdateManyWithWhereNestedInput!]
+}
+
+input StudioUpdateManyWithWhereNestedInput {
+  where: StudioScalarWhereInput!
+  data: StudioUpdateManyDataInput!
+}
+
+input StudioUpdateOneInput {
+  create: StudioCreateInput
+  update: StudioUpdateDataInput
+  upsert: StudioUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredInput {
+  create: StudioCreateInput
+  update: StudioUpdateDataInput
+  upsert: StudioUpsertNestedInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredWithoutDanceClassesInput {
+  create: StudioCreateWithoutDanceClassesInput
+  update: StudioUpdateWithoutDanceClassesDataInput
+  upsert: StudioUpsertWithoutDanceClassesInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredWithoutEnrollmentRequestsInput {
+  create: StudioCreateWithoutEnrollmentRequestsInput
+  update: StudioUpdateWithoutEnrollmentRequestsDataInput
+  upsert: StudioUpsertWithoutEnrollmentRequestsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredWithoutEventsInput {
+  create: StudioCreateWithoutEventsInput
+  update: StudioUpdateWithoutEventsDataInput
+  upsert: StudioUpsertWithoutEventsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredWithoutHairStylesInput {
+  create: StudioCreateWithoutHairStylesInput
+  update: StudioUpdateWithoutHairStylesDataInput
+  upsert: StudioUpsertWithoutHairStylesInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdateOneRequiredWithoutMakeupSetsInput {
+  create: StudioCreateWithoutMakeupSetsInput
+  update: StudioUpdateWithoutMakeupSetsDataInput
+  upsert: StudioUpsertWithoutMakeupSetsInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioUpdatestylesInput {
+  set: [String!]
+}
+
+input StudioUpdateWithoutDanceClassesDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateWithoutDancersDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateWithoutEnrollmentRequestsDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateWithoutEventsDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+}
+
+input StudioUpdateWithoutHairStylesDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateWithoutMakeupSetsDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+}
+
+input StudioUpdateWithWhereUniqueNestedInput {
+  where: StudioWhereUniqueInput!
+  data: StudioUpdateDataInput!
+}
+
+input StudioUpdateWithWhereUniqueWithoutDancersInput {
+  where: StudioWhereUniqueInput!
+  data: StudioUpdateWithoutDancersDataInput!
+}
+
+input StudioUpsertNestedInput {
+  update: StudioUpdateDataInput!
+  create: StudioCreateInput!
+}
+
+input StudioUpsertWithoutDanceClassesInput {
+  update: StudioUpdateWithoutDanceClassesDataInput!
+  create: StudioCreateWithoutDanceClassesInput!
+}
+
+input StudioUpsertWithoutEnrollmentRequestsInput {
+  update: StudioUpdateWithoutEnrollmentRequestsDataInput!
+  create: StudioCreateWithoutEnrollmentRequestsInput!
+}
+
+input StudioUpsertWithoutEventsInput {
+  update: StudioUpdateWithoutEventsDataInput!
+  create: StudioCreateWithoutEventsInput!
+}
+
+input StudioUpsertWithoutHairStylesInput {
+  update: StudioUpdateWithoutHairStylesDataInput!
+  create: StudioCreateWithoutHairStylesInput!
+}
+
+input StudioUpsertWithoutMakeupSetsInput {
+  update: StudioUpdateWithoutMakeupSetsDataInput!
+  create: StudioCreateWithoutMakeupSetsInput!
+}
+
+input StudioUpsertWithWhereUniqueNestedInput {
+  where: StudioWhereUniqueInput!
+  update: StudioUpdateDataInput!
+  create: StudioCreateInput!
+}
+
+input StudioUpsertWithWhereUniqueWithoutDancersInput {
+  where: StudioWhereUniqueInput!
+  update: StudioUpdateWithoutDancersDataInput!
+  create: StudioCreateWithoutDancersInput!
+}
+
+input StudioWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  studioName: String
+  studioName_not: String
+  studioName_in: [String!]
+  studioName_not_in: [String!]
+  studioName_lt: String
+  studioName_lte: String
+  studioName_gt: String
+  studioName_gte: String
+  studioName_contains: String
+  studioName_not_contains: String
+  studioName_starts_with: String
+  studioName_not_starts_with: String
+  studioName_ends_with: String
+  studioName_not_ends_with: String
+  userType: String
+  userType_not: String
+  userType_in: [String!]
+  userType_not_in: [String!]
+  userType_lt: String
+  userType_lte: String
+  userType_gt: String
+  userType_gte: String
+  userType_contains: String
+  userType_not_contains: String
+  userType_starts_with: String
+  userType_not_starts_with: String
+  userType_ends_with: String
+  userType_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: String
+  resetTokenExpiry_not: String
+  resetTokenExpiry_in: [String!]
+  resetTokenExpiry_not_in: [String!]
+  resetTokenExpiry_lt: String
+  resetTokenExpiry_lte: String
+  resetTokenExpiry_gt: String
+  resetTokenExpiry_gte: String
+  resetTokenExpiry_contains: String
+  resetTokenExpiry_not_contains: String
+  resetTokenExpiry_starts_with: String
+  resetTokenExpiry_not_starts_with: String
+  resetTokenExpiry_ends_with: String
+  resetTokenExpiry_not_ends_with: String
+  danceClasses_every: DanceClassWhereInput
+  danceClasses_some: DanceClassWhereInput
+  danceClasses_none: DanceClassWhereInput
+  enrollmentRequests_every: EnrollmentRequestWhereInput
+  enrollmentRequests_some: EnrollmentRequestWhereInput
+  enrollmentRequests_none: EnrollmentRequestWhereInput
+  makeupSets_every: MakeupSetWhereInput
+  makeupSets_some: MakeupSetWhereInput
+  makeupSets_none: MakeupSetWhereInput
+  hairStyles_every: HairStyleWhereInput
+  hairStyles_some: HairStyleWhereInput
+  hairStyles_none: HairStyleWhereInput
+  dancers_every: DancerWhereInput
+  dancers_some: DancerWhereInput
+  dancers_none: DancerWhereInput
+  events_every: StudioEventWhereInput
+  events_some: StudioEventWhereInput
+  events_none: StudioEventWhereInput
+  AND: [StudioWhereInput!]
+  OR: [StudioWhereInput!]
+  NOT: [StudioWhereInput!]
+}
+
+input StudioWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+type Subscription {
+  accessRequest(where: AccessRequestSubscriptionWhereInput): AccessRequestSubscriptionPayload
+  customRoutine(where: CustomRoutineSubscriptionWhereInput): CustomRoutineSubscriptionPayload
+  danceClass(where: DanceClassSubscriptionWhereInput): DanceClassSubscriptionPayload
+  dancer(where: DancerSubscriptionWhereInput): DancerSubscriptionPayload
+  enrollmentRequest(where: EnrollmentRequestSubscriptionWhereInput): EnrollmentRequestSubscriptionPayload
+  hairStyle(where: HairStyleSubscriptionWhereInput): HairStyleSubscriptionPayload
+  makeupSet(where: MakeupSetSubscriptionWhereInput): MakeupSetSubscriptionPayload
+  parent(where: ParentSubscriptionWhereInput): ParentSubscriptionPayload
+  parentNote(where: ParentNoteSubscriptionWhereInput): ParentNoteSubscriptionPayload
+  studio(where: StudioSubscriptionWhereInput): StudioSubscriptionPayload
+  studioEvent(where: StudioEventSubscriptionWhereInput): StudioEventSubscriptionPayload
+}

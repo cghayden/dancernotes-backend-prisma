@@ -1,0 +1,231 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  signin(email: String!, password: String!): User!
+  signupParent(
+    email: String!
+    firstName: String!
+    lastName: String!
+    userType: String!
+    password: String!
+  ): Parent!
+  signupStudio(
+    email: String!
+    studioName: String!
+    userType: String!
+    password: String!
+  ): Studio!
+  signinParent(email: String!, password: String!): Parent!
+  signinStudio(email: String!, password: String!): Studio!
+  signout: SuccessMessage
+  createDancer(firstName: String!, avatar: String): Dancer!
+  updateDancer(
+    id: ID!
+    firstName: String
+    avatar: String
+    avatarId: String
+  ): Dancer!
+  createDanceClass(
+    name: String!
+    performanceName: String
+    day: String
+    startTime: String
+    endTime: String
+    shoes: String
+    tights: String
+    notes: String
+    music: String
+    musicId: String
+    competitiveLevel: String
+    style: String
+    ageDivision: String
+    makeupSet: ID
+    size: String
+  ): DanceClass!
+  updateDanceClass(
+    id: ID!
+    name: String
+    performanceName: String
+    day: String
+    startTime: String
+    endTime: String
+    shoes: String
+    tights: String
+    notes: String
+    music: String
+    musicId: String
+    competitiveLevel: String
+    style: String
+    ageDivision: String
+    makeupSet: ID
+    size: String
+  ): DanceClass
+  addDancer(dancerId: ID!, danceId: ID!): SuccessMessage
+  removeDancerFromDance(dancerId: ID!, danceId: ID!): SuccessMessage
+  deleteDanceClass(id: ID!): SuccessMessage
+  requestDance(
+    requestId: ID!
+    danceId: ID!
+    dancerId: ID!
+    studioId: ID!
+  ): EnrollmentRequest
+  removeClassFromRequest(requestId: ID!, danceClassId: ID!): SuccessMessage
+  confirmEnrollmentRequest(
+    parentId: ID!
+    danceClassId: ID!
+    dancerId: ID!
+    requestId: ID!
+  ): SuccessMessage
+  updateStudioClassCategory(category: String!, items: [String]!): Studio
+  createMakeupSet(
+    name: String!
+    lipstick: String
+    eyeShadow: String
+    applyTo: String
+  ): SuccessMessage
+  updateMakeupSet(
+    id: ID!
+    name: String!
+    lipstick: String
+    eyeShadow: String
+    applyTo: String
+  ): SuccessMessage
+  createHairStyle(
+    name: String!
+    description: String
+    image: String
+    link: String
+  ): SuccessMessage
+  updateHairStyle(
+    id: ID!
+    name: String
+    description: String
+    image: String
+    link: String
+  ): SuccessMessage
+  deleteHairStyle(id: ID!): SuccessMessage
+  linkDancerToStudio(dancerId: ID!, studioId: ID!): Studio
+  createCustomRoutine(
+    name: String!
+    performanceName: String
+    day: String
+    startTime: String
+    endTime: String
+    shoes: String
+    tights: String
+    notes: String
+    music: String
+    dancerIds: [ID!]!
+    studio: ID
+    ageDivision: String
+    competitiveLevel: String
+  ): CustomRoutine
+  updateCustomRoutine(
+    id: ID!
+    name: String
+    performanceName: String
+    day: String
+    startTime: String
+    endTime: String
+    shoes: String
+    tights: String
+    notes: String
+    music: String
+    musicId: String
+    ageDivision: String
+    competitiveLevel: String
+  ): CustomRoutine
+  addNote(danceId: ID!, note: String!): ParentNote
+  deleteParentNote(noteId: ID!): ParentNote
+  updateParentNote(noteId: ID!, note: String): ParentNote
+  addStudioEvent(
+    type: String!
+    name: String!
+    appliesTo: [String]!
+  ): StudioEvent
+  deleteCloudinaryAsset(
+    publicId: String!
+    resourceType: String!
+  ): SuccessMessage
+  requestStudioAccess(studioId: ID!, accessRequests: [ID!]!): SuccessMessage
+}
+
+type Query {
+  parents(where: ParentWhereInput): [Parent!]!
+  danceClass(where: DanceClassWhereUniqueInput!): DanceClass
+  studio(where: StudioWhereUniqueInput!): Studio
+  studios(
+    where: StudioWhereInput
+    orderBy: StudioOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Studio]!
+  parentsDancers: [Dancer!]!
+  parentUser: Parent!
+  myStudio: Studio!
+  dancer(where: DancerWhereUniqueInput!): Dancer
+  dancers(where: DancerWhereInput): [Dancer!]!
+  allStudioDanceClasses: [DanceClass!]!
+  studioCategories: Studio!
+  allRs: [DanceClass!]!
+  studioHairStyles: [HairStyle!]!
+  parentStudios: [Studio!]!
+  studioDancers: [Dancer!]!
+  parentNotes(danceId: ID!): ParentNote!
+  enrollmentRequests: [EnrollmentRequest!]!
+  customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
+  parentEvents: [StudioEvent!]!
+}
+
+type SuccessMessage {
+  message: String
+}
+
+type User {
+  id: ID!
+  email: String!
+  userType: String!
+}
+
+type Parent {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancersIds: [ID]!
+  dancers: [Dancer!]
+  studios: [Studio!]!
+  accessRequests: [ID!]!
+  customRoutines: [CustomRoutine!]!
+}
+
+type DanceClass {
+  id: ID!
+  name: String!
+  dancers: [Dancer!]!
+  myDancersIds: [ID!]!
+  myDancersIdsInThisClass: [ID]!
+  style: String
+  competitiveLevel: String
+  ageDivision: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  music: String
+  musicId: String
+  performanceName: String
+  makeupSet: MakeupSet
+  size: String
+  studio: Studio
+  parentsNotes: ParentNote
+  custom: Boolean
+}
+
+# set User types here that does not include password info so no we can have acces to the user without exposing sensitive information.
