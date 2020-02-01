@@ -1,0 +1,165 @@
+type Parent {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  email: String! @unique
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancers: [Dancer!]!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  customRoutines: [CustomRoutine!]!
+  studios: [Studio!]!
+  accessRequests: [ID!]! @scalarList(strategy: RELATION)
+}
+
+type Studio {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  email: String! @unique
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  danceClasses: [DanceClass!]!
+  styles: [String!]! @scalarList(strategy: RELATION)
+  competitiveLevels: [String!]! @scalarList(strategy: RELATION)
+  ageDivisions: [String!]! @scalarList(strategy: RELATION)
+  enrollmentRequests: [EnrollmentRequest!]!
+  makeupSets: [MakeupSet!]!
+  hairStyles: [HairStyle!]!
+  dancers: [Dancer!]!
+  events: [StudioEvent!]!
+}
+
+type MakeupSet {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  name: String!
+  lipstick: String
+  eyeShadow: String
+  studio: Studio!
+  applyTo: String
+  danceClasses: [DanceClass!]!
+}
+
+type HairStyle {
+  studio: Studio!
+  id: ID! @id
+  name: String!
+  description: String
+  image: String
+  link: String
+}
+
+type Dancer {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  firstName: String!
+  parent: Parent!
+  requests: EnrollmentRequest @relation(link: INLINE)
+  danceClasses: [DanceClass!]!
+  customRoutines: [CustomRoutine!]!
+  avatar: String
+  avatarId: String
+  lastName: String
+  studios: [Studio!]!
+}
+
+type DanceClass {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  name: String!
+  studio: Studio!
+  music: String
+  musicId: String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  competitiveLevel: String
+  ageDivision: String
+  style: String
+  tights: String
+  shoes: String
+  notes: String
+  dancers: [Dancer!]!
+  makeupSet: MakeupSet
+  size: String!
+  custom: Boolean!
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type CustomRoutine {
+  custom: Boolean!
+  id: ID! @id
+  name: String!
+  studio: Studio
+  parent: Parent!
+  music: String
+  musicId: String
+  style: String
+  competitiveLevel:String
+  ageDivision:String
+  performanceName: String
+  day: String
+  startTime: String
+  endTime: String
+  shoes: String
+  tights: String
+  notes: String
+  dancers: [Dancer!]!
+  type: String
+  entryNumber: Int
+  entryTime: DateTime
+  entryDay: String
+}
+
+type ParentNote {
+  id: ID! @id
+  parent: Parent!
+  dance: DanceClass! 
+  note: String!
+}
+
+type EnrollmentRequest {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  dancer: Dancer!
+  studio: Studio!
+  classesRequested: [DanceClass!]!
+  parent: Parent!
+}
+
+type StudioEvent {
+  id: ID! @id
+  studio: Studio!
+  name: String!
+  type: String!
+  appliesTo: [String!]! @scalarList(strategy: RELATION)
+  date: DateTime
+  location: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type AccessRequest{
+  studio: Studio!
+  id: ID! @id
+  parent: Parent!
+}

@@ -1,0 +1,11 @@
+# endpoint:https://dn-trial-c988b1f54e.herokuapp.com/dn-trial-backend/prod
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
+generate:
+  - generator: javascript-client
+    output: ./src/generated/prisma-client
+  - generator: graphql-schema
+    output: ./src/generated/prisma.graphql
+# POST-DEPLOY HOOKS
+
