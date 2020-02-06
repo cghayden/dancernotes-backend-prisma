@@ -1,6 +1,11 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-var cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2;
+//from node:
+const { randomBytes } = require("crypto");
+//from node: promisify turns callback based functions into promise based functions
+const { promisify } = require("util");
+const { transporter, makeANiceEmail } = require("../email");
 
 const Mutations = {
   async signupParent(parent, args, ctx, info) {
@@ -27,6 +32,95 @@ const Mutations = {
     });
     return parentUser;
   },
+  async requestReset(parent, args, ctx, info) {
+    //1. check if real user
+    const studioUser = await ctx.db.query.studio({
+      where: { email: args.email }
+    });
+    const parentUser = await ctx.db.query.parent({
+      where: { email: args.email }
+    });
+    if (!parentUser && !studioUser) {
+      throw new Error(`No user found for ${args.email}`);
+    }
+    // 2. Set a reset token and expiry on that user
+    const randomBytesPromiseified = promisify(randomBytes);
+    const resetToken = (await randomBytesPromiseified(20)).toString("hex");
+    const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
+    if (parentUser) {
+      const res = await ctx.db.mutation.updateParent({
+        where: { email: args.email },
+        data: { resetToken, resetTokenExpiry }
+      });
+      const mailRes = await transporter.sendMail({
+        from: "admin@coreyhayden.tech",
+        to: "admin@coreyhayden.tech",
+        subject: "Your Password Reset Token",
+        html: makeANiceEmail(`Your Password Reset Token is here!
+        \n\n
+        <a href="${process.env.FRONTEND_URL}/parent/resetPassword?resetToken=${resetToken}">Click Here to Reset</a>`)
+      });
+    }
+    if (studioUser) {
+      const res = await ctx.db.mutation.updateStudio({
+        where: { email: args.email },
+        data: { resetToken, resetTokenExpiry }
+      });
+      // 3. Email them that reset token
+
+      const mailRes = await transporter.sendMail({
+        from: "cghayden@gmail.com",
+        to: email,
+        subject: "Your Password Reset Token",
+        html: makeANiceEmail(`Your Password Reset Token is here!
+        \n\n
+        <a href="${process.env.FRONTEND_URL}/studio/resetPassword?resetToken=${resetToken}">Click Here to Reset</a>`)
+      });
+    }
+    // 4. Return the message
+    return { message: "Check your email for a reset link!" };
+  },
+  async resetParentPassword(parent, args, ctx, info) {
+    // 1. check if the passwords match
+    if (args.password !== args.confirmPassword) {
+      throw new Error("Your Passwords don't match!");
+    }
+    // 2. check if its a legit reset token
+    // 3. Check if its expired
+    const [parentUser] = await ctx.db.query.parents({
+      where: {
+        resetToken: args.resetToken,
+        resetTokenExpiry_gte: Date.now() - 3600000
+      }
+    });
+    if (!parentUser) {
+      throw new Error("This token is either invalid or expired!");
+    }
+    // 4. Hash their new password
+    const password = await bcrypt.hash(args.password, 10);
+    // 5. Save the new password to the user and remove old resetToken fields
+    const updatedParentUser = await ctx.db.mutation.updateParent({
+      where: { email: parentUser.email },
+      data: {
+        password,
+        resetToken: null,
+        resetTokenExpiry: null
+      }
+    });
+    // 6. Generate JWT
+    const token = jwt.sign(
+      { userId: parentUser.id, userType: "parent" },
+      process.env.APP_SECRET
+    );
+    // 7. Set the JWT cookie
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    });
+    // 8. return the new user
+    return updatedParentUser;
+  },
+
   async signin(parent, args, ctx, info) {
     // 1. check if there is a user with that email
     const studioUser = await ctx.db.query.studio({
@@ -387,7 +481,10 @@ const Mutations = {
     const dances = await ctx.db.query.danceClasses(
       {
         where: {
-          AND: [{ competitiveLevel: args.applyTo }, { studio: { id: ctx.request.userId } }]
+          AND: [
+            { competitiveLevel: args.applyTo },
+            { studio: { id: ctx.request.userId } }
+          ]
         }
       },
       `{id}`

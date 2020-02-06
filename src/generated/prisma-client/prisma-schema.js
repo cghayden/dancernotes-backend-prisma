@@ -3606,7 +3606,7 @@ type Parent {
   dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine!]
   studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio!]
   accessRequests: [ID!]!
@@ -3631,7 +3631,7 @@ input ParentCreateInput {
   dancers: DancerCreateManyWithoutParentInput
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: CustomRoutineCreateManyWithoutParentInput
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
@@ -3661,7 +3661,7 @@ input ParentCreateWithoutCustomRoutinesInput {
   dancers: DancerCreateManyWithoutParentInput
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
 }
@@ -3674,7 +3674,7 @@ input ParentCreateWithoutDancersInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: CustomRoutineCreateManyWithoutParentInput
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
@@ -3823,7 +3823,7 @@ type ParentPreviousValues {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   accessRequests: [ID!]!
 }
 
@@ -3857,7 +3857,7 @@ input ParentUpdateDataInput {
   dancers: DancerUpdateManyWithoutParentInput
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
@@ -3871,7 +3871,7 @@ input ParentUpdateInput {
   dancers: DancerUpdateManyWithoutParentInput
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
@@ -3884,7 +3884,7 @@ input ParentUpdateManyMutationInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   accessRequests: ParentUpdateaccessRequestsInput
 }
 
@@ -3917,7 +3917,7 @@ input ParentUpdateWithoutCustomRoutinesDataInput {
   dancers: DancerUpdateManyWithoutParentInput
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
 }
@@ -3929,7 +3929,7 @@ input ParentUpdateWithoutDancersDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
@@ -4068,20 +4068,14 @@ input ParentWhereInput {
   resetToken_not_starts_with: String
   resetToken_ends_with: String
   resetToken_not_ends_with: String
-  resetTokenExpiry: String
-  resetTokenExpiry_not: String
-  resetTokenExpiry_in: [String!]
-  resetTokenExpiry_not_in: [String!]
-  resetTokenExpiry_lt: String
-  resetTokenExpiry_lte: String
-  resetTokenExpiry_gt: String
-  resetTokenExpiry_gte: String
-  resetTokenExpiry_contains: String
-  resetTokenExpiry_not_contains: String
-  resetTokenExpiry_starts_with: String
-  resetTokenExpiry_not_starts_with: String
-  resetTokenExpiry_ends_with: String
-  resetTokenExpiry_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
   customRoutines_every: CustomRoutineWhereInput
   customRoutines_some: CustomRoutineWhereInput
   customRoutines_none: CustomRoutineWhereInput
@@ -4144,7 +4138,7 @@ type Studio {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
   styles: [String!]!
   competitiveLevels: [String!]!
@@ -4177,7 +4171,7 @@ input StudioCreateInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4240,7 +4234,7 @@ input StudioCreateWithoutDanceClassesInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
@@ -4258,7 +4252,7 @@ input StudioCreateWithoutDancersInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4276,7 +4270,7 @@ input StudioCreateWithoutEnrollmentRequestsInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4294,7 +4288,7 @@ input StudioCreateWithoutEventsInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4312,7 +4306,7 @@ input StudioCreateWithoutHairStylesInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4330,7 +4324,7 @@ input StudioCreateWithoutMakeupSetsInput {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassCreateManyWithoutStudioInput
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
@@ -4941,7 +4935,7 @@ type StudioPreviousValues {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   styles: [String!]!
   competitiveLevels: [String!]!
   ageDivisions: [String!]!
@@ -5048,20 +5042,14 @@ input StudioScalarWhereInput {
   resetToken_not_starts_with: String
   resetToken_ends_with: String
   resetToken_not_ends_with: String
-  resetTokenExpiry: String
-  resetTokenExpiry_not: String
-  resetTokenExpiry_in: [String!]
-  resetTokenExpiry_not_in: [String!]
-  resetTokenExpiry_lt: String
-  resetTokenExpiry_lte: String
-  resetTokenExpiry_gt: String
-  resetTokenExpiry_gte: String
-  resetTokenExpiry_contains: String
-  resetTokenExpiry_not_contains: String
-  resetTokenExpiry_starts_with: String
-  resetTokenExpiry_not_starts_with: String
-  resetTokenExpiry_ends_with: String
-  resetTokenExpiry_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
   AND: [StudioScalarWhereInput!]
   OR: [StudioScalarWhereInput!]
   NOT: [StudioScalarWhereInput!]
@@ -5099,7 +5087,7 @@ input StudioUpdateDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5117,7 +5105,7 @@ input StudioUpdateInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5135,7 +5123,7 @@ input StudioUpdateManyDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
@@ -5159,7 +5147,7 @@ input StudioUpdateManyMutationInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
@@ -5243,7 +5231,7 @@ input StudioUpdateWithoutDanceClassesDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
@@ -5260,7 +5248,7 @@ input StudioUpdateWithoutDancersDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5277,7 +5265,7 @@ input StudioUpdateWithoutEnrollmentRequestsDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5294,7 +5282,7 @@ input StudioUpdateWithoutEventsDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5311,7 +5299,7 @@ input StudioUpdateWithoutHairStylesDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5328,7 +5316,7 @@ input StudioUpdateWithoutMakeupSetsDataInput {
   userType: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: DanceClassUpdateManyWithoutStudioInput
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
@@ -5492,20 +5480,14 @@ input StudioWhereInput {
   resetToken_not_starts_with: String
   resetToken_ends_with: String
   resetToken_not_ends_with: String
-  resetTokenExpiry: String
-  resetTokenExpiry_not: String
-  resetTokenExpiry_in: [String!]
-  resetTokenExpiry_not_in: [String!]
-  resetTokenExpiry_lt: String
-  resetTokenExpiry_lte: String
-  resetTokenExpiry_gt: String
-  resetTokenExpiry_gte: String
-  resetTokenExpiry_contains: String
-  resetTokenExpiry_not_contains: String
-  resetTokenExpiry_starts_with: String
-  resetTokenExpiry_not_starts_with: String
-  resetTokenExpiry_ends_with: String
-  resetTokenExpiry_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
   danceClasses_every: DanceClassWhereInput
   danceClasses_some: DanceClassWhereInput
   danceClasses_none: DanceClassWhereInput

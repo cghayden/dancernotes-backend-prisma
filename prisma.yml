@@ -1,5 +1,5 @@
-# endpoint:https://dn-trial-c988b1f54e.herokuapp.com/dn-trial-backend/prod
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://dancernotes-prod-c79ea8c1ef.herokuapp.com/dancernotes-prod/prod
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 generate:

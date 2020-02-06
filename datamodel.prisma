@@ -9,7 +9,7 @@ type Parent {
   dancers: [Dancer!]!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   customRoutines: [CustomRoutine!]!
   studios: [Studio!]!
   accessRequests: [ID!]! @scalarList(strategy: RELATION)
@@ -24,7 +24,7 @@ type Studio {
   userType: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   danceClasses: [DanceClass!]!
   styles: [String!]! @scalarList(strategy: RELATION)
   competitiveLevels: [String!]! @scalarList(strategy: RELATION)

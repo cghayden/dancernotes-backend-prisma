@@ -1095,20 +1095,14 @@ export interface StudioWhereInput {
   resetToken_not_starts_with?: Maybe<String>;
   resetToken_ends_with?: Maybe<String>;
   resetToken_not_ends_with?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
-  resetTokenExpiry_not?: Maybe<String>;
-  resetTokenExpiry_in?: Maybe<String[] | String>;
-  resetTokenExpiry_not_in?: Maybe<String[] | String>;
-  resetTokenExpiry_lt?: Maybe<String>;
-  resetTokenExpiry_lte?: Maybe<String>;
-  resetTokenExpiry_gt?: Maybe<String>;
-  resetTokenExpiry_gte?: Maybe<String>;
-  resetTokenExpiry_contains?: Maybe<String>;
-  resetTokenExpiry_not_contains?: Maybe<String>;
-  resetTokenExpiry_starts_with?: Maybe<String>;
-  resetTokenExpiry_not_starts_with?: Maybe<String>;
-  resetTokenExpiry_ends_with?: Maybe<String>;
-  resetTokenExpiry_not_ends_with?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  resetTokenExpiry_not?: Maybe<Float>;
+  resetTokenExpiry_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_not_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_lt?: Maybe<Float>;
+  resetTokenExpiry_lte?: Maybe<Float>;
+  resetTokenExpiry_gt?: Maybe<Float>;
+  resetTokenExpiry_gte?: Maybe<Float>;
   danceClasses_every?: Maybe<DanceClassWhereInput>;
   danceClasses_some?: Maybe<DanceClassWhereInput>;
   danceClasses_none?: Maybe<DanceClassWhereInput>;
@@ -1395,20 +1389,14 @@ export interface ParentWhereInput {
   resetToken_not_starts_with?: Maybe<String>;
   resetToken_ends_with?: Maybe<String>;
   resetToken_not_ends_with?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
-  resetTokenExpiry_not?: Maybe<String>;
-  resetTokenExpiry_in?: Maybe<String[] | String>;
-  resetTokenExpiry_not_in?: Maybe<String[] | String>;
-  resetTokenExpiry_lt?: Maybe<String>;
-  resetTokenExpiry_lte?: Maybe<String>;
-  resetTokenExpiry_gt?: Maybe<String>;
-  resetTokenExpiry_gte?: Maybe<String>;
-  resetTokenExpiry_contains?: Maybe<String>;
-  resetTokenExpiry_not_contains?: Maybe<String>;
-  resetTokenExpiry_starts_with?: Maybe<String>;
-  resetTokenExpiry_not_starts_with?: Maybe<String>;
-  resetTokenExpiry_ends_with?: Maybe<String>;
-  resetTokenExpiry_not_ends_with?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  resetTokenExpiry_not?: Maybe<Float>;
+  resetTokenExpiry_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_not_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_lt?: Maybe<Float>;
+  resetTokenExpiry_lte?: Maybe<Float>;
+  resetTokenExpiry_gt?: Maybe<Float>;
+  resetTokenExpiry_gte?: Maybe<Float>;
   customRoutines_every?: Maybe<CustomRoutineWhereInput>;
   customRoutines_some?: Maybe<CustomRoutineWhereInput>;
   customRoutines_none?: Maybe<CustomRoutineWhereInput>;
@@ -2133,7 +2121,7 @@ export interface StudioCreateInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -2209,7 +2197,7 @@ export interface ParentCreateWithoutDancersInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
@@ -2293,7 +2281,7 @@ export interface StudioCreateWithoutEnrollmentRequestsInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -2376,7 +2364,7 @@ export interface StudioCreateWithoutDanceClassesInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
@@ -2478,7 +2466,7 @@ export interface StudioCreateWithoutMakeupSetsInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -2571,7 +2559,7 @@ export interface ParentCreateWithoutCustomRoutinesInput {
   dancers?: Maybe<DancerCreateManyWithoutParentInput>;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
 }
@@ -2609,7 +2597,7 @@ export interface StudioCreateWithoutDancersInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -2700,7 +2688,7 @@ export interface ParentCreateInput {
   dancers?: Maybe<DancerCreateManyWithoutParentInput>;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
@@ -2724,7 +2712,7 @@ export interface StudioUpdateDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -2841,7 +2829,7 @@ export interface ParentUpdateWithoutDancersDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
@@ -2989,7 +2977,7 @@ export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -3113,7 +3101,7 @@ export interface StudioUpdateWithoutDanceClassesDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
@@ -3264,7 +3252,7 @@ export interface StudioUpdateWithoutMakeupSetsDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -3518,7 +3506,7 @@ export interface ParentUpdateWithoutCustomRoutinesDataInput {
   dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
 }
@@ -3596,7 +3584,7 @@ export interface StudioUpdateWithoutDancersDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -3959,20 +3947,14 @@ export interface StudioScalarWhereInput {
   resetToken_not_starts_with?: Maybe<String>;
   resetToken_ends_with?: Maybe<String>;
   resetToken_not_ends_with?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
-  resetTokenExpiry_not?: Maybe<String>;
-  resetTokenExpiry_in?: Maybe<String[] | String>;
-  resetTokenExpiry_not_in?: Maybe<String[] | String>;
-  resetTokenExpiry_lt?: Maybe<String>;
-  resetTokenExpiry_lte?: Maybe<String>;
-  resetTokenExpiry_gt?: Maybe<String>;
-  resetTokenExpiry_gte?: Maybe<String>;
-  resetTokenExpiry_contains?: Maybe<String>;
-  resetTokenExpiry_not_contains?: Maybe<String>;
-  resetTokenExpiry_starts_with?: Maybe<String>;
-  resetTokenExpiry_not_starts_with?: Maybe<String>;
-  resetTokenExpiry_ends_with?: Maybe<String>;
-  resetTokenExpiry_not_ends_with?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  resetTokenExpiry_not?: Maybe<Float>;
+  resetTokenExpiry_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_not_in?: Maybe<Float[] | Float>;
+  resetTokenExpiry_lt?: Maybe<Float>;
+  resetTokenExpiry_lte?: Maybe<Float>;
+  resetTokenExpiry_gt?: Maybe<Float>;
+  resetTokenExpiry_gte?: Maybe<Float>;
   AND?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   OR?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   NOT?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
@@ -3989,7 +3971,7 @@ export interface StudioUpdateManyDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
@@ -4814,7 +4796,7 @@ export interface ParentUpdateDataInput {
   dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
@@ -5216,7 +5198,7 @@ export interface StudioCreateWithoutHairStylesInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -5248,7 +5230,7 @@ export interface StudioUpdateWithoutHairStylesDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -5305,7 +5287,7 @@ export interface ParentUpdateInput {
   dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
@@ -5318,7 +5300,7 @@ export interface ParentUpdateManyMutationInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
 }
 
@@ -5362,7 +5344,7 @@ export interface StudioUpdateInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -5380,7 +5362,7 @@ export interface StudioUpdateManyMutationInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
@@ -5415,7 +5397,7 @@ export interface StudioCreateWithoutEventsInput {
   userType: String;
   password: String;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
@@ -5455,7 +5437,7 @@ export interface StudioUpdateWithoutEventsDataInput {
   userType?: Maybe<String>;
   password?: Maybe<String>;
   resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
@@ -5699,7 +5681,7 @@ export interface Studio {
   userType: String;
   password: String;
   resetToken?: String;
-  resetTokenExpiry?: String;
+  resetTokenExpiry?: Float;
   styles: String[];
   competitiveLevels: String[];
   ageDivisions: String[];
@@ -5714,7 +5696,7 @@ export interface StudioPromise extends Promise<Studio>, Fragmentable {
   userType: () => Promise<String>;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -5785,7 +5767,7 @@ export interface StudioSubscription
   userType: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   danceClasses: <T = Promise<AsyncIterator<DanceClassSubscription>>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -5858,7 +5840,7 @@ export interface StudioNullablePromise
   userType: () => Promise<String>;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -6194,7 +6176,7 @@ export interface Parent {
   userType: String;
   password: String;
   resetToken?: String;
-  resetTokenExpiry?: String;
+  resetTokenExpiry?: Float;
   accessRequests: ID_Output[];
 }
 
@@ -6217,7 +6199,7 @@ export interface ParentPromise extends Promise<Parent>, Fragmentable {
   }) => T;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   customRoutines: <T = FragmentableArray<CustomRoutine>>(args?: {
     where?: CustomRoutineWhereInput;
     orderBy?: CustomRoutineOrderByInput;
@@ -6260,7 +6242,7 @@ export interface ParentSubscription
   }) => T;
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   customRoutines: <
     T = Promise<AsyncIterator<CustomRoutineSubscription>>
   >(args?: {
@@ -6305,7 +6287,7 @@ export interface ParentNullablePromise
   }) => T;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   customRoutines: <T = FragmentableArray<CustomRoutine>>(args?: {
     where?: CustomRoutineWhereInput;
     orderBy?: CustomRoutineOrderByInput;
@@ -7875,7 +7857,7 @@ export interface ParentPreviousValues {
   userType: String;
   password: String;
   resetToken?: String;
-  resetTokenExpiry?: String;
+  resetTokenExpiry?: Float;
   accessRequests: ID_Output[];
 }
 
@@ -7891,7 +7873,7 @@ export interface ParentPreviousValuesPromise
   userType: () => Promise<String>;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   accessRequests: () => Promise<ID_Output[]>;
 }
 
@@ -7907,7 +7889,7 @@ export interface ParentPreviousValuesSubscription
   userType: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
 }
 
@@ -7989,7 +7971,7 @@ export interface StudioPreviousValues {
   userType: String;
   password: String;
   resetToken?: String;
-  resetTokenExpiry?: String;
+  resetTokenExpiry?: Float;
   styles: String[];
   competitiveLevels: String[];
   ageDivisions: String[];
@@ -8006,7 +7988,7 @@ export interface StudioPreviousValuesPromise
   userType: () => Promise<String>;
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
   styles: () => Promise<String[]>;
   competitiveLevels: () => Promise<String[]>;
   ageDivisions: () => Promise<String[]>;
@@ -8023,7 +8005,7 @@ export interface StudioPreviousValuesSubscription
   userType: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   styles: () => Promise<AsyncIterator<String[]>>;
   competitiveLevels: () => Promise<AsyncIterator<String[]>>;
   ageDivisions: () => Promise<AsyncIterator<String[]>>;
@@ -8126,6 +8108,11 @@ export type DateTimeOutput = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.

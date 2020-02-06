@@ -2,6 +2,12 @@
 
 type Mutation {
   signin(email: String!, password: String!): User!
+  requestReset(email: String!): SuccessMessage
+  resetParentPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
   signupParent(
     email: String!
     firstName: String!
