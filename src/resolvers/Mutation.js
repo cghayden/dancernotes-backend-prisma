@@ -54,7 +54,7 @@ const Mutations = {
       });
       const mailRes = await transporter.sendMail({
         from: "admin@coreyhayden.tech",
-        to: "admin@coreyhayden.tech",
+        to: args.email,
         subject: "Your Password Reset Token",
         html: makeANiceEmail(`Your Password Reset Token is here!
         \n\n
