@@ -5,6 +5,8 @@ const cloudinary = require("cloudinary").v2;
 const { randomBytes } = require("crypto");
 //from node: promisify turns callback based functions into promise based functions
 const { promisify } = require("util");
+const { transporter, makeANiceEmail } = require("../email");
+
 const Mutations = {
   async signupParent(parent, args, ctx, info) {
     args.email = args.email.toLowerCase();
@@ -45,33 +47,38 @@ const Mutations = {
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString("hex");
     const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
-    let email;
     if (parentUser) {
-      email = parentUser.email;
       const res = await ctx.db.mutation.updateParent({
         where: { email: args.email },
         data: { resetToken, resetTokenExpiry }
       });
+      const mailRes = await transporter.sendMail({
+        from: "admin@coreyhayden.tech",
+        to: "admin@coreyhayden.tech",
+        subject: "Your Password Reset Token",
+        html: makeANiceEmail(`Your Password Reset Token is here!
+        \n\n
+        <a href="${process.env.FRONTEND_URL}/parent/resetPassword?resetToken=${resetToken}">Click Here to Reset</a>`)
+      });
     }
     if (studioUser) {
-      email = studioUser.email;
       const res = await ctx.db.mutation.updateStudio({
         where: { email: args.email },
         data: { resetToken, resetTokenExpiry }
       });
-    }
-    // 3. Email them that reset token
-    // const mailRes = await transport.sendMail({
-    //   from: "cghayden@gmail.com",
-    //   to: email,
-    //   subject: "Your Password Reset Token",
-    //   html: makeANiceEmail(`Your Password Reset Token is here!
-    //   \n\n
-    //   <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click Here to Reset</a>`)
-    // });
+      // 3. Email them that reset token
 
+      const mailRes = await transporter.sendMail({
+        from: "cghayden@gmail.com",
+        to: email,
+        subject: "Your Password Reset Token",
+        html: makeANiceEmail(`Your Password Reset Token is here!
+        \n\n
+        <a href="${process.env.FRONTEND_URL}/studio/resetPassword?resetToken=${resetToken}">Click Here to Reset</a>`)
+      });
+    }
     // 4. Return the message
-    return { message: "Thanks!" };
+    return { message: "Check your email for a reset link!" };
   },
   async resetParentPassword(parent, args, ctx, info) {
     // 1. check if the passwords match
