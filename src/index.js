@@ -32,7 +32,7 @@ server.express.use(async (req, res, next) => {
   if (req.userType === "parent") {
     const user = await db.query.parent(
       { where: { id: req.userId } },
-      "{id, email, firstName, lastName}"
+      "{id, email, firstName}"
     );
     req.user = user;
   } else if (req.userType === "studio") {
