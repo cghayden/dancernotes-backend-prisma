@@ -45,7 +45,6 @@ type Mutation {
     competitiveLevel: String
     style: String
     ageDivision: String
-    makeupSet: ID
     size: String
   ): DanceClass!
   updateDanceClass(
@@ -63,7 +62,6 @@ type Mutation {
     competitiveLevel: String
     style: String
     ageDivision: String
-    makeupSet: ID
     size: String
   ): DanceClass
   addDancer(dancerId: ID!, danceId: ID!): SuccessMessage
@@ -171,6 +169,7 @@ type Query {
   ): [Studio]!
   parentsDancers: [Dancer!]!
   parentUser: Parent!
+  parentMakeup: Parent!
   myStudio: Studio!
   dancer(where: DancerWhereUniqueInput!): Dancer
   dancers(where: DancerWhereInput): [Dancer!]!
@@ -227,7 +226,6 @@ type DanceClass {
   music: String
   musicId: String
   performanceName: String
-  makeupSet: MakeupSet
   size: String
   studio: Studio
   parentsNotes: ParentNote
