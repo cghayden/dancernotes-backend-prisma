@@ -301,22 +301,69 @@ const Mutations = {
     );
   },
   async requestDance(parent, args, ctx, info) {
-    //TODO - make sure it is not already in requests
-    const enrollmentRequest = await ctx.db.mutation.upsertEnrollmentRequest(
-      {
-        where: { id: args.requestId },
-        create: {
-          dancer: { connect: { id: args.dancerId } },
-          studio: { connect: { id: args.studioId } },
-          parent: { connect: { id: ctx.request.userId } },
-          classesRequested: { connect: { id: args.danceId } }
+    const authorizedEmails = [
+      "q@q.com",
+      "cghayden@gmail.com",
+      "sarah.hayden27@gmail.com",
+      "yengbutler@gmail.com",
+      "jopetrunyak@yahoo.com",
+      "karajdm@yahoo.com",
+      "kelli474@msn.com",
+      "lilianthana4@yahoo.com",
+      "lisabraude@gmail.com",
+      "vieira2177@gmail.com",
+      "lorironkin@yahoo.com",
+      "marcycarty@gmail.com",
+      "michaelaellensilva@gmail.com",
+      "mullinfam2061@gmail.com",
+      "blackcoffee141@msn.com",
+      "roudlylaroche@live.com",
+      "taradelamere@gmail.com"
+    ];
+    // if user email is in my list, approve automatically
+    if (authorizedEmails.includes(args.parentEmail)) {
+      const updatedDanceClass = await ctx.db.mutation.updateDanceClass(
+        {
+          where: { id: args.danceId },
+          data: { dancers: { connect: { id: args.dancerId } } }
         },
-        update: { classesRequested: { connect: { id: args.danceId } } }
-      },
-      `{
+        `{id studio{id studioName}}`
+      );
+      console.log("updatedDanceClass:", updatedDanceClass);
+      // 3. if the dancer is succesfully added to the dance:
+      if (updatedDanceClass) {
+        //3a. Add dancer to dancers field on studio type
+        await ctx.db.mutation.updateStudio({
+          where: { id: updatedDanceClass.studio.id },
+          data: { dancers: { connect: { id: args.dancerId } } }
+        });
+        //3a. Add Studio to Parent's Studios.(Parent is the logged in user here)
+        await ctx.db.mutation.updateParent({
+          where: { id: ctx.request.userId },
+          data: { studios: { connect: { id: updatedDanceClass.studio.id } } }
+        });
+      }
+      return "Success!! - Enrolled!";
+    }
+    //TODO - make sure it is not already in requests
+    else {
+      const enrollmentRequest = await ctx.db.mutation.upsertEnrollmentRequest(
+        {
+          where: { id: args.requestId },
+          create: {
+            dancer: { connect: { id: args.dancerId } },
+            studio: { connect: { id: args.studioId } },
+            parent: { connect: { id: ctx.request.userId } },
+            classesRequested: { connect: { id: args.danceId } }
+          },
+          update: { classesRequested: { connect: { id: args.danceId } } }
+        },
+        `{
         id
       }`
-    );
+      );
+    }
+    return { messgage: "Success!! - Requested!" };
   },
   async removeClassFromRequest(parent, args, ctx, info) {
     // TODO make sure class is in requests
