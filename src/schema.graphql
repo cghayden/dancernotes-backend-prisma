@@ -71,7 +71,8 @@ type Mutation {
     danceId: ID!
     dancerId: ID!
     studioId: ID!
-  ): EnrollmentRequest
+    parentEmail: String!
+  ): SuccessMessage
   removeClassFromRequest(requestId: ID!, danceClassId: ID!): SuccessMessage
   confirmEnrollmentRequest(
     parentId: ID!
