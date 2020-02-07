@@ -648,8 +648,26 @@ export type MakeupSetOrderByInput =
   | "lipstick_DESC"
   | "eyeShadow_ASC"
   | "eyeShadow_DESC"
-  | "applyTo_ASC"
-  | "applyTo_DESC";
+  | "eyeLids_ASC"
+  | "eyeLids_DESC"
+  | "eyeCrease_ASC"
+  | "eyeCrease_DESC"
+  | "eyeLiner_ASC"
+  | "eyeLiner_DESC"
+  | "eyelashes_ASC"
+  | "eyelashes_DESC"
+  | "foundation_ASC"
+  | "foundation_DESC"
+  | "powder_ASC"
+  | "powder_DESC"
+  | "blush_ASC"
+  | "blush_DESC"
+  | "bronzer_ASC"
+  | "bronzer_DESC"
+  | "applyToCategories_ASC"
+  | "applyToCategories_DESC"
+  | "notes_ASC"
+  | "notes_DESC";
 
 export type HairStyleOrderByInput =
   | "id_ASC"
@@ -670,8 +688,10 @@ export type StudioEventOrderByInput =
   | "name_DESC"
   | "type_ASC"
   | "type_DESC"
-  | "date_ASC"
-  | "date_DESC"
+  | "beginDate_ASC"
+  | "beginDate_DESC"
+  | "endDate_ASC"
+  | "endDate_DESC"
   | "location_ASC"
   | "location_DESC"
   | "street1_ASC"
@@ -1706,6 +1726,7 @@ export interface MakeupSetWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  studio?: Maybe<StudioWhereInput>;
   lipstick?: Maybe<String>;
   lipstick_not?: Maybe<String>;
   lipstick_in?: Maybe<String[] | String>;
@@ -1734,21 +1755,146 @@ export interface MakeupSetWhereInput {
   eyeShadow_not_starts_with?: Maybe<String>;
   eyeShadow_ends_with?: Maybe<String>;
   eyeShadow_not_ends_with?: Maybe<String>;
-  studio?: Maybe<StudioWhereInput>;
-  applyTo?: Maybe<String>;
-  applyTo_not?: Maybe<String>;
-  applyTo_in?: Maybe<String[] | String>;
-  applyTo_not_in?: Maybe<String[] | String>;
-  applyTo_lt?: Maybe<String>;
-  applyTo_lte?: Maybe<String>;
-  applyTo_gt?: Maybe<String>;
-  applyTo_gte?: Maybe<String>;
-  applyTo_contains?: Maybe<String>;
-  applyTo_not_contains?: Maybe<String>;
-  applyTo_starts_with?: Maybe<String>;
-  applyTo_not_starts_with?: Maybe<String>;
-  applyTo_ends_with?: Maybe<String>;
-  applyTo_not_ends_with?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeLids_not?: Maybe<String>;
+  eyeLids_in?: Maybe<String[] | String>;
+  eyeLids_not_in?: Maybe<String[] | String>;
+  eyeLids_lt?: Maybe<String>;
+  eyeLids_lte?: Maybe<String>;
+  eyeLids_gt?: Maybe<String>;
+  eyeLids_gte?: Maybe<String>;
+  eyeLids_contains?: Maybe<String>;
+  eyeLids_not_contains?: Maybe<String>;
+  eyeLids_starts_with?: Maybe<String>;
+  eyeLids_not_starts_with?: Maybe<String>;
+  eyeLids_ends_with?: Maybe<String>;
+  eyeLids_not_ends_with?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeCrease_not?: Maybe<String>;
+  eyeCrease_in?: Maybe<String[] | String>;
+  eyeCrease_not_in?: Maybe<String[] | String>;
+  eyeCrease_lt?: Maybe<String>;
+  eyeCrease_lte?: Maybe<String>;
+  eyeCrease_gt?: Maybe<String>;
+  eyeCrease_gte?: Maybe<String>;
+  eyeCrease_contains?: Maybe<String>;
+  eyeCrease_not_contains?: Maybe<String>;
+  eyeCrease_starts_with?: Maybe<String>;
+  eyeCrease_not_starts_with?: Maybe<String>;
+  eyeCrease_ends_with?: Maybe<String>;
+  eyeCrease_not_ends_with?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyeLiner_not?: Maybe<String>;
+  eyeLiner_in?: Maybe<String[] | String>;
+  eyeLiner_not_in?: Maybe<String[] | String>;
+  eyeLiner_lt?: Maybe<String>;
+  eyeLiner_lte?: Maybe<String>;
+  eyeLiner_gt?: Maybe<String>;
+  eyeLiner_gte?: Maybe<String>;
+  eyeLiner_contains?: Maybe<String>;
+  eyeLiner_not_contains?: Maybe<String>;
+  eyeLiner_starts_with?: Maybe<String>;
+  eyeLiner_not_starts_with?: Maybe<String>;
+  eyeLiner_ends_with?: Maybe<String>;
+  eyeLiner_not_ends_with?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  eyelashes_not?: Maybe<String>;
+  eyelashes_in?: Maybe<String[] | String>;
+  eyelashes_not_in?: Maybe<String[] | String>;
+  eyelashes_lt?: Maybe<String>;
+  eyelashes_lte?: Maybe<String>;
+  eyelashes_gt?: Maybe<String>;
+  eyelashes_gte?: Maybe<String>;
+  eyelashes_contains?: Maybe<String>;
+  eyelashes_not_contains?: Maybe<String>;
+  eyelashes_starts_with?: Maybe<String>;
+  eyelashes_not_starts_with?: Maybe<String>;
+  eyelashes_ends_with?: Maybe<String>;
+  eyelashes_not_ends_with?: Maybe<String>;
+  foundation?: Maybe<String>;
+  foundation_not?: Maybe<String>;
+  foundation_in?: Maybe<String[] | String>;
+  foundation_not_in?: Maybe<String[] | String>;
+  foundation_lt?: Maybe<String>;
+  foundation_lte?: Maybe<String>;
+  foundation_gt?: Maybe<String>;
+  foundation_gte?: Maybe<String>;
+  foundation_contains?: Maybe<String>;
+  foundation_not_contains?: Maybe<String>;
+  foundation_starts_with?: Maybe<String>;
+  foundation_not_starts_with?: Maybe<String>;
+  foundation_ends_with?: Maybe<String>;
+  foundation_not_ends_with?: Maybe<String>;
+  powder?: Maybe<String>;
+  powder_not?: Maybe<String>;
+  powder_in?: Maybe<String[] | String>;
+  powder_not_in?: Maybe<String[] | String>;
+  powder_lt?: Maybe<String>;
+  powder_lte?: Maybe<String>;
+  powder_gt?: Maybe<String>;
+  powder_gte?: Maybe<String>;
+  powder_contains?: Maybe<String>;
+  powder_not_contains?: Maybe<String>;
+  powder_starts_with?: Maybe<String>;
+  powder_not_starts_with?: Maybe<String>;
+  powder_ends_with?: Maybe<String>;
+  powder_not_ends_with?: Maybe<String>;
+  blush?: Maybe<String>;
+  blush_not?: Maybe<String>;
+  blush_in?: Maybe<String[] | String>;
+  blush_not_in?: Maybe<String[] | String>;
+  blush_lt?: Maybe<String>;
+  blush_lte?: Maybe<String>;
+  blush_gt?: Maybe<String>;
+  blush_gte?: Maybe<String>;
+  blush_contains?: Maybe<String>;
+  blush_not_contains?: Maybe<String>;
+  blush_starts_with?: Maybe<String>;
+  blush_not_starts_with?: Maybe<String>;
+  blush_ends_with?: Maybe<String>;
+  blush_not_ends_with?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  bronzer_not?: Maybe<String>;
+  bronzer_in?: Maybe<String[] | String>;
+  bronzer_not_in?: Maybe<String[] | String>;
+  bronzer_lt?: Maybe<String>;
+  bronzer_lte?: Maybe<String>;
+  bronzer_gt?: Maybe<String>;
+  bronzer_gte?: Maybe<String>;
+  bronzer_contains?: Maybe<String>;
+  bronzer_not_contains?: Maybe<String>;
+  bronzer_starts_with?: Maybe<String>;
+  bronzer_not_starts_with?: Maybe<String>;
+  bronzer_ends_with?: Maybe<String>;
+  bronzer_not_ends_with?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  applyToCategories_not?: Maybe<String>;
+  applyToCategories_in?: Maybe<String[] | String>;
+  applyToCategories_not_in?: Maybe<String[] | String>;
+  applyToCategories_lt?: Maybe<String>;
+  applyToCategories_lte?: Maybe<String>;
+  applyToCategories_gt?: Maybe<String>;
+  applyToCategories_gte?: Maybe<String>;
+  applyToCategories_contains?: Maybe<String>;
+  applyToCategories_not_contains?: Maybe<String>;
+  applyToCategories_starts_with?: Maybe<String>;
+  applyToCategories_not_starts_with?: Maybe<String>;
+  applyToCategories_ends_with?: Maybe<String>;
+  applyToCategories_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
   danceClasses_every?: Maybe<DanceClassWhereInput>;
   danceClasses_some?: Maybe<DanceClassWhereInput>;
   danceClasses_none?: Maybe<DanceClassWhereInput>;
@@ -1878,14 +2024,22 @@ export interface StudioEventWhereInput {
   type_not_starts_with?: Maybe<String>;
   type_ends_with?: Maybe<String>;
   type_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  beginDate_not?: Maybe<DateTimeInput>;
+  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_lt?: Maybe<DateTimeInput>;
+  beginDate_lte?: Maybe<DateTimeInput>;
+  beginDate_gt?: Maybe<DateTimeInput>;
+  beginDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   location_not?: Maybe<String>;
   location_in?: Maybe<String[] | String>;
@@ -2316,7 +2470,16 @@ export interface MakeupSetCreateWithoutStudioInput {
   name: String;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutMakeupSetInput>;
 }
 
@@ -2448,10 +2611,19 @@ export interface MakeupSetCreateOneWithoutDanceClassesInput {
 export interface MakeupSetCreateWithoutDanceClassesInput {
   id?: Maybe<ID_Input>;
   name: String;
+  studio: StudioCreateOneWithoutMakeupSetsInput;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  studio: StudioCreateOneWithoutMakeupSetsInput;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
 }
 
 export interface StudioCreateOneWithoutMakeupSetsInput {
@@ -2620,7 +2792,8 @@ export interface StudioEventCreateWithoutStudioInput {
   name: String;
   type: String;
   appliesTo?: Maybe<StudioEventCreateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -3032,7 +3205,16 @@ export interface MakeupSetUpdateWithoutStudioDataInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutMakeupSetInput>;
 }
 
@@ -3233,10 +3415,19 @@ export interface MakeupSetUpdateOneWithoutDanceClassesInput {
 
 export interface MakeupSetUpdateWithoutDanceClassesDataInput {
   name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
 }
 
 export interface StudioUpdateOneRequiredWithoutMakeupSetsInput {
@@ -3631,7 +3822,8 @@ export interface StudioEventUpdateWithoutStudioDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -3695,14 +3887,22 @@ export interface StudioEventScalarWhereInput {
   type_not_starts_with?: Maybe<String>;
   type_ends_with?: Maybe<String>;
   type_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  beginDate_not?: Maybe<DateTimeInput>;
+  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_lt?: Maybe<DateTimeInput>;
+  beginDate_lte?: Maybe<DateTimeInput>;
+  beginDate_gt?: Maybe<DateTimeInput>;
+  beginDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   location_not?: Maybe<String>;
   location_in?: Maybe<String[] | String>;
@@ -3829,7 +4029,8 @@ export interface StudioEventUpdateManyDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -4945,20 +5146,146 @@ export interface MakeupSetScalarWhereInput {
   eyeShadow_not_starts_with?: Maybe<String>;
   eyeShadow_ends_with?: Maybe<String>;
   eyeShadow_not_ends_with?: Maybe<String>;
-  applyTo?: Maybe<String>;
-  applyTo_not?: Maybe<String>;
-  applyTo_in?: Maybe<String[] | String>;
-  applyTo_not_in?: Maybe<String[] | String>;
-  applyTo_lt?: Maybe<String>;
-  applyTo_lte?: Maybe<String>;
-  applyTo_gt?: Maybe<String>;
-  applyTo_gte?: Maybe<String>;
-  applyTo_contains?: Maybe<String>;
-  applyTo_not_contains?: Maybe<String>;
-  applyTo_starts_with?: Maybe<String>;
-  applyTo_not_starts_with?: Maybe<String>;
-  applyTo_ends_with?: Maybe<String>;
-  applyTo_not_ends_with?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeLids_not?: Maybe<String>;
+  eyeLids_in?: Maybe<String[] | String>;
+  eyeLids_not_in?: Maybe<String[] | String>;
+  eyeLids_lt?: Maybe<String>;
+  eyeLids_lte?: Maybe<String>;
+  eyeLids_gt?: Maybe<String>;
+  eyeLids_gte?: Maybe<String>;
+  eyeLids_contains?: Maybe<String>;
+  eyeLids_not_contains?: Maybe<String>;
+  eyeLids_starts_with?: Maybe<String>;
+  eyeLids_not_starts_with?: Maybe<String>;
+  eyeLids_ends_with?: Maybe<String>;
+  eyeLids_not_ends_with?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeCrease_not?: Maybe<String>;
+  eyeCrease_in?: Maybe<String[] | String>;
+  eyeCrease_not_in?: Maybe<String[] | String>;
+  eyeCrease_lt?: Maybe<String>;
+  eyeCrease_lte?: Maybe<String>;
+  eyeCrease_gt?: Maybe<String>;
+  eyeCrease_gte?: Maybe<String>;
+  eyeCrease_contains?: Maybe<String>;
+  eyeCrease_not_contains?: Maybe<String>;
+  eyeCrease_starts_with?: Maybe<String>;
+  eyeCrease_not_starts_with?: Maybe<String>;
+  eyeCrease_ends_with?: Maybe<String>;
+  eyeCrease_not_ends_with?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyeLiner_not?: Maybe<String>;
+  eyeLiner_in?: Maybe<String[] | String>;
+  eyeLiner_not_in?: Maybe<String[] | String>;
+  eyeLiner_lt?: Maybe<String>;
+  eyeLiner_lte?: Maybe<String>;
+  eyeLiner_gt?: Maybe<String>;
+  eyeLiner_gte?: Maybe<String>;
+  eyeLiner_contains?: Maybe<String>;
+  eyeLiner_not_contains?: Maybe<String>;
+  eyeLiner_starts_with?: Maybe<String>;
+  eyeLiner_not_starts_with?: Maybe<String>;
+  eyeLiner_ends_with?: Maybe<String>;
+  eyeLiner_not_ends_with?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  eyelashes_not?: Maybe<String>;
+  eyelashes_in?: Maybe<String[] | String>;
+  eyelashes_not_in?: Maybe<String[] | String>;
+  eyelashes_lt?: Maybe<String>;
+  eyelashes_lte?: Maybe<String>;
+  eyelashes_gt?: Maybe<String>;
+  eyelashes_gte?: Maybe<String>;
+  eyelashes_contains?: Maybe<String>;
+  eyelashes_not_contains?: Maybe<String>;
+  eyelashes_starts_with?: Maybe<String>;
+  eyelashes_not_starts_with?: Maybe<String>;
+  eyelashes_ends_with?: Maybe<String>;
+  eyelashes_not_ends_with?: Maybe<String>;
+  foundation?: Maybe<String>;
+  foundation_not?: Maybe<String>;
+  foundation_in?: Maybe<String[] | String>;
+  foundation_not_in?: Maybe<String[] | String>;
+  foundation_lt?: Maybe<String>;
+  foundation_lte?: Maybe<String>;
+  foundation_gt?: Maybe<String>;
+  foundation_gte?: Maybe<String>;
+  foundation_contains?: Maybe<String>;
+  foundation_not_contains?: Maybe<String>;
+  foundation_starts_with?: Maybe<String>;
+  foundation_not_starts_with?: Maybe<String>;
+  foundation_ends_with?: Maybe<String>;
+  foundation_not_ends_with?: Maybe<String>;
+  powder?: Maybe<String>;
+  powder_not?: Maybe<String>;
+  powder_in?: Maybe<String[] | String>;
+  powder_not_in?: Maybe<String[] | String>;
+  powder_lt?: Maybe<String>;
+  powder_lte?: Maybe<String>;
+  powder_gt?: Maybe<String>;
+  powder_gte?: Maybe<String>;
+  powder_contains?: Maybe<String>;
+  powder_not_contains?: Maybe<String>;
+  powder_starts_with?: Maybe<String>;
+  powder_not_starts_with?: Maybe<String>;
+  powder_ends_with?: Maybe<String>;
+  powder_not_ends_with?: Maybe<String>;
+  blush?: Maybe<String>;
+  blush_not?: Maybe<String>;
+  blush_in?: Maybe<String[] | String>;
+  blush_not_in?: Maybe<String[] | String>;
+  blush_lt?: Maybe<String>;
+  blush_lte?: Maybe<String>;
+  blush_gt?: Maybe<String>;
+  blush_gte?: Maybe<String>;
+  blush_contains?: Maybe<String>;
+  blush_not_contains?: Maybe<String>;
+  blush_starts_with?: Maybe<String>;
+  blush_not_starts_with?: Maybe<String>;
+  blush_ends_with?: Maybe<String>;
+  blush_not_ends_with?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  bronzer_not?: Maybe<String>;
+  bronzer_in?: Maybe<String[] | String>;
+  bronzer_not_in?: Maybe<String[] | String>;
+  bronzer_lt?: Maybe<String>;
+  bronzer_lte?: Maybe<String>;
+  bronzer_gt?: Maybe<String>;
+  bronzer_gte?: Maybe<String>;
+  bronzer_contains?: Maybe<String>;
+  bronzer_not_contains?: Maybe<String>;
+  bronzer_starts_with?: Maybe<String>;
+  bronzer_not_starts_with?: Maybe<String>;
+  bronzer_ends_with?: Maybe<String>;
+  bronzer_not_ends_with?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  applyToCategories_not?: Maybe<String>;
+  applyToCategories_in?: Maybe<String[] | String>;
+  applyToCategories_not_in?: Maybe<String[] | String>;
+  applyToCategories_lt?: Maybe<String>;
+  applyToCategories_lte?: Maybe<String>;
+  applyToCategories_gt?: Maybe<String>;
+  applyToCategories_gte?: Maybe<String>;
+  applyToCategories_contains?: Maybe<String>;
+  applyToCategories_not_contains?: Maybe<String>;
+  applyToCategories_starts_with?: Maybe<String>;
+  applyToCategories_not_starts_with?: Maybe<String>;
+  applyToCategories_ends_with?: Maybe<String>;
+  applyToCategories_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
   AND?: Maybe<MakeupSetScalarWhereInput[] | MakeupSetScalarWhereInput>;
   OR?: Maybe<MakeupSetScalarWhereInput[] | MakeupSetScalarWhereInput>;
   NOT?: Maybe<MakeupSetScalarWhereInput[] | MakeupSetScalarWhereInput>;
@@ -4973,7 +5300,16 @@ export interface MakeupSetUpdateManyDataInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
 }
 
 export interface StudioUpsertWithoutEnrollmentRequestsInput {
@@ -5256,19 +5592,37 @@ export interface HairStyleUpdateManyMutationInput {
 export interface MakeupSetCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  studio: StudioCreateOneWithoutMakeupSetsInput;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  studio: StudioCreateOneWithoutMakeupSetsInput;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutMakeupSetInput>;
 }
 
 export interface MakeupSetUpdateInput {
   name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutMakeupSetInput>;
 }
 
@@ -5276,7 +5630,16 @@ export interface MakeupSetUpdateManyMutationInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
   eyeShadow?: Maybe<String>;
-  applyTo?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
 }
 
 export interface ParentUpdateInput {
@@ -5374,7 +5737,8 @@ export interface StudioEventCreateInput {
   name: String;
   type: String;
   appliesTo?: Maybe<StudioEventCreateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -5413,7 +5777,8 @@ export interface StudioEventUpdateInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -5457,7 +5822,8 @@ export interface StudioEventUpdateManyMutationInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
-  date?: Maybe<DateTimeInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
   street1?: Maybe<String>;
   street2?: Maybe<String>;
@@ -6511,7 +6877,16 @@ export interface MakeupSet {
   name: String;
   lipstick?: String;
   eyeShadow?: String;
-  applyTo?: String;
+  eyeLids?: String;
+  eyeCrease?: String;
+  eyeLiner?: String;
+  eyelashes?: String;
+  foundation?: String;
+  powder?: String;
+  blush?: String;
+  bronzer?: String;
+  applyToCategories?: String;
+  notes?: String;
 }
 
 export interface MakeupSetPromise extends Promise<MakeupSet>, Fragmentable {
@@ -6519,10 +6894,19 @@ export interface MakeupSetPromise extends Promise<MakeupSet>, Fragmentable {
   updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  studio: <T = StudioPromise>() => T;
   lipstick: () => Promise<String>;
   eyeShadow: () => Promise<String>;
-  studio: <T = StudioPromise>() => T;
-  applyTo: () => Promise<String>;
+  eyeLids: () => Promise<String>;
+  eyeCrease: () => Promise<String>;
+  eyeLiner: () => Promise<String>;
+  eyelashes: () => Promise<String>;
+  foundation: () => Promise<String>;
+  powder: () => Promise<String>;
+  blush: () => Promise<String>;
+  bronzer: () => Promise<String>;
+  applyToCategories: () => Promise<String>;
+  notes: () => Promise<String>;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -6541,10 +6925,19 @@ export interface MakeupSetSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  studio: <T = StudioSubscription>() => T;
   lipstick: () => Promise<AsyncIterator<String>>;
   eyeShadow: () => Promise<AsyncIterator<String>>;
-  studio: <T = StudioSubscription>() => T;
-  applyTo: () => Promise<AsyncIterator<String>>;
+  eyeLids: () => Promise<AsyncIterator<String>>;
+  eyeCrease: () => Promise<AsyncIterator<String>>;
+  eyeLiner: () => Promise<AsyncIterator<String>>;
+  eyelashes: () => Promise<AsyncIterator<String>>;
+  foundation: () => Promise<AsyncIterator<String>>;
+  powder: () => Promise<AsyncIterator<String>>;
+  blush: () => Promise<AsyncIterator<String>>;
+  bronzer: () => Promise<AsyncIterator<String>>;
+  applyToCategories: () => Promise<AsyncIterator<String>>;
+  notes: () => Promise<AsyncIterator<String>>;
   danceClasses: <T = Promise<AsyncIterator<DanceClassSubscription>>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -6563,10 +6956,19 @@ export interface MakeupSetNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  studio: <T = StudioPromise>() => T;
   lipstick: () => Promise<String>;
   eyeShadow: () => Promise<String>;
-  studio: <T = StudioPromise>() => T;
-  applyTo: () => Promise<String>;
+  eyeLids: () => Promise<String>;
+  eyeCrease: () => Promise<String>;
+  eyeLiner: () => Promise<String>;
+  eyelashes: () => Promise<String>;
+  foundation: () => Promise<String>;
+  powder: () => Promise<String>;
+  blush: () => Promise<String>;
+  bronzer: () => Promise<String>;
+  applyToCategories: () => Promise<String>;
+  notes: () => Promise<String>;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -6622,7 +7024,8 @@ export interface StudioEvent {
   name: String;
   type: String;
   appliesTo: String[];
-  date?: DateTimeOutput;
+  beginDate?: DateTimeOutput;
+  endDate?: DateTimeOutput;
   location?: String;
   street1?: String;
   street2?: String;
@@ -6639,7 +7042,8 @@ export interface StudioEventPromise extends Promise<StudioEvent>, Fragmentable {
   name: () => Promise<String>;
   type: () => Promise<String>;
   appliesTo: () => Promise<String[]>;
-  date: () => Promise<DateTimeOutput>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
   street1: () => Promise<String>;
   street2: () => Promise<String>;
@@ -6658,7 +7062,8 @@ export interface StudioEventSubscription
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
   appliesTo: () => Promise<AsyncIterator<String[]>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
   street1: () => Promise<AsyncIterator<String>>;
   street2: () => Promise<AsyncIterator<String>>;
@@ -6677,7 +7082,8 @@ export interface StudioEventNullablePromise
   name: () => Promise<String>;
   type: () => Promise<String>;
   appliesTo: () => Promise<String[]>;
-  date: () => Promise<DateTimeOutput>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
   street1: () => Promise<String>;
   street2: () => Promise<String>;
@@ -7795,7 +8201,16 @@ export interface MakeupSetPreviousValues {
   name: String;
   lipstick?: String;
   eyeShadow?: String;
-  applyTo?: String;
+  eyeLids?: String;
+  eyeCrease?: String;
+  eyeLiner?: String;
+  eyelashes?: String;
+  foundation?: String;
+  powder?: String;
+  blush?: String;
+  bronzer?: String;
+  applyToCategories?: String;
+  notes?: String;
 }
 
 export interface MakeupSetPreviousValuesPromise
@@ -7807,7 +8222,16 @@ export interface MakeupSetPreviousValuesPromise
   name: () => Promise<String>;
   lipstick: () => Promise<String>;
   eyeShadow: () => Promise<String>;
-  applyTo: () => Promise<String>;
+  eyeLids: () => Promise<String>;
+  eyeCrease: () => Promise<String>;
+  eyeLiner: () => Promise<String>;
+  eyelashes: () => Promise<String>;
+  foundation: () => Promise<String>;
+  powder: () => Promise<String>;
+  blush: () => Promise<String>;
+  bronzer: () => Promise<String>;
+  applyToCategories: () => Promise<String>;
+  notes: () => Promise<String>;
 }
 
 export interface MakeupSetPreviousValuesSubscription
@@ -7819,7 +8243,16 @@ export interface MakeupSetPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   lipstick: () => Promise<AsyncIterator<String>>;
   eyeShadow: () => Promise<AsyncIterator<String>>;
-  applyTo: () => Promise<AsyncIterator<String>>;
+  eyeLids: () => Promise<AsyncIterator<String>>;
+  eyeCrease: () => Promise<AsyncIterator<String>>;
+  eyeLiner: () => Promise<AsyncIterator<String>>;
+  eyelashes: () => Promise<AsyncIterator<String>>;
+  foundation: () => Promise<AsyncIterator<String>>;
+  powder: () => Promise<AsyncIterator<String>>;
+  blush: () => Promise<AsyncIterator<String>>;
+  bronzer: () => Promise<AsyncIterator<String>>;
+  applyToCategories: () => Promise<AsyncIterator<String>>;
+  notes: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ParentSubscriptionPayload {
@@ -8041,7 +8474,8 @@ export interface StudioEventPreviousValues {
   name: String;
   type: String;
   appliesTo: String[];
-  date?: DateTimeOutput;
+  beginDate?: DateTimeOutput;
+  endDate?: DateTimeOutput;
   location?: String;
   street1?: String;
   street2?: String;
@@ -8059,7 +8493,8 @@ export interface StudioEventPreviousValuesPromise
   name: () => Promise<String>;
   type: () => Promise<String>;
   appliesTo: () => Promise<String[]>;
-  date: () => Promise<DateTimeOutput>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
   street1: () => Promise<String>;
   street2: () => Promise<String>;
@@ -8077,7 +8512,8 @@ export interface StudioEventPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
   appliesTo: () => Promise<AsyncIterator<String[]>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
   street1: () => Promise<AsyncIterator<String>>;
   street2: () => Promise<AsyncIterator<String>>;
