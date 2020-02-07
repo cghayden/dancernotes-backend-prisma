@@ -240,35 +240,13 @@ const Mutations = {
       throw new Error("You must be logged to create a Dance Class");
     }
     // put makeup set Id into its own variable to use in making the connection, then remove it from args so it doesn't get passed in again with args
-    const makeupSetId = args.makeupSet;
     args.custom = false;
-    delete args.makeupSet;
-    if (makeupSetId === "none") {
-      return await ctx.db.mutation.createDanceClass(
-        {
-          data: {
-            studio: {
-              connect: {
-                id: ctx.request.userId
-              }
-            },
-            ...args
-          }
-        },
-        info
-      );
-    }
     return await ctx.db.mutation.createDanceClass(
       {
         data: {
           studio: {
             connect: {
               id: ctx.request.userId
-            }
-          },
-          makeupSet: {
-            connect: {
-              id: makeupSetId
             }
           },
           ...args
@@ -301,74 +279,15 @@ const Mutations = {
     // and remove ID from updates... we are not going to update the ID
     delete args.id;
     // run update method
-    // ? TODO: TURN THE FOLLOWING INTO A SWITCH STATEMENT?
-    if (args.makeupSet) {
-      if (args.makeupSet === "none") {
-        delete args.makeupSet;
-        const currentDance = await ctx.db.query.danceClass(
-          {
-            where: { id: danceClassId }
-          },
-          `{makeupSet{id}}`
-        );
-        console.log("currentDance:", currentDance);
-        if (currentDance.makeupSet) {
-          return await ctx.db.mutation.updateDanceClass(
-            {
-              data: {
-                makeupSet: {
-                  disconnect: true
-                },
-                ...args
-              },
-              where: {
-                id: danceClassId
-              }
-            },
-            info
-          );
-        } else {
-          return await ctx.db.mutation.updateDanceClass(
-            {
-              data: {
-                ...args
-              },
-              where: {
-                id: danceClassId
-              }
-            },
-            info
-          );
-        }
-      } else {
-        makeupSetId = args.makeupSet;
-        delete args.makeupSet;
-        return await ctx.db.mutation.updateDanceClass(
-          {
-            data: {
-              makeupSet: {
-                connect: {
-                  id: makeupSetId
-                }
-              },
-              ...args
-            },
-            where: { id: danceClassId }
-          },
-          info
-        );
-      }
-    } else {
-      return await ctx.db.mutation.updateDanceClass(
-        {
-          data: {
-            ...args
-          },
-          where: { id: danceClassId }
+    return await ctx.db.mutation.updateDanceClass(
+      {
+        data: {
+          ...args
         },
-        info
-      );
-    }
+        where: { id: danceClassId }
+      },
+      info
+    );
   },
   async deleteDanceClass(parent, args, ctx, info) {
     if (!ctx.request.userId) {
@@ -478,34 +397,12 @@ const Mutations = {
     if (!ctx.request.userId) {
       throw new Error("You must be logged to create a Makeup Set");
     }
-    const dances = await ctx.db.query.danceClasses(
-      {
-        where: {
-          AND: [
-            { competitiveLevel: args.applyTo },
-            { studio: { id: ctx.request.userId } }
-          ]
-        }
-      },
-      `{id}`
-    );
-    const danceIds = [];
-    for (const dance of dances) {
-      danceIds.push({ id: dance.id });
-    }
-    //get studios dances with competitiveLevel = args.applyTo
-    // compile the Ids of the dances
-    //2. create an array with {id:danceId} for each dance
-    //. Save makeup set to prisma.
-    delete args.applyTo;
+
     return await ctx.db.mutation.createMakeupSet(
       {
         data: {
           studio: {
             connect: { id: ctx.request.userId }
-          },
-          danceClasses: {
-            connect: danceIds
           },
           ...args
         }
@@ -519,8 +416,7 @@ const Mutations = {
     }
     const makeupSetId = args.id;
     delete args.id;
-
-    await ctx.db.mutation.updateMakeupSet(
+    return await ctx.db.mutation.updateMakeupSet(
       {
         data: { ...args },
         where: { id: makeupSetId }

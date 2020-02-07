@@ -3137,10 +3137,19 @@ type MakeupSet {
   updatedAt: DateTime!
   id: ID!
   name: String!
+  studio: Studio!
   lipstick: String
   eyeShadow: String
-  studio: Studio!
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
   danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
 }
 
@@ -3153,10 +3162,19 @@ type MakeupSetConnection {
 input MakeupSetCreateInput {
   id: ID
   name: String!
+  studio: StudioCreateOneWithoutMakeupSetsInput!
   lipstick: String
   eyeShadow: String
-  studio: StudioCreateOneWithoutMakeupSetsInput!
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
   danceClasses: DanceClassCreateManyWithoutMakeupSetInput
 }
 
@@ -3173,10 +3191,19 @@ input MakeupSetCreateOneWithoutDanceClassesInput {
 input MakeupSetCreateWithoutDanceClassesInput {
   id: ID
   name: String!
+  studio: StudioCreateOneWithoutMakeupSetsInput!
   lipstick: String
   eyeShadow: String
-  studio: StudioCreateOneWithoutMakeupSetsInput!
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
 }
 
 input MakeupSetCreateWithoutStudioInput {
@@ -3184,7 +3211,16 @@ input MakeupSetCreateWithoutStudioInput {
   name: String!
   lipstick: String
   eyeShadow: String
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
   danceClasses: DanceClassCreateManyWithoutMakeupSetInput
 }
 
@@ -3206,8 +3242,26 @@ enum MakeupSetOrderByInput {
   lipstick_DESC
   eyeShadow_ASC
   eyeShadow_DESC
-  applyTo_ASC
-  applyTo_DESC
+  eyeLids_ASC
+  eyeLids_DESC
+  eyeCrease_ASC
+  eyeCrease_DESC
+  eyeLiner_ASC
+  eyeLiner_DESC
+  eyelashes_ASC
+  eyelashes_DESC
+  foundation_ASC
+  foundation_DESC
+  powder_ASC
+  powder_DESC
+  blush_ASC
+  blush_DESC
+  bronzer_ASC
+  bronzer_DESC
+  applyToCategories_ASC
+  applyToCategories_DESC
+  notes_ASC
+  notes_DESC
 }
 
 type MakeupSetPreviousValues {
@@ -3217,7 +3271,16 @@ type MakeupSetPreviousValues {
   name: String!
   lipstick: String
   eyeShadow: String
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
 }
 
 input MakeupSetScalarWhereInput {
@@ -3293,20 +3356,146 @@ input MakeupSetScalarWhereInput {
   eyeShadow_not_starts_with: String
   eyeShadow_ends_with: String
   eyeShadow_not_ends_with: String
-  applyTo: String
-  applyTo_not: String
-  applyTo_in: [String!]
-  applyTo_not_in: [String!]
-  applyTo_lt: String
-  applyTo_lte: String
-  applyTo_gt: String
-  applyTo_gte: String
-  applyTo_contains: String
-  applyTo_not_contains: String
-  applyTo_starts_with: String
-  applyTo_not_starts_with: String
-  applyTo_ends_with: String
-  applyTo_not_ends_with: String
+  eyeLids: String
+  eyeLids_not: String
+  eyeLids_in: [String!]
+  eyeLids_not_in: [String!]
+  eyeLids_lt: String
+  eyeLids_lte: String
+  eyeLids_gt: String
+  eyeLids_gte: String
+  eyeLids_contains: String
+  eyeLids_not_contains: String
+  eyeLids_starts_with: String
+  eyeLids_not_starts_with: String
+  eyeLids_ends_with: String
+  eyeLids_not_ends_with: String
+  eyeCrease: String
+  eyeCrease_not: String
+  eyeCrease_in: [String!]
+  eyeCrease_not_in: [String!]
+  eyeCrease_lt: String
+  eyeCrease_lte: String
+  eyeCrease_gt: String
+  eyeCrease_gte: String
+  eyeCrease_contains: String
+  eyeCrease_not_contains: String
+  eyeCrease_starts_with: String
+  eyeCrease_not_starts_with: String
+  eyeCrease_ends_with: String
+  eyeCrease_not_ends_with: String
+  eyeLiner: String
+  eyeLiner_not: String
+  eyeLiner_in: [String!]
+  eyeLiner_not_in: [String!]
+  eyeLiner_lt: String
+  eyeLiner_lte: String
+  eyeLiner_gt: String
+  eyeLiner_gte: String
+  eyeLiner_contains: String
+  eyeLiner_not_contains: String
+  eyeLiner_starts_with: String
+  eyeLiner_not_starts_with: String
+  eyeLiner_ends_with: String
+  eyeLiner_not_ends_with: String
+  eyelashes: String
+  eyelashes_not: String
+  eyelashes_in: [String!]
+  eyelashes_not_in: [String!]
+  eyelashes_lt: String
+  eyelashes_lte: String
+  eyelashes_gt: String
+  eyelashes_gte: String
+  eyelashes_contains: String
+  eyelashes_not_contains: String
+  eyelashes_starts_with: String
+  eyelashes_not_starts_with: String
+  eyelashes_ends_with: String
+  eyelashes_not_ends_with: String
+  foundation: String
+  foundation_not: String
+  foundation_in: [String!]
+  foundation_not_in: [String!]
+  foundation_lt: String
+  foundation_lte: String
+  foundation_gt: String
+  foundation_gte: String
+  foundation_contains: String
+  foundation_not_contains: String
+  foundation_starts_with: String
+  foundation_not_starts_with: String
+  foundation_ends_with: String
+  foundation_not_ends_with: String
+  powder: String
+  powder_not: String
+  powder_in: [String!]
+  powder_not_in: [String!]
+  powder_lt: String
+  powder_lte: String
+  powder_gt: String
+  powder_gte: String
+  powder_contains: String
+  powder_not_contains: String
+  powder_starts_with: String
+  powder_not_starts_with: String
+  powder_ends_with: String
+  powder_not_ends_with: String
+  blush: String
+  blush_not: String
+  blush_in: [String!]
+  blush_not_in: [String!]
+  blush_lt: String
+  blush_lte: String
+  blush_gt: String
+  blush_gte: String
+  blush_contains: String
+  blush_not_contains: String
+  blush_starts_with: String
+  blush_not_starts_with: String
+  blush_ends_with: String
+  blush_not_ends_with: String
+  bronzer: String
+  bronzer_not: String
+  bronzer_in: [String!]
+  bronzer_not_in: [String!]
+  bronzer_lt: String
+  bronzer_lte: String
+  bronzer_gt: String
+  bronzer_gte: String
+  bronzer_contains: String
+  bronzer_not_contains: String
+  bronzer_starts_with: String
+  bronzer_not_starts_with: String
+  bronzer_ends_with: String
+  bronzer_not_ends_with: String
+  applyToCategories: String
+  applyToCategories_not: String
+  applyToCategories_in: [String!]
+  applyToCategories_not_in: [String!]
+  applyToCategories_lt: String
+  applyToCategories_lte: String
+  applyToCategories_gt: String
+  applyToCategories_gte: String
+  applyToCategories_contains: String
+  applyToCategories_not_contains: String
+  applyToCategories_starts_with: String
+  applyToCategories_not_starts_with: String
+  applyToCategories_ends_with: String
+  applyToCategories_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
   AND: [MakeupSetScalarWhereInput!]
   OR: [MakeupSetScalarWhereInput!]
   NOT: [MakeupSetScalarWhereInput!]
@@ -3332,10 +3521,19 @@ input MakeupSetSubscriptionWhereInput {
 
 input MakeupSetUpdateInput {
   name: String
+  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
   lipstick: String
   eyeShadow: String
-  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
   danceClasses: DanceClassUpdateManyWithoutMakeupSetInput
 }
 
@@ -3343,14 +3541,32 @@ input MakeupSetUpdateManyDataInput {
   name: String
   lipstick: String
   eyeShadow: String
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
 }
 
 input MakeupSetUpdateManyMutationInput {
   name: String
   lipstick: String
   eyeShadow: String
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
 }
 
 input MakeupSetUpdateManyWithoutStudioInput {
@@ -3381,17 +3597,35 @@ input MakeupSetUpdateOneWithoutDanceClassesInput {
 
 input MakeupSetUpdateWithoutDanceClassesDataInput {
   name: String
+  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
   lipstick: String
   eyeShadow: String
-  studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
 }
 
 input MakeupSetUpdateWithoutStudioDataInput {
   name: String
   lipstick: String
   eyeShadow: String
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes: String
+  foundation: String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes: String
   danceClasses: DanceClassUpdateManyWithoutMakeupSetInput
 }
 
@@ -3456,6 +3690,7 @@ input MakeupSetWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  studio: StudioWhereInput
   lipstick: String
   lipstick_not: String
   lipstick_in: [String!]
@@ -3484,21 +3719,146 @@ input MakeupSetWhereInput {
   eyeShadow_not_starts_with: String
   eyeShadow_ends_with: String
   eyeShadow_not_ends_with: String
-  studio: StudioWhereInput
-  applyTo: String
-  applyTo_not: String
-  applyTo_in: [String!]
-  applyTo_not_in: [String!]
-  applyTo_lt: String
-  applyTo_lte: String
-  applyTo_gt: String
-  applyTo_gte: String
-  applyTo_contains: String
-  applyTo_not_contains: String
-  applyTo_starts_with: String
-  applyTo_not_starts_with: String
-  applyTo_ends_with: String
-  applyTo_not_ends_with: String
+  eyeLids: String
+  eyeLids_not: String
+  eyeLids_in: [String!]
+  eyeLids_not_in: [String!]
+  eyeLids_lt: String
+  eyeLids_lte: String
+  eyeLids_gt: String
+  eyeLids_gte: String
+  eyeLids_contains: String
+  eyeLids_not_contains: String
+  eyeLids_starts_with: String
+  eyeLids_not_starts_with: String
+  eyeLids_ends_with: String
+  eyeLids_not_ends_with: String
+  eyeCrease: String
+  eyeCrease_not: String
+  eyeCrease_in: [String!]
+  eyeCrease_not_in: [String!]
+  eyeCrease_lt: String
+  eyeCrease_lte: String
+  eyeCrease_gt: String
+  eyeCrease_gte: String
+  eyeCrease_contains: String
+  eyeCrease_not_contains: String
+  eyeCrease_starts_with: String
+  eyeCrease_not_starts_with: String
+  eyeCrease_ends_with: String
+  eyeCrease_not_ends_with: String
+  eyeLiner: String
+  eyeLiner_not: String
+  eyeLiner_in: [String!]
+  eyeLiner_not_in: [String!]
+  eyeLiner_lt: String
+  eyeLiner_lte: String
+  eyeLiner_gt: String
+  eyeLiner_gte: String
+  eyeLiner_contains: String
+  eyeLiner_not_contains: String
+  eyeLiner_starts_with: String
+  eyeLiner_not_starts_with: String
+  eyeLiner_ends_with: String
+  eyeLiner_not_ends_with: String
+  eyelashes: String
+  eyelashes_not: String
+  eyelashes_in: [String!]
+  eyelashes_not_in: [String!]
+  eyelashes_lt: String
+  eyelashes_lte: String
+  eyelashes_gt: String
+  eyelashes_gte: String
+  eyelashes_contains: String
+  eyelashes_not_contains: String
+  eyelashes_starts_with: String
+  eyelashes_not_starts_with: String
+  eyelashes_ends_with: String
+  eyelashes_not_ends_with: String
+  foundation: String
+  foundation_not: String
+  foundation_in: [String!]
+  foundation_not_in: [String!]
+  foundation_lt: String
+  foundation_lte: String
+  foundation_gt: String
+  foundation_gte: String
+  foundation_contains: String
+  foundation_not_contains: String
+  foundation_starts_with: String
+  foundation_not_starts_with: String
+  foundation_ends_with: String
+  foundation_not_ends_with: String
+  powder: String
+  powder_not: String
+  powder_in: [String!]
+  powder_not_in: [String!]
+  powder_lt: String
+  powder_lte: String
+  powder_gt: String
+  powder_gte: String
+  powder_contains: String
+  powder_not_contains: String
+  powder_starts_with: String
+  powder_not_starts_with: String
+  powder_ends_with: String
+  powder_not_ends_with: String
+  blush: String
+  blush_not: String
+  blush_in: [String!]
+  blush_not_in: [String!]
+  blush_lt: String
+  blush_lte: String
+  blush_gt: String
+  blush_gte: String
+  blush_contains: String
+  blush_not_contains: String
+  blush_starts_with: String
+  blush_not_starts_with: String
+  blush_ends_with: String
+  blush_not_ends_with: String
+  bronzer: String
+  bronzer_not: String
+  bronzer_in: [String!]
+  bronzer_not_in: [String!]
+  bronzer_lt: String
+  bronzer_lte: String
+  bronzer_gt: String
+  bronzer_gte: String
+  bronzer_contains: String
+  bronzer_not_contains: String
+  bronzer_starts_with: String
+  bronzer_not_starts_with: String
+  bronzer_ends_with: String
+  bronzer_not_ends_with: String
+  applyToCategories: String
+  applyToCategories_not: String
+  applyToCategories_in: [String!]
+  applyToCategories_not_in: [String!]
+  applyToCategories_lt: String
+  applyToCategories_lte: String
+  applyToCategories_gt: String
+  applyToCategories_gte: String
+  applyToCategories_contains: String
+  applyToCategories_not_contains: String
+  applyToCategories_starts_with: String
+  applyToCategories_not_starts_with: String
+  applyToCategories_ends_with: String
+  applyToCategories_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
   danceClasses_every: DanceClassWhereInput
   danceClasses_some: DanceClassWhereInput
   danceClasses_none: DanceClassWhereInput
@@ -4346,7 +4706,8 @@ type StudioEvent {
   name: String!
   type: String!
   appliesTo: [String!]!
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4373,7 +4734,8 @@ input StudioEventCreateInput {
   name: String!
   type: String!
   appliesTo: StudioEventCreateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4394,7 +4756,8 @@ input StudioEventCreateWithoutStudioInput {
   name: String!
   type: String!
   appliesTo: StudioEventCreateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4417,8 +4780,10 @@ enum StudioEventOrderByInput {
   name_DESC
   type_ASC
   type_DESC
-  date_ASC
-  date_DESC
+  beginDate_ASC
+  beginDate_DESC
+  endDate_ASC
+  endDate_DESC
   location_ASC
   location_DESC
   street1_ASC
@@ -4442,7 +4807,8 @@ type StudioEventPreviousValues {
   name: String!
   type: String!
   appliesTo: [String!]!
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4496,14 +4862,22 @@ input StudioEventScalarWhereInput {
   type_not_starts_with: String
   type_ends_with: String
   type_not_ends_with: String
-  date: DateTime
-  date_not: DateTime
-  date_in: [DateTime!]
-  date_not_in: [DateTime!]
-  date_lt: DateTime
-  date_lte: DateTime
-  date_gt: DateTime
-  date_gte: DateTime
+  beginDate: DateTime
+  beginDate_not: DateTime
+  beginDate_in: [DateTime!]
+  beginDate_not_in: [DateTime!]
+  beginDate_lt: DateTime
+  beginDate_lte: DateTime
+  beginDate_gt: DateTime
+  beginDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
   location: String
   location_not: String
   location_in: [String!]
@@ -4648,7 +5022,8 @@ input StudioEventUpdateInput {
   name: String
   type: String
   appliesTo: StudioEventUpdateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4663,7 +5038,8 @@ input StudioEventUpdateManyDataInput {
   name: String
   type: String
   appliesTo: StudioEventUpdateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4678,7 +5054,8 @@ input StudioEventUpdateManyMutationInput {
   name: String
   type: String
   appliesTo: StudioEventUpdateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4710,7 +5087,8 @@ input StudioEventUpdateWithoutStudioDataInput {
   name: String
   type: String
   appliesTo: StudioEventUpdateappliesToInput
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
@@ -4776,14 +5154,22 @@ input StudioEventWhereInput {
   type_not_starts_with: String
   type_ends_with: String
   type_not_ends_with: String
-  date: DateTime
-  date_not: DateTime
-  date_in: [DateTime!]
-  date_not_in: [DateTime!]
-  date_lt: DateTime
-  date_lte: DateTime
-  date_gt: DateTime
-  date_gte: DateTime
+  beginDate: DateTime
+  beginDate_not: DateTime
+  beginDate_in: [DateTime!]
+  beginDate_not_in: [DateTime!]
+  beginDate_lt: DateTime
+  beginDate_lte: DateTime
+  beginDate_gt: DateTime
+  beginDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
   location: String
   location_not: String
   location_in: [String!]

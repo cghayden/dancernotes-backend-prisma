@@ -33,6 +33,15 @@ const Query = {
     parentUser.dancersIds = dancersIds;
     return parentUser;
   },
+  async parentMakeup(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("No Parent User was found");
+    }
+    return await ctx.db.query.parent(
+      { where: { id: ctx.request.userId } },
+      info
+    );
+  },
   async allRs(parent, args, ctx, info) {
     const customRoutines = await ctx.db.query.customRoutines(
       {

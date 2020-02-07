@@ -41,10 +41,19 @@ type MakeupSet {
   updatedAt: DateTime! @updatedAt
   id: ID! @id
   name: String!
+  studio: Studio!
   lipstick: String
   eyeShadow: String
-  studio: Studio!
-  applyTo: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes:String
+  foundation:String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes:String
   danceClasses: [DanceClass!]!
 }
 
@@ -147,7 +156,8 @@ type StudioEvent {
   name: String!
   type: String!
   appliesTo: [String!]! @scalarList(strategy: RELATION)
-  date: DateTime
+  beginDate: DateTime
+  endDate: DateTime
   location: String
   street1: String
   street2: String
