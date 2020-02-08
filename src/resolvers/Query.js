@@ -180,6 +180,12 @@ const Query = {
       `{
         firstName
         id
+        parent{
+          
+          id
+          firstName
+          email
+        }
         danceClasses{
           studio{
           id}
