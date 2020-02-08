@@ -49,7 +49,11 @@ server.start(
   {
     cors: {
       credentials: true,
-      origin: [process.env.FRONTEND_URL, "https://www.dancernotes.com"],
+      origin: [
+        process.env.FRONTEND_URL,
+        "https://www.dancernotes.com",
+        "https://dancernotes.com"
+      ],
       secure: true
     }
   },
