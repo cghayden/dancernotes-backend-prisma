@@ -318,7 +318,11 @@ const Mutations = {
       "mullinfam2061@gmail.com",
       "blackcoffee141@msn.com",
       "roudlylaroche@live.com",
-      "taradelamere@gmail.com"
+      "taradelamere@gmail.com",
+      "elcorredor@hotmail.com",
+      "adelaidehayden@gmail.com",
+      "hondacoupe2004@yahoo.com",
+      "svetlana.leeds83@gmail.com"
     ];
     // if user email is in my list, approve automatically
     if (authorizedEmails.includes(args.parentEmail)) {
