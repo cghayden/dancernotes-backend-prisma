@@ -19,6 +19,7 @@ const Query = {
     return dancers;
   },
   async parentUser(parent, args, ctx, info) {
+    console.log("request", ctx.request);
     if (!ctx.request.userId) {
       throw new Error("No Parent User was found");
     }
