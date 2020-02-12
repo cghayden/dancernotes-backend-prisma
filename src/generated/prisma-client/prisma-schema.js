@@ -4709,8 +4709,8 @@ type StudioEvent {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -4737,8 +4737,8 @@ input StudioEventCreateInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -4759,8 +4759,8 @@ input StudioEventCreateWithoutStudioInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -4786,10 +4786,10 @@ enum StudioEventOrderByInput {
   endDate_DESC
   location_ASC
   location_DESC
-  street1_ASC
-  street1_DESC
-  street2_ASC
-  street2_DESC
+  address1_ASC
+  address1_DESC
+  address2_ASC
+  address2_DESC
   city_ASC
   city_DESC
   state_ASC
@@ -4810,8 +4810,8 @@ type StudioEventPreviousValues {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -4892,34 +4892,34 @@ input StudioEventScalarWhereInput {
   location_not_starts_with: String
   location_ends_with: String
   location_not_ends_with: String
-  street1: String
-  street1_not: String
-  street1_in: [String!]
-  street1_not_in: [String!]
-  street1_lt: String
-  street1_lte: String
-  street1_gt: String
-  street1_gte: String
-  street1_contains: String
-  street1_not_contains: String
-  street1_starts_with: String
-  street1_not_starts_with: String
-  street1_ends_with: String
-  street1_not_ends_with: String
-  street2: String
-  street2_not: String
-  street2_in: [String!]
-  street2_not_in: [String!]
-  street2_lt: String
-  street2_lte: String
-  street2_gt: String
-  street2_gte: String
-  street2_contains: String
-  street2_not_contains: String
-  street2_starts_with: String
-  street2_not_starts_with: String
-  street2_ends_with: String
-  street2_not_ends_with: String
+  address1: String
+  address1_not: String
+  address1_in: [String!]
+  address1_not_in: [String!]
+  address1_lt: String
+  address1_lte: String
+  address1_gt: String
+  address1_gte: String
+  address1_contains: String
+  address1_not_contains: String
+  address1_starts_with: String
+  address1_not_starts_with: String
+  address1_ends_with: String
+  address1_not_ends_with: String
+  address2: String
+  address2_not: String
+  address2_in: [String!]
+  address2_not_in: [String!]
+  address2_lt: String
+  address2_lte: String
+  address2_gt: String
+  address2_gte: String
+  address2_contains: String
+  address2_not_contains: String
+  address2_starts_with: String
+  address2_not_starts_with: String
+  address2_ends_with: String
+  address2_not_ends_with: String
   city: String
   city_not: String
   city_in: [String!]
@@ -5025,8 +5025,8 @@ input StudioEventUpdateInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -5041,8 +5041,8 @@ input StudioEventUpdateManyDataInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -5057,8 +5057,8 @@ input StudioEventUpdateManyMutationInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -5090,8 +5090,8 @@ input StudioEventUpdateWithoutStudioDataInput {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
@@ -5184,34 +5184,34 @@ input StudioEventWhereInput {
   location_not_starts_with: String
   location_ends_with: String
   location_not_ends_with: String
-  street1: String
-  street1_not: String
-  street1_in: [String!]
-  street1_not_in: [String!]
-  street1_lt: String
-  street1_lte: String
-  street1_gt: String
-  street1_gte: String
-  street1_contains: String
-  street1_not_contains: String
-  street1_starts_with: String
-  street1_not_starts_with: String
-  street1_ends_with: String
-  street1_not_ends_with: String
-  street2: String
-  street2_not: String
-  street2_in: [String!]
-  street2_not_in: [String!]
-  street2_lt: String
-  street2_lte: String
-  street2_gt: String
-  street2_gte: String
-  street2_contains: String
-  street2_not_contains: String
-  street2_starts_with: String
-  street2_not_starts_with: String
-  street2_ends_with: String
-  street2_not_ends_with: String
+  address1: String
+  address1_not: String
+  address1_in: [String!]
+  address1_not_in: [String!]
+  address1_lt: String
+  address1_lte: String
+  address1_gt: String
+  address1_gte: String
+  address1_contains: String
+  address1_not_contains: String
+  address1_starts_with: String
+  address1_not_starts_with: String
+  address1_ends_with: String
+  address1_not_ends_with: String
+  address2: String
+  address2_not: String
+  address2_in: [String!]
+  address2_not_in: [String!]
+  address2_lt: String
+  address2_lte: String
+  address2_gt: String
+  address2_gte: String
+  address2_contains: String
+  address2_not_contains: String
+  address2_starts_with: String
+  address2_not_starts_with: String
+  address2_ends_with: String
+  address2_not_ends_with: String
   city: String
   city_not: String
   city_in: [String!]

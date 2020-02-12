@@ -666,7 +666,7 @@ const Mutations = {
       info
     );
   },
-  async addStudioEvent(parent, args, ctx, info) {
+  async createStudioEvent(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged in to add a Note");
     }
