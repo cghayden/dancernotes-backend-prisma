@@ -694,10 +694,10 @@ export type StudioEventOrderByInput =
   | "endDate_DESC"
   | "location_ASC"
   | "location_DESC"
-  | "street1_ASC"
-  | "street1_DESC"
-  | "street2_ASC"
-  | "street2_DESC"
+  | "address1_ASC"
+  | "address1_DESC"
+  | "address2_ASC"
+  | "address2_DESC"
   | "city_ASC"
   | "city_DESC"
   | "state_ASC"
@@ -2054,34 +2054,34 @@ export interface StudioEventWhereInput {
   location_not_starts_with?: Maybe<String>;
   location_ends_with?: Maybe<String>;
   location_not_ends_with?: Maybe<String>;
-  street1?: Maybe<String>;
-  street1_not?: Maybe<String>;
-  street1_in?: Maybe<String[] | String>;
-  street1_not_in?: Maybe<String[] | String>;
-  street1_lt?: Maybe<String>;
-  street1_lte?: Maybe<String>;
-  street1_gt?: Maybe<String>;
-  street1_gte?: Maybe<String>;
-  street1_contains?: Maybe<String>;
-  street1_not_contains?: Maybe<String>;
-  street1_starts_with?: Maybe<String>;
-  street1_not_starts_with?: Maybe<String>;
-  street1_ends_with?: Maybe<String>;
-  street1_not_ends_with?: Maybe<String>;
-  street2?: Maybe<String>;
-  street2_not?: Maybe<String>;
-  street2_in?: Maybe<String[] | String>;
-  street2_not_in?: Maybe<String[] | String>;
-  street2_lt?: Maybe<String>;
-  street2_lte?: Maybe<String>;
-  street2_gt?: Maybe<String>;
-  street2_gte?: Maybe<String>;
-  street2_contains?: Maybe<String>;
-  street2_not_contains?: Maybe<String>;
-  street2_starts_with?: Maybe<String>;
-  street2_not_starts_with?: Maybe<String>;
-  street2_ends_with?: Maybe<String>;
-  street2_not_ends_with?: Maybe<String>;
+  address1?: Maybe<String>;
+  address1_not?: Maybe<String>;
+  address1_in?: Maybe<String[] | String>;
+  address1_not_in?: Maybe<String[] | String>;
+  address1_lt?: Maybe<String>;
+  address1_lte?: Maybe<String>;
+  address1_gt?: Maybe<String>;
+  address1_gte?: Maybe<String>;
+  address1_contains?: Maybe<String>;
+  address1_not_contains?: Maybe<String>;
+  address1_starts_with?: Maybe<String>;
+  address1_not_starts_with?: Maybe<String>;
+  address1_ends_with?: Maybe<String>;
+  address1_not_ends_with?: Maybe<String>;
+  address2?: Maybe<String>;
+  address2_not?: Maybe<String>;
+  address2_in?: Maybe<String[] | String>;
+  address2_not_in?: Maybe<String[] | String>;
+  address2_lt?: Maybe<String>;
+  address2_lte?: Maybe<String>;
+  address2_gt?: Maybe<String>;
+  address2_gte?: Maybe<String>;
+  address2_contains?: Maybe<String>;
+  address2_not_contains?: Maybe<String>;
+  address2_starts_with?: Maybe<String>;
+  address2_not_starts_with?: Maybe<String>;
+  address2_ends_with?: Maybe<String>;
+  address2_not_ends_with?: Maybe<String>;
   city?: Maybe<String>;
   city_not?: Maybe<String>;
   city_in?: Maybe<String[] | String>;
@@ -2795,8 +2795,8 @@ export interface StudioEventCreateWithoutStudioInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -3825,8 +3825,8 @@ export interface StudioEventUpdateWithoutStudioDataInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -3917,34 +3917,34 @@ export interface StudioEventScalarWhereInput {
   location_not_starts_with?: Maybe<String>;
   location_ends_with?: Maybe<String>;
   location_not_ends_with?: Maybe<String>;
-  street1?: Maybe<String>;
-  street1_not?: Maybe<String>;
-  street1_in?: Maybe<String[] | String>;
-  street1_not_in?: Maybe<String[] | String>;
-  street1_lt?: Maybe<String>;
-  street1_lte?: Maybe<String>;
-  street1_gt?: Maybe<String>;
-  street1_gte?: Maybe<String>;
-  street1_contains?: Maybe<String>;
-  street1_not_contains?: Maybe<String>;
-  street1_starts_with?: Maybe<String>;
-  street1_not_starts_with?: Maybe<String>;
-  street1_ends_with?: Maybe<String>;
-  street1_not_ends_with?: Maybe<String>;
-  street2?: Maybe<String>;
-  street2_not?: Maybe<String>;
-  street2_in?: Maybe<String[] | String>;
-  street2_not_in?: Maybe<String[] | String>;
-  street2_lt?: Maybe<String>;
-  street2_lte?: Maybe<String>;
-  street2_gt?: Maybe<String>;
-  street2_gte?: Maybe<String>;
-  street2_contains?: Maybe<String>;
-  street2_not_contains?: Maybe<String>;
-  street2_starts_with?: Maybe<String>;
-  street2_not_starts_with?: Maybe<String>;
-  street2_ends_with?: Maybe<String>;
-  street2_not_ends_with?: Maybe<String>;
+  address1?: Maybe<String>;
+  address1_not?: Maybe<String>;
+  address1_in?: Maybe<String[] | String>;
+  address1_not_in?: Maybe<String[] | String>;
+  address1_lt?: Maybe<String>;
+  address1_lte?: Maybe<String>;
+  address1_gt?: Maybe<String>;
+  address1_gte?: Maybe<String>;
+  address1_contains?: Maybe<String>;
+  address1_not_contains?: Maybe<String>;
+  address1_starts_with?: Maybe<String>;
+  address1_not_starts_with?: Maybe<String>;
+  address1_ends_with?: Maybe<String>;
+  address1_not_ends_with?: Maybe<String>;
+  address2?: Maybe<String>;
+  address2_not?: Maybe<String>;
+  address2_in?: Maybe<String[] | String>;
+  address2_not_in?: Maybe<String[] | String>;
+  address2_lt?: Maybe<String>;
+  address2_lte?: Maybe<String>;
+  address2_gt?: Maybe<String>;
+  address2_gte?: Maybe<String>;
+  address2_contains?: Maybe<String>;
+  address2_not_contains?: Maybe<String>;
+  address2_starts_with?: Maybe<String>;
+  address2_not_starts_with?: Maybe<String>;
+  address2_ends_with?: Maybe<String>;
+  address2_not_ends_with?: Maybe<String>;
   city?: Maybe<String>;
   city_not?: Maybe<String>;
   city_in?: Maybe<String[] | String>;
@@ -4032,8 +4032,8 @@ export interface StudioEventUpdateManyDataInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -5740,8 +5740,8 @@ export interface StudioEventCreateInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -5780,8 +5780,8 @@ export interface StudioEventUpdateInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -5825,8 +5825,8 @@ export interface StudioEventUpdateManyMutationInput {
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
-  street1?: Maybe<String>;
-  street2?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
   city?: Maybe<String>;
   state?: Maybe<String>;
   zip?: Maybe<String>;
@@ -7027,8 +7027,8 @@ export interface StudioEvent {
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
-  street1?: String;
-  street2?: String;
+  address1?: String;
+  address2?: String;
   city?: String;
   state?: String;
   zip?: String;
@@ -7045,8 +7045,8 @@ export interface StudioEventPromise extends Promise<StudioEvent>, Fragmentable {
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
-  street1: () => Promise<String>;
-  street2: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
   city: () => Promise<String>;
   state: () => Promise<String>;
   zip: () => Promise<String>;
@@ -7065,8 +7065,8 @@ export interface StudioEventSubscription
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
-  street1: () => Promise<AsyncIterator<String>>;
-  street2: () => Promise<AsyncIterator<String>>;
+  address1: () => Promise<AsyncIterator<String>>;
+  address2: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   zip: () => Promise<AsyncIterator<String>>;
@@ -7085,8 +7085,8 @@ export interface StudioEventNullablePromise
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
-  street1: () => Promise<String>;
-  street2: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
   city: () => Promise<String>;
   state: () => Promise<String>;
   zip: () => Promise<String>;
@@ -8477,8 +8477,8 @@ export interface StudioEventPreviousValues {
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
-  street1?: String;
-  street2?: String;
+  address1?: String;
+  address2?: String;
   city?: String;
   state?: String;
   zip?: String;
@@ -8496,8 +8496,8 @@ export interface StudioEventPreviousValuesPromise
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
-  street1: () => Promise<String>;
-  street2: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
   city: () => Promise<String>;
   state: () => Promise<String>;
   zip: () => Promise<String>;
@@ -8515,8 +8515,8 @@ export interface StudioEventPreviousValuesSubscription
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
-  street1: () => Promise<AsyncIterator<String>>;
-  street2: () => Promise<AsyncIterator<String>>;
+  address1: () => Promise<AsyncIterator<String>>;
+  address2: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   zip: () => Promise<AsyncIterator<String>>;

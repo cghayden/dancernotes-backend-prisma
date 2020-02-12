@@ -142,10 +142,20 @@ type Mutation {
   addNote(danceId: ID!, note: String!): ParentNote
   deleteParentNote(noteId: ID!): ParentNote
   updateParentNote(noteId: ID!, note: String): ParentNote
-  addStudioEvent(
-    type: String!
+  createStudioEvent(
     name: String!
-    appliesTo: [String]!
+    type: String!
+    appliesTo: [String!]!
+    beginDate: DateTime
+    endDate: DateTime
+    location: String
+    address1: String
+    address2: String
+    city: String
+    state: String
+    zip: String
+    url: String
+    notes: String
   ): StudioEvent
   deleteCloudinaryAsset(
     publicId: String!

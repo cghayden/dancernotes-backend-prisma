@@ -159,8 +159,8 @@ type StudioEvent {
   beginDate: DateTime
   endDate: DateTime
   location: String
-  street1: String
-  street2: String
+  address1: String
+  address2: String
   city: String
   state: String
   zip: String
