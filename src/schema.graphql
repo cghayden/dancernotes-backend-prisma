@@ -157,6 +157,22 @@ type Mutation {
     url: String
     notes: String
   ): StudioEvent
+  createCustomEvent(
+    name: String!
+    type: String!
+    dancerIds: [ID!]!
+    beginDate: DateTime
+    endDate: DateTime
+    location: String
+    address1: String
+    address2: String
+    city: String
+    state: String
+    zip: String
+    url: String
+    notes: String
+    appliesTo: String!
+  ): ParentEvent
   deleteCloudinaryAsset(
     publicId: String!
     resourceType: String!
@@ -193,6 +209,7 @@ type Query {
   enrollmentRequests: [EnrollmentRequest!]!
   customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
   parentEvents: [StudioEvent!]!
+  customEvents: [ParentEvent!]!
 }
 
 type SuccessMessage {

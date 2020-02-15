@@ -19,7 +19,6 @@ const Query = {
     return dancers;
   },
   async parentUser(parent, args, ctx, info) {
-    console.log("request", ctx.request);
     if (!ctx.request.userId) {
       throw new Error("No Parent User was found");
     }
@@ -234,13 +233,25 @@ const Query = {
     for (const studio of studioIds.studios) {
       allStudioIds.push(studio.id);
     }
-    return await ctx.db.query.studioEvents(
+    const allStudioEvents = await ctx.db.query.studioEvents(
       {
         where: {
           studio: {
             id_in: allStudioIds
           }
         }
+      },
+      info
+    );
+    return allStudioEvents;
+  },
+  async customEvents(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    return await ctx.db.query.parentEvents(
+      {
+        where: { parent: { id: ctx.request.userId } }
       },
       info
     );

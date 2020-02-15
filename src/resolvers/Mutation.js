@@ -333,7 +333,6 @@ const Mutations = {
         },
         `{id studio{id studioName}}`
       );
-      console.log("updatedDanceClass:", updatedDanceClass);
       // 3. if the dancer is succesfully added to the dance:
       if (updatedDanceClass) {
         //3a. Add dancer to dancers field on studio type
@@ -608,10 +607,8 @@ const Mutations = {
           id: args.id
         }
       });
-      console.log("oldRoutine:", oldRoutine);
 
       if (oldRoutine.musicId) {
-        console.log("OLD MUSIC ID:", typeof oldRoutine.musicId);
         await cloudinary.uploader.destroy(
           oldRoutine.musicId,
           { invalidate: "true", resource_type: "video" },
@@ -668,7 +665,7 @@ const Mutations = {
   },
   async createStudioEvent(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      throw new Error("You must be logged in to add a Note");
+      throw new Error("You must be logged in to create an Event");
     }
     return await ctx.db.mutation.createStudioEvent(
       {
@@ -676,6 +673,21 @@ const Mutations = {
           ...args,
           studio: { connect: { id: ctx.request.userId } },
           appliesTo: { set: args.appliesTo }
+        }
+      },
+      info
+    );
+  },
+  async createCustomEvent(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to create an Event");
+    }
+    return await ctx.db.mutation.createParentEvent(
+      {
+        data: {
+          ...args,
+          parent: { connect: { id: ctx.request.userId } },
+          dancerIds: { set: args.dancerIds }
         }
       },
       info

@@ -45,6 +45,10 @@ var models = [
     embedded: false
   },
   {
+    name: "ParentEvent",
+    embedded: false
+  },
+  {
     name: "AccessRequest",
     embedded: false
   }
