@@ -24,6 +24,7 @@ export interface Exists {
   hairStyle: (where?: HairStyleWhereInput) => Promise<boolean>;
   makeupSet: (where?: MakeupSetWhereInput) => Promise<boolean>;
   parent: (where?: ParentWhereInput) => Promise<boolean>;
+  parentEvent: (where?: ParentEventWhereInput) => Promise<boolean>;
   parentNote: (where?: ParentNoteWhereInput) => Promise<boolean>;
   studio: (where?: StudioWhereInput) => Promise<boolean>;
   studioEvent: (where?: StudioEventWhereInput) => Promise<boolean>;
@@ -206,6 +207,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ParentConnectionPromise;
+  parentEvent: (
+    where: ParentEventWhereUniqueInput
+  ) => ParentEventNullablePromise;
+  parentEvents: (args?: {
+    where?: ParentEventWhereInput;
+    orderBy?: ParentEventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ParentEvent>;
+  parentEventsConnection: (args?: {
+    where?: ParentEventWhereInput;
+    orderBy?: ParentEventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ParentEventConnectionPromise;
   parentNote: (where: ParentNoteWhereUniqueInput) => ParentNoteNullablePromise;
   parentNotes: (args?: {
     where?: ParentNoteWhereInput;
@@ -405,6 +427,24 @@ export interface Prisma {
   }) => ParentPromise;
   deleteParent: (where: ParentWhereUniqueInput) => ParentPromise;
   deleteManyParents: (where?: ParentWhereInput) => BatchPayloadPromise;
+  createParentEvent: (data: ParentEventCreateInput) => ParentEventPromise;
+  updateParentEvent: (args: {
+    data: ParentEventUpdateInput;
+    where: ParentEventWhereUniqueInput;
+  }) => ParentEventPromise;
+  updateManyParentEvents: (args: {
+    data: ParentEventUpdateManyMutationInput;
+    where?: ParentEventWhereInput;
+  }) => BatchPayloadPromise;
+  upsertParentEvent: (args: {
+    where: ParentEventWhereUniqueInput;
+    create: ParentEventCreateInput;
+    update: ParentEventUpdateInput;
+  }) => ParentEventPromise;
+  deleteParentEvent: (where: ParentEventWhereUniqueInput) => ParentEventPromise;
+  deleteManyParentEvents: (
+    where?: ParentEventWhereInput
+  ) => BatchPayloadPromise;
   createParentNote: (data: ParentNoteCreateInput) => ParentNotePromise;
   updateParentNote: (args: {
     data: ParentNoteUpdateInput;
@@ -488,6 +528,9 @@ export interface Subscription {
   parent: (
     where?: ParentSubscriptionWhereInput
   ) => ParentSubscriptionPayloadSubscription;
+  parentEvent: (
+    where?: ParentEventSubscriptionWhereInput
+  ) => ParentEventSubscriptionPayloadSubscription;
   parentNote: (
     where?: ParentNoteSubscriptionWhereInput
   ) => ParentNoteSubscriptionPayloadSubscription;
@@ -732,6 +775,34 @@ export type ParentOrderByInput =
   | "resetToken_DESC"
   | "resetTokenExpiry_ASC"
   | "resetTokenExpiry_DESC";
+
+export type ParentEventOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "beginDate_ASC"
+  | "beginDate_DESC"
+  | "endDate_ASC"
+  | "endDate_DESC"
+  | "location_ASC"
+  | "location_DESC"
+  | "address1_ASC"
+  | "address1_DESC"
+  | "address2_ASC"
+  | "address2_DESC"
+  | "city_ASC"
+  | "city_DESC"
+  | "state_ASC"
+  | "state_DESC"
+  | "zip_ASC"
+  | "zip_DESC"
+  | "url_ASC"
+  | "url_DESC"
+  | "notes_ASC"
+  | "notes_DESC";
 
 export type ParentNoteOrderByInput =
   | "id_ASC"
@@ -2207,6 +2278,188 @@ export type ParentWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   email?: Maybe<String>;
 }>;
+
+export type ParentEventWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ParentEventWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  parent?: Maybe<ParentWhereInput>;
+  studio?: Maybe<StudioWhereInput>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  type?: Maybe<String>;
+  type_not?: Maybe<String>;
+  type_in?: Maybe<String[] | String>;
+  type_not_in?: Maybe<String[] | String>;
+  type_lt?: Maybe<String>;
+  type_lte?: Maybe<String>;
+  type_gt?: Maybe<String>;
+  type_gte?: Maybe<String>;
+  type_contains?: Maybe<String>;
+  type_not_contains?: Maybe<String>;
+  type_starts_with?: Maybe<String>;
+  type_not_starts_with?: Maybe<String>;
+  type_ends_with?: Maybe<String>;
+  type_not_ends_with?: Maybe<String>;
+  beginDate?: Maybe<DateTimeInput>;
+  beginDate_not?: Maybe<DateTimeInput>;
+  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_lt?: Maybe<DateTimeInput>;
+  beginDate_lte?: Maybe<DateTimeInput>;
+  beginDate_gt?: Maybe<DateTimeInput>;
+  beginDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  address1?: Maybe<String>;
+  address1_not?: Maybe<String>;
+  address1_in?: Maybe<String[] | String>;
+  address1_not_in?: Maybe<String[] | String>;
+  address1_lt?: Maybe<String>;
+  address1_lte?: Maybe<String>;
+  address1_gt?: Maybe<String>;
+  address1_gte?: Maybe<String>;
+  address1_contains?: Maybe<String>;
+  address1_not_contains?: Maybe<String>;
+  address1_starts_with?: Maybe<String>;
+  address1_not_starts_with?: Maybe<String>;
+  address1_ends_with?: Maybe<String>;
+  address1_not_ends_with?: Maybe<String>;
+  address2?: Maybe<String>;
+  address2_not?: Maybe<String>;
+  address2_in?: Maybe<String[] | String>;
+  address2_not_in?: Maybe<String[] | String>;
+  address2_lt?: Maybe<String>;
+  address2_lte?: Maybe<String>;
+  address2_gt?: Maybe<String>;
+  address2_gte?: Maybe<String>;
+  address2_contains?: Maybe<String>;
+  address2_not_contains?: Maybe<String>;
+  address2_starts_with?: Maybe<String>;
+  address2_not_starts_with?: Maybe<String>;
+  address2_ends_with?: Maybe<String>;
+  address2_not_ends_with?: Maybe<String>;
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
+  state?: Maybe<String>;
+  state_not?: Maybe<String>;
+  state_in?: Maybe<String[] | String>;
+  state_not_in?: Maybe<String[] | String>;
+  state_lt?: Maybe<String>;
+  state_lte?: Maybe<String>;
+  state_gt?: Maybe<String>;
+  state_gte?: Maybe<String>;
+  state_contains?: Maybe<String>;
+  state_not_contains?: Maybe<String>;
+  state_starts_with?: Maybe<String>;
+  state_not_starts_with?: Maybe<String>;
+  state_ends_with?: Maybe<String>;
+  state_not_ends_with?: Maybe<String>;
+  zip?: Maybe<String>;
+  zip_not?: Maybe<String>;
+  zip_in?: Maybe<String[] | String>;
+  zip_not_in?: Maybe<String[] | String>;
+  zip_lt?: Maybe<String>;
+  zip_lte?: Maybe<String>;
+  zip_gt?: Maybe<String>;
+  zip_gte?: Maybe<String>;
+  zip_contains?: Maybe<String>;
+  zip_not_contains?: Maybe<String>;
+  zip_starts_with?: Maybe<String>;
+  zip_not_starts_with?: Maybe<String>;
+  zip_ends_with?: Maybe<String>;
+  zip_not_ends_with?: Maybe<String>;
+  url?: Maybe<String>;
+  url_not?: Maybe<String>;
+  url_in?: Maybe<String[] | String>;
+  url_not_in?: Maybe<String[] | String>;
+  url_lt?: Maybe<String>;
+  url_lte?: Maybe<String>;
+  url_gt?: Maybe<String>;
+  url_gte?: Maybe<String>;
+  url_contains?: Maybe<String>;
+  url_not_contains?: Maybe<String>;
+  url_starts_with?: Maybe<String>;
+  url_not_starts_with?: Maybe<String>;
+  url_ends_with?: Maybe<String>;
+  url_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
+  OR?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
+  NOT?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
+}
 
 export type ParentNoteWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -5667,6 +5920,78 @@ export interface ParentUpdateManyMutationInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
 }
 
+export interface ParentEventCreateInput {
+  id?: Maybe<ID_Input>;
+  parent: ParentCreateOneInput;
+  studio?: Maybe<StudioCreateOneInput>;
+  name: String;
+  type: String;
+  dancerIds?: Maybe<ParentEventCreatedancerIdsInput>;
+  appliesTo?: Maybe<ParentEventCreateappliesToInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface ParentEventCreatedancerIdsInput {
+  set?: Maybe<ID_Input[] | ID_Input>;
+}
+
+export interface ParentEventCreateappliesToInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface ParentEventUpdateInput {
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
+  studio?: Maybe<StudioUpdateOneInput>;
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+  dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
+  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface ParentEventUpdatedancerIdsInput {
+  set?: Maybe<ID_Input[] | ID_Input>;
+}
+
+export interface ParentEventUpdateappliesToInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface ParentEventUpdateManyMutationInput {
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+  dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
+  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
 export interface ParentNoteCreateInput {
   id?: Maybe<ID_Input>;
   parent: ParentCreateOneInput;
@@ -5959,6 +6284,23 @@ export interface ParentSubscriptionWhereInput {
   AND?: Maybe<ParentSubscriptionWhereInput[] | ParentSubscriptionWhereInput>;
   OR?: Maybe<ParentSubscriptionWhereInput[] | ParentSubscriptionWhereInput>;
   NOT?: Maybe<ParentSubscriptionWhereInput[] | ParentSubscriptionWhereInput>;
+}
+
+export interface ParentEventSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ParentEventWhereInput>;
+  AND?: Maybe<
+    ParentEventSubscriptionWhereInput[] | ParentEventSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ParentEventSubscriptionWhereInput[] | ParentEventSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ParentEventSubscriptionWhereInput[] | ParentEventSubscriptionWhereInput
+  >;
 }
 
 export interface ParentNoteSubscriptionWhereInput {
@@ -7561,6 +7903,144 @@ export interface AggregateParentSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface ParentEvent {
+  id: ID_Output;
+  name: String;
+  type: String;
+  dancerIds: ID_Output[];
+  appliesTo: String[];
+  beginDate?: DateTimeOutput;
+  endDate?: DateTimeOutput;
+  location?: String;
+  address1?: String;
+  address2?: String;
+  city?: String;
+  state?: String;
+  zip?: String;
+  url?: String;
+  notes?: String;
+}
+
+export interface ParentEventPromise extends Promise<ParentEvent>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  parent: <T = ParentPromise>() => T;
+  studio: <T = StudioPromise>() => T;
+  name: () => Promise<String>;
+  type: () => Promise<String>;
+  dancerIds: () => Promise<ID_Output[]>;
+  appliesTo: () => Promise<String[]>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
+  location: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
+  city: () => Promise<String>;
+  state: () => Promise<String>;
+  zip: () => Promise<String>;
+  url: () => Promise<String>;
+  notes: () => Promise<String>;
+}
+
+export interface ParentEventSubscription
+  extends Promise<AsyncIterator<ParentEvent>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  parent: <T = ParentSubscription>() => T;
+  studio: <T = StudioSubscription>() => T;
+  name: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
+  appliesTo: () => Promise<AsyncIterator<String[]>>;
+  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  location: () => Promise<AsyncIterator<String>>;
+  address1: () => Promise<AsyncIterator<String>>;
+  address2: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<String>>;
+  url: () => Promise<AsyncIterator<String>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ParentEventNullablePromise
+  extends Promise<ParentEvent | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  parent: <T = ParentPromise>() => T;
+  studio: <T = StudioPromise>() => T;
+  name: () => Promise<String>;
+  type: () => Promise<String>;
+  dancerIds: () => Promise<ID_Output[]>;
+  appliesTo: () => Promise<String[]>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
+  location: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
+  city: () => Promise<String>;
+  state: () => Promise<String>;
+  zip: () => Promise<String>;
+  url: () => Promise<String>;
+  notes: () => Promise<String>;
+}
+
+export interface ParentEventConnection {
+  pageInfo: PageInfo;
+  edges: ParentEventEdge[];
+}
+
+export interface ParentEventConnectionPromise
+  extends Promise<ParentEventConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ParentEventEdge>>() => T;
+  aggregate: <T = AggregateParentEventPromise>() => T;
+}
+
+export interface ParentEventConnectionSubscription
+  extends Promise<AsyncIterator<ParentEventConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ParentEventEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateParentEventSubscription>() => T;
+}
+
+export interface ParentEventEdge {
+  node: ParentEvent;
+  cursor: String;
+}
+
+export interface ParentEventEdgePromise
+  extends Promise<ParentEventEdge>,
+    Fragmentable {
+  node: <T = ParentEventPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ParentEventEdgeSubscription
+  extends Promise<AsyncIterator<ParentEventEdge>>,
+    Fragmentable {
+  node: <T = ParentEventSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateParentEvent {
+  count: Int;
+}
+
+export interface AggregateParentEventPromise
+  extends Promise<AggregateParentEvent>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateParentEventSubscription
+  extends Promise<AsyncIterator<AggregateParentEvent>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface ParentNote {
   id: ID_Output;
   note: String;
@@ -8326,6 +8806,89 @@ export interface ParentPreviousValuesSubscription
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
 }
 
+export interface ParentEventSubscriptionPayload {
+  mutation: MutationType;
+  node: ParentEvent;
+  updatedFields: String[];
+  previousValues: ParentEventPreviousValues;
+}
+
+export interface ParentEventSubscriptionPayloadPromise
+  extends Promise<ParentEventSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ParentEventPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ParentEventPreviousValuesPromise>() => T;
+}
+
+export interface ParentEventSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ParentEventSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ParentEventSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ParentEventPreviousValuesSubscription>() => T;
+}
+
+export interface ParentEventPreviousValues {
+  id: ID_Output;
+  name: String;
+  type: String;
+  dancerIds: ID_Output[];
+  appliesTo: String[];
+  beginDate?: DateTimeOutput;
+  endDate?: DateTimeOutput;
+  location?: String;
+  address1?: String;
+  address2?: String;
+  city?: String;
+  state?: String;
+  zip?: String;
+  url?: String;
+  notes?: String;
+}
+
+export interface ParentEventPreviousValuesPromise
+  extends Promise<ParentEventPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  type: () => Promise<String>;
+  dancerIds: () => Promise<ID_Output[]>;
+  appliesTo: () => Promise<String[]>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
+  location: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
+  city: () => Promise<String>;
+  state: () => Promise<String>;
+  zip: () => Promise<String>;
+  url: () => Promise<String>;
+  notes: () => Promise<String>;
+}
+
+export interface ParentEventPreviousValuesSubscription
+  extends Promise<AsyncIterator<ParentEventPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
+  appliesTo: () => Promise<AsyncIterator<String[]>>;
+  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  location: () => Promise<AsyncIterator<String>>;
+  address1: () => Promise<AsyncIterator<String>>;
+  address2: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<String>>;
+  url: () => Promise<AsyncIterator<String>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
 export interface ParentNoteSubscriptionPayload {
   mutation: MutationType;
   node: ParentNote;
@@ -8605,6 +9168,10 @@ export const models: Model[] = [
   },
   {
     name: "StudioEvent",
+    embedded: false
+  },
+  {
+    name: "ParentEvent",
     embedded: false
   },
   {

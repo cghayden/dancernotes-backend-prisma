@@ -116,6 +116,10 @@ type AggregateParent {
   count: Int!
 }
 
+type AggregateParentEvent {
+  count: Int!
+}
+
 type AggregateParentNote {
   count: Int!
 }
@@ -3918,6 +3922,12 @@ type Mutation {
   upsertParent(where: ParentWhereUniqueInput!, create: ParentCreateInput!, update: ParentUpdateInput!): Parent!
   deleteParent(where: ParentWhereUniqueInput!): Parent
   deleteManyParents(where: ParentWhereInput): BatchPayload!
+  createParentEvent(data: ParentEventCreateInput!): ParentEvent!
+  updateParentEvent(data: ParentEventUpdateInput!, where: ParentEventWhereUniqueInput!): ParentEvent
+  updateManyParentEvents(data: ParentEventUpdateManyMutationInput!, where: ParentEventWhereInput): BatchPayload!
+  upsertParentEvent(where: ParentEventWhereUniqueInput!, create: ParentEventCreateInput!, update: ParentEventUpdateInput!): ParentEvent!
+  deleteParentEvent(where: ParentEventWhereUniqueInput!): ParentEvent
+  deleteManyParentEvents(where: ParentEventWhereInput): BatchPayload!
   createParentNote(data: ParentNoteCreateInput!): ParentNote!
   updateParentNote(data: ParentNoteUpdateInput!, where: ParentNoteWhereUniqueInput!): ParentNote
   updateManyParentNotes(data: ParentNoteUpdateManyMutationInput!, where: ParentNoteWhereInput): BatchPayload!
@@ -4043,6 +4053,356 @@ input ParentCreateWithoutDancersInput {
 type ParentEdge {
   node: Parent!
   cursor: String!
+}
+
+type ParentEvent {
+  id: ID!
+  parent: Parent!
+  studio: Studio
+  name: String!
+  type: String!
+  dancerIds: [ID!]!
+  appliesTo: [String!]!
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type ParentEventConnection {
+  pageInfo: PageInfo!
+  edges: [ParentEventEdge]!
+  aggregate: AggregateParentEvent!
+}
+
+input ParentEventCreateappliesToInput {
+  set: [String!]
+}
+
+input ParentEventCreatedancerIdsInput {
+  set: [ID!]
+}
+
+input ParentEventCreateInput {
+  id: ID
+  parent: ParentCreateOneInput!
+  studio: StudioCreateOneInput
+  name: String!
+  type: String!
+  dancerIds: ParentEventCreatedancerIdsInput
+  appliesTo: ParentEventCreateappliesToInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type ParentEventEdge {
+  node: ParentEvent!
+  cursor: String!
+}
+
+enum ParentEventOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+  beginDate_ASC
+  beginDate_DESC
+  endDate_ASC
+  endDate_DESC
+  location_ASC
+  location_DESC
+  address1_ASC
+  address1_DESC
+  address2_ASC
+  address2_DESC
+  city_ASC
+  city_DESC
+  state_ASC
+  state_DESC
+  zip_ASC
+  zip_DESC
+  url_ASC
+  url_DESC
+  notes_ASC
+  notes_DESC
+}
+
+type ParentEventPreviousValues {
+  id: ID!
+  name: String!
+  type: String!
+  dancerIds: [ID!]!
+  appliesTo: [String!]!
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+type ParentEventSubscriptionPayload {
+  mutation: MutationType!
+  node: ParentEvent
+  updatedFields: [String!]
+  previousValues: ParentEventPreviousValues
+}
+
+input ParentEventSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ParentEventWhereInput
+  AND: [ParentEventSubscriptionWhereInput!]
+  OR: [ParentEventSubscriptionWhereInput!]
+  NOT: [ParentEventSubscriptionWhereInput!]
+}
+
+input ParentEventUpdateappliesToInput {
+  set: [String!]
+}
+
+input ParentEventUpdatedancerIdsInput {
+  set: [ID!]
+}
+
+input ParentEventUpdateInput {
+  parent: ParentUpdateOneRequiredInput
+  studio: StudioUpdateOneInput
+  name: String
+  type: String
+  dancerIds: ParentEventUpdatedancerIdsInput
+  appliesTo: ParentEventUpdateappliesToInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input ParentEventUpdateManyMutationInput {
+  name: String
+  type: String
+  dancerIds: ParentEventUpdatedancerIdsInput
+  appliesTo: ParentEventUpdateappliesToInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input ParentEventWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  parent: ParentWhereInput
+  studio: StudioWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  beginDate: DateTime
+  beginDate_not: DateTime
+  beginDate_in: [DateTime!]
+  beginDate_not_in: [DateTime!]
+  beginDate_lt: DateTime
+  beginDate_lte: DateTime
+  beginDate_gt: DateTime
+  beginDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  address1: String
+  address1_not: String
+  address1_in: [String!]
+  address1_not_in: [String!]
+  address1_lt: String
+  address1_lte: String
+  address1_gt: String
+  address1_gte: String
+  address1_contains: String
+  address1_not_contains: String
+  address1_starts_with: String
+  address1_not_starts_with: String
+  address1_ends_with: String
+  address1_not_ends_with: String
+  address2: String
+  address2_not: String
+  address2_in: [String!]
+  address2_not_in: [String!]
+  address2_lt: String
+  address2_lte: String
+  address2_gt: String
+  address2_gte: String
+  address2_contains: String
+  address2_not_contains: String
+  address2_starts_with: String
+  address2_not_starts_with: String
+  address2_ends_with: String
+  address2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  AND: [ParentEventWhereInput!]
+  OR: [ParentEventWhereInput!]
+  NOT: [ParentEventWhereInput!]
+}
+
+input ParentEventWhereUniqueInput {
+  id: ID
 }
 
 type ParentNote {
@@ -4477,6 +4837,9 @@ type Query {
   parent(where: ParentWhereUniqueInput!): Parent
   parents(where: ParentWhereInput, orderBy: ParentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parent]!
   parentsConnection(where: ParentWhereInput, orderBy: ParentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentConnection!
+  parentEvent(where: ParentEventWhereUniqueInput!): ParentEvent
+  parentEvents(where: ParentEventWhereInput, orderBy: ParentEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentEvent]!
+  parentEventsConnection(where: ParentEventWhereInput, orderBy: ParentEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentEventConnection!
   parentNote(where: ParentNoteWhereUniqueInput!): ParentNote
   parentNotes(where: ParentNoteWhereInput, orderBy: ParentNoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentNote]!
   parentNotesConnection(where: ParentNoteWhereInput, orderBy: ParentNoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentNoteConnection!
@@ -5911,6 +6274,7 @@ type Subscription {
   hairStyle(where: HairStyleSubscriptionWhereInput): HairStyleSubscriptionPayload
   makeupSet(where: MakeupSetSubscriptionWhereInput): MakeupSetSubscriptionPayload
   parent(where: ParentSubscriptionWhereInput): ParentSubscriptionPayload
+  parentEvent(where: ParentEventSubscriptionWhereInput): ParentEventSubscriptionPayload
   parentNote(where: ParentNoteSubscriptionWhereInput): ParentNoteSubscriptionPayload
   studio(where: StudioSubscriptionWhereInput): StudioSubscriptionPayload
   studioEvent(where: StudioEventSubscriptionWhereInput): StudioEventSubscriptionPayload

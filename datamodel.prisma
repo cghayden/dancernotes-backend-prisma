@@ -168,6 +168,26 @@ type StudioEvent {
   notes: String
 }
 
+type ParentEvent {
+  id: ID! @id
+  parent: Parent!
+  studio: Studio
+  name: String!
+  type: String!
+  dancerIds: [ID!]! @scalarList(strategy: RELATION)
+  appliesTo: [String!]! @scalarList(strategy: RELATION)
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
 type AccessRequest{
   studio: Studio!
   id: ID! @id
