@@ -433,10 +433,11 @@ const Mutations = {
       throw new Error("You must be logged to edit Class Categories");
     }
     const { category } = args;
+    const newItems = args.items.map(i => i.trim());
     return ctx.db.mutation.updateStudio(
       {
         data: {
-          [category]: { set: args.items }
+          [category]: { set: newItems }
         },
         where: { id: ctx.request.userId }
       },
@@ -613,7 +614,7 @@ const Mutations = {
           oldRoutine.musicId,
           { invalidate: "true", resource_type: "video" },
           function(error, result) {
-            console.log("result:", result, "error:", error);
+            "result:", result, "error:", error;
           }
         );
       }
