@@ -178,6 +178,7 @@ type Mutation {
     resourceType: String!
   ): SuccessMessage
   requestStudioAccess(studioId: ID!, accessRequests: [ID!]!): SuccessMessage
+  withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
 }
 
 type Query {
@@ -203,7 +204,7 @@ type Query {
   studioCategories: Studio!
   allRs: [DanceClass!]!
   studioHairStyles: [HairStyle!]!
-  parentStudios: [Studio!]!
+  parentHairstyles: [Studio!]!
   studioDancers: [Dancer!]!
   parentNotes(danceId: ID!): ParentNote!
   enrollmentRequests: [EnrollmentRequest!]!

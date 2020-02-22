@@ -4871,6 +4871,7 @@ type Studio {
   hairStyles(where: HairStyleWhereInput, orderBy: HairStyleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HairStyle!]
   dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
   events(where: StudioEventWhereInput, orderBy: StudioEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StudioEvent!]
+  website: String
 }
 
 type StudioConnection {
@@ -4904,6 +4905,7 @@ input StudioCreateInput {
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 input StudioCreateManyInput {
@@ -4966,6 +4968,7 @@ input StudioCreateWithoutDanceClassesInput {
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 input StudioCreateWithoutDancersInput {
@@ -4984,6 +4987,7 @@ input StudioCreateWithoutDancersInput {
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 input StudioCreateWithoutEnrollmentRequestsInput {
@@ -5002,6 +5006,7 @@ input StudioCreateWithoutEnrollmentRequestsInput {
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 input StudioCreateWithoutEventsInput {
@@ -5020,6 +5025,7 @@ input StudioCreateWithoutEventsInput {
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
+  website: String
 }
 
 input StudioCreateWithoutHairStylesInput {
@@ -5038,6 +5044,7 @@ input StudioCreateWithoutHairStylesInput {
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 input StudioCreateWithoutMakeupSetsInput {
@@ -5056,6 +5063,7 @@ input StudioCreateWithoutMakeupSetsInput {
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
+  website: String
 }
 
 type StudioEdge {
@@ -5673,6 +5681,8 @@ enum StudioOrderByInput {
   resetToken_DESC
   resetTokenExpiry_ASC
   resetTokenExpiry_DESC
+  website_ASC
+  website_DESC
 }
 
 type StudioPreviousValues {
@@ -5688,6 +5698,7 @@ type StudioPreviousValues {
   styles: [String!]!
   competitiveLevels: [String!]!
   ageDivisions: [String!]!
+  website: String
 }
 
 input StudioScalarWhereInput {
@@ -5799,6 +5810,20 @@ input StudioScalarWhereInput {
   resetTokenExpiry_lte: Float
   resetTokenExpiry_gt: Float
   resetTokenExpiry_gte: Float
+  website: String
+  website_not: String
+  website_in: [String!]
+  website_not_in: [String!]
+  website_lt: String
+  website_lte: String
+  website_gt: String
+  website_gte: String
+  website_contains: String
+  website_not_contains: String
+  website_starts_with: String
+  website_not_starts_with: String
+  website_ends_with: String
+  website_not_ends_with: String
   AND: [StudioScalarWhereInput!]
   OR: [StudioScalarWhereInput!]
   NOT: [StudioScalarWhereInput!]
@@ -5846,6 +5871,7 @@ input StudioUpdateDataInput {
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateInput {
@@ -5864,6 +5890,7 @@ input StudioUpdateInput {
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateManyDataInput {
@@ -5876,6 +5903,7 @@ input StudioUpdateManyDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
+  website: String
 }
 
 input StudioUpdateManyInput {
@@ -5900,6 +5928,7 @@ input StudioUpdateManyMutationInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
+  website: String
 }
 
 input StudioUpdateManyWithoutDancersInput {
@@ -5989,6 +6018,7 @@ input StudioUpdateWithoutDanceClassesDataInput {
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateWithoutDancersDataInput {
@@ -6006,6 +6036,7 @@ input StudioUpdateWithoutDancersDataInput {
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateWithoutEnrollmentRequestsDataInput {
@@ -6023,6 +6054,7 @@ input StudioUpdateWithoutEnrollmentRequestsDataInput {
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateWithoutEventsDataInput {
@@ -6040,6 +6072,7 @@ input StudioUpdateWithoutEventsDataInput {
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
+  website: String
 }
 
 input StudioUpdateWithoutHairStylesDataInput {
@@ -6057,6 +6090,7 @@ input StudioUpdateWithoutHairStylesDataInput {
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateWithoutMakeupSetsDataInput {
@@ -6074,6 +6108,7 @@ input StudioUpdateWithoutMakeupSetsDataInput {
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
+  website: String
 }
 
 input StudioUpdateWithWhereUniqueNestedInput {
@@ -6255,6 +6290,20 @@ input StudioWhereInput {
   events_every: StudioEventWhereInput
   events_some: StudioEventWhereInput
   events_none: StudioEventWhereInput
+  website: String
+  website_not: String
+  website_in: [String!]
+  website_not_in: [String!]
+  website_lt: String
+  website_lte: String
+  website_gt: String
+  website_gte: String
+  website_contains: String
+  website_not_contains: String
+  website_starts_with: String
+  website_not_starts_with: String
+  website_ends_with: String
+  website_not_ends_with: String
   AND: [StudioWhereInput!]
   OR: [StudioWhereInput!]
   NOT: [StudioWhereInput!]
