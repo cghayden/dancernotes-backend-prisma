@@ -668,7 +668,9 @@ export type StudioOrderByInput =
   | "resetToken_ASC"
   | "resetToken_DESC"
   | "resetTokenExpiry_ASC"
-  | "resetTokenExpiry_DESC";
+  | "resetTokenExpiry_DESC"
+  | "website_ASC"
+  | "website_DESC";
 
 export type EnrollmentRequestOrderByInput =
   | "createdAt_ASC"
@@ -1212,6 +1214,20 @@ export interface StudioWhereInput {
   events_every?: Maybe<StudioEventWhereInput>;
   events_some?: Maybe<StudioEventWhereInput>;
   events_none?: Maybe<StudioEventWhereInput>;
+  website?: Maybe<String>;
+  website_not?: Maybe<String>;
+  website_in?: Maybe<String[] | String>;
+  website_not_in?: Maybe<String[] | String>;
+  website_lt?: Maybe<String>;
+  website_lte?: Maybe<String>;
+  website_gt?: Maybe<String>;
+  website_gte?: Maybe<String>;
+  website_contains?: Maybe<String>;
+  website_not_contains?: Maybe<String>;
+  website_starts_with?: Maybe<String>;
+  website_not_starts_with?: Maybe<String>;
+  website_ends_with?: Maybe<String>;
+  website_not_ends_with?: Maybe<String>;
   AND?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   OR?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   NOT?: Maybe<StudioWhereInput[] | StudioWhereInput>;
@@ -2538,6 +2554,7 @@ export interface StudioCreateInput {
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface DanceClassCreateManyWithoutStudioInput {
@@ -2697,6 +2714,7 @@ export interface StudioCreateWithoutEnrollmentRequestsInput {
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioCreatestylesInput {
@@ -2789,6 +2807,7 @@ export interface StudioCreateWithoutDanceClassesInput {
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface EnrollmentRequestCreateManyWithoutStudioInput {
@@ -2900,6 +2919,7 @@ export interface StudioCreateWithoutMakeupSetsInput {
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface HairStyleCreateManyWithoutStudioInput {
@@ -3031,6 +3051,7 @@ export interface StudioCreateWithoutDancersInput {
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioEventCreateManyWithoutStudioInput {
@@ -3148,6 +3169,7 @@ export interface StudioUpdateDataInput {
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface DanceClassUpdateManyWithoutStudioInput {
@@ -3412,6 +3434,7 @@ export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioUpdatestylesInput {
@@ -3545,6 +3568,7 @@ export interface StudioUpdateWithoutDanceClassesDataInput {
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface EnrollmentRequestUpdateManyWithoutStudioInput {
@@ -3705,6 +3729,7 @@ export interface StudioUpdateWithoutMakeupSetsDataInput {
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface HairStyleUpdateManyWithoutStudioInput {
@@ -4037,6 +4062,7 @@ export interface StudioUpdateWithoutDancersDataInput {
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioEventUpdateManyWithoutStudioInput {
@@ -4409,6 +4435,20 @@ export interface StudioScalarWhereInput {
   resetTokenExpiry_lte?: Maybe<Float>;
   resetTokenExpiry_gt?: Maybe<Float>;
   resetTokenExpiry_gte?: Maybe<Float>;
+  website?: Maybe<String>;
+  website_not?: Maybe<String>;
+  website_in?: Maybe<String[] | String>;
+  website_not_in?: Maybe<String[] | String>;
+  website_lt?: Maybe<String>;
+  website_lte?: Maybe<String>;
+  website_gt?: Maybe<String>;
+  website_gte?: Maybe<String>;
+  website_contains?: Maybe<String>;
+  website_not_contains?: Maybe<String>;
+  website_starts_with?: Maybe<String>;
+  website_not_starts_with?: Maybe<String>;
+  website_ends_with?: Maybe<String>;
+  website_not_ends_with?: Maybe<String>;
   AND?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   OR?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   NOT?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
@@ -4429,6 +4469,7 @@ export interface StudioUpdateManyDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
+  website?: Maybe<String>;
 }
 
 export interface DancerUpsertWithWhereUniqueWithoutParentInput {
@@ -5796,6 +5837,7 @@ export interface StudioCreateWithoutHairStylesInput {
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface HairStyleUpdateInput {
@@ -5828,6 +5870,7 @@ export interface StudioUpdateWithoutHairStylesDataInput {
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioUpsertWithoutHairStylesInput {
@@ -6042,6 +6085,7 @@ export interface StudioUpdateInput {
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioUpdateManyMutationInput {
@@ -6054,6 +6098,7 @@ export interface StudioUpdateManyMutationInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioEventCreateInput {
@@ -6095,6 +6140,7 @@ export interface StudioCreateWithoutEventsInput {
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioEventUpdateInput {
@@ -6136,6 +6182,7 @@ export interface StudioUpdateWithoutEventsDataInput {
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
+  website?: Maybe<String>;
 }
 
 export interface StudioUpsertWithoutEventsInput {
@@ -6393,6 +6440,7 @@ export interface Studio {
   styles: String[];
   competitiveLevels: String[];
   ageDivisions: String[];
+  website?: String;
 }
 
 export interface StudioPromise extends Promise<Studio>, Fragmentable {
@@ -6462,6 +6510,7 @@ export interface StudioPromise extends Promise<Studio>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  website: () => Promise<String>;
 }
 
 export interface StudioSubscription
@@ -6535,6 +6584,7 @@ export interface StudioSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  website: () => Promise<AsyncIterator<String>>;
 }
 
 export interface StudioNullablePromise
@@ -6606,6 +6656,7 @@ export interface StudioNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  website: () => Promise<String>;
 }
 
 export interface DanceClass {
@@ -8971,6 +9022,7 @@ export interface StudioPreviousValues {
   styles: String[];
   competitiveLevels: String[];
   ageDivisions: String[];
+  website?: String;
 }
 
 export interface StudioPreviousValuesPromise
@@ -8988,6 +9040,7 @@ export interface StudioPreviousValuesPromise
   styles: () => Promise<String[]>;
   competitiveLevels: () => Promise<String[]>;
   ageDivisions: () => Promise<String[]>;
+  website: () => Promise<String>;
 }
 
 export interface StudioPreviousValuesSubscription
@@ -9005,6 +9058,7 @@ export interface StudioPreviousValuesSubscription
   styles: () => Promise<AsyncIterator<String[]>>;
   competitiveLevels: () => Promise<AsyncIterator<String[]>>;
   ageDivisions: () => Promise<AsyncIterator<String[]>>;
+  website: () => Promise<AsyncIterator<String>>;
 }
 
 export interface StudioEventSubscriptionPayload {

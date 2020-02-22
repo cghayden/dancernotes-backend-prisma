@@ -120,7 +120,7 @@ const Query = {
     }
     return allParentsClasses;
   },
-  async parentStudios(parent, args, ctx, info) {
+  async parentHairstyles(parent, args, ctx, info) {
     return await ctx.db.query.studios(
       {
         where: {

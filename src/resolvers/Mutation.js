@@ -366,7 +366,7 @@ const Mutations = {
       }`
       );
     }
-    return { messgage: "Success!! - Requested!" };
+    return { message: "Success!! - Requested!" };
   },
   async removeClassFromRequest(parent, args, ctx, info) {
     // TODO make sure class is in requests
@@ -428,15 +428,66 @@ const Mutations = {
       }
     }
   },
-  updateStudioClassCategory(parent, args, ctx, info) {
+  async withdrawFromClass(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged to withdraw from a class");
+    }
+    //update DanceClass - disconnect dancer
+    const danceClass = await ctx.db.mutation.updateDanceClass(
+      {
+        where: { id: args.danceClassId },
+        data: { dancers: { disconnect: { id: args.dancerId } } }
+      },
+      `{studio{id}}`
+    );
+    const isDancerInStudio = await ctx.db.query.danceClasses(
+      {
+        where: {
+          AND: [
+            { studio: { id: danceClass.studio.id } },
+            { dancers_some: { id: args.dancerId } }
+          ]
+        }
+      },
+      `{name}`
+    );
+    //disconnect dancer from studio if they are not in any dancs of that studio
+    if (!isDancerInStudio.length) {
+      const dancer = await ctx.db.mutation.updateDancer(
+        {
+          where: { id: args.dancerId },
+          data: { studios: { disconnect: { id: danceClass.studio.id } } }
+        },
+        `{firstName}`
+      );
+    }
+    const parentHasDancersInStudio = await ctx.db.query.studios({
+      where: {
+        AND: [
+          { id: danceClass.studio.id },
+          { dancers_some: { parent: { id: ctx.request.userId } } }
+        ]
+      }
+    });
+    if (!parentHasDancersInStudio.length) {
+      await ctx.db.mutation.updateParent({
+        where: { id: ctx.request.userId },
+        data: { studios: { disconnect: { id: danceClass.studio.id } } }
+      });
+    }
+    return { message: `you have been withdrawn from the class` };
+  },
+
+  async updateStudioClassCategory(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged to edit Class Categories");
     }
     const { category } = args;
-    return ctx.db.mutation.updateStudio(
+    const newItems = args.items.map(i => i.trim());
+    return await ctx.db.mutation.updateStudio(
       {
         data: {
-          [category]: { set: args.items }
+          [category]: { set: newItems }
         },
         where: { id: ctx.request.userId }
       },
@@ -613,7 +664,7 @@ const Mutations = {
           oldRoutine.musicId,
           { invalidate: "true", resource_type: "video" },
           function(error, result) {
-            console.log("result:", result, "error:", error);
+            "result:", result, "error:", error;
           }
         );
       }

@@ -34,36 +34,7 @@ type Studio {
   hairStyles: [HairStyle!]!
   dancers: [Dancer!]!
   events: [StudioEvent!]!
-}
-
-type MakeupSet {
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-  id: ID! @id
-  name: String!
-  studio: Studio!
-  lipstick: String
-  eyeShadow: String
-  eyeLids: String
-  eyeCrease: String
-  eyeLiner: String
-  eyelashes:String
-  foundation:String
-  powder: String
-  blush: String
-  bronzer: String
-  applyToCategories: String
-  notes:String
-  danceClasses: [DanceClass!]!
-}
-
-type HairStyle {
-  studio: Studio!
-  id: ID! @id
-  name: String!
-  description: String
-  image: String
-  link: String
+  website: String
 }
 
 type Dancer {
@@ -131,6 +102,36 @@ type CustomRoutine {
   entryNumber: Int
   entryTime: DateTime
   entryDay: String
+}
+
+type MakeupSet {
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  id: ID! @id
+  name: String!
+  studio: Studio!
+  lipstick: String
+  eyeShadow: String
+  eyeLids: String
+  eyeCrease: String
+  eyeLiner: String
+  eyelashes:String
+  foundation:String
+  powder: String
+  blush: String
+  bronzer: String
+  applyToCategories: String
+  notes:String
+  danceClasses: [DanceClass!]!
+}
+
+type HairStyle {
+  studio: Studio!
+  id: ID! @id
+  name: String!
+  description: String
+  image: String
+  link: String
 }
 
 type ParentNote {
