@@ -219,6 +219,15 @@ const Query = {
       info
     );
   },
+  async accessRequests(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    return await ctx.db.query.accessRequests(
+      { where: { studio: { id: ctx.request.userId } } },
+      info
+    );
+  },
   async parentEvents(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("you must be logged in to do that");

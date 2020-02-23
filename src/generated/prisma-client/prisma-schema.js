@@ -16,7 +16,17 @@ type AccessRequestConnection {
 }
 
 input AccessRequestCreateInput {
-  studio: StudioCreateOneInput!
+  studio: StudioCreateOneWithoutAccessRequestsInput!
+  id: ID
+  parent: ParentCreateOneInput!
+}
+
+input AccessRequestCreateManyWithoutStudioInput {
+  create: [AccessRequestCreateWithoutStudioInput!]
+  connect: [AccessRequestWhereUniqueInput!]
+}
+
+input AccessRequestCreateWithoutStudioInput {
   id: ID
   parent: ParentCreateOneInput!
 }
@@ -33,6 +43,26 @@ enum AccessRequestOrderByInput {
 
 type AccessRequestPreviousValues {
   id: ID!
+}
+
+input AccessRequestScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [AccessRequestScalarWhereInput!]
+  OR: [AccessRequestScalarWhereInput!]
+  NOT: [AccessRequestScalarWhereInput!]
 }
 
 type AccessRequestSubscriptionPayload {
@@ -54,8 +84,34 @@ input AccessRequestSubscriptionWhereInput {
 }
 
 input AccessRequestUpdateInput {
-  studio: StudioUpdateOneRequiredInput
+  studio: StudioUpdateOneRequiredWithoutAccessRequestsInput
   parent: ParentUpdateOneRequiredInput
+}
+
+input AccessRequestUpdateManyWithoutStudioInput {
+  create: [AccessRequestCreateWithoutStudioInput!]
+  delete: [AccessRequestWhereUniqueInput!]
+  connect: [AccessRequestWhereUniqueInput!]
+  set: [AccessRequestWhereUniqueInput!]
+  disconnect: [AccessRequestWhereUniqueInput!]
+  update: [AccessRequestUpdateWithWhereUniqueWithoutStudioInput!]
+  upsert: [AccessRequestUpsertWithWhereUniqueWithoutStudioInput!]
+  deleteMany: [AccessRequestScalarWhereInput!]
+}
+
+input AccessRequestUpdateWithoutStudioDataInput {
+  parent: ParentUpdateOneRequiredInput
+}
+
+input AccessRequestUpdateWithWhereUniqueWithoutStudioInput {
+  where: AccessRequestWhereUniqueInput!
+  data: AccessRequestUpdateWithoutStudioDataInput!
+}
+
+input AccessRequestUpsertWithWhereUniqueWithoutStudioInput {
+  where: AccessRequestWhereUniqueInput!
+  update: AccessRequestUpdateWithoutStudioDataInput!
+  create: AccessRequestCreateWithoutStudioInput!
 }
 
 input AccessRequestWhereInput {
@@ -4866,12 +4922,13 @@ type Studio {
   styles: [String!]!
   competitiveLevels: [String!]!
   ageDivisions: [String!]!
-  enrollmentRequests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest!]
   makeupSets(where: MakeupSetWhereInput, orderBy: MakeupSetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [MakeupSet!]
   hairStyles(where: HairStyleWhereInput, orderBy: HairStyleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HairStyle!]
   dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
   events(where: StudioEventWhereInput, orderBy: StudioEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StudioEvent!]
   website: String
+  enrollmentRequests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest!]
+  accessRequests(where: AccessRequestWhereInput, orderBy: AccessRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AccessRequest!]
 }
 
 type StudioConnection {
@@ -4900,12 +4957,13 @@ input StudioCreateInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateManyInput {
@@ -4920,6 +4978,11 @@ input StudioCreateManyWithoutDancersInput {
 
 input StudioCreateOneInput {
   create: StudioCreateInput
+  connect: StudioWhereUniqueInput
+}
+
+input StudioCreateOneWithoutAccessRequestsInput {
+  create: StudioCreateWithoutAccessRequestsInput
   connect: StudioWhereUniqueInput
 }
 
@@ -4952,6 +5015,26 @@ input StudioCreatestylesInput {
   set: [String!]
 }
 
+input StudioCreateWithoutAccessRequestsInput {
+  id: ID
+  email: String!
+  studioName: String!
+  userType: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  danceClasses: DanceClassCreateManyWithoutStudioInput
+  styles: StudioCreatestylesInput
+  competitiveLevels: StudioCreatecompetitiveLevelsInput
+  ageDivisions: StudioCreateageDivisionsInput
+  makeupSets: MakeupSetCreateManyWithoutStudioInput
+  hairStyles: HairStyleCreateManyWithoutStudioInput
+  dancers: DancerCreateManyWithoutStudiosInput
+  events: StudioEventCreateManyWithoutStudioInput
+  website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+}
+
 input StudioCreateWithoutDanceClassesInput {
   id: ID
   email: String!
@@ -4963,12 +5046,13 @@ input StudioCreateWithoutDanceClassesInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateWithoutDancersInput {
@@ -4983,11 +5067,12 @@ input StudioCreateWithoutDancersInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateWithoutEnrollmentRequestsInput {
@@ -5007,6 +5092,7 @@ input StudioCreateWithoutEnrollmentRequestsInput {
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateWithoutEventsInput {
@@ -5021,11 +5107,12 @@ input StudioCreateWithoutEventsInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateWithoutHairStylesInput {
@@ -5040,11 +5127,12 @@ input StudioCreateWithoutHairStylesInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   makeupSets: MakeupSetCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 input StudioCreateWithoutMakeupSetsInput {
@@ -5059,11 +5147,12 @@ input StudioCreateWithoutMakeupSetsInput {
   styles: StudioCreatestylesInput
   competitiveLevels: StudioCreatecompetitiveLevelsInput
   ageDivisions: StudioCreateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   hairStyles: HairStyleCreateManyWithoutStudioInput
   dancers: DancerCreateManyWithoutStudiosInput
   events: StudioEventCreateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
+  accessRequests: AccessRequestCreateManyWithoutStudioInput
 }
 
 type StudioEdge {
@@ -5866,12 +5955,13 @@ input StudioUpdateDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateInput {
@@ -5885,12 +5975,13 @@ input StudioUpdateInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateManyDataInput {
@@ -5957,10 +6048,10 @@ input StudioUpdateOneInput {
   connect: StudioWhereUniqueInput
 }
 
-input StudioUpdateOneRequiredInput {
-  create: StudioCreateInput
-  update: StudioUpdateDataInput
-  upsert: StudioUpsertNestedInput
+input StudioUpdateOneRequiredWithoutAccessRequestsInput {
+  create: StudioCreateWithoutAccessRequestsInput
+  update: StudioUpdateWithoutAccessRequestsDataInput
+  upsert: StudioUpsertWithoutAccessRequestsInput
   connect: StudioWhereUniqueInput
 }
 
@@ -6003,6 +6094,25 @@ input StudioUpdatestylesInput {
   set: [String!]
 }
 
+input StudioUpdateWithoutAccessRequestsDataInput {
+  email: String
+  studioName: String
+  userType: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  danceClasses: DanceClassUpdateManyWithoutStudioInput
+  styles: StudioUpdatestylesInput
+  competitiveLevels: StudioUpdatecompetitiveLevelsInput
+  ageDivisions: StudioUpdateageDivisionsInput
+  makeupSets: MakeupSetUpdateManyWithoutStudioInput
+  hairStyles: HairStyleUpdateManyWithoutStudioInput
+  dancers: DancerUpdateManyWithoutStudiosInput
+  events: StudioEventUpdateManyWithoutStudioInput
+  website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+}
+
 input StudioUpdateWithoutDanceClassesDataInput {
   email: String
   studioName: String
@@ -6013,12 +6123,13 @@ input StudioUpdateWithoutDanceClassesDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithoutDancersDataInput {
@@ -6032,11 +6143,12 @@ input StudioUpdateWithoutDancersDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithoutEnrollmentRequestsDataInput {
@@ -6055,6 +6167,7 @@ input StudioUpdateWithoutEnrollmentRequestsDataInput {
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithoutEventsDataInput {
@@ -6068,11 +6181,12 @@ input StudioUpdateWithoutEventsDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithoutHairStylesDataInput {
@@ -6086,11 +6200,12 @@ input StudioUpdateWithoutHairStylesDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   makeupSets: MakeupSetUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithoutMakeupSetsDataInput {
@@ -6104,11 +6219,12 @@ input StudioUpdateWithoutMakeupSetsDataInput {
   styles: StudioUpdatestylesInput
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
-  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   hairStyles: HairStyleUpdateManyWithoutStudioInput
   dancers: DancerUpdateManyWithoutStudiosInput
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
+  enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
+  accessRequests: AccessRequestUpdateManyWithoutStudioInput
 }
 
 input StudioUpdateWithWhereUniqueNestedInput {
@@ -6124,6 +6240,11 @@ input StudioUpdateWithWhereUniqueWithoutDancersInput {
 input StudioUpsertNestedInput {
   update: StudioUpdateDataInput!
   create: StudioCreateInput!
+}
+
+input StudioUpsertWithoutAccessRequestsInput {
+  update: StudioUpdateWithoutAccessRequestsDataInput!
+  create: StudioCreateWithoutAccessRequestsInput!
 }
 
 input StudioUpsertWithoutDanceClassesInput {
@@ -6275,9 +6396,6 @@ input StudioWhereInput {
   danceClasses_every: DanceClassWhereInput
   danceClasses_some: DanceClassWhereInput
   danceClasses_none: DanceClassWhereInput
-  enrollmentRequests_every: EnrollmentRequestWhereInput
-  enrollmentRequests_some: EnrollmentRequestWhereInput
-  enrollmentRequests_none: EnrollmentRequestWhereInput
   makeupSets_every: MakeupSetWhereInput
   makeupSets_some: MakeupSetWhereInput
   makeupSets_none: MakeupSetWhereInput
@@ -6304,6 +6422,12 @@ input StudioWhereInput {
   website_not_starts_with: String
   website_ends_with: String
   website_not_ends_with: String
+  enrollmentRequests_every: EnrollmentRequestWhereInput
+  enrollmentRequests_some: EnrollmentRequestWhereInput
+  enrollmentRequests_none: EnrollmentRequestWhereInput
+  accessRequests_every: AccessRequestWhereInput
+  accessRequests_some: AccessRequestWhereInput
+  accessRequests_none: AccessRequestWhereInput
   AND: [StudioWhereInput!]
   OR: [StudioWhereInput!]
   NOT: [StudioWhereInput!]

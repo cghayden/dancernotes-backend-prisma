@@ -80,6 +80,7 @@ type Mutation {
     dancerId: ID!
     requestId: ID!
   ): SuccessMessage
+  confirmAccessRequest(requestId: ID!, parentId: ID!): SuccessMessage
   updateStudioClassCategory(category: String!, items: [String]!): Studio
   createMakeupSet(
     name: String!
@@ -177,7 +178,7 @@ type Mutation {
     publicId: String!
     resourceType: String!
   ): SuccessMessage
-  requestStudioAccess(studioId: ID!, accessRequests: [ID!]!): SuccessMessage
+  requestStudioAccess(studioId: ID!, accessRequests: [ID!]!): Parent!
   withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
 }
 
@@ -207,6 +208,7 @@ type Query {
   parentHairstyles: [Studio!]!
   studioDancers: [Dancer!]!
   parentNotes(danceId: ID!): ParentNote!
+  accessRequests: [AccessRequest!]!
   enrollmentRequests: [EnrollmentRequest!]!
   customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
   parentEvents: [StudioEvent!]!
@@ -227,6 +229,7 @@ type Parent {
   id: ID!
   email: String!
   firstName: String!
+  lastName: String
   userType: String!
   dancersIds: [ID]!
   dancers: [Dancer!]

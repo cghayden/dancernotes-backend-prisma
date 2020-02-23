@@ -29,12 +29,13 @@ type Studio {
   styles: [String!]! @scalarList(strategy: RELATION)
   competitiveLevels: [String!]! @scalarList(strategy: RELATION)
   ageDivisions: [String!]! @scalarList(strategy: RELATION)
-  enrollmentRequests: [EnrollmentRequest!]!
   makeupSets: [MakeupSet!]!
   hairStyles: [HairStyle!]!
   dancers: [Dancer!]!
   events: [StudioEvent!]!
   website: String
+  enrollmentRequests: [EnrollmentRequest!]!
+  accessRequests: [AccessRequest!]!
 }
 
 type Dancer {
@@ -141,16 +142,6 @@ type ParentNote {
   note: String!
 }
 
-type EnrollmentRequest {
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-  id: ID! @id
-  dancer: Dancer!
-  studio: Studio!
-  classesRequested: [DanceClass!]!
-  parent: Parent!
-}
-
 type StudioEvent {
   id: ID! @id
   studio: Studio!
@@ -189,8 +180,18 @@ type ParentEvent {
   notes: String
 }
 
-type AccessRequest{
-  studio: Studio!
+type EnrollmentRequest {
   id: ID! @id
+  studio: Studio!
+  parent: Parent!
+  dancer: Dancer!
+  classesRequested: [DanceClass!]!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type AccessRequest{
+  id: ID! @id
+  studio: Studio!
   parent: Parent!
 }
