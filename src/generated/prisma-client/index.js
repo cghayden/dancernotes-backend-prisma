@@ -13,14 +13,6 @@ var models = [
     embedded: false
   },
   {
-    name: "MakeupSet",
-    embedded: false
-  },
-  {
-    name: "HairStyle",
-    embedded: false
-  },
-  {
     name: "Dancer",
     embedded: false
   },
@@ -30,6 +22,14 @@ var models = [
   },
   {
     name: "CustomRoutine",
+    embedded: false
+  },
+  {
+    name: "MakeupSet",
+    embedded: false
+  },
+  {
+    name: "HairStyle",
     embedded: false
   },
   {

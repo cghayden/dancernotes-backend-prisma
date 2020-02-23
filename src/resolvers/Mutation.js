@@ -387,6 +387,38 @@ const Mutations = {
       );
     }
   },
+  async confirmAccessRequest(parent, args, ctx, info) {
+    const updatedParent = await ctx.db.mutation.updateParent(
+      {
+        where: { id: args.parentId },
+        data: { studios: { connect: { id: ctx.request.userId } } }
+      },
+      `{id accessRequests}`
+    );
+    console.log("updatedParent accessRequests:", updatedParent.accessRequests);
+
+    //TODO TODO TODO TODO
+    // add a parent Access field to Studio
+    if (updatedParent) {
+      //
+      // delete accessRequest id from array on parent
+      // send notification to parent
+      const newRequests = updatedParent.accessRequests.filter(
+        id => id !== ctx.request.userId
+      );
+      await ctx.db.mutation
+        .updateParent({
+          where: { id: args.parentId },
+          data: { accessRequests: { set: newRequests } }
+        })
+        .then(
+          await ctx.db.mutation.deleteAccessRequest({
+            where: { id: args.requestId }
+          })
+        );
+    }
+    return { message: `you have been granted access` };
+  },
   async confirmEnrollmentRequest(parent, args, ctx, info) {
     // 1. confirm danceClass is in Studio.danceClasses?...
     // 1a. Is class full?

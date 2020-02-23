@@ -672,14 +672,6 @@ export type StudioOrderByInput =
   | "website_ASC"
   | "website_DESC";
 
-export type EnrollmentRequestOrderByInput =
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "id_ASC"
-  | "id_DESC";
-
 export type MakeupSetOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
@@ -753,6 +745,14 @@ export type StudioEventOrderByInput =
   | "url_DESC"
   | "notes_ASC"
   | "notes_DESC";
+
+export type EnrollmentRequestOrderByInput =
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "id_ASC"
+  | "id_DESC";
 
 export type AccessRequestOrderByInput = "id_ASC" | "id_DESC";
 
@@ -1199,9 +1199,6 @@ export interface StudioWhereInput {
   danceClasses_every?: Maybe<DanceClassWhereInput>;
   danceClasses_some?: Maybe<DanceClassWhereInput>;
   danceClasses_none?: Maybe<DanceClassWhereInput>;
-  enrollmentRequests_every?: Maybe<EnrollmentRequestWhereInput>;
-  enrollmentRequests_some?: Maybe<EnrollmentRequestWhereInput>;
-  enrollmentRequests_none?: Maybe<EnrollmentRequestWhereInput>;
   makeupSets_every?: Maybe<MakeupSetWhereInput>;
   makeupSets_some?: Maybe<MakeupSetWhereInput>;
   makeupSets_none?: Maybe<MakeupSetWhereInput>;
@@ -1228,12 +1225,18 @@ export interface StudioWhereInput {
   website_not_starts_with?: Maybe<String>;
   website_ends_with?: Maybe<String>;
   website_not_ends_with?: Maybe<String>;
+  enrollmentRequests_every?: Maybe<EnrollmentRequestWhereInput>;
+  enrollmentRequests_some?: Maybe<EnrollmentRequestWhereInput>;
+  enrollmentRequests_none?: Maybe<EnrollmentRequestWhereInput>;
+  accessRequests_every?: Maybe<AccessRequestWhereInput>;
+  accessRequests_some?: Maybe<AccessRequestWhereInput>;
+  accessRequests_none?: Maybe<AccessRequestWhereInput>;
   AND?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   OR?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   NOT?: Maybe<StudioWhereInput[] | StudioWhereInput>;
 }
 
-export interface EnrollmentRequestWhereInput {
+export interface MakeupSetWhereInput {
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1264,15 +1267,272 @@ export interface EnrollmentRequestWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  dancer?: Maybe<DancerWhereInput>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   studio?: Maybe<StudioWhereInput>;
-  classesRequested_every?: Maybe<DanceClassWhereInput>;
-  classesRequested_some?: Maybe<DanceClassWhereInput>;
-  classesRequested_none?: Maybe<DanceClassWhereInput>;
-  parent?: Maybe<ParentWhereInput>;
-  AND?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
-  OR?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
-  NOT?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
+  lipstick?: Maybe<String>;
+  lipstick_not?: Maybe<String>;
+  lipstick_in?: Maybe<String[] | String>;
+  lipstick_not_in?: Maybe<String[] | String>;
+  lipstick_lt?: Maybe<String>;
+  lipstick_lte?: Maybe<String>;
+  lipstick_gt?: Maybe<String>;
+  lipstick_gte?: Maybe<String>;
+  lipstick_contains?: Maybe<String>;
+  lipstick_not_contains?: Maybe<String>;
+  lipstick_starts_with?: Maybe<String>;
+  lipstick_not_starts_with?: Maybe<String>;
+  lipstick_ends_with?: Maybe<String>;
+  lipstick_not_ends_with?: Maybe<String>;
+  eyeShadow?: Maybe<String>;
+  eyeShadow_not?: Maybe<String>;
+  eyeShadow_in?: Maybe<String[] | String>;
+  eyeShadow_not_in?: Maybe<String[] | String>;
+  eyeShadow_lt?: Maybe<String>;
+  eyeShadow_lte?: Maybe<String>;
+  eyeShadow_gt?: Maybe<String>;
+  eyeShadow_gte?: Maybe<String>;
+  eyeShadow_contains?: Maybe<String>;
+  eyeShadow_not_contains?: Maybe<String>;
+  eyeShadow_starts_with?: Maybe<String>;
+  eyeShadow_not_starts_with?: Maybe<String>;
+  eyeShadow_ends_with?: Maybe<String>;
+  eyeShadow_not_ends_with?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeLids_not?: Maybe<String>;
+  eyeLids_in?: Maybe<String[] | String>;
+  eyeLids_not_in?: Maybe<String[] | String>;
+  eyeLids_lt?: Maybe<String>;
+  eyeLids_lte?: Maybe<String>;
+  eyeLids_gt?: Maybe<String>;
+  eyeLids_gte?: Maybe<String>;
+  eyeLids_contains?: Maybe<String>;
+  eyeLids_not_contains?: Maybe<String>;
+  eyeLids_starts_with?: Maybe<String>;
+  eyeLids_not_starts_with?: Maybe<String>;
+  eyeLids_ends_with?: Maybe<String>;
+  eyeLids_not_ends_with?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeCrease_not?: Maybe<String>;
+  eyeCrease_in?: Maybe<String[] | String>;
+  eyeCrease_not_in?: Maybe<String[] | String>;
+  eyeCrease_lt?: Maybe<String>;
+  eyeCrease_lte?: Maybe<String>;
+  eyeCrease_gt?: Maybe<String>;
+  eyeCrease_gte?: Maybe<String>;
+  eyeCrease_contains?: Maybe<String>;
+  eyeCrease_not_contains?: Maybe<String>;
+  eyeCrease_starts_with?: Maybe<String>;
+  eyeCrease_not_starts_with?: Maybe<String>;
+  eyeCrease_ends_with?: Maybe<String>;
+  eyeCrease_not_ends_with?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyeLiner_not?: Maybe<String>;
+  eyeLiner_in?: Maybe<String[] | String>;
+  eyeLiner_not_in?: Maybe<String[] | String>;
+  eyeLiner_lt?: Maybe<String>;
+  eyeLiner_lte?: Maybe<String>;
+  eyeLiner_gt?: Maybe<String>;
+  eyeLiner_gte?: Maybe<String>;
+  eyeLiner_contains?: Maybe<String>;
+  eyeLiner_not_contains?: Maybe<String>;
+  eyeLiner_starts_with?: Maybe<String>;
+  eyeLiner_not_starts_with?: Maybe<String>;
+  eyeLiner_ends_with?: Maybe<String>;
+  eyeLiner_not_ends_with?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  eyelashes_not?: Maybe<String>;
+  eyelashes_in?: Maybe<String[] | String>;
+  eyelashes_not_in?: Maybe<String[] | String>;
+  eyelashes_lt?: Maybe<String>;
+  eyelashes_lte?: Maybe<String>;
+  eyelashes_gt?: Maybe<String>;
+  eyelashes_gte?: Maybe<String>;
+  eyelashes_contains?: Maybe<String>;
+  eyelashes_not_contains?: Maybe<String>;
+  eyelashes_starts_with?: Maybe<String>;
+  eyelashes_not_starts_with?: Maybe<String>;
+  eyelashes_ends_with?: Maybe<String>;
+  eyelashes_not_ends_with?: Maybe<String>;
+  foundation?: Maybe<String>;
+  foundation_not?: Maybe<String>;
+  foundation_in?: Maybe<String[] | String>;
+  foundation_not_in?: Maybe<String[] | String>;
+  foundation_lt?: Maybe<String>;
+  foundation_lte?: Maybe<String>;
+  foundation_gt?: Maybe<String>;
+  foundation_gte?: Maybe<String>;
+  foundation_contains?: Maybe<String>;
+  foundation_not_contains?: Maybe<String>;
+  foundation_starts_with?: Maybe<String>;
+  foundation_not_starts_with?: Maybe<String>;
+  foundation_ends_with?: Maybe<String>;
+  foundation_not_ends_with?: Maybe<String>;
+  powder?: Maybe<String>;
+  powder_not?: Maybe<String>;
+  powder_in?: Maybe<String[] | String>;
+  powder_not_in?: Maybe<String[] | String>;
+  powder_lt?: Maybe<String>;
+  powder_lte?: Maybe<String>;
+  powder_gt?: Maybe<String>;
+  powder_gte?: Maybe<String>;
+  powder_contains?: Maybe<String>;
+  powder_not_contains?: Maybe<String>;
+  powder_starts_with?: Maybe<String>;
+  powder_not_starts_with?: Maybe<String>;
+  powder_ends_with?: Maybe<String>;
+  powder_not_ends_with?: Maybe<String>;
+  blush?: Maybe<String>;
+  blush_not?: Maybe<String>;
+  blush_in?: Maybe<String[] | String>;
+  blush_not_in?: Maybe<String[] | String>;
+  blush_lt?: Maybe<String>;
+  blush_lte?: Maybe<String>;
+  blush_gt?: Maybe<String>;
+  blush_gte?: Maybe<String>;
+  blush_contains?: Maybe<String>;
+  blush_not_contains?: Maybe<String>;
+  blush_starts_with?: Maybe<String>;
+  blush_not_starts_with?: Maybe<String>;
+  blush_ends_with?: Maybe<String>;
+  blush_not_ends_with?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  bronzer_not?: Maybe<String>;
+  bronzer_in?: Maybe<String[] | String>;
+  bronzer_not_in?: Maybe<String[] | String>;
+  bronzer_lt?: Maybe<String>;
+  bronzer_lte?: Maybe<String>;
+  bronzer_gt?: Maybe<String>;
+  bronzer_gte?: Maybe<String>;
+  bronzer_contains?: Maybe<String>;
+  bronzer_not_contains?: Maybe<String>;
+  bronzer_starts_with?: Maybe<String>;
+  bronzer_not_starts_with?: Maybe<String>;
+  bronzer_ends_with?: Maybe<String>;
+  bronzer_not_ends_with?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  applyToCategories_not?: Maybe<String>;
+  applyToCategories_in?: Maybe<String[] | String>;
+  applyToCategories_not_in?: Maybe<String[] | String>;
+  applyToCategories_lt?: Maybe<String>;
+  applyToCategories_lte?: Maybe<String>;
+  applyToCategories_gt?: Maybe<String>;
+  applyToCategories_gte?: Maybe<String>;
+  applyToCategories_contains?: Maybe<String>;
+  applyToCategories_not_contains?: Maybe<String>;
+  applyToCategories_starts_with?: Maybe<String>;
+  applyToCategories_not_starts_with?: Maybe<String>;
+  applyToCategories_ends_with?: Maybe<String>;
+  applyToCategories_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  danceClasses_every?: Maybe<DanceClassWhereInput>;
+  danceClasses_some?: Maybe<DanceClassWhereInput>;
+  danceClasses_none?: Maybe<DanceClassWhereInput>;
+  AND?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
+  OR?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
+  NOT?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
+}
+
+export interface HairStyleWhereInput {
+  studio?: Maybe<StudioWhereInput>;
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
+  link?: Maybe<String>;
+  link_not?: Maybe<String>;
+  link_in?: Maybe<String[] | String>;
+  link_not_in?: Maybe<String[] | String>;
+  link_lt?: Maybe<String>;
+  link_lte?: Maybe<String>;
+  link_gt?: Maybe<String>;
+  link_gte?: Maybe<String>;
+  link_contains?: Maybe<String>;
+  link_not_contains?: Maybe<String>;
+  link_starts_with?: Maybe<String>;
+  link_not_starts_with?: Maybe<String>;
+  link_ends_with?: Maybe<String>;
+  link_not_ends_with?: Maybe<String>;
+  AND?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
+  OR?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
+  NOT?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
 }
 
 export interface DancerWhereInput {
@@ -1768,7 +2028,7 @@ export interface CustomRoutineWhereInput {
   NOT?: Maybe<CustomRoutineWhereInput[] | CustomRoutineWhereInput>;
 }
 
-export interface MakeupSetWhereInput {
+export interface EnrollmentRequestWhereInput {
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1799,272 +2059,15 @@ export interface MakeupSetWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
+  dancer?: Maybe<DancerWhereInput>;
   studio?: Maybe<StudioWhereInput>;
-  lipstick?: Maybe<String>;
-  lipstick_not?: Maybe<String>;
-  lipstick_in?: Maybe<String[] | String>;
-  lipstick_not_in?: Maybe<String[] | String>;
-  lipstick_lt?: Maybe<String>;
-  lipstick_lte?: Maybe<String>;
-  lipstick_gt?: Maybe<String>;
-  lipstick_gte?: Maybe<String>;
-  lipstick_contains?: Maybe<String>;
-  lipstick_not_contains?: Maybe<String>;
-  lipstick_starts_with?: Maybe<String>;
-  lipstick_not_starts_with?: Maybe<String>;
-  lipstick_ends_with?: Maybe<String>;
-  lipstick_not_ends_with?: Maybe<String>;
-  eyeShadow?: Maybe<String>;
-  eyeShadow_not?: Maybe<String>;
-  eyeShadow_in?: Maybe<String[] | String>;
-  eyeShadow_not_in?: Maybe<String[] | String>;
-  eyeShadow_lt?: Maybe<String>;
-  eyeShadow_lte?: Maybe<String>;
-  eyeShadow_gt?: Maybe<String>;
-  eyeShadow_gte?: Maybe<String>;
-  eyeShadow_contains?: Maybe<String>;
-  eyeShadow_not_contains?: Maybe<String>;
-  eyeShadow_starts_with?: Maybe<String>;
-  eyeShadow_not_starts_with?: Maybe<String>;
-  eyeShadow_ends_with?: Maybe<String>;
-  eyeShadow_not_ends_with?: Maybe<String>;
-  eyeLids?: Maybe<String>;
-  eyeLids_not?: Maybe<String>;
-  eyeLids_in?: Maybe<String[] | String>;
-  eyeLids_not_in?: Maybe<String[] | String>;
-  eyeLids_lt?: Maybe<String>;
-  eyeLids_lte?: Maybe<String>;
-  eyeLids_gt?: Maybe<String>;
-  eyeLids_gte?: Maybe<String>;
-  eyeLids_contains?: Maybe<String>;
-  eyeLids_not_contains?: Maybe<String>;
-  eyeLids_starts_with?: Maybe<String>;
-  eyeLids_not_starts_with?: Maybe<String>;
-  eyeLids_ends_with?: Maybe<String>;
-  eyeLids_not_ends_with?: Maybe<String>;
-  eyeCrease?: Maybe<String>;
-  eyeCrease_not?: Maybe<String>;
-  eyeCrease_in?: Maybe<String[] | String>;
-  eyeCrease_not_in?: Maybe<String[] | String>;
-  eyeCrease_lt?: Maybe<String>;
-  eyeCrease_lte?: Maybe<String>;
-  eyeCrease_gt?: Maybe<String>;
-  eyeCrease_gte?: Maybe<String>;
-  eyeCrease_contains?: Maybe<String>;
-  eyeCrease_not_contains?: Maybe<String>;
-  eyeCrease_starts_with?: Maybe<String>;
-  eyeCrease_not_starts_with?: Maybe<String>;
-  eyeCrease_ends_with?: Maybe<String>;
-  eyeCrease_not_ends_with?: Maybe<String>;
-  eyeLiner?: Maybe<String>;
-  eyeLiner_not?: Maybe<String>;
-  eyeLiner_in?: Maybe<String[] | String>;
-  eyeLiner_not_in?: Maybe<String[] | String>;
-  eyeLiner_lt?: Maybe<String>;
-  eyeLiner_lte?: Maybe<String>;
-  eyeLiner_gt?: Maybe<String>;
-  eyeLiner_gte?: Maybe<String>;
-  eyeLiner_contains?: Maybe<String>;
-  eyeLiner_not_contains?: Maybe<String>;
-  eyeLiner_starts_with?: Maybe<String>;
-  eyeLiner_not_starts_with?: Maybe<String>;
-  eyeLiner_ends_with?: Maybe<String>;
-  eyeLiner_not_ends_with?: Maybe<String>;
-  eyelashes?: Maybe<String>;
-  eyelashes_not?: Maybe<String>;
-  eyelashes_in?: Maybe<String[] | String>;
-  eyelashes_not_in?: Maybe<String[] | String>;
-  eyelashes_lt?: Maybe<String>;
-  eyelashes_lte?: Maybe<String>;
-  eyelashes_gt?: Maybe<String>;
-  eyelashes_gte?: Maybe<String>;
-  eyelashes_contains?: Maybe<String>;
-  eyelashes_not_contains?: Maybe<String>;
-  eyelashes_starts_with?: Maybe<String>;
-  eyelashes_not_starts_with?: Maybe<String>;
-  eyelashes_ends_with?: Maybe<String>;
-  eyelashes_not_ends_with?: Maybe<String>;
-  foundation?: Maybe<String>;
-  foundation_not?: Maybe<String>;
-  foundation_in?: Maybe<String[] | String>;
-  foundation_not_in?: Maybe<String[] | String>;
-  foundation_lt?: Maybe<String>;
-  foundation_lte?: Maybe<String>;
-  foundation_gt?: Maybe<String>;
-  foundation_gte?: Maybe<String>;
-  foundation_contains?: Maybe<String>;
-  foundation_not_contains?: Maybe<String>;
-  foundation_starts_with?: Maybe<String>;
-  foundation_not_starts_with?: Maybe<String>;
-  foundation_ends_with?: Maybe<String>;
-  foundation_not_ends_with?: Maybe<String>;
-  powder?: Maybe<String>;
-  powder_not?: Maybe<String>;
-  powder_in?: Maybe<String[] | String>;
-  powder_not_in?: Maybe<String[] | String>;
-  powder_lt?: Maybe<String>;
-  powder_lte?: Maybe<String>;
-  powder_gt?: Maybe<String>;
-  powder_gte?: Maybe<String>;
-  powder_contains?: Maybe<String>;
-  powder_not_contains?: Maybe<String>;
-  powder_starts_with?: Maybe<String>;
-  powder_not_starts_with?: Maybe<String>;
-  powder_ends_with?: Maybe<String>;
-  powder_not_ends_with?: Maybe<String>;
-  blush?: Maybe<String>;
-  blush_not?: Maybe<String>;
-  blush_in?: Maybe<String[] | String>;
-  blush_not_in?: Maybe<String[] | String>;
-  blush_lt?: Maybe<String>;
-  blush_lte?: Maybe<String>;
-  blush_gt?: Maybe<String>;
-  blush_gte?: Maybe<String>;
-  blush_contains?: Maybe<String>;
-  blush_not_contains?: Maybe<String>;
-  blush_starts_with?: Maybe<String>;
-  blush_not_starts_with?: Maybe<String>;
-  blush_ends_with?: Maybe<String>;
-  blush_not_ends_with?: Maybe<String>;
-  bronzer?: Maybe<String>;
-  bronzer_not?: Maybe<String>;
-  bronzer_in?: Maybe<String[] | String>;
-  bronzer_not_in?: Maybe<String[] | String>;
-  bronzer_lt?: Maybe<String>;
-  bronzer_lte?: Maybe<String>;
-  bronzer_gt?: Maybe<String>;
-  bronzer_gte?: Maybe<String>;
-  bronzer_contains?: Maybe<String>;
-  bronzer_not_contains?: Maybe<String>;
-  bronzer_starts_with?: Maybe<String>;
-  bronzer_not_starts_with?: Maybe<String>;
-  bronzer_ends_with?: Maybe<String>;
-  bronzer_not_ends_with?: Maybe<String>;
-  applyToCategories?: Maybe<String>;
-  applyToCategories_not?: Maybe<String>;
-  applyToCategories_in?: Maybe<String[] | String>;
-  applyToCategories_not_in?: Maybe<String[] | String>;
-  applyToCategories_lt?: Maybe<String>;
-  applyToCategories_lte?: Maybe<String>;
-  applyToCategories_gt?: Maybe<String>;
-  applyToCategories_gte?: Maybe<String>;
-  applyToCategories_contains?: Maybe<String>;
-  applyToCategories_not_contains?: Maybe<String>;
-  applyToCategories_starts_with?: Maybe<String>;
-  applyToCategories_not_starts_with?: Maybe<String>;
-  applyToCategories_ends_with?: Maybe<String>;
-  applyToCategories_not_ends_with?: Maybe<String>;
-  notes?: Maybe<String>;
-  notes_not?: Maybe<String>;
-  notes_in?: Maybe<String[] | String>;
-  notes_not_in?: Maybe<String[] | String>;
-  notes_lt?: Maybe<String>;
-  notes_lte?: Maybe<String>;
-  notes_gt?: Maybe<String>;
-  notes_gte?: Maybe<String>;
-  notes_contains?: Maybe<String>;
-  notes_not_contains?: Maybe<String>;
-  notes_starts_with?: Maybe<String>;
-  notes_not_starts_with?: Maybe<String>;
-  notes_ends_with?: Maybe<String>;
-  notes_not_ends_with?: Maybe<String>;
-  danceClasses_every?: Maybe<DanceClassWhereInput>;
-  danceClasses_some?: Maybe<DanceClassWhereInput>;
-  danceClasses_none?: Maybe<DanceClassWhereInput>;
-  AND?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
-  OR?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
-  NOT?: Maybe<MakeupSetWhereInput[] | MakeupSetWhereInput>;
-}
-
-export interface HairStyleWhereInput {
-  studio?: Maybe<StudioWhereInput>;
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  image?: Maybe<String>;
-  image_not?: Maybe<String>;
-  image_in?: Maybe<String[] | String>;
-  image_not_in?: Maybe<String[] | String>;
-  image_lt?: Maybe<String>;
-  image_lte?: Maybe<String>;
-  image_gt?: Maybe<String>;
-  image_gte?: Maybe<String>;
-  image_contains?: Maybe<String>;
-  image_not_contains?: Maybe<String>;
-  image_starts_with?: Maybe<String>;
-  image_not_starts_with?: Maybe<String>;
-  image_ends_with?: Maybe<String>;
-  image_not_ends_with?: Maybe<String>;
-  link?: Maybe<String>;
-  link_not?: Maybe<String>;
-  link_in?: Maybe<String[] | String>;
-  link_not_in?: Maybe<String[] | String>;
-  link_lt?: Maybe<String>;
-  link_lte?: Maybe<String>;
-  link_gt?: Maybe<String>;
-  link_gte?: Maybe<String>;
-  link_contains?: Maybe<String>;
-  link_not_contains?: Maybe<String>;
-  link_starts_with?: Maybe<String>;
-  link_not_starts_with?: Maybe<String>;
-  link_ends_with?: Maybe<String>;
-  link_not_ends_with?: Maybe<String>;
-  AND?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
-  OR?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
-  NOT?: Maybe<HairStyleWhereInput[] | HairStyleWhereInput>;
+  classesRequested_every?: Maybe<DanceClassWhereInput>;
+  classesRequested_some?: Maybe<DanceClassWhereInput>;
+  classesRequested_none?: Maybe<DanceClassWhereInput>;
+  parent?: Maybe<ParentWhereInput>;
+  AND?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
+  OR?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
+  NOT?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
 }
 
 export interface StudioEventWhereInput {
@@ -2527,17 +2530,17 @@ export type StudioEventWhereUniqueInput = AtLeastOne<{
 }>;
 
 export interface AccessRequestCreateInput {
-  studio: StudioCreateOneInput;
+  studio: StudioCreateOneWithoutAccessRequestsInput;
   id?: Maybe<ID_Input>;
   parent: ParentCreateOneInput;
 }
 
-export interface StudioCreateOneInput {
-  create?: Maybe<StudioCreateInput>;
+export interface StudioCreateOneWithoutAccessRequestsInput {
+  create?: Maybe<StudioCreateWithoutAccessRequestsInput>;
   connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface StudioCreateInput {
+export interface StudioCreateWithoutAccessRequestsInput {
   id?: Maybe<ID_Input>;
   email: String;
   studioName: String;
@@ -2549,12 +2552,12 @@ export interface StudioCreateInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
 }
 
 export interface DanceClassCreateManyWithoutStudioInput {
@@ -2661,44 +2664,12 @@ export interface CustomRoutineCreateWithoutParentInput {
   entryDay?: Maybe<String>;
 }
 
-export interface DancerCreateManyWithoutCustomRoutinesInput {
-  create?: Maybe<
-    | DancerCreateWithoutCustomRoutinesInput[]
-    | DancerCreateWithoutCustomRoutinesInput
-  >;
-  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-}
-
-export interface DancerCreateWithoutCustomRoutinesInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
-  danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-  studios?: Maybe<StudioCreateManyWithoutDancersInput>;
-}
-
-export interface EnrollmentRequestCreateOneWithoutDancerInput {
-  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
-  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
-}
-
-export interface EnrollmentRequestCreateWithoutDancerInput {
-  id?: Maybe<ID_Input>;
-  studio: StudioCreateOneWithoutEnrollmentRequestsInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
-  parent: ParentCreateOneInput;
-}
-
-export interface StudioCreateOneWithoutEnrollmentRequestsInput {
-  create?: Maybe<StudioCreateWithoutEnrollmentRequestsInput>;
+export interface StudioCreateOneInput {
+  create?: Maybe<StudioCreateInput>;
   connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface StudioCreateWithoutEnrollmentRequestsInput {
+export interface StudioCreateInput {
   id?: Maybe<ID_Input>;
   email: String;
   studioName: String;
@@ -2715,6 +2686,8 @@ export interface StudioCreateWithoutEnrollmentRequestsInput {
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
 export interface StudioCreatestylesInput {
@@ -2802,40 +2775,160 @@ export interface StudioCreateWithoutDanceClassesInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
-export interface EnrollmentRequestCreateManyWithoutStudioInput {
+export interface HairStyleCreateManyWithoutStudioInput {
   create?: Maybe<
-    | EnrollmentRequestCreateWithoutStudioInput[]
-    | EnrollmentRequestCreateWithoutStudioInput
+    HairStyleCreateWithoutStudioInput[] | HairStyleCreateWithoutStudioInput
   >;
-  connect?: Maybe<
-    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
-  >;
+  connect?: Maybe<HairStyleWhereUniqueInput[] | HairStyleWhereUniqueInput>;
 }
 
-export interface EnrollmentRequestCreateWithoutStudioInput {
+export interface HairStyleCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
-  dancer: DancerCreateOneWithoutRequestsInput;
+  name: String;
+  description?: Maybe<String>;
+  image?: Maybe<String>;
+  link?: Maybe<String>;
+}
+
+export interface DancerCreateManyWithoutStudiosInput {
+  create?: Maybe<
+    DancerCreateWithoutStudiosInput[] | DancerCreateWithoutStudiosInput
+  >;
+  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+}
+
+export interface DancerCreateWithoutStudiosInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  parent: ParentCreateOneWithoutDancersInput;
+  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
+  customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  lastName?: Maybe<String>;
+}
+
+export interface EnrollmentRequestCreateOneWithoutDancerInput {
+  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
+  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
+}
+
+export interface EnrollmentRequestCreateWithoutDancerInput {
+  id?: Maybe<ID_Input>;
+  studio: StudioCreateOneWithoutEnrollmentRequestsInput;
   classesRequested?: Maybe<DanceClassCreateManyInput>;
   parent: ParentCreateOneInput;
 }
 
-export interface DancerCreateOneWithoutRequestsInput {
-  create?: Maybe<DancerCreateWithoutRequestsInput>;
-  connect?: Maybe<DancerWhereUniqueInput>;
+export interface StudioCreateOneWithoutEnrollmentRequestsInput {
+  create?: Maybe<StudioCreateWithoutEnrollmentRequestsInput>;
+  connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface DancerCreateWithoutRequestsInput {
+export interface StudioCreateWithoutEnrollmentRequestsInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  studioName: String;
+  userType: String;
+  password: String;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  danceClasses?: Maybe<DanceClassCreateManyWithoutStudioInput>;
+  styles?: Maybe<StudioCreatestylesInput>;
+  competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
+  ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
+  makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
+  hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
+  dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
+  events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
+  website?: Maybe<String>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
+}
+
+export interface StudioEventCreateManyWithoutStudioInput {
+  create?: Maybe<
+    StudioEventCreateWithoutStudioInput[] | StudioEventCreateWithoutStudioInput
+  >;
+  connect?: Maybe<StudioEventWhereUniqueInput[] | StudioEventWhereUniqueInput>;
+}
+
+export interface StudioEventCreateWithoutStudioInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  type: String;
+  appliesTo?: Maybe<StudioEventCreateappliesToInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface StudioEventCreateappliesToInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface AccessRequestCreateManyWithoutStudioInput {
+  create?: Maybe<
+    | AccessRequestCreateWithoutStudioInput[]
+    | AccessRequestCreateWithoutStudioInput
+  >;
+  connect?: Maybe<
+    AccessRequestWhereUniqueInput[] | AccessRequestWhereUniqueInput
+  >;
+}
+
+export interface AccessRequestCreateWithoutStudioInput {
+  id?: Maybe<ID_Input>;
+  parent: ParentCreateOneInput;
+}
+
+export interface ParentCreateOneInput {
+  create?: Maybe<ParentCreateInput>;
+  connect?: Maybe<ParentWhereUniqueInput>;
+}
+
+export interface ParentCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  firstName: String;
+  lastName?: Maybe<String>;
+  userType: String;
+  dancers?: Maybe<DancerCreateManyWithoutParentInput>;
+  password: String;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
+  studios?: Maybe<StudioCreateManyInput>;
+  accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
+}
+
+export interface DancerCreateManyWithoutParentInput {
+  create?: Maybe<
+    DancerCreateWithoutParentInput[] | DancerCreateWithoutParentInput
+  >;
+  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+}
+
+export interface DancerCreateWithoutParentInput {
   id?: Maybe<ID_Input>;
   firstName: String;
-  parent: ParentCreateOneWithoutDancersInput;
+  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -2915,45 +3008,46 @@ export interface StudioCreateWithoutMakeupSetsInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
-export interface HairStyleCreateManyWithoutStudioInput {
+export interface EnrollmentRequestCreateManyWithoutStudioInput {
   create?: Maybe<
-    HairStyleCreateWithoutStudioInput[] | HairStyleCreateWithoutStudioInput
+    | EnrollmentRequestCreateWithoutStudioInput[]
+    | EnrollmentRequestCreateWithoutStudioInput
   >;
-  connect?: Maybe<HairStyleWhereUniqueInput[] | HairStyleWhereUniqueInput>;
+  connect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
 }
 
-export interface HairStyleCreateWithoutStudioInput {
+export interface EnrollmentRequestCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
-  name: String;
-  description?: Maybe<String>;
-  image?: Maybe<String>;
-  link?: Maybe<String>;
+  dancer: DancerCreateOneWithoutRequestsInput;
+  classesRequested?: Maybe<DanceClassCreateManyInput>;
+  parent: ParentCreateOneInput;
 }
 
-export interface DancerCreateManyWithoutStudiosInput {
-  create?: Maybe<
-    DancerCreateWithoutStudiosInput[] | DancerCreateWithoutStudiosInput
-  >;
-  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+export interface DancerCreateOneWithoutRequestsInput {
+  create?: Maybe<DancerCreateWithoutRequestsInput>;
+  connect?: Maybe<DancerWhereUniqueInput>;
 }
 
-export interface DancerCreateWithoutStudiosInput {
+export interface DancerCreateWithoutRequestsInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
   avatarId?: Maybe<String>;
   lastName?: Maybe<String>;
+  studios?: Maybe<StudioCreateManyWithoutDancersInput>;
 }
 
 export interface CustomRoutineCreateManyWithoutDancersInput {
@@ -3009,23 +3103,13 @@ export interface ParentCreateWithoutCustomRoutinesInput {
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
 }
 
-export interface DancerCreateManyWithoutParentInput {
-  create?: Maybe<
-    DancerCreateWithoutParentInput[] | DancerCreateWithoutParentInput
-  >;
-  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+export interface StudioCreateManyInput {
+  create?: Maybe<StudioCreateInput[] | StudioCreateInput>;
+  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
 }
 
-export interface DancerCreateWithoutParentInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
-  danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
-  customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-  studios?: Maybe<StudioCreateManyWithoutDancersInput>;
+export interface ParentCreateaccessRequestsInput {
+  set?: Maybe<ID_Input[] | ID_Input>;
 }
 
 export interface StudioCreateManyWithoutDancersInput {
@@ -3047,48 +3131,12 @@ export interface StudioCreateWithoutDancersInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
-}
-
-export interface StudioEventCreateManyWithoutStudioInput {
-  create?: Maybe<
-    StudioEventCreateWithoutStudioInput[] | StudioEventCreateWithoutStudioInput
-  >;
-  connect?: Maybe<StudioEventWhereUniqueInput[] | StudioEventWhereUniqueInput>;
-}
-
-export interface StudioEventCreateWithoutStudioInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  type: String;
-  appliesTo?: Maybe<StudioEventCreateappliesToInput>;
-  beginDate?: Maybe<DateTimeInput>;
-  endDate?: Maybe<DateTimeInput>;
-  location?: Maybe<String>;
-  address1?: Maybe<String>;
-  address2?: Maybe<String>;
-  city?: Maybe<String>;
-  state?: Maybe<String>;
-  zip?: Maybe<String>;
-  url?: Maybe<String>;
-  notes?: Maybe<String>;
-}
-
-export interface StudioEventCreateappliesToInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface StudioCreateManyInput {
-  create?: Maybe<StudioCreateInput[] | StudioCreateInput>;
-  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-}
-
-export interface ParentCreateaccessRequestsInput {
-  set?: Maybe<ID_Input[] | ID_Input>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
 export interface DanceClassCreateManyInput {
@@ -3121,39 +3169,39 @@ export interface DanceClassCreateInput {
   entryDay?: Maybe<String>;
 }
 
-export interface ParentCreateOneInput {
-  create?: Maybe<ParentCreateInput>;
-  connect?: Maybe<ParentWhereUniqueInput>;
+export interface DancerCreateManyWithoutCustomRoutinesInput {
+  create?: Maybe<
+    | DancerCreateWithoutCustomRoutinesInput[]
+    | DancerCreateWithoutCustomRoutinesInput
+  >;
+  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
 }
 
-export interface ParentCreateInput {
+export interface DancerCreateWithoutCustomRoutinesInput {
   id?: Maybe<ID_Input>;
-  email: String;
   firstName: String;
+  parent: ParentCreateOneWithoutDancersInput;
+  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
   lastName?: Maybe<String>;
-  userType: String;
-  dancers?: Maybe<DancerCreateManyWithoutParentInput>;
-  password: String;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
-  studios?: Maybe<StudioCreateManyInput>;
-  accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
+  studios?: Maybe<StudioCreateManyWithoutDancersInput>;
 }
 
 export interface AccessRequestUpdateInput {
-  studio?: Maybe<StudioUpdateOneRequiredInput>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutAccessRequestsInput>;
   parent?: Maybe<ParentUpdateOneRequiredInput>;
 }
 
-export interface StudioUpdateOneRequiredInput {
-  create?: Maybe<StudioCreateInput>;
-  update?: Maybe<StudioUpdateDataInput>;
-  upsert?: Maybe<StudioUpsertNestedInput>;
+export interface StudioUpdateOneRequiredWithoutAccessRequestsInput {
+  create?: Maybe<StudioCreateWithoutAccessRequestsInput>;
+  update?: Maybe<StudioUpdateWithoutAccessRequestsDataInput>;
+  upsert?: Maybe<StudioUpsertWithoutAccessRequestsInput>;
   connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface StudioUpdateDataInput {
+export interface StudioUpdateWithoutAccessRequestsDataInput {
   email?: Maybe<String>;
   studioName?: Maybe<String>;
   userType?: Maybe<String>;
@@ -3164,12 +3212,12 @@ export interface StudioUpdateDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface DanceClassUpdateManyWithoutStudioInput {
@@ -3352,74 +3400,7 @@ export interface StudioUpdateOneInput {
   connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface StudioUpsertNestedInput {
-  update: StudioUpdateDataInput;
-  create: StudioCreateInput;
-}
-
-export interface DancerUpdateManyWithoutCustomRoutinesInput {
-  create?: Maybe<
-    | DancerCreateWithoutCustomRoutinesInput[]
-    | DancerCreateWithoutCustomRoutinesInput
-  >;
-  delete?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  set?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  disconnect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  update?: Maybe<
-    | DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput[]
-    | DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput
-  >;
-  upsert?: Maybe<
-    | DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput[]
-    | DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput
-  >;
-  deleteMany?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
-  updateMany?: Maybe<
-    | DancerUpdateManyWithWhereNestedInput[]
-    | DancerUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput {
-  where: DancerWhereUniqueInput;
-  data: DancerUpdateWithoutCustomRoutinesDataInput;
-}
-
-export interface DancerUpdateWithoutCustomRoutinesDataInput {
-  firstName?: Maybe<String>;
-  parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
-  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
-}
-
-export interface EnrollmentRequestUpdateOneWithoutDancerInput {
-  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
-  update?: Maybe<EnrollmentRequestUpdateWithoutDancerDataInput>;
-  upsert?: Maybe<EnrollmentRequestUpsertWithoutDancerInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
-}
-
-export interface EnrollmentRequestUpdateWithoutDancerDataInput {
-  studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
-}
-
-export interface StudioUpdateOneRequiredWithoutEnrollmentRequestsInput {
-  create?: Maybe<StudioCreateWithoutEnrollmentRequestsInput>;
-  update?: Maybe<StudioUpdateWithoutEnrollmentRequestsDataInput>;
-  upsert?: Maybe<StudioUpsertWithoutEnrollmentRequestsInput>;
-  connect?: Maybe<StudioWhereUniqueInput>;
-}
-
-export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
+export interface StudioUpdateDataInput {
   email?: Maybe<String>;
   studioName?: Maybe<String>;
   userType?: Maybe<String>;
@@ -3435,6 +3416,8 @@ export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface StudioUpdatestylesInput {
@@ -3563,173 +3546,13 @@ export interface StudioUpdateWithoutDanceClassesDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
-}
-
-export interface EnrollmentRequestUpdateManyWithoutStudioInput {
-  create?: Maybe<
-    | EnrollmentRequestCreateWithoutStudioInput[]
-    | EnrollmentRequestCreateWithoutStudioInput
-  >;
-  delete?: Maybe<
-    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
-  >;
-  connect?: Maybe<
-    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
-  >;
-  set?: Maybe<
-    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
-  >;
-  disconnect?: Maybe<
-    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
-  >;
-  update?: Maybe<
-    | EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput[]
-    | EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput
-  >;
-  upsert?: Maybe<
-    | EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput[]
-    | EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput
-  >;
-  deleteMany?: Maybe<
-    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
-  >;
-}
-
-export interface EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
-  where: EnrollmentRequestWhereUniqueInput;
-  data: EnrollmentRequestUpdateWithoutStudioDataInput;
-}
-
-export interface EnrollmentRequestUpdateWithoutStudioDataInput {
-  dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
-}
-
-export interface DancerUpdateOneRequiredWithoutRequestsInput {
-  create?: Maybe<DancerCreateWithoutRequestsInput>;
-  update?: Maybe<DancerUpdateWithoutRequestsDataInput>;
-  upsert?: Maybe<DancerUpsertWithoutRequestsInput>;
-  connect?: Maybe<DancerWhereUniqueInput>;
-}
-
-export interface DancerUpdateWithoutRequestsDataInput {
-  firstName?: Maybe<String>;
-  parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
-  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
-}
-
-export interface DanceClassUpdateManyWithoutDancersInput {
-  create?: Maybe<
-    DanceClassCreateWithoutDancersInput[] | DanceClassCreateWithoutDancersInput
-  >;
-  delete?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  set?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  disconnect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  update?: Maybe<
-    | DanceClassUpdateWithWhereUniqueWithoutDancersInput[]
-    | DanceClassUpdateWithWhereUniqueWithoutDancersInput
-  >;
-  upsert?: Maybe<
-    | DanceClassUpsertWithWhereUniqueWithoutDancersInput[]
-    | DanceClassUpsertWithWhereUniqueWithoutDancersInput
-  >;
-  deleteMany?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
-  updateMany?: Maybe<
-    | DanceClassUpdateManyWithWhereNestedInput[]
-    | DanceClassUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DanceClassUpdateWithWhereUniqueWithoutDancersInput {
-  where: DanceClassWhereUniqueInput;
-  data: DanceClassUpdateWithoutDancersDataInput;
-}
-
-export interface DanceClassUpdateWithoutDancersDataInput {
-  name?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
-  music?: Maybe<String>;
-  musicId?: Maybe<String>;
-  performanceName?: Maybe<String>;
-  day?: Maybe<String>;
-  startTime?: Maybe<String>;
-  endTime?: Maybe<String>;
-  competitiveLevel?: Maybe<String>;
-  ageDivision?: Maybe<String>;
-  style?: Maybe<String>;
-  tights?: Maybe<String>;
-  shoes?: Maybe<String>;
-  notes?: Maybe<String>;
-  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
-  size?: Maybe<String>;
-  custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryDay?: Maybe<String>;
-}
-
-export interface MakeupSetUpdateOneWithoutDanceClassesInput {
-  create?: Maybe<MakeupSetCreateWithoutDanceClassesInput>;
-  update?: Maybe<MakeupSetUpdateWithoutDanceClassesDataInput>;
-  upsert?: Maybe<MakeupSetUpsertWithoutDanceClassesInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<MakeupSetWhereUniqueInput>;
-}
-
-export interface MakeupSetUpdateWithoutDanceClassesDataInput {
-  name?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
-  lipstick?: Maybe<String>;
-  eyeShadow?: Maybe<String>;
-  eyeLids?: Maybe<String>;
-  eyeCrease?: Maybe<String>;
-  eyeLiner?: Maybe<String>;
-  eyelashes?: Maybe<String>;
-  foundation?: Maybe<String>;
-  powder?: Maybe<String>;
-  blush?: Maybe<String>;
-  bronzer?: Maybe<String>;
-  applyToCategories?: Maybe<String>;
-  notes?: Maybe<String>;
-}
-
-export interface StudioUpdateOneRequiredWithoutMakeupSetsInput {
-  create?: Maybe<StudioCreateWithoutMakeupSetsInput>;
-  update?: Maybe<StudioUpdateWithoutMakeupSetsDataInput>;
-  upsert?: Maybe<StudioUpsertWithoutMakeupSetsInput>;
-  connect?: Maybe<StudioWhereUniqueInput>;
-}
-
-export interface StudioUpdateWithoutMakeupSetsDataInput {
-  email?: Maybe<String>;
-  studioName?: Maybe<String>;
-  userType?: Maybe<String>;
-  password?: Maybe<String>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
-  styles?: Maybe<StudioUpdatestylesInput>;
-  competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
-  ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
   enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
-  hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
-  dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
-  events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
-  website?: Maybe<String>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface HairStyleUpdateManyWithoutStudioInput {
@@ -3900,154 +3723,29 @@ export interface DancerUpdateWithoutStudiosDataInput {
   lastName?: Maybe<String>;
 }
 
-export interface CustomRoutineUpdateManyWithoutDancersInput {
-  create?: Maybe<
-    | CustomRoutineCreateWithoutDancersInput[]
-    | CustomRoutineCreateWithoutDancersInput
-  >;
-  delete?: Maybe<
-    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
-  >;
-  connect?: Maybe<
-    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
-  >;
-  set?: Maybe<CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput>;
-  disconnect?: Maybe<
-    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
-  >;
-  update?: Maybe<
-    | CustomRoutineUpdateWithWhereUniqueWithoutDancersInput[]
-    | CustomRoutineUpdateWithWhereUniqueWithoutDancersInput
-  >;
-  upsert?: Maybe<
-    | CustomRoutineUpsertWithWhereUniqueWithoutDancersInput[]
-    | CustomRoutineUpsertWithWhereUniqueWithoutDancersInput
-  >;
-  deleteMany?: Maybe<
-    CustomRoutineScalarWhereInput[] | CustomRoutineScalarWhereInput
-  >;
-  updateMany?: Maybe<
-    | CustomRoutineUpdateManyWithWhereNestedInput[]
-    | CustomRoutineUpdateManyWithWhereNestedInput
-  >;
+export interface EnrollmentRequestUpdateOneWithoutDancerInput {
+  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
+  update?: Maybe<EnrollmentRequestUpdateWithoutDancerDataInput>;
+  upsert?: Maybe<EnrollmentRequestUpsertWithoutDancerInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
 }
 
-export interface CustomRoutineUpdateWithWhereUniqueWithoutDancersInput {
-  where: CustomRoutineWhereUniqueInput;
-  data: CustomRoutineUpdateWithoutDancersDataInput;
+export interface EnrollmentRequestUpdateWithoutDancerDataInput {
+  studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
+  classesRequested?: Maybe<DanceClassUpdateManyInput>;
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
 }
 
-export interface CustomRoutineUpdateWithoutDancersDataInput {
-  custom?: Maybe<Boolean>;
-  name?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneInput>;
-  parent?: Maybe<ParentUpdateOneRequiredWithoutCustomRoutinesInput>;
-  music?: Maybe<String>;
-  musicId?: Maybe<String>;
-  style?: Maybe<String>;
-  competitiveLevel?: Maybe<String>;
-  ageDivision?: Maybe<String>;
-  performanceName?: Maybe<String>;
-  day?: Maybe<String>;
-  startTime?: Maybe<String>;
-  endTime?: Maybe<String>;
-  shoes?: Maybe<String>;
-  tights?: Maybe<String>;
-  notes?: Maybe<String>;
-  type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryDay?: Maybe<String>;
+export interface StudioUpdateOneRequiredWithoutEnrollmentRequestsInput {
+  create?: Maybe<StudioCreateWithoutEnrollmentRequestsInput>;
+  update?: Maybe<StudioUpdateWithoutEnrollmentRequestsDataInput>;
+  upsert?: Maybe<StudioUpsertWithoutEnrollmentRequestsInput>;
+  connect?: Maybe<StudioWhereUniqueInput>;
 }
 
-export interface ParentUpdateOneRequiredWithoutCustomRoutinesInput {
-  create?: Maybe<ParentCreateWithoutCustomRoutinesInput>;
-  update?: Maybe<ParentUpdateWithoutCustomRoutinesDataInput>;
-  upsert?: Maybe<ParentUpsertWithoutCustomRoutinesInput>;
-  connect?: Maybe<ParentWhereUniqueInput>;
-}
-
-export interface ParentUpdateWithoutCustomRoutinesDataInput {
-  email?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  userType?: Maybe<String>;
-  dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
-  password?: Maybe<String>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  studios?: Maybe<StudioUpdateManyInput>;
-  accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-}
-
-export interface DancerUpdateManyWithoutParentInput {
-  create?: Maybe<
-    DancerCreateWithoutParentInput[] | DancerCreateWithoutParentInput
-  >;
-  delete?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  set?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  disconnect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
-  update?: Maybe<
-    | DancerUpdateWithWhereUniqueWithoutParentInput[]
-    | DancerUpdateWithWhereUniqueWithoutParentInput
-  >;
-  upsert?: Maybe<
-    | DancerUpsertWithWhereUniqueWithoutParentInput[]
-    | DancerUpsertWithWhereUniqueWithoutParentInput
-  >;
-  deleteMany?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
-  updateMany?: Maybe<
-    | DancerUpdateManyWithWhereNestedInput[]
-    | DancerUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DancerUpdateWithWhereUniqueWithoutParentInput {
-  where: DancerWhereUniqueInput;
-  data: DancerUpdateWithoutParentDataInput;
-}
-
-export interface DancerUpdateWithoutParentDataInput {
-  firstName?: Maybe<String>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
-  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
-  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
-}
-
-export interface StudioUpdateManyWithoutDancersInput {
-  create?: Maybe<
-    StudioCreateWithoutDancersInput[] | StudioCreateWithoutDancersInput
-  >;
-  delete?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  set?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  disconnect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  update?: Maybe<
-    | StudioUpdateWithWhereUniqueWithoutDancersInput[]
-    | StudioUpdateWithWhereUniqueWithoutDancersInput
-  >;
-  upsert?: Maybe<
-    | StudioUpsertWithWhereUniqueWithoutDancersInput[]
-    | StudioUpsertWithWhereUniqueWithoutDancersInput
-  >;
-  deleteMany?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudioUpdateManyWithWhereNestedInput[]
-    | StudioUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface StudioUpdateWithWhereUniqueWithoutDancersInput {
-  where: StudioWhereUniqueInput;
-  data: StudioUpdateWithoutDancersDataInput;
-}
-
-export interface StudioUpdateWithoutDancersDataInput {
+export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
   email?: Maybe<String>;
   studioName?: Maybe<String>;
   userType?: Maybe<String>;
@@ -4058,11 +3756,12 @@ export interface StudioUpdateWithoutDancersDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
+  dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface StudioEventUpdateManyWithoutStudioInput {
@@ -4320,10 +4019,375 @@ export interface StudioEventUpdateManyDataInput {
   notes?: Maybe<String>;
 }
 
-export interface StudioUpsertWithWhereUniqueWithoutDancersInput {
+export interface AccessRequestUpdateManyWithoutStudioInput {
+  create?: Maybe<
+    | AccessRequestCreateWithoutStudioInput[]
+    | AccessRequestCreateWithoutStudioInput
+  >;
+  delete?: Maybe<
+    AccessRequestWhereUniqueInput[] | AccessRequestWhereUniqueInput
+  >;
+  connect?: Maybe<
+    AccessRequestWhereUniqueInput[] | AccessRequestWhereUniqueInput
+  >;
+  set?: Maybe<AccessRequestWhereUniqueInput[] | AccessRequestWhereUniqueInput>;
+  disconnect?: Maybe<
+    AccessRequestWhereUniqueInput[] | AccessRequestWhereUniqueInput
+  >;
+  update?: Maybe<
+    | AccessRequestUpdateWithWhereUniqueWithoutStudioInput[]
+    | AccessRequestUpdateWithWhereUniqueWithoutStudioInput
+  >;
+  upsert?: Maybe<
+    | AccessRequestUpsertWithWhereUniqueWithoutStudioInput[]
+    | AccessRequestUpsertWithWhereUniqueWithoutStudioInput
+  >;
+  deleteMany?: Maybe<
+    AccessRequestScalarWhereInput[] | AccessRequestScalarWhereInput
+  >;
+}
+
+export interface AccessRequestUpdateWithWhereUniqueWithoutStudioInput {
+  where: AccessRequestWhereUniqueInput;
+  data: AccessRequestUpdateWithoutStudioDataInput;
+}
+
+export interface AccessRequestUpdateWithoutStudioDataInput {
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
+}
+
+export interface ParentUpdateOneRequiredInput {
+  create?: Maybe<ParentCreateInput>;
+  update?: Maybe<ParentUpdateDataInput>;
+  upsert?: Maybe<ParentUpsertNestedInput>;
+  connect?: Maybe<ParentWhereUniqueInput>;
+}
+
+export interface ParentUpdateDataInput {
+  email?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  userType?: Maybe<String>;
+  dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
+  studios?: Maybe<StudioUpdateManyInput>;
+  accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
+}
+
+export interface DancerUpdateManyWithoutParentInput {
+  create?: Maybe<
+    DancerCreateWithoutParentInput[] | DancerCreateWithoutParentInput
+  >;
+  delete?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  set?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  disconnect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  update?: Maybe<
+    | DancerUpdateWithWhereUniqueWithoutParentInput[]
+    | DancerUpdateWithWhereUniqueWithoutParentInput
+  >;
+  upsert?: Maybe<
+    | DancerUpsertWithWhereUniqueWithoutParentInput[]
+    | DancerUpsertWithWhereUniqueWithoutParentInput
+  >;
+  deleteMany?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
+  updateMany?: Maybe<
+    | DancerUpdateManyWithWhereNestedInput[]
+    | DancerUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DancerUpdateWithWhereUniqueWithoutParentInput {
+  where: DancerWhereUniqueInput;
+  data: DancerUpdateWithoutParentDataInput;
+}
+
+export interface DancerUpdateWithoutParentDataInput {
+  firstName?: Maybe<String>;
+  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
+  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  lastName?: Maybe<String>;
+  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
+}
+
+export interface DanceClassUpdateManyWithoutDancersInput {
+  create?: Maybe<
+    DanceClassCreateWithoutDancersInput[] | DanceClassCreateWithoutDancersInput
+  >;
+  delete?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  set?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  disconnect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  update?: Maybe<
+    | DanceClassUpdateWithWhereUniqueWithoutDancersInput[]
+    | DanceClassUpdateWithWhereUniqueWithoutDancersInput
+  >;
+  upsert?: Maybe<
+    | DanceClassUpsertWithWhereUniqueWithoutDancersInput[]
+    | DanceClassUpsertWithWhereUniqueWithoutDancersInput
+  >;
+  deleteMany?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
+  updateMany?: Maybe<
+    | DanceClassUpdateManyWithWhereNestedInput[]
+    | DanceClassUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DanceClassUpdateWithWhereUniqueWithoutDancersInput {
+  where: DanceClassWhereUniqueInput;
+  data: DanceClassUpdateWithoutDancersDataInput;
+}
+
+export interface DanceClassUpdateWithoutDancersDataInput {
+  name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
+  music?: Maybe<String>;
+  musicId?: Maybe<String>;
+  performanceName?: Maybe<String>;
+  day?: Maybe<String>;
+  startTime?: Maybe<String>;
+  endTime?: Maybe<String>;
+  competitiveLevel?: Maybe<String>;
+  ageDivision?: Maybe<String>;
+  style?: Maybe<String>;
+  tights?: Maybe<String>;
+  shoes?: Maybe<String>;
+  notes?: Maybe<String>;
+  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
+  size?: Maybe<String>;
+  custom?: Maybe<Boolean>;
+  entryNumber?: Maybe<Int>;
+  entryTime?: Maybe<DateTimeInput>;
+  entryDay?: Maybe<String>;
+}
+
+export interface MakeupSetUpdateOneWithoutDanceClassesInput {
+  create?: Maybe<MakeupSetCreateWithoutDanceClassesInput>;
+  update?: Maybe<MakeupSetUpdateWithoutDanceClassesDataInput>;
+  upsert?: Maybe<MakeupSetUpsertWithoutDanceClassesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<MakeupSetWhereUniqueInput>;
+}
+
+export interface MakeupSetUpdateWithoutDanceClassesDataInput {
+  name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
+  lipstick?: Maybe<String>;
+  eyeShadow?: Maybe<String>;
+  eyeLids?: Maybe<String>;
+  eyeCrease?: Maybe<String>;
+  eyeLiner?: Maybe<String>;
+  eyelashes?: Maybe<String>;
+  foundation?: Maybe<String>;
+  powder?: Maybe<String>;
+  blush?: Maybe<String>;
+  bronzer?: Maybe<String>;
+  applyToCategories?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface StudioUpdateOneRequiredWithoutMakeupSetsInput {
+  create?: Maybe<StudioCreateWithoutMakeupSetsInput>;
+  update?: Maybe<StudioUpdateWithoutMakeupSetsDataInput>;
+  upsert?: Maybe<StudioUpsertWithoutMakeupSetsInput>;
+  connect?: Maybe<StudioWhereUniqueInput>;
+}
+
+export interface StudioUpdateWithoutMakeupSetsDataInput {
+  email?: Maybe<String>;
+  studioName?: Maybe<String>;
+  userType?: Maybe<String>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
+  styles?: Maybe<StudioUpdatestylesInput>;
+  competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
+  ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
+  hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
+  dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
+  events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
+}
+
+export interface EnrollmentRequestUpdateManyWithoutStudioInput {
+  create?: Maybe<
+    | EnrollmentRequestCreateWithoutStudioInput[]
+    | EnrollmentRequestCreateWithoutStudioInput
+  >;
+  delete?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  connect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  set?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  update?: Maybe<
+    | EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput[]
+    | EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput
+  >;
+  upsert?: Maybe<
+    | EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput[]
+    | EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput
+  >;
+  deleteMany?: Maybe<
+    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
+  >;
+}
+
+export interface EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
+  where: EnrollmentRequestWhereUniqueInput;
+  data: EnrollmentRequestUpdateWithoutStudioDataInput;
+}
+
+export interface EnrollmentRequestUpdateWithoutStudioDataInput {
+  dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
+  classesRequested?: Maybe<DanceClassUpdateManyInput>;
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
+}
+
+export interface DancerUpdateOneRequiredWithoutRequestsInput {
+  create?: Maybe<DancerCreateWithoutRequestsInput>;
+  update?: Maybe<DancerUpdateWithoutRequestsDataInput>;
+  upsert?: Maybe<DancerUpsertWithoutRequestsInput>;
+  connect?: Maybe<DancerWhereUniqueInput>;
+}
+
+export interface DancerUpdateWithoutRequestsDataInput {
+  firstName?: Maybe<String>;
+  parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
+  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
+  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  lastName?: Maybe<String>;
+  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
+}
+
+export interface CustomRoutineUpdateManyWithoutDancersInput {
+  create?: Maybe<
+    | CustomRoutineCreateWithoutDancersInput[]
+    | CustomRoutineCreateWithoutDancersInput
+  >;
+  delete?: Maybe<
+    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
+  >;
+  connect?: Maybe<
+    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
+  >;
+  set?: Maybe<CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput>;
+  disconnect?: Maybe<
+    CustomRoutineWhereUniqueInput[] | CustomRoutineWhereUniqueInput
+  >;
+  update?: Maybe<
+    | CustomRoutineUpdateWithWhereUniqueWithoutDancersInput[]
+    | CustomRoutineUpdateWithWhereUniqueWithoutDancersInput
+  >;
+  upsert?: Maybe<
+    | CustomRoutineUpsertWithWhereUniqueWithoutDancersInput[]
+    | CustomRoutineUpsertWithWhereUniqueWithoutDancersInput
+  >;
+  deleteMany?: Maybe<
+    CustomRoutineScalarWhereInput[] | CustomRoutineScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | CustomRoutineUpdateManyWithWhereNestedInput[]
+    | CustomRoutineUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CustomRoutineUpdateWithWhereUniqueWithoutDancersInput {
+  where: CustomRoutineWhereUniqueInput;
+  data: CustomRoutineUpdateWithoutDancersDataInput;
+}
+
+export interface CustomRoutineUpdateWithoutDancersDataInput {
+  custom?: Maybe<Boolean>;
+  name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneInput>;
+  parent?: Maybe<ParentUpdateOneRequiredWithoutCustomRoutinesInput>;
+  music?: Maybe<String>;
+  musicId?: Maybe<String>;
+  style?: Maybe<String>;
+  competitiveLevel?: Maybe<String>;
+  ageDivision?: Maybe<String>;
+  performanceName?: Maybe<String>;
+  day?: Maybe<String>;
+  startTime?: Maybe<String>;
+  endTime?: Maybe<String>;
+  shoes?: Maybe<String>;
+  tights?: Maybe<String>;
+  notes?: Maybe<String>;
+  type?: Maybe<String>;
+  entryNumber?: Maybe<Int>;
+  entryTime?: Maybe<DateTimeInput>;
+  entryDay?: Maybe<String>;
+}
+
+export interface ParentUpdateOneRequiredWithoutCustomRoutinesInput {
+  create?: Maybe<ParentCreateWithoutCustomRoutinesInput>;
+  update?: Maybe<ParentUpdateWithoutCustomRoutinesDataInput>;
+  upsert?: Maybe<ParentUpsertWithoutCustomRoutinesInput>;
+  connect?: Maybe<ParentWhereUniqueInput>;
+}
+
+export interface ParentUpdateWithoutCustomRoutinesDataInput {
+  email?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  userType?: Maybe<String>;
+  dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  studios?: Maybe<StudioUpdateManyInput>;
+  accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
+}
+
+export interface StudioUpdateManyInput {
+  create?: Maybe<StudioCreateInput[] | StudioCreateInput>;
+  update?: Maybe<
+    | StudioUpdateWithWhereUniqueNestedInput[]
+    | StudioUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | StudioUpsertWithWhereUniqueNestedInput[]
+    | StudioUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  set?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  disconnect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  deleteMany?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
+  updateMany?: Maybe<
+    | StudioUpdateManyWithWhereNestedInput[]
+    | StudioUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface StudioUpdateWithWhereUniqueNestedInput {
   where: StudioWhereUniqueInput;
-  update: StudioUpdateWithoutDancersDataInput;
-  create: StudioCreateWithoutDancersInput;
+  data: StudioUpdateDataInput;
+}
+
+export interface StudioUpsertWithWhereUniqueNestedInput {
+  where: StudioWhereUniqueInput;
+  update: StudioUpdateDataInput;
+  create: StudioCreateInput;
 }
 
 export interface StudioScalarWhereInput {
@@ -4470,148 +4534,6 @@ export interface StudioUpdateManyDataInput {
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
   website?: Maybe<String>;
-}
-
-export interface DancerUpsertWithWhereUniqueWithoutParentInput {
-  where: DancerWhereUniqueInput;
-  update: DancerUpdateWithoutParentDataInput;
-  create: DancerCreateWithoutParentInput;
-}
-
-export interface DancerScalarWhereInput {
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  firstName?: Maybe<String>;
-  firstName_not?: Maybe<String>;
-  firstName_in?: Maybe<String[] | String>;
-  firstName_not_in?: Maybe<String[] | String>;
-  firstName_lt?: Maybe<String>;
-  firstName_lte?: Maybe<String>;
-  firstName_gt?: Maybe<String>;
-  firstName_gte?: Maybe<String>;
-  firstName_contains?: Maybe<String>;
-  firstName_not_contains?: Maybe<String>;
-  firstName_starts_with?: Maybe<String>;
-  firstName_not_starts_with?: Maybe<String>;
-  firstName_ends_with?: Maybe<String>;
-  firstName_not_ends_with?: Maybe<String>;
-  avatar?: Maybe<String>;
-  avatar_not?: Maybe<String>;
-  avatar_in?: Maybe<String[] | String>;
-  avatar_not_in?: Maybe<String[] | String>;
-  avatar_lt?: Maybe<String>;
-  avatar_lte?: Maybe<String>;
-  avatar_gt?: Maybe<String>;
-  avatar_gte?: Maybe<String>;
-  avatar_contains?: Maybe<String>;
-  avatar_not_contains?: Maybe<String>;
-  avatar_starts_with?: Maybe<String>;
-  avatar_not_starts_with?: Maybe<String>;
-  avatar_ends_with?: Maybe<String>;
-  avatar_not_ends_with?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  avatarId_not?: Maybe<String>;
-  avatarId_in?: Maybe<String[] | String>;
-  avatarId_not_in?: Maybe<String[] | String>;
-  avatarId_lt?: Maybe<String>;
-  avatarId_lte?: Maybe<String>;
-  avatarId_gt?: Maybe<String>;
-  avatarId_gte?: Maybe<String>;
-  avatarId_contains?: Maybe<String>;
-  avatarId_not_contains?: Maybe<String>;
-  avatarId_starts_with?: Maybe<String>;
-  avatarId_not_starts_with?: Maybe<String>;
-  avatarId_ends_with?: Maybe<String>;
-  avatarId_not_ends_with?: Maybe<String>;
-  lastName?: Maybe<String>;
-  lastName_not?: Maybe<String>;
-  lastName_in?: Maybe<String[] | String>;
-  lastName_not_in?: Maybe<String[] | String>;
-  lastName_lt?: Maybe<String>;
-  lastName_lte?: Maybe<String>;
-  lastName_gt?: Maybe<String>;
-  lastName_gte?: Maybe<String>;
-  lastName_contains?: Maybe<String>;
-  lastName_not_contains?: Maybe<String>;
-  lastName_starts_with?: Maybe<String>;
-  lastName_not_starts_with?: Maybe<String>;
-  lastName_ends_with?: Maybe<String>;
-  lastName_not_ends_with?: Maybe<String>;
-  AND?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
-  OR?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
-  NOT?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
-}
-
-export interface DancerUpdateManyWithWhereNestedInput {
-  where: DancerScalarWhereInput;
-  data: DancerUpdateManyDataInput;
-}
-
-export interface DancerUpdateManyDataInput {
-  firstName?: Maybe<String>;
-  avatar?: Maybe<String>;
-  avatarId?: Maybe<String>;
-  lastName?: Maybe<String>;
-}
-
-export interface StudioUpdateManyInput {
-  create?: Maybe<StudioCreateInput[] | StudioCreateInput>;
-  update?: Maybe<
-    | StudioUpdateWithWhereUniqueNestedInput[]
-    | StudioUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | StudioUpsertWithWhereUniqueNestedInput[]
-    | StudioUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  set?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  disconnect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
-  deleteMany?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudioUpdateManyWithWhereNestedInput[]
-    | StudioUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface StudioUpdateWithWhereUniqueNestedInput {
-  where: StudioWhereUniqueInput;
-  data: StudioUpdateDataInput;
-}
-
-export interface StudioUpsertWithWhereUniqueNestedInput {
-  where: StudioWhereUniqueInput;
-  update: StudioUpdateDataInput;
-  create: StudioCreateInput;
 }
 
 export interface ParentUpdateaccessRequestsInput {
@@ -4903,26 +4825,118 @@ export interface CustomRoutineUpdateManyDataInput {
   entryDay?: Maybe<String>;
 }
 
-export interface DancerUpsertWithWhereUniqueWithoutStudiosInput {
-  where: DancerWhereUniqueInput;
-  update: DancerUpdateWithoutStudiosDataInput;
-  create: DancerCreateWithoutStudiosInput;
+export interface StudioUpdateManyWithoutDancersInput {
+  create?: Maybe<
+    StudioCreateWithoutDancersInput[] | StudioCreateWithoutDancersInput
+  >;
+  delete?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  connect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  set?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  disconnect?: Maybe<StudioWhereUniqueInput[] | StudioWhereUniqueInput>;
+  update?: Maybe<
+    | StudioUpdateWithWhereUniqueWithoutDancersInput[]
+    | StudioUpdateWithWhereUniqueWithoutDancersInput
+  >;
+  upsert?: Maybe<
+    | StudioUpsertWithWhereUniqueWithoutDancersInput[]
+    | StudioUpsertWithWhereUniqueWithoutDancersInput
+  >;
+  deleteMany?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
+  updateMany?: Maybe<
+    | StudioUpdateManyWithWhereNestedInput[]
+    | StudioUpdateManyWithWhereNestedInput
+  >;
 }
 
-export interface StudioUpsertWithoutMakeupSetsInput {
-  update: StudioUpdateWithoutMakeupSetsDataInput;
-  create: StudioCreateWithoutMakeupSetsInput;
+export interface StudioUpdateWithWhereUniqueWithoutDancersInput {
+  where: StudioWhereUniqueInput;
+  data: StudioUpdateWithoutDancersDataInput;
 }
 
-export interface MakeupSetUpsertWithoutDanceClassesInput {
-  update: MakeupSetUpdateWithoutDanceClassesDataInput;
-  create: MakeupSetCreateWithoutDanceClassesInput;
+export interface StudioUpdateWithoutDancersDataInput {
+  email?: Maybe<String>;
+  studioName?: Maybe<String>;
+  userType?: Maybe<String>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  danceClasses?: Maybe<DanceClassUpdateManyWithoutStudioInput>;
+  styles?: Maybe<StudioUpdatestylesInput>;
+  competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
+  ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
+  makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
+  hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
+  events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
+  website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
-export interface DanceClassUpsertWithWhereUniqueWithoutDancersInput {
+export interface StudioUpsertWithWhereUniqueWithoutDancersInput {
+  where: StudioWhereUniqueInput;
+  update: StudioUpdateWithoutDancersDataInput;
+  create: StudioCreateWithoutDancersInput;
+}
+
+export interface DancerUpsertWithoutRequestsInput {
+  update: DancerUpdateWithoutRequestsDataInput;
+  create: DancerCreateWithoutRequestsInput;
+}
+
+export interface DanceClassUpdateManyInput {
+  create?: Maybe<DanceClassCreateInput[] | DanceClassCreateInput>;
+  update?: Maybe<
+    | DanceClassUpdateWithWhereUniqueNestedInput[]
+    | DanceClassUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | DanceClassUpsertWithWhereUniqueNestedInput[]
+    | DanceClassUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  set?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  disconnect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
+  deleteMany?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
+  updateMany?: Maybe<
+    | DanceClassUpdateManyWithWhereNestedInput[]
+    | DanceClassUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DanceClassUpdateWithWhereUniqueNestedInput {
   where: DanceClassWhereUniqueInput;
-  update: DanceClassUpdateWithoutDancersDataInput;
-  create: DanceClassCreateWithoutDancersInput;
+  data: DanceClassUpdateDataInput;
+}
+
+export interface DanceClassUpdateDataInput {
+  name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
+  music?: Maybe<String>;
+  musicId?: Maybe<String>;
+  performanceName?: Maybe<String>;
+  day?: Maybe<String>;
+  startTime?: Maybe<String>;
+  endTime?: Maybe<String>;
+  competitiveLevel?: Maybe<String>;
+  ageDivision?: Maybe<String>;
+  style?: Maybe<String>;
+  tights?: Maybe<String>;
+  shoes?: Maybe<String>;
+  notes?: Maybe<String>;
+  dancers?: Maybe<DancerUpdateManyWithoutDanceClassesInput>;
+  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
+  size?: Maybe<String>;
+  custom?: Maybe<Boolean>;
+  entryNumber?: Maybe<Int>;
+  entryTime?: Maybe<DateTimeInput>;
+  entryDay?: Maybe<String>;
+}
+
+export interface DanceClassUpsertWithWhereUniqueNestedInput {
+  where: DanceClassWhereUniqueInput;
+  update: DanceClassUpdateDataInput;
+  create: DanceClassCreateInput;
 }
 
 export interface DanceClassScalarWhereInput {
@@ -5215,93 +5229,6 @@ export interface DanceClassUpdateManyDataInput {
   entryDay?: Maybe<String>;
 }
 
-export interface DancerUpsertWithoutRequestsInput {
-  update: DancerUpdateWithoutRequestsDataInput;
-  create: DancerCreateWithoutRequestsInput;
-}
-
-export interface DanceClassUpdateManyInput {
-  create?: Maybe<DanceClassCreateInput[] | DanceClassCreateInput>;
-  update?: Maybe<
-    | DanceClassUpdateWithWhereUniqueNestedInput[]
-    | DanceClassUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | DanceClassUpsertWithWhereUniqueNestedInput[]
-    | DanceClassUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  set?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  disconnect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  deleteMany?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
-  updateMany?: Maybe<
-    | DanceClassUpdateManyWithWhereNestedInput[]
-    | DanceClassUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DanceClassUpdateWithWhereUniqueNestedInput {
-  where: DanceClassWhereUniqueInput;
-  data: DanceClassUpdateDataInput;
-}
-
-export interface DanceClassUpdateDataInput {
-  name?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
-  music?: Maybe<String>;
-  musicId?: Maybe<String>;
-  performanceName?: Maybe<String>;
-  day?: Maybe<String>;
-  startTime?: Maybe<String>;
-  endTime?: Maybe<String>;
-  competitiveLevel?: Maybe<String>;
-  ageDivision?: Maybe<String>;
-  style?: Maybe<String>;
-  tights?: Maybe<String>;
-  shoes?: Maybe<String>;
-  notes?: Maybe<String>;
-  dancers?: Maybe<DancerUpdateManyWithoutDanceClassesInput>;
-  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
-  size?: Maybe<String>;
-  custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryDay?: Maybe<String>;
-}
-
-export interface DanceClassUpsertWithWhereUniqueNestedInput {
-  where: DanceClassWhereUniqueInput;
-  update: DanceClassUpdateDataInput;
-  create: DanceClassCreateInput;
-}
-
-export interface ParentUpdateOneRequiredInput {
-  create?: Maybe<ParentCreateInput>;
-  update?: Maybe<ParentUpdateDataInput>;
-  upsert?: Maybe<ParentUpsertNestedInput>;
-  connect?: Maybe<ParentWhereUniqueInput>;
-}
-
-export interface ParentUpdateDataInput {
-  email?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  userType?: Maybe<String>;
-  dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
-  password?: Maybe<String>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
-  studios?: Maybe<StudioUpdateManyInput>;
-  accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-}
-
-export interface ParentUpsertNestedInput {
-  update: ParentUpdateDataInput;
-  create: ParentCreateInput;
-}
-
 export interface EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
   where: EnrollmentRequestWhereUniqueInput;
   update: EnrollmentRequestUpdateWithoutStudioDataInput;
@@ -5348,6 +5275,179 @@ export interface EnrollmentRequestScalarWhereInput {
   NOT?: Maybe<
     EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
   >;
+}
+
+export interface StudioUpsertWithoutMakeupSetsInput {
+  update: StudioUpdateWithoutMakeupSetsDataInput;
+  create: StudioCreateWithoutMakeupSetsInput;
+}
+
+export interface MakeupSetUpsertWithoutDanceClassesInput {
+  update: MakeupSetUpdateWithoutDanceClassesDataInput;
+  create: MakeupSetCreateWithoutDanceClassesInput;
+}
+
+export interface DanceClassUpsertWithWhereUniqueWithoutDancersInput {
+  where: DanceClassWhereUniqueInput;
+  update: DanceClassUpdateWithoutDancersDataInput;
+  create: DanceClassCreateWithoutDancersInput;
+}
+
+export interface DancerUpsertWithWhereUniqueWithoutParentInput {
+  where: DancerWhereUniqueInput;
+  update: DancerUpdateWithoutParentDataInput;
+  create: DancerCreateWithoutParentInput;
+}
+
+export interface DancerScalarWhereInput {
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  firstName?: Maybe<String>;
+  firstName_not?: Maybe<String>;
+  firstName_in?: Maybe<String[] | String>;
+  firstName_not_in?: Maybe<String[] | String>;
+  firstName_lt?: Maybe<String>;
+  firstName_lte?: Maybe<String>;
+  firstName_gt?: Maybe<String>;
+  firstName_gte?: Maybe<String>;
+  firstName_contains?: Maybe<String>;
+  firstName_not_contains?: Maybe<String>;
+  firstName_starts_with?: Maybe<String>;
+  firstName_not_starts_with?: Maybe<String>;
+  firstName_ends_with?: Maybe<String>;
+  firstName_not_ends_with?: Maybe<String>;
+  avatar?: Maybe<String>;
+  avatar_not?: Maybe<String>;
+  avatar_in?: Maybe<String[] | String>;
+  avatar_not_in?: Maybe<String[] | String>;
+  avatar_lt?: Maybe<String>;
+  avatar_lte?: Maybe<String>;
+  avatar_gt?: Maybe<String>;
+  avatar_gte?: Maybe<String>;
+  avatar_contains?: Maybe<String>;
+  avatar_not_contains?: Maybe<String>;
+  avatar_starts_with?: Maybe<String>;
+  avatar_not_starts_with?: Maybe<String>;
+  avatar_ends_with?: Maybe<String>;
+  avatar_not_ends_with?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  avatarId_not?: Maybe<String>;
+  avatarId_in?: Maybe<String[] | String>;
+  avatarId_not_in?: Maybe<String[] | String>;
+  avatarId_lt?: Maybe<String>;
+  avatarId_lte?: Maybe<String>;
+  avatarId_gt?: Maybe<String>;
+  avatarId_gte?: Maybe<String>;
+  avatarId_contains?: Maybe<String>;
+  avatarId_not_contains?: Maybe<String>;
+  avatarId_starts_with?: Maybe<String>;
+  avatarId_not_starts_with?: Maybe<String>;
+  avatarId_ends_with?: Maybe<String>;
+  avatarId_not_ends_with?: Maybe<String>;
+  lastName?: Maybe<String>;
+  lastName_not?: Maybe<String>;
+  lastName_in?: Maybe<String[] | String>;
+  lastName_not_in?: Maybe<String[] | String>;
+  lastName_lt?: Maybe<String>;
+  lastName_lte?: Maybe<String>;
+  lastName_gt?: Maybe<String>;
+  lastName_gte?: Maybe<String>;
+  lastName_contains?: Maybe<String>;
+  lastName_not_contains?: Maybe<String>;
+  lastName_starts_with?: Maybe<String>;
+  lastName_not_starts_with?: Maybe<String>;
+  lastName_ends_with?: Maybe<String>;
+  lastName_not_ends_with?: Maybe<String>;
+  AND?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
+  OR?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
+  NOT?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
+}
+
+export interface DancerUpdateManyWithWhereNestedInput {
+  where: DancerScalarWhereInput;
+  data: DancerUpdateManyDataInput;
+}
+
+export interface DancerUpdateManyDataInput {
+  firstName?: Maybe<String>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  lastName?: Maybe<String>;
+}
+
+export interface ParentUpsertNestedInput {
+  update: ParentUpdateDataInput;
+  create: ParentCreateInput;
+}
+
+export interface AccessRequestUpsertWithWhereUniqueWithoutStudioInput {
+  where: AccessRequestWhereUniqueInput;
+  update: AccessRequestUpdateWithoutStudioDataInput;
+  create: AccessRequestCreateWithoutStudioInput;
+}
+
+export interface AccessRequestScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  AND?: Maybe<AccessRequestScalarWhereInput[] | AccessRequestScalarWhereInput>;
+  OR?: Maybe<AccessRequestScalarWhereInput[] | AccessRequestScalarWhereInput>;
+  NOT?: Maybe<AccessRequestScalarWhereInput[] | AccessRequestScalarWhereInput>;
+}
+
+export interface StudioUpsertWithoutEnrollmentRequestsInput {
+  update: StudioUpdateWithoutEnrollmentRequestsDataInput;
+  create: StudioCreateWithoutEnrollmentRequestsInput;
+}
+
+export interface EnrollmentRequestUpsertWithoutDancerInput {
+  update: EnrollmentRequestUpdateWithoutDancerDataInput;
+  create: EnrollmentRequestCreateWithoutDancerInput;
+}
+
+export interface DancerUpsertWithWhereUniqueWithoutStudiosInput {
+  where: DancerWhereUniqueInput;
+  update: DancerUpdateWithoutStudiosDataInput;
+  create: DancerCreateWithoutStudiosInput;
 }
 
 export interface StudioUpsertWithoutDanceClassesInput {
@@ -5606,14 +5706,49 @@ export interface MakeupSetUpdateManyDataInput {
   notes?: Maybe<String>;
 }
 
-export interface StudioUpsertWithoutEnrollmentRequestsInput {
-  update: StudioUpdateWithoutEnrollmentRequestsDataInput;
-  create: StudioCreateWithoutEnrollmentRequestsInput;
+export interface StudioUpsertNestedInput {
+  update: StudioUpdateDataInput;
+  create: StudioCreateInput;
 }
 
-export interface EnrollmentRequestUpsertWithoutDancerInput {
-  update: EnrollmentRequestUpdateWithoutDancerDataInput;
-  create: EnrollmentRequestCreateWithoutDancerInput;
+export interface DancerUpdateManyWithoutCustomRoutinesInput {
+  create?: Maybe<
+    | DancerCreateWithoutCustomRoutinesInput[]
+    | DancerCreateWithoutCustomRoutinesInput
+  >;
+  delete?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  connect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  set?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  disconnect?: Maybe<DancerWhereUniqueInput[] | DancerWhereUniqueInput>;
+  update?: Maybe<
+    | DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput[]
+    | DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput
+  >;
+  upsert?: Maybe<
+    | DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput[]
+    | DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput
+  >;
+  deleteMany?: Maybe<DancerScalarWhereInput[] | DancerScalarWhereInput>;
+  updateMany?: Maybe<
+    | DancerUpdateManyWithWhereNestedInput[]
+    | DancerUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput {
+  where: DancerWhereUniqueInput;
+  data: DancerUpdateWithoutCustomRoutinesDataInput;
+}
+
+export interface DancerUpdateWithoutCustomRoutinesDataInput {
+  firstName?: Maybe<String>;
+  parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
+  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
+  avatar?: Maybe<String>;
+  avatarId?: Maybe<String>;
+  lastName?: Maybe<String>;
+  studios?: Maybe<StudioUpdateManyWithoutDancersInput>;
 }
 
 export interface DancerUpsertWithWhereUniqueWithoutCustomRoutinesInput {
@@ -5643,6 +5778,11 @@ export interface DanceClassUpsertWithWhereUniqueWithoutStudioInput {
   where: DanceClassWhereUniqueInput;
   update: DanceClassUpdateWithoutStudioDataInput;
   create: DanceClassCreateWithoutStudioInput;
+}
+
+export interface StudioUpsertWithoutAccessRequestsInput {
+  update: StudioUpdateWithoutAccessRequestsDataInput;
+  create: StudioCreateWithoutAccessRequestsInput;
 }
 
 export interface CustomRoutineCreateInput {
@@ -5833,11 +5973,12 @@ export interface StudioCreateWithoutHairStylesInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventCreateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
 export interface HairStyleUpdateInput {
@@ -5866,11 +6007,12 @@ export interface StudioUpdateWithoutHairStylesDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface StudioUpsertWithoutHairStylesInput {
@@ -6080,12 +6222,13 @@ export interface StudioUpdateInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   events?: Maybe<StudioEventUpdateManyWithoutStudioInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface StudioUpdateManyMutationInput {
@@ -6136,11 +6279,12 @@ export interface StudioCreateWithoutEventsInput {
   styles?: Maybe<StudioCreatestylesInput>;
   competitiveLevels?: Maybe<StudioCreatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioCreateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetCreateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleCreateManyWithoutStudioInput>;
   dancers?: Maybe<DancerCreateManyWithoutStudiosInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
 }
 
 export interface StudioEventUpdateInput {
@@ -6178,11 +6322,12 @@ export interface StudioUpdateWithoutEventsDataInput {
   styles?: Maybe<StudioUpdatestylesInput>;
   competitiveLevels?: Maybe<StudioUpdatecompetitiveLevelsInput>;
   ageDivisions?: Maybe<StudioUpdateageDivisionsInput>;
-  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   makeupSets?: Maybe<MakeupSetUpdateManyWithoutStudioInput>;
   hairStyles?: Maybe<HairStyleUpdateManyWithoutStudioInput>;
   dancers?: Maybe<DancerUpdateManyWithoutStudiosInput>;
   website?: Maybe<String>;
+  enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
+  accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
 }
 
 export interface StudioUpsertWithoutEventsInput {
@@ -6465,15 +6610,6 @@ export interface StudioPromise extends Promise<Studio>, Fragmentable {
   styles: () => Promise<String[]>;
   competitiveLevels: () => Promise<String[]>;
   ageDivisions: () => Promise<String[]>;
-  enrollmentRequests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
-    where?: EnrollmentRequestWhereInput;
-    orderBy?: EnrollmentRequestOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
   makeupSets: <T = FragmentableArray<MakeupSet>>(args?: {
     where?: MakeupSetWhereInput;
     orderBy?: MakeupSetOrderByInput;
@@ -6511,6 +6647,24 @@ export interface StudioPromise extends Promise<Studio>, Fragmentable {
     last?: Int;
   }) => T;
   website: () => Promise<String>;
+  enrollmentRequests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  accessRequests: <T = FragmentableArray<AccessRequest>>(args?: {
+    where?: AccessRequestWhereInput;
+    orderBy?: AccessRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface StudioSubscription
@@ -6537,17 +6691,6 @@ export interface StudioSubscription
   styles: () => Promise<AsyncIterator<String[]>>;
   competitiveLevels: () => Promise<AsyncIterator<String[]>>;
   ageDivisions: () => Promise<AsyncIterator<String[]>>;
-  enrollmentRequests: <
-    T = Promise<AsyncIterator<EnrollmentRequestSubscription>>
-  >(args?: {
-    where?: EnrollmentRequestWhereInput;
-    orderBy?: EnrollmentRequestOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
   makeupSets: <T = Promise<AsyncIterator<MakeupSetSubscription>>>(args?: {
     where?: MakeupSetWhereInput;
     orderBy?: MakeupSetOrderByInput;
@@ -6585,6 +6728,28 @@ export interface StudioSubscription
     last?: Int;
   }) => T;
   website: () => Promise<AsyncIterator<String>>;
+  enrollmentRequests: <
+    T = Promise<AsyncIterator<EnrollmentRequestSubscription>>
+  >(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  accessRequests: <
+    T = Promise<AsyncIterator<AccessRequestSubscription>>
+  >(args?: {
+    where?: AccessRequestWhereInput;
+    orderBy?: AccessRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface StudioNullablePromise
@@ -6611,15 +6776,6 @@ export interface StudioNullablePromise
   styles: () => Promise<String[]>;
   competitiveLevels: () => Promise<String[]>;
   ageDivisions: () => Promise<String[]>;
-  enrollmentRequests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
-    where?: EnrollmentRequestWhereInput;
-    orderBy?: EnrollmentRequestOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
   makeupSets: <T = FragmentableArray<MakeupSet>>(args?: {
     where?: MakeupSetWhereInput;
     orderBy?: MakeupSetOrderByInput;
@@ -6657,6 +6813,24 @@ export interface StudioNullablePromise
     last?: Int;
   }) => T;
   website: () => Promise<String>;
+  enrollmentRequests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  accessRequests: <T = FragmentableArray<AccessRequest>>(args?: {
+    where?: AccessRequestWhereInput;
+    orderBy?: AccessRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface DanceClass {
@@ -9193,14 +9367,6 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "MakeupSet",
-    embedded: false
-  },
-  {
-    name: "HairStyle",
-    embedded: false
-  },
-  {
     name: "Dancer",
     embedded: false
   },
@@ -9210,6 +9376,14 @@ export const models: Model[] = [
   },
   {
     name: "CustomRoutine",
+    embedded: false
+  },
+  {
+    name: "MakeupSet",
+    embedded: false
+  },
+  {
+    name: "HairStyle",
     embedded: false
   },
   {
