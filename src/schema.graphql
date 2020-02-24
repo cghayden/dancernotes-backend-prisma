@@ -178,7 +178,11 @@ type Mutation {
     publicId: String!
     resourceType: String!
   ): SuccessMessage
-  requestStudioAccess(studioId: ID!, accessRequests: [ID!]!): Parent!
+  requestStudioAccess(
+    studioId: ID!
+    accessRequests: [ID!]!
+    parentEmail: String!
+  ): Parent!
   withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
 }
 

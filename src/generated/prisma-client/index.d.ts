@@ -747,12 +747,12 @@ export type StudioEventOrderByInput =
   | "notes_DESC";
 
 export type EnrollmentRequestOrderByInput =
-  | "createdAt_ASC"
-  | "createdAt_DESC"
+  | "id_ASC"
+  | "id_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC"
-  | "id_ASC"
-  | "id_DESC";
+  | "createdAt_ASC"
+  | "createdAt_DESC";
 
 export type AccessRequestOrderByInput = "id_ASC" | "id_DESC";
 
@@ -2029,22 +2029,6 @@ export interface CustomRoutineWhereInput {
 }
 
 export interface EnrollmentRequestWhereInput {
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -2059,12 +2043,28 @@ export interface EnrollmentRequestWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  dancer?: Maybe<DancerWhereInput>;
   studio?: Maybe<StudioWhereInput>;
+  parent?: Maybe<ParentWhereInput>;
+  dancer?: Maybe<DancerWhereInput>;
   classesRequested_every?: Maybe<DanceClassWhereInput>;
   classesRequested_some?: Maybe<DanceClassWhereInput>;
   classesRequested_none?: Maybe<DanceClassWhereInput>;
-  parent?: Maybe<ParentWhereInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
   OR?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
   NOT?: Maybe<EnrollmentRequestWhereInput[] | EnrollmentRequestWhereInput>;
@@ -2248,7 +2248,6 @@ export interface StudioEventWhereInput {
 }
 
 export interface AccessRequestWhereInput {
-  studio?: Maybe<StudioWhereInput>;
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -2263,6 +2262,7 @@ export interface AccessRequestWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  studio?: Maybe<StudioWhereInput>;
   parent?: Maybe<ParentWhereInput>;
   AND?: Maybe<AccessRequestWhereInput[] | AccessRequestWhereInput>;
   OR?: Maybe<AccessRequestWhereInput[] | AccessRequestWhereInput>;
@@ -2530,8 +2530,8 @@ export type StudioEventWhereUniqueInput = AtLeastOne<{
 }>;
 
 export interface AccessRequestCreateInput {
-  studio: StudioCreateOneWithoutAccessRequestsInput;
   id?: Maybe<ID_Input>;
+  studio: StudioCreateOneWithoutAccessRequestsInput;
   parent: ParentCreateOneInput;
 }
 
@@ -2826,8 +2826,8 @@ export interface EnrollmentRequestCreateOneWithoutDancerInput {
 export interface EnrollmentRequestCreateWithoutDancerInput {
   id?: Maybe<ID_Input>;
   studio: StudioCreateOneWithoutEnrollmentRequestsInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
   parent: ParentCreateOneInput;
+  classesRequested?: Maybe<DanceClassCreateManyInput>;
 }
 
 export interface StudioCreateOneWithoutEnrollmentRequestsInput {
@@ -3028,9 +3028,9 @@ export interface EnrollmentRequestCreateManyWithoutStudioInput {
 
 export interface EnrollmentRequestCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
+  parent: ParentCreateOneInput;
   dancer: DancerCreateOneWithoutRequestsInput;
   classesRequested?: Maybe<DanceClassCreateManyInput>;
-  parent: ParentCreateOneInput;
 }
 
 export interface DancerCreateOneWithoutRequestsInput {
@@ -3734,8 +3734,8 @@ export interface EnrollmentRequestUpdateOneWithoutDancerInput {
 
 export interface EnrollmentRequestUpdateWithoutDancerDataInput {
   studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
   parent?: Maybe<ParentUpdateOneRequiredInput>;
+  classesRequested?: Maybe<DanceClassUpdateManyInput>;
 }
 
 export interface StudioUpdateOneRequiredWithoutEnrollmentRequestsInput {
@@ -4255,9 +4255,9 @@ export interface EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
 }
 
 export interface EnrollmentRequestUpdateWithoutStudioDataInput {
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
   dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
   classesRequested?: Maybe<DanceClassUpdateManyInput>;
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
 }
 
 export interface DancerUpdateOneRequiredWithoutRequestsInput {
@@ -5236,22 +5236,6 @@ export interface EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
 }
 
 export interface EnrollmentRequestScalarWhereInput {
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -5266,6 +5250,22 @@ export interface EnrollmentRequestScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<
     EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
   >;
@@ -5934,17 +5934,17 @@ export interface DancerUpdateManyMutationInput {
 
 export interface EnrollmentRequestCreateInput {
   id?: Maybe<ID_Input>;
-  dancer: DancerCreateOneWithoutRequestsInput;
   studio: StudioCreateOneWithoutEnrollmentRequestsInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
   parent: ParentCreateOneInput;
+  dancer: DancerCreateOneWithoutRequestsInput;
+  classesRequested?: Maybe<DanceClassCreateManyInput>;
 }
 
 export interface EnrollmentRequestUpdateInput {
-  dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
   studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
   parent?: Maybe<ParentUpdateOneRequiredInput>;
+  dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
+  classesRequested?: Maybe<DanceClassUpdateManyInput>;
 }
 
 export interface HairStyleCreateInput {
@@ -6551,24 +6551,24 @@ export interface AccessRequest {
 export interface AccessRequestPromise
   extends Promise<AccessRequest>,
     Fragmentable {
-  studio: <T = StudioPromise>() => T;
   id: () => Promise<ID_Output>;
+  studio: <T = StudioPromise>() => T;
   parent: <T = ParentPromise>() => T;
 }
 
 export interface AccessRequestSubscription
   extends Promise<AsyncIterator<AccessRequest>>,
     Fragmentable {
-  studio: <T = StudioSubscription>() => T;
   id: () => Promise<AsyncIterator<ID_Output>>;
+  studio: <T = StudioSubscription>() => T;
   parent: <T = ParentSubscription>() => T;
 }
 
 export interface AccessRequestNullablePromise
   extends Promise<AccessRequest | null>,
     Fragmentable {
-  studio: <T = StudioPromise>() => T;
   id: () => Promise<ID_Output>;
+  studio: <T = StudioPromise>() => T;
   parent: <T = ParentPromise>() => T;
 }
 
@@ -7370,19 +7370,18 @@ export interface CustomRoutineNullablePromise
 }
 
 export interface EnrollmentRequest {
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
   id: ID_Output;
+  updatedAt: DateTimeOutput;
+  createdAt: DateTimeOutput;
 }
 
 export interface EnrollmentRequestPromise
   extends Promise<EnrollmentRequest>,
     Fragmentable {
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
-  dancer: <T = DancerPromise>() => T;
   studio: <T = StudioPromise>() => T;
+  parent: <T = ParentPromise>() => T;
+  dancer: <T = DancerPromise>() => T;
   classesRequested: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -7392,17 +7391,17 @@ export interface EnrollmentRequestPromise
     first?: Int;
     last?: Int;
   }) => T;
-  parent: <T = ParentPromise>() => T;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface EnrollmentRequestSubscription
   extends Promise<AsyncIterator<EnrollmentRequest>>,
     Fragmentable {
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
-  dancer: <T = DancerSubscription>() => T;
   studio: <T = StudioSubscription>() => T;
+  parent: <T = ParentSubscription>() => T;
+  dancer: <T = DancerSubscription>() => T;
   classesRequested: <
     T = Promise<AsyncIterator<DanceClassSubscription>>
   >(args?: {
@@ -7414,17 +7413,17 @@ export interface EnrollmentRequestSubscription
     first?: Int;
     last?: Int;
   }) => T;
-  parent: <T = ParentSubscription>() => T;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface EnrollmentRequestNullablePromise
   extends Promise<EnrollmentRequest | null>,
     Fragmentable {
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
-  dancer: <T = DancerPromise>() => T;
   studio: <T = StudioPromise>() => T;
+  parent: <T = ParentPromise>() => T;
+  dancer: <T = DancerPromise>() => T;
   classesRequested: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -7434,7 +7433,8 @@ export interface EnrollmentRequestNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  parent: <T = ParentPromise>() => T;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface MakeupSet {
@@ -8800,25 +8800,25 @@ export interface EnrollmentRequestSubscriptionPayloadSubscription
 }
 
 export interface EnrollmentRequestPreviousValues {
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
   id: ID_Output;
+  updatedAt: DateTimeOutput;
+  createdAt: DateTimeOutput;
 }
 
 export interface EnrollmentRequestPreviousValuesPromise
   extends Promise<EnrollmentRequestPreviousValues>,
     Fragmentable {
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface EnrollmentRequestPreviousValuesSubscription
   extends Promise<AsyncIterator<EnrollmentRequestPreviousValues>>,
     Fragmentable {
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface HairStyleSubscriptionPayload {
@@ -9391,15 +9391,15 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "EnrollmentRequest",
-    embedded: false
-  },
-  {
     name: "StudioEvent",
     embedded: false
   },
   {
     name: "ParentEvent",
+    embedded: false
+  },
+  {
+    name: "EnrollmentRequest",
     embedded: false
   },
   {

@@ -395,7 +395,6 @@ const Mutations = {
       },
       `{id accessRequests}`
     );
-    console.log("updatedParent accessRequests:", updatedParent.accessRequests);
 
     //TODO TODO TODO TODO
     // add a parent Access field to Studio
@@ -790,26 +789,61 @@ const Mutations = {
     );
   },
   async requestStudioAccess(parent, args, ctx, info) {
-    const accessRequest = await ctx.db.mutation.createAccessRequest(
-      {
-        data: {
-          parent: {
-            connect: {
-              id: ctx.request.userId
-            }
-          },
-          studio: { connect: { id: args.studioId } }
-        }
-      },
-      info
-    );
-    return await ctx.db.mutation.updateParent(
-      {
-        where: { id: ctx.request.userId },
-        data: { accessRequests: { set: args.accessRequests } }
-      },
-      info
-    );
+    const authorizedEmails = [
+      "ella@ella.com",
+      "q@q.com",
+      "cghayden@gmail.com",
+      "sarah.hayden27@gmail.com",
+      "yengbutler@gmail.com",
+      "jopetrunyak@yahoo.com",
+      "karajdm@yahoo.com",
+      "kelli474@msn.com",
+      "lilianthana4@yahoo.com",
+      "lisabraude@gmail.com",
+      "vieira2177@gmail.com",
+      "lorironkin@yahoo.com",
+      "marcycarty@gmail.com",
+      "michaelaellensilva@gmail.com",
+      "mullinfam2061@gmail.com",
+      "blackcoffee141@msn.com",
+      "roudlylaroche@live.com",
+      "taradelamere@gmail.com",
+      "elcorredor@hotmail.com",
+      "adelaidehayden@gmail.com",
+      "hondacoupe2004@yahoo.com",
+      "svetlana.leeds83@gmail.com"
+    ];
+
+    if (authorizedEmails.includes(args.parentEmail)) {
+      return await ctx.db.mutation.updateParent(
+        {
+          where: { id: ctx.request.userId },
+          data: { studios: { connect: { id: args.studioId } } }
+        },
+        info
+      );
+    } else {
+      const accessRequest = await ctx.db.mutation.createAccessRequest(
+        {
+          data: {
+            parent: {
+              connect: {
+                id: ctx.request.userId
+              }
+            },
+            studio: { connect: { id: args.studioId } }
+          }
+        },
+        info
+      );
+      return await ctx.db.mutation.updateParent(
+        {
+          where: { id: ctx.request.userId },
+          data: { accessRequests: { set: args.accessRequests } }
+        },
+        info
+      );
+    }
   }
 };
 
