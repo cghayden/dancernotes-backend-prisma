@@ -37,15 +37,15 @@ var models = [
     embedded: false
   },
   {
-    name: "EnrollmentRequest",
-    embedded: false
-  },
-  {
     name: "StudioEvent",
     embedded: false
   },
   {
     name: "ParentEvent",
+    embedded: false
+  },
+  {
+    name: "EnrollmentRequest",
     embedded: false
   },
   {

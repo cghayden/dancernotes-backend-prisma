@@ -4,8 +4,8 @@ module.exports = {
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
 /* GraphQL */ `type AccessRequest {
-  studio: Studio!
   id: ID!
+  studio: Studio!
   parent: Parent!
 }
 
@@ -16,8 +16,8 @@ type AccessRequestConnection {
 }
 
 input AccessRequestCreateInput {
-  studio: StudioCreateOneWithoutAccessRequestsInput!
   id: ID
+  studio: StudioCreateOneWithoutAccessRequestsInput!
   parent: ParentCreateOneInput!
 }
 
@@ -115,7 +115,6 @@ input AccessRequestUpsertWithWhereUniqueWithoutStudioInput {
 }
 
 input AccessRequestWhereInput {
-  studio: StudioWhereInput
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -130,6 +129,7 @@ input AccessRequestWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  studio: StudioWhereInput
   parent: ParentWhereInput
   AND: [AccessRequestWhereInput!]
   OR: [AccessRequestWhereInput!]
@@ -2673,13 +2673,13 @@ input DancerWhereUniqueInput {
 scalar DateTime
 
 type EnrollmentRequest {
-  createdAt: DateTime!
-  updatedAt: DateTime!
   id: ID!
-  dancer: Dancer!
   studio: Studio!
-  classesRequested(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
   parent: Parent!
+  dancer: Dancer!
+  classesRequested(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
 }
 
 type EnrollmentRequestConnection {
@@ -2690,10 +2690,10 @@ type EnrollmentRequestConnection {
 
 input EnrollmentRequestCreateInput {
   id: ID
-  dancer: DancerCreateOneWithoutRequestsInput!
   studio: StudioCreateOneWithoutEnrollmentRequestsInput!
-  classesRequested: DanceClassCreateManyInput
   parent: ParentCreateOneInput!
+  dancer: DancerCreateOneWithoutRequestsInput!
+  classesRequested: DanceClassCreateManyInput
 }
 
 input EnrollmentRequestCreateManyWithoutStudioInput {
@@ -2709,15 +2709,15 @@ input EnrollmentRequestCreateOneWithoutDancerInput {
 input EnrollmentRequestCreateWithoutDancerInput {
   id: ID
   studio: StudioCreateOneWithoutEnrollmentRequestsInput!
-  classesRequested: DanceClassCreateManyInput
   parent: ParentCreateOneInput!
+  classesRequested: DanceClassCreateManyInput
 }
 
 input EnrollmentRequestCreateWithoutStudioInput {
   id: ID
+  parent: ParentCreateOneInput!
   dancer: DancerCreateOneWithoutRequestsInput!
   classesRequested: DanceClassCreateManyInput
-  parent: ParentCreateOneInput!
 }
 
 type EnrollmentRequestEdge {
@@ -2726,37 +2726,21 @@ type EnrollmentRequestEdge {
 }
 
 enum EnrollmentRequestOrderByInput {
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   id_ASC
   id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type EnrollmentRequestPreviousValues {
-  createdAt: DateTime!
-  updatedAt: DateTime!
   id: ID!
+  updatedAt: DateTime!
+  createdAt: DateTime!
 }
 
 input EnrollmentRequestScalarWhereInput {
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -2771,6 +2755,22 @@ input EnrollmentRequestScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [EnrollmentRequestScalarWhereInput!]
   OR: [EnrollmentRequestScalarWhereInput!]
   NOT: [EnrollmentRequestScalarWhereInput!]
@@ -2795,10 +2795,10 @@ input EnrollmentRequestSubscriptionWhereInput {
 }
 
 input EnrollmentRequestUpdateInput {
-  dancer: DancerUpdateOneRequiredWithoutRequestsInput
   studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
-  classesRequested: DanceClassUpdateManyInput
   parent: ParentUpdateOneRequiredInput
+  dancer: DancerUpdateOneRequiredWithoutRequestsInput
+  classesRequested: DanceClassUpdateManyInput
 }
 
 input EnrollmentRequestUpdateManyWithoutStudioInput {
@@ -2823,14 +2823,14 @@ input EnrollmentRequestUpdateOneWithoutDancerInput {
 
 input EnrollmentRequestUpdateWithoutDancerDataInput {
   studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
-  classesRequested: DanceClassUpdateManyInput
   parent: ParentUpdateOneRequiredInput
+  classesRequested: DanceClassUpdateManyInput
 }
 
 input EnrollmentRequestUpdateWithoutStudioDataInput {
+  parent: ParentUpdateOneRequiredInput
   dancer: DancerUpdateOneRequiredWithoutRequestsInput
   classesRequested: DanceClassUpdateManyInput
-  parent: ParentUpdateOneRequiredInput
 }
 
 input EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
@@ -2850,22 +2850,6 @@ input EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
 }
 
 input EnrollmentRequestWhereInput {
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -2880,12 +2864,28 @@ input EnrollmentRequestWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  dancer: DancerWhereInput
   studio: StudioWhereInput
+  parent: ParentWhereInput
+  dancer: DancerWhereInput
   classesRequested_every: DanceClassWhereInput
   classesRequested_some: DanceClassWhereInput
   classesRequested_none: DanceClassWhereInput
-  parent: ParentWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [EnrollmentRequestWhereInput!]
   OR: [EnrollmentRequestWhereInput!]
   NOT: [EnrollmentRequestWhereInput!]
