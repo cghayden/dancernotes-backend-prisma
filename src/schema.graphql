@@ -184,6 +184,7 @@ type Mutation {
     parentEmail: String!
   ): Parent!
   withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
+  deleteCustomRoutine(id: ID!, musicId: String): SuccessMessage
 }
 
 type Query {

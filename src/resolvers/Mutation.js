@@ -471,11 +471,12 @@ const Mutations = {
       },
       `{studio{id}}`
     );
+    const studioId = danceClass.studio.id;
     const isDancerInStudio = await ctx.db.query.danceClasses(
       {
         where: {
           AND: [
-            { studio: { id: danceClass.studio.id } },
+            { studio: { id: studioId } },
             { dancers_some: { id: args.dancerId } }
           ]
         }
@@ -487,24 +488,46 @@ const Mutations = {
       const dancer = await ctx.db.mutation.updateDancer(
         {
           where: { id: args.dancerId },
-          data: { studios: { disconnect: { id: danceClass.studio.id } } }
+          data: { studios: { disconnect: { id: studioId } } }
         },
         `{firstName}`
       );
     }
+    // check if parent has any dancers remaining in the studio
     const parentHasDancersInStudio = await ctx.db.query.studios({
       where: {
         AND: [
-          { id: danceClass.studio.id },
+          { id: studioId },
           { dancers_some: { parent: { id: ctx.request.userId } } }
         ]
       }
     });
+    //if parent has no dancers in studio, disconnect parent from studio,
+    // and disconnect any custom routines they have created which are labelled as in that studio
     if (!parentHasDancersInStudio.length) {
       await ctx.db.mutation.updateParent({
         where: { id: ctx.request.userId },
-        data: { studios: { disconnect: { id: danceClass.studio.id } } }
+        data: { studios: { disconnect: { id: studioId } } }
       });
+      const connectedCustomRoutines = await ctx.db.query.customRoutines({
+        where: {
+          AND: [
+            { studio: { id: studioId } },
+            { parent: { id: ctx.request.userId } }
+          ]
+        }
+      });
+      if (connectedCustomRoutines.length > 0) {
+        console.log("connectedCustomRoutines > 0:", connectedCustomRoutines);
+        connectedCustomRoutines.forEach(
+          routine =>
+            ctx.db.mutation.updateCustomRoutine({
+              where: { id: routine.id },
+              data: { studio: { disconnect: true } }
+            }),
+          `{id}`
+        );
+      }
     }
     return { message: `you have been withdrawn from the class` };
   },
@@ -844,6 +867,27 @@ const Mutations = {
         info
       );
     }
+  },
+  async deleteCustomRoutine(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to delete a Class");
+    }
+    if (args.musicId) {
+      await cloudinary.uploader.destroy(
+        args.musicId,
+        { invalidate: "true", resource_type: "video" },
+        function(error, result) {
+          "result:", result, "error:", error;
+        }
+      );
+    }
+    await ctx.db.mutation.deleteCustomRoutine(
+      {
+        where: { id: args.id }
+      },
+      info
+    );
+    return { message: "Class Deleted" };
   }
 };
 
