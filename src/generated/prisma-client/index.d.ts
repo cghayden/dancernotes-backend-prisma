@@ -1052,22 +1052,34 @@ export interface DanceClassWhereInput {
   size_not_ends_with?: Maybe<String>;
   custom?: Maybe<Boolean>;
   custom_not?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryNumber_not?: Maybe<Int>;
-  entryNumber_in?: Maybe<Int[] | Int>;
-  entryNumber_not_in?: Maybe<Int[] | Int>;
-  entryNumber_lt?: Maybe<Int>;
-  entryNumber_lte?: Maybe<Int>;
-  entryNumber_gt?: Maybe<Int>;
-  entryNumber_gte?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryTime_not?: Maybe<DateTimeInput>;
-  entryTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_lt?: Maybe<DateTimeInput>;
-  entryTime_lte?: Maybe<DateTimeInput>;
-  entryTime_gt?: Maybe<DateTimeInput>;
-  entryTime_gte?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryNumber_not?: Maybe<String>;
+  entryNumber_in?: Maybe<String[] | String>;
+  entryNumber_not_in?: Maybe<String[] | String>;
+  entryNumber_lt?: Maybe<String>;
+  entryNumber_lte?: Maybe<String>;
+  entryNumber_gt?: Maybe<String>;
+  entryNumber_gte?: Maybe<String>;
+  entryNumber_contains?: Maybe<String>;
+  entryNumber_not_contains?: Maybe<String>;
+  entryNumber_starts_with?: Maybe<String>;
+  entryNumber_not_starts_with?: Maybe<String>;
+  entryNumber_ends_with?: Maybe<String>;
+  entryNumber_not_ends_with?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryTime_not?: Maybe<String>;
+  entryTime_in?: Maybe<String[] | String>;
+  entryTime_not_in?: Maybe<String[] | String>;
+  entryTime_lt?: Maybe<String>;
+  entryTime_lte?: Maybe<String>;
+  entryTime_gt?: Maybe<String>;
+  entryTime_gte?: Maybe<String>;
+  entryTime_contains?: Maybe<String>;
+  entryTime_not_contains?: Maybe<String>;
+  entryTime_starts_with?: Maybe<String>;
+  entryTime_not_starts_with?: Maybe<String>;
+  entryTime_ends_with?: Maybe<String>;
+  entryTime_not_ends_with?: Maybe<String>;
   entryDay?: Maybe<String>;
   entryDay_not?: Maybe<String>;
   entryDay_in?: Maybe<String[] | String>;
@@ -1993,22 +2005,34 @@ export interface CustomRoutineWhereInput {
   type_not_starts_with?: Maybe<String>;
   type_ends_with?: Maybe<String>;
   type_not_ends_with?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryNumber_not?: Maybe<Int>;
-  entryNumber_in?: Maybe<Int[] | Int>;
-  entryNumber_not_in?: Maybe<Int[] | Int>;
-  entryNumber_lt?: Maybe<Int>;
-  entryNumber_lte?: Maybe<Int>;
-  entryNumber_gt?: Maybe<Int>;
-  entryNumber_gte?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryTime_not?: Maybe<DateTimeInput>;
-  entryTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_lt?: Maybe<DateTimeInput>;
-  entryTime_lte?: Maybe<DateTimeInput>;
-  entryTime_gt?: Maybe<DateTimeInput>;
-  entryTime_gte?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryNumber_not?: Maybe<String>;
+  entryNumber_in?: Maybe<String[] | String>;
+  entryNumber_not_in?: Maybe<String[] | String>;
+  entryNumber_lt?: Maybe<String>;
+  entryNumber_lte?: Maybe<String>;
+  entryNumber_gt?: Maybe<String>;
+  entryNumber_gte?: Maybe<String>;
+  entryNumber_contains?: Maybe<String>;
+  entryNumber_not_contains?: Maybe<String>;
+  entryNumber_starts_with?: Maybe<String>;
+  entryNumber_not_starts_with?: Maybe<String>;
+  entryNumber_ends_with?: Maybe<String>;
+  entryNumber_not_ends_with?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryTime_not?: Maybe<String>;
+  entryTime_in?: Maybe<String[] | String>;
+  entryTime_not_in?: Maybe<String[] | String>;
+  entryTime_lt?: Maybe<String>;
+  entryTime_lte?: Maybe<String>;
+  entryTime_gt?: Maybe<String>;
+  entryTime_gte?: Maybe<String>;
+  entryTime_contains?: Maybe<String>;
+  entryTime_not_contains?: Maybe<String>;
+  entryTime_starts_with?: Maybe<String>;
+  entryTime_not_starts_with?: Maybe<String>;
+  entryTime_ends_with?: Maybe<String>;
+  entryTime_not_ends_with?: Maybe<String>;
   entryDay?: Maybe<String>;
   entryDay_not?: Maybe<String>;
   entryDay_in?: Maybe<String[] | String>;
@@ -2586,8 +2610,8 @@ export interface DanceClassCreateWithoutStudioInput {
   makeupSet?: Maybe<MakeupSetCreateOneWithoutDanceClassesInput>;
   size: String;
   custom: Boolean;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -2659,8 +2683,8 @@ export interface CustomRoutineCreateWithoutParentInput {
   notes?: Maybe<String>;
   dancers?: Maybe<DancerCreateManyWithoutCustomRoutinesInput>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -2754,8 +2778,8 @@ export interface DanceClassCreateWithoutMakeupSetInput {
   dancers?: Maybe<DancerCreateManyWithoutDanceClassesInput>;
   size: String;
   custom: Boolean;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -2963,8 +2987,8 @@ export interface DanceClassCreateWithoutDancersInput {
   makeupSet?: Maybe<MakeupSetCreateOneWithoutDanceClassesInput>;
   size: String;
   custom: Boolean;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -3079,8 +3103,8 @@ export interface CustomRoutineCreateWithoutDancersInput {
   tights?: Maybe<String>;
   notes?: Maybe<String>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -3164,8 +3188,8 @@ export interface DanceClassCreateInput {
   makeupSet?: Maybe<MakeupSetCreateOneWithoutDanceClassesInput>;
   size: String;
   custom: Boolean;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -3266,8 +3290,8 @@ export interface DanceClassUpdateWithoutStudioDataInput {
   makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -3386,8 +3410,8 @@ export interface CustomRoutineUpdateWithoutParentDataInput {
   notes?: Maybe<String>;
   dancers?: Maybe<DancerUpdateManyWithoutCustomRoutinesInput>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -3524,8 +3548,8 @@ export interface DanceClassUpdateWithoutMakeupSetDataInput {
   dancers?: Maybe<DancerUpdateManyWithoutDanceClassesInput>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -4162,8 +4186,8 @@ export interface DanceClassUpdateWithoutDancersDataInput {
   makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -4333,8 +4357,8 @@ export interface CustomRoutineUpdateWithoutDancersDataInput {
   tights?: Maybe<String>;
   notes?: Maybe<String>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -4764,22 +4788,34 @@ export interface CustomRoutineScalarWhereInput {
   type_not_starts_with?: Maybe<String>;
   type_ends_with?: Maybe<String>;
   type_not_ends_with?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryNumber_not?: Maybe<Int>;
-  entryNumber_in?: Maybe<Int[] | Int>;
-  entryNumber_not_in?: Maybe<Int[] | Int>;
-  entryNumber_lt?: Maybe<Int>;
-  entryNumber_lte?: Maybe<Int>;
-  entryNumber_gt?: Maybe<Int>;
-  entryNumber_gte?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryTime_not?: Maybe<DateTimeInput>;
-  entryTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_lt?: Maybe<DateTimeInput>;
-  entryTime_lte?: Maybe<DateTimeInput>;
-  entryTime_gt?: Maybe<DateTimeInput>;
-  entryTime_gte?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryNumber_not?: Maybe<String>;
+  entryNumber_in?: Maybe<String[] | String>;
+  entryNumber_not_in?: Maybe<String[] | String>;
+  entryNumber_lt?: Maybe<String>;
+  entryNumber_lte?: Maybe<String>;
+  entryNumber_gt?: Maybe<String>;
+  entryNumber_gte?: Maybe<String>;
+  entryNumber_contains?: Maybe<String>;
+  entryNumber_not_contains?: Maybe<String>;
+  entryNumber_starts_with?: Maybe<String>;
+  entryNumber_not_starts_with?: Maybe<String>;
+  entryNumber_ends_with?: Maybe<String>;
+  entryNumber_not_ends_with?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryTime_not?: Maybe<String>;
+  entryTime_in?: Maybe<String[] | String>;
+  entryTime_not_in?: Maybe<String[] | String>;
+  entryTime_lt?: Maybe<String>;
+  entryTime_lte?: Maybe<String>;
+  entryTime_gt?: Maybe<String>;
+  entryTime_gte?: Maybe<String>;
+  entryTime_contains?: Maybe<String>;
+  entryTime_not_contains?: Maybe<String>;
+  entryTime_starts_with?: Maybe<String>;
+  entryTime_not_starts_with?: Maybe<String>;
+  entryTime_ends_with?: Maybe<String>;
+  entryTime_not_ends_with?: Maybe<String>;
   entryDay?: Maybe<String>;
   entryDay_not?: Maybe<String>;
   entryDay_in?: Maybe<String[] | String>;
@@ -4820,8 +4856,8 @@ export interface CustomRoutineUpdateManyDataInput {
   tights?: Maybe<String>;
   notes?: Maybe<String>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -4928,8 +4964,8 @@ export interface DanceClassUpdateDataInput {
   makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5168,22 +5204,34 @@ export interface DanceClassScalarWhereInput {
   size_not_ends_with?: Maybe<String>;
   custom?: Maybe<Boolean>;
   custom_not?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryNumber_not?: Maybe<Int>;
-  entryNumber_in?: Maybe<Int[] | Int>;
-  entryNumber_not_in?: Maybe<Int[] | Int>;
-  entryNumber_lt?: Maybe<Int>;
-  entryNumber_lte?: Maybe<Int>;
-  entryNumber_gt?: Maybe<Int>;
-  entryNumber_gte?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
-  entryTime_not?: Maybe<DateTimeInput>;
-  entryTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  entryTime_lt?: Maybe<DateTimeInput>;
-  entryTime_lte?: Maybe<DateTimeInput>;
-  entryTime_gt?: Maybe<DateTimeInput>;
-  entryTime_gte?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryNumber_not?: Maybe<String>;
+  entryNumber_in?: Maybe<String[] | String>;
+  entryNumber_not_in?: Maybe<String[] | String>;
+  entryNumber_lt?: Maybe<String>;
+  entryNumber_lte?: Maybe<String>;
+  entryNumber_gt?: Maybe<String>;
+  entryNumber_gte?: Maybe<String>;
+  entryNumber_contains?: Maybe<String>;
+  entryNumber_not_contains?: Maybe<String>;
+  entryNumber_starts_with?: Maybe<String>;
+  entryNumber_not_starts_with?: Maybe<String>;
+  entryNumber_ends_with?: Maybe<String>;
+  entryNumber_not_ends_with?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryTime_not?: Maybe<String>;
+  entryTime_in?: Maybe<String[] | String>;
+  entryTime_not_in?: Maybe<String[] | String>;
+  entryTime_lt?: Maybe<String>;
+  entryTime_lte?: Maybe<String>;
+  entryTime_gt?: Maybe<String>;
+  entryTime_gte?: Maybe<String>;
+  entryTime_contains?: Maybe<String>;
+  entryTime_not_contains?: Maybe<String>;
+  entryTime_starts_with?: Maybe<String>;
+  entryTime_not_starts_with?: Maybe<String>;
+  entryTime_ends_with?: Maybe<String>;
+  entryTime_not_ends_with?: Maybe<String>;
   entryDay?: Maybe<String>;
   entryDay_not?: Maybe<String>;
   entryDay_in?: Maybe<String[] | String>;
@@ -5224,8 +5272,8 @@ export interface DanceClassUpdateManyDataInput {
   notes?: Maybe<String>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5805,8 +5853,8 @@ export interface CustomRoutineCreateInput {
   notes?: Maybe<String>;
   dancers?: Maybe<DancerCreateManyWithoutCustomRoutinesInput>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5829,8 +5877,8 @@ export interface CustomRoutineUpdateInput {
   notes?: Maybe<String>;
   dancers?: Maybe<DancerUpdateManyWithoutCustomRoutinesInput>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5850,8 +5898,8 @@ export interface CustomRoutineUpdateManyMutationInput {
   tights?: Maybe<String>;
   notes?: Maybe<String>;
   type?: Maybe<String>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5874,8 +5922,8 @@ export interface DanceClassUpdateInput {
   makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -5895,8 +5943,8 @@ export interface DanceClassUpdateManyMutationInput {
   notes?: Maybe<String>;
   size?: Maybe<String>;
   custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<Int>;
-  entryTime?: Maybe<DateTimeInput>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
 }
 
@@ -6852,8 +6900,8 @@ export interface DanceClass {
   notes?: String;
   size: String;
   custom: Boolean;
-  entryNumber?: Int;
-  entryTime?: DateTimeOutput;
+  entryNumber?: String;
+  entryTime?: String;
   entryDay?: String;
 }
 
@@ -6887,8 +6935,8 @@ export interface DanceClassPromise extends Promise<DanceClass>, Fragmentable {
   makeupSet: <T = MakeupSetPromise>() => T;
   size: () => Promise<String>;
   custom: () => Promise<Boolean>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -6924,8 +6972,8 @@ export interface DanceClassSubscription
   makeupSet: <T = MakeupSetSubscription>() => T;
   size: () => Promise<AsyncIterator<String>>;
   custom: () => Promise<AsyncIterator<Boolean>>;
-  entryNumber: () => Promise<AsyncIterator<Int>>;
-  entryTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  entryNumber: () => Promise<AsyncIterator<String>>;
+  entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
 }
 
@@ -6961,8 +7009,8 @@ export interface DanceClassNullablePromise
   makeupSet: <T = MakeupSetPromise>() => T;
   size: () => Promise<String>;
   custom: () => Promise<Boolean>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -7259,8 +7307,8 @@ export interface CustomRoutine {
   tights?: String;
   notes?: String;
   type?: String;
-  entryNumber?: Int;
-  entryTime?: DateTimeOutput;
+  entryNumber?: String;
+  entryTime?: String;
   entryDay?: String;
 }
 
@@ -7294,8 +7342,8 @@ export interface CustomRoutinePromise
     last?: Int;
   }) => T;
   type: () => Promise<String>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -7329,8 +7377,8 @@ export interface CustomRoutineSubscription
     last?: Int;
   }) => T;
   type: () => Promise<AsyncIterator<String>>;
-  entryNumber: () => Promise<AsyncIterator<Int>>;
-  entryTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  entryNumber: () => Promise<AsyncIterator<String>>;
+  entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
 }
 
@@ -7364,8 +7412,8 @@ export interface CustomRoutineNullablePromise
     last?: Int;
   }) => T;
   type: () => Promise<String>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -8561,8 +8609,8 @@ export interface CustomRoutinePreviousValues {
   tights?: String;
   notes?: String;
   type?: String;
-  entryNumber?: Int;
-  entryTime?: DateTimeOutput;
+  entryNumber?: String;
+  entryTime?: String;
   entryDay?: String;
 }
 
@@ -8585,8 +8633,8 @@ export interface CustomRoutinePreviousValuesPromise
   tights: () => Promise<String>;
   notes: () => Promise<String>;
   type: () => Promise<String>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -8609,8 +8657,8 @@ export interface CustomRoutinePreviousValuesSubscription
   tights: () => Promise<AsyncIterator<String>>;
   notes: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
-  entryNumber: () => Promise<AsyncIterator<Int>>;
-  entryTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  entryNumber: () => Promise<AsyncIterator<String>>;
+  entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
 }
 
@@ -8658,8 +8706,8 @@ export interface DanceClassPreviousValues {
   notes?: String;
   size: String;
   custom: Boolean;
-  entryNumber?: Int;
-  entryTime?: DateTimeOutput;
+  entryNumber?: String;
+  entryTime?: String;
   entryDay?: String;
 }
 
@@ -8684,8 +8732,8 @@ export interface DanceClassPreviousValuesPromise
   notes: () => Promise<String>;
   size: () => Promise<String>;
   custom: () => Promise<Boolean>;
-  entryNumber: () => Promise<Int>;
-  entryTime: () => Promise<DateTimeOutput>;
+  entryNumber: () => Promise<String>;
+  entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
 }
 
@@ -8710,8 +8758,8 @@ export interface DanceClassPreviousValuesSubscription
   notes: () => Promise<AsyncIterator<String>>;
   size: () => Promise<AsyncIterator<String>>;
   custom: () => Promise<AsyncIterator<Boolean>>;
-  entryNumber: () => Promise<AsyncIterator<Int>>;
-  entryTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  entryNumber: () => Promise<AsyncIterator<String>>;
+  entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
 }
 

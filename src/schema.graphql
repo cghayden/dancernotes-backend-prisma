@@ -45,6 +45,9 @@ type Mutation {
     style: String
     ageDivision: String
     size: String
+    entryNumber: String
+    entryDay: String
+    entryTime: String
   ): DanceClass!
   updateDanceClass(
     id: ID!
@@ -62,6 +65,9 @@ type Mutation {
     style: String
     ageDivision: String
     size: String
+    entryNumber: String
+    entryDay: String
+    entryTime: String
   ): DanceClass
   addDancer(dancerId: ID!, danceId: ID!): SuccessMessage
   removeDancerFromDance(dancerId: ID!, danceId: ID!): SuccessMessage
@@ -124,6 +130,9 @@ type Mutation {
     studio: ID
     ageDivision: String
     competitiveLevel: String
+    entryNumber: String
+    entryDay: String
+    entryTime: String
   ): CustomRoutine
   updateCustomRoutine(
     id: ID!
@@ -139,6 +148,9 @@ type Mutation {
     musicId: String
     ageDivision: String
     competitiveLevel: String
+    entryNumber: String
+    entryDay: String
+    entryTime: String
   ): CustomRoutine
   addNote(danceId: ID!, note: String!): ParentNote
   deleteParentNote(noteId: ID!): ParentNote
@@ -265,6 +277,9 @@ type DanceClass {
   studio: Studio
   parentsNotes: ParentNote
   custom: Boolean
+  entryNumber: String
+  entryDay: String
+  entryTime: String
 }
 
 # set User types here that does not include password info so no we can have acces to the user without exposing sensitive information.
