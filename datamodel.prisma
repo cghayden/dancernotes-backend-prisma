@@ -75,8 +75,8 @@ type DanceClass {
   makeupSet: MakeupSet
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -100,8 +100,8 @@ type CustomRoutine {
   notes: String
   dancers: [Dancer!]!
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 

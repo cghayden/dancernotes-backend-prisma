@@ -63,6 +63,9 @@ const Query = {
       day
       startTime
       endTime
+      entryNumber
+      entryDay
+      entryTime
       dancers{
         id
         firstName

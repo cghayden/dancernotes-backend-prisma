@@ -212,8 +212,8 @@ type CustomRoutine {
   notes: String
   dancers(where: DancerWhereInput, orderBy: DancerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dancer!]
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -243,8 +243,8 @@ input CustomRoutineCreateInput {
   notes: String
   dancers: DancerCreateManyWithoutCustomRoutinesInput
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -277,8 +277,8 @@ input CustomRoutineCreateWithoutDancersInput {
   tights: String
   notes: String
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -301,8 +301,8 @@ input CustomRoutineCreateWithoutParentInput {
   notes: String
   dancers: DancerCreateManyWithoutCustomRoutinesInput
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -369,8 +369,8 @@ type CustomRoutinePreviousValues {
   tights: String
   notes: String
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -587,22 +587,34 @@ input CustomRoutineScalarWhereInput {
   type_not_starts_with: String
   type_ends_with: String
   type_not_ends_with: String
-  entryNumber: Int
-  entryNumber_not: Int
-  entryNumber_in: [Int!]
-  entryNumber_not_in: [Int!]
-  entryNumber_lt: Int
-  entryNumber_lte: Int
-  entryNumber_gt: Int
-  entryNumber_gte: Int
-  entryTime: DateTime
-  entryTime_not: DateTime
-  entryTime_in: [DateTime!]
-  entryTime_not_in: [DateTime!]
-  entryTime_lt: DateTime
-  entryTime_lte: DateTime
-  entryTime_gt: DateTime
-  entryTime_gte: DateTime
+  entryNumber: String
+  entryNumber_not: String
+  entryNumber_in: [String!]
+  entryNumber_not_in: [String!]
+  entryNumber_lt: String
+  entryNumber_lte: String
+  entryNumber_gt: String
+  entryNumber_gte: String
+  entryNumber_contains: String
+  entryNumber_not_contains: String
+  entryNumber_starts_with: String
+  entryNumber_not_starts_with: String
+  entryNumber_ends_with: String
+  entryNumber_not_ends_with: String
+  entryTime: String
+  entryTime_not: String
+  entryTime_in: [String!]
+  entryTime_not_in: [String!]
+  entryTime_lt: String
+  entryTime_lte: String
+  entryTime_gt: String
+  entryTime_gte: String
+  entryTime_contains: String
+  entryTime_not_contains: String
+  entryTime_starts_with: String
+  entryTime_not_starts_with: String
+  entryTime_ends_with: String
+  entryTime_not_ends_with: String
   entryDay: String
   entryDay_not: String
   entryDay_in: [String!]
@@ -659,8 +671,8 @@ input CustomRoutineUpdateInput {
   notes: String
   dancers: DancerUpdateManyWithoutCustomRoutinesInput
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -680,8 +692,8 @@ input CustomRoutineUpdateManyDataInput {
   tights: String
   notes: String
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -701,8 +713,8 @@ input CustomRoutineUpdateManyMutationInput {
   tights: String
   notes: String
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -753,8 +765,8 @@ input CustomRoutineUpdateWithoutDancersDataInput {
   tights: String
   notes: String
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -776,8 +788,8 @@ input CustomRoutineUpdateWithoutParentDataInput {
   notes: String
   dancers: DancerUpdateManyWithoutCustomRoutinesInput
   type: String
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1021,22 +1033,34 @@ input CustomRoutineWhereInput {
   type_not_starts_with: String
   type_ends_with: String
   type_not_ends_with: String
-  entryNumber: Int
-  entryNumber_not: Int
-  entryNumber_in: [Int!]
-  entryNumber_not_in: [Int!]
-  entryNumber_lt: Int
-  entryNumber_lte: Int
-  entryNumber_gt: Int
-  entryNumber_gte: Int
-  entryTime: DateTime
-  entryTime_not: DateTime
-  entryTime_in: [DateTime!]
-  entryTime_not_in: [DateTime!]
-  entryTime_lt: DateTime
-  entryTime_lte: DateTime
-  entryTime_gt: DateTime
-  entryTime_gte: DateTime
+  entryNumber: String
+  entryNumber_not: String
+  entryNumber_in: [String!]
+  entryNumber_not_in: [String!]
+  entryNumber_lt: String
+  entryNumber_lte: String
+  entryNumber_gt: String
+  entryNumber_gte: String
+  entryNumber_contains: String
+  entryNumber_not_contains: String
+  entryNumber_starts_with: String
+  entryNumber_not_starts_with: String
+  entryNumber_ends_with: String
+  entryNumber_not_ends_with: String
+  entryTime: String
+  entryTime_not: String
+  entryTime_in: [String!]
+  entryTime_not_in: [String!]
+  entryTime_lt: String
+  entryTime_lte: String
+  entryTime_gt: String
+  entryTime_gte: String
+  entryTime_contains: String
+  entryTime_not_contains: String
+  entryTime_starts_with: String
+  entryTime_not_starts_with: String
+  entryTime_ends_with: String
+  entryTime_not_ends_with: String
   entryDay: String
   entryDay_not: String
   entryDay_in: [String!]
@@ -1082,8 +1106,8 @@ type DanceClass {
   makeupSet: MakeupSet
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1113,8 +1137,8 @@ input DanceClassCreateInput {
   makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1162,8 +1186,8 @@ input DanceClassCreateWithoutDancersInput {
   makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1186,8 +1210,8 @@ input DanceClassCreateWithoutMakeupSetInput {
   dancers: DancerCreateManyWithoutDanceClassesInput
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1210,8 +1234,8 @@ input DanceClassCreateWithoutStudioInput {
   makeupSet: MakeupSetCreateOneWithoutDanceClassesInput
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1284,8 +1308,8 @@ type DanceClassPreviousValues {
   notes: String
   size: String!
   custom: Boolean!
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1518,22 +1542,34 @@ input DanceClassScalarWhereInput {
   size_not_ends_with: String
   custom: Boolean
   custom_not: Boolean
-  entryNumber: Int
-  entryNumber_not: Int
-  entryNumber_in: [Int!]
-  entryNumber_not_in: [Int!]
-  entryNumber_lt: Int
-  entryNumber_lte: Int
-  entryNumber_gt: Int
-  entryNumber_gte: Int
-  entryTime: DateTime
-  entryTime_not: DateTime
-  entryTime_in: [DateTime!]
-  entryTime_not_in: [DateTime!]
-  entryTime_lt: DateTime
-  entryTime_lte: DateTime
-  entryTime_gt: DateTime
-  entryTime_gte: DateTime
+  entryNumber: String
+  entryNumber_not: String
+  entryNumber_in: [String!]
+  entryNumber_not_in: [String!]
+  entryNumber_lt: String
+  entryNumber_lte: String
+  entryNumber_gt: String
+  entryNumber_gte: String
+  entryNumber_contains: String
+  entryNumber_not_contains: String
+  entryNumber_starts_with: String
+  entryNumber_not_starts_with: String
+  entryNumber_ends_with: String
+  entryNumber_not_ends_with: String
+  entryTime: String
+  entryTime_not: String
+  entryTime_in: [String!]
+  entryTime_not_in: [String!]
+  entryTime_lt: String
+  entryTime_lte: String
+  entryTime_gt: String
+  entryTime_gte: String
+  entryTime_contains: String
+  entryTime_not_contains: String
+  entryTime_starts_with: String
+  entryTime_not_starts_with: String
+  entryTime_ends_with: String
+  entryTime_not_ends_with: String
   entryDay: String
   entryDay_not: String
   entryDay_in: [String!]
@@ -1590,8 +1626,8 @@ input DanceClassUpdateDataInput {
   makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1614,8 +1650,8 @@ input DanceClassUpdateInput {
   makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1635,8 +1671,8 @@ input DanceClassUpdateManyDataInput {
   notes: String
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1668,8 +1704,8 @@ input DanceClassUpdateManyMutationInput {
   notes: String
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1739,8 +1775,8 @@ input DanceClassUpdateWithoutDancersDataInput {
   makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1762,8 +1798,8 @@ input DanceClassUpdateWithoutMakeupSetDataInput {
   dancers: DancerUpdateManyWithoutDanceClassesInput
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -1785,8 +1821,8 @@ input DanceClassUpdateWithoutStudioDataInput {
   makeupSet: MakeupSetUpdateOneWithoutDanceClassesInput
   size: String
   custom: Boolean
-  entryNumber: Int
-  entryTime: DateTime
+  entryNumber: String
+  entryTime: String
   entryDay: String
 }
 
@@ -2073,22 +2109,34 @@ input DanceClassWhereInput {
   size_not_ends_with: String
   custom: Boolean
   custom_not: Boolean
-  entryNumber: Int
-  entryNumber_not: Int
-  entryNumber_in: [Int!]
-  entryNumber_not_in: [Int!]
-  entryNumber_lt: Int
-  entryNumber_lte: Int
-  entryNumber_gt: Int
-  entryNumber_gte: Int
-  entryTime: DateTime
-  entryTime_not: DateTime
-  entryTime_in: [DateTime!]
-  entryTime_not_in: [DateTime!]
-  entryTime_lt: DateTime
-  entryTime_lte: DateTime
-  entryTime_gt: DateTime
-  entryTime_gte: DateTime
+  entryNumber: String
+  entryNumber_not: String
+  entryNumber_in: [String!]
+  entryNumber_not_in: [String!]
+  entryNumber_lt: String
+  entryNumber_lte: String
+  entryNumber_gt: String
+  entryNumber_gte: String
+  entryNumber_contains: String
+  entryNumber_not_contains: String
+  entryNumber_starts_with: String
+  entryNumber_not_starts_with: String
+  entryNumber_ends_with: String
+  entryNumber_not_ends_with: String
+  entryTime: String
+  entryTime_not: String
+  entryTime_in: [String!]
+  entryTime_not_in: [String!]
+  entryTime_lt: String
+  entryTime_lte: String
+  entryTime_gt: String
+  entryTime_gte: String
+  entryTime_contains: String
+  entryTime_not_contains: String
+  entryTime_starts_with: String
+  entryTime_not_starts_with: String
+  entryTime_ends_with: String
+  entryTime_not_ends_with: String
   entryDay: String
   entryDay_not: String
   entryDay_in: [String!]
