@@ -13,12 +13,16 @@ type Mutation {
     firstName: String!
     userType: String!
     password: String!
+    agreeToTerms: DateTime!
+    readPrivacy: DateTime!
   ): Parent!
   signupStudio(
     email: String!
     studioName: String!
     userType: String!
     password: String!
+    agreeToTerms: DateTime!
+    readPrivacy: DateTime!
   ): Studio!
   signinParent(email: String!, password: String!): Parent!
   signinStudio(email: String!, password: String!): Studio!

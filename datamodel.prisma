@@ -13,6 +13,8 @@ type Parent {
   customRoutines: [CustomRoutine!]!
   studios: [Studio!]!
   accessRequests: [ID!]! @scalarList(strategy: RELATION)
+  agreeToTerms: DateTime
+  readPrivacy: DateTime
 }
 
 type Studio {
@@ -36,6 +38,8 @@ type Studio {
   website: String
   enrollmentRequests: [EnrollmentRequest!]!
   accessRequests: [AccessRequest!]!
+  agreeToTerms: DateTime
+  readPrivacy: DateTime
 }
 
 type Dancer {
