@@ -1109,6 +1109,8 @@ type DanceClass {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 type DanceClassConnection {
@@ -1140,6 +1142,8 @@ input DanceClassCreateInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassCreateManyInput {
@@ -1189,6 +1193,8 @@ input DanceClassCreateWithoutDancersInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassCreateWithoutMakeupSetInput {
@@ -1213,6 +1219,8 @@ input DanceClassCreateWithoutMakeupSetInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassCreateWithoutStudioInput {
@@ -1237,6 +1245,8 @@ input DanceClassCreateWithoutStudioInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 type DanceClassEdge {
@@ -1287,6 +1297,10 @@ enum DanceClassOrderByInput {
   entryTime_DESC
   entryDay_ASC
   entryDay_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+  videoId_ASC
+  videoId_DESC
 }
 
 type DanceClassPreviousValues {
@@ -1311,6 +1325,8 @@ type DanceClassPreviousValues {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassScalarWhereInput {
@@ -1584,6 +1600,34 @@ input DanceClassScalarWhereInput {
   entryDay_not_starts_with: String
   entryDay_ends_with: String
   entryDay_not_ends_with: String
+  videoUrl: String
+  videoUrl_not: String
+  videoUrl_in: [String!]
+  videoUrl_not_in: [String!]
+  videoUrl_lt: String
+  videoUrl_lte: String
+  videoUrl_gt: String
+  videoUrl_gte: String
+  videoUrl_contains: String
+  videoUrl_not_contains: String
+  videoUrl_starts_with: String
+  videoUrl_not_starts_with: String
+  videoUrl_ends_with: String
+  videoUrl_not_ends_with: String
+  videoId: String
+  videoId_not: String
+  videoId_in: [String!]
+  videoId_not_in: [String!]
+  videoId_lt: String
+  videoId_lte: String
+  videoId_gt: String
+  videoId_gte: String
+  videoId_contains: String
+  videoId_not_contains: String
+  videoId_starts_with: String
+  videoId_not_starts_with: String
+  videoId_ends_with: String
+  videoId_not_ends_with: String
   AND: [DanceClassScalarWhereInput!]
   OR: [DanceClassScalarWhereInput!]
   NOT: [DanceClassScalarWhereInput!]
@@ -1629,6 +1673,8 @@ input DanceClassUpdateDataInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateInput {
@@ -1653,6 +1699,8 @@ input DanceClassUpdateInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateManyDataInput {
@@ -1674,6 +1722,8 @@ input DanceClassUpdateManyDataInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateManyInput {
@@ -1707,6 +1757,8 @@ input DanceClassUpdateManyMutationInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateManyWithoutDancersInput {
@@ -1778,6 +1830,8 @@ input DanceClassUpdateWithoutDancersDataInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateWithoutMakeupSetDataInput {
@@ -1801,6 +1855,8 @@ input DanceClassUpdateWithoutMakeupSetDataInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateWithoutStudioDataInput {
@@ -1824,6 +1880,8 @@ input DanceClassUpdateWithoutStudioDataInput {
   entryNumber: String
   entryTime: String
   entryDay: String
+  videoUrl: String
+  videoId: String
 }
 
 input DanceClassUpdateWithWhereUniqueNestedInput {
@@ -2151,6 +2209,34 @@ input DanceClassWhereInput {
   entryDay_not_starts_with: String
   entryDay_ends_with: String
   entryDay_not_ends_with: String
+  videoUrl: String
+  videoUrl_not: String
+  videoUrl_in: [String!]
+  videoUrl_not_in: [String!]
+  videoUrl_lt: String
+  videoUrl_lte: String
+  videoUrl_gt: String
+  videoUrl_gte: String
+  videoUrl_contains: String
+  videoUrl_not_contains: String
+  videoUrl_starts_with: String
+  videoUrl_not_starts_with: String
+  videoUrl_ends_with: String
+  videoUrl_not_ends_with: String
+  videoId: String
+  videoId_not: String
+  videoId_in: [String!]
+  videoId_not_in: [String!]
+  videoId_lt: String
+  videoId_lte: String
+  videoId_gt: String
+  videoId_gte: String
+  videoId_contains: String
+  videoId_not_contains: String
+  videoId_starts_with: String
+  videoId_not_starts_with: String
+  videoId_ends_with: String
+  videoId_not_ends_with: String
   AND: [DanceClassWhereInput!]
   OR: [DanceClassWhereInput!]
   NOT: [DanceClassWhereInput!]

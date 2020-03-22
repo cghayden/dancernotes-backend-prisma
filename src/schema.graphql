@@ -201,6 +201,10 @@ type Mutation {
   ): Parent!
   withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
   deleteCustomRoutine(id: ID!, musicId: String): SuccessMessage
+  setTermsAndPrivacy(
+    agreeToTerms: DateTime!
+    readPrivacy: DateTime!
+  ): SuccessMessage
 }
 
 type Query {
@@ -257,6 +261,8 @@ type Parent {
   studios: [Studio!]!
   accessRequests: [ID!]!
   customRoutines: [CustomRoutine!]!
+  agreeToTerms: DateTime
+  readPrivacy: DateTime
 }
 
 type DanceClass {
@@ -284,6 +290,8 @@ type DanceClass {
   entryNumber: String
   entryDay: String
   entryTime: String
+  videoUrl: String
+  videoId: String
 }
 
 # set User types here that does not include password info so no we can have acces to the user without exposing sensitive information.
