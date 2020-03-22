@@ -28,7 +28,6 @@ const Mutations = {
     ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365
-      // secure: process.env.PRODUCTION ? true : false, //one year cookie
     });
     return parentUser;
   },
@@ -888,6 +887,19 @@ const Mutations = {
       info
     );
     return { message: "Class Deleted" };
+  },
+  async setTermsAndPrivacy(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do this");
+    }
+    await ctx.db.mutation.updateParent(
+      {
+        where: { id: ctx.request.userId },
+        data: { ...args }
+      },
+      info
+    );
+    return { message: "terms and privacy agreed to" };
   }
 };
 

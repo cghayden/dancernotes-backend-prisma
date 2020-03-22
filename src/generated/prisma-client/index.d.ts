@@ -592,7 +592,11 @@ export type DanceClassOrderByInput =
   | "entryTime_ASC"
   | "entryTime_DESC"
   | "entryDay_ASC"
-  | "entryDay_DESC";
+  | "entryDay_DESC"
+  | "videoUrl_ASC"
+  | "videoUrl_DESC"
+  | "videoId_ASC"
+  | "videoId_DESC";
 
 export type DancerOrderByInput =
   | "createdAt_ASC"
@@ -1102,6 +1106,34 @@ export interface DanceClassWhereInput {
   entryDay_not_starts_with?: Maybe<String>;
   entryDay_ends_with?: Maybe<String>;
   entryDay_not_ends_with?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoUrl_not?: Maybe<String>;
+  videoUrl_in?: Maybe<String[] | String>;
+  videoUrl_not_in?: Maybe<String[] | String>;
+  videoUrl_lt?: Maybe<String>;
+  videoUrl_lte?: Maybe<String>;
+  videoUrl_gt?: Maybe<String>;
+  videoUrl_gte?: Maybe<String>;
+  videoUrl_contains?: Maybe<String>;
+  videoUrl_not_contains?: Maybe<String>;
+  videoUrl_starts_with?: Maybe<String>;
+  videoUrl_not_starts_with?: Maybe<String>;
+  videoUrl_ends_with?: Maybe<String>;
+  videoUrl_not_ends_with?: Maybe<String>;
+  videoId?: Maybe<String>;
+  videoId_not?: Maybe<String>;
+  videoId_in?: Maybe<String[] | String>;
+  videoId_not_in?: Maybe<String[] | String>;
+  videoId_lt?: Maybe<String>;
+  videoId_lte?: Maybe<String>;
+  videoId_gt?: Maybe<String>;
+  videoId_gte?: Maybe<String>;
+  videoId_contains?: Maybe<String>;
+  videoId_not_contains?: Maybe<String>;
+  videoId_starts_with?: Maybe<String>;
+  videoId_not_starts_with?: Maybe<String>;
+  videoId_ends_with?: Maybe<String>;
+  videoId_not_ends_with?: Maybe<String>;
   AND?: Maybe<DanceClassWhereInput[] | DanceClassWhereInput>;
   OR?: Maybe<DanceClassWhereInput[] | DanceClassWhereInput>;
   NOT?: Maybe<DanceClassWhereInput[] | DanceClassWhereInput>;
@@ -2655,6 +2687,8 @@ export interface DanceClassCreateWithoutStudioInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DancerCreateManyWithoutDanceClassesInput {
@@ -2827,6 +2861,8 @@ export interface DanceClassCreateWithoutMakeupSetInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface StudioCreateOneWithoutDanceClassesInput {
@@ -3042,6 +3078,8 @@ export interface DanceClassCreateWithoutDancersInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface MakeupSetCreateOneWithoutDanceClassesInput {
@@ -3249,6 +3287,8 @@ export interface DanceClassCreateInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DancerCreateManyWithoutCustomRoutinesInput {
@@ -3353,6 +3393,8 @@ export interface DanceClassUpdateWithoutStudioDataInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DancerUpdateManyWithoutDanceClassesInput {
@@ -3615,6 +3657,8 @@ export interface DanceClassUpdateWithoutMakeupSetDataInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface StudioUpdateOneRequiredWithoutDanceClassesInput {
@@ -4259,6 +4303,8 @@ export interface DanceClassUpdateWithoutDancersDataInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface MakeupSetUpdateOneWithoutDanceClassesInput {
@@ -5061,6 +5107,8 @@ export interface DanceClassUpdateDataInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DanceClassUpsertWithWhereUniqueNestedInput {
@@ -5340,6 +5388,34 @@ export interface DanceClassScalarWhereInput {
   entryDay_not_starts_with?: Maybe<String>;
   entryDay_ends_with?: Maybe<String>;
   entryDay_not_ends_with?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoUrl_not?: Maybe<String>;
+  videoUrl_in?: Maybe<String[] | String>;
+  videoUrl_not_in?: Maybe<String[] | String>;
+  videoUrl_lt?: Maybe<String>;
+  videoUrl_lte?: Maybe<String>;
+  videoUrl_gt?: Maybe<String>;
+  videoUrl_gte?: Maybe<String>;
+  videoUrl_contains?: Maybe<String>;
+  videoUrl_not_contains?: Maybe<String>;
+  videoUrl_starts_with?: Maybe<String>;
+  videoUrl_not_starts_with?: Maybe<String>;
+  videoUrl_ends_with?: Maybe<String>;
+  videoUrl_not_ends_with?: Maybe<String>;
+  videoId?: Maybe<String>;
+  videoId_not?: Maybe<String>;
+  videoId_in?: Maybe<String[] | String>;
+  videoId_not_in?: Maybe<String[] | String>;
+  videoId_lt?: Maybe<String>;
+  videoId_lte?: Maybe<String>;
+  videoId_gt?: Maybe<String>;
+  videoId_gte?: Maybe<String>;
+  videoId_contains?: Maybe<String>;
+  videoId_not_contains?: Maybe<String>;
+  videoId_starts_with?: Maybe<String>;
+  videoId_not_starts_with?: Maybe<String>;
+  videoId_ends_with?: Maybe<String>;
+  videoId_not_ends_with?: Maybe<String>;
   AND?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
   OR?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
   NOT?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
@@ -5369,6 +5445,8 @@ export interface DanceClassUpdateManyDataInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
@@ -6019,6 +6097,8 @@ export interface DanceClassUpdateInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DanceClassUpdateManyMutationInput {
@@ -6040,6 +6120,8 @@ export interface DanceClassUpdateManyMutationInput {
   entryNumber?: Maybe<String>;
   entryTime?: Maybe<String>;
   entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DancerCreateInput {
@@ -7021,6 +7103,8 @@ export interface DanceClass {
   entryNumber?: String;
   entryTime?: String;
   entryDay?: String;
+  videoUrl?: String;
+  videoId?: String;
 }
 
 export interface DanceClassPromise extends Promise<DanceClass>, Fragmentable {
@@ -7056,6 +7140,8 @@ export interface DanceClassPromise extends Promise<DanceClass>, Fragmentable {
   entryNumber: () => Promise<String>;
   entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
+  videoUrl: () => Promise<String>;
+  videoId: () => Promise<String>;
 }
 
 export interface DanceClassSubscription
@@ -7093,6 +7179,8 @@ export interface DanceClassSubscription
   entryNumber: () => Promise<AsyncIterator<String>>;
   entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
+  videoUrl: () => Promise<AsyncIterator<String>>;
+  videoId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface DanceClassNullablePromise
@@ -7130,6 +7218,8 @@ export interface DanceClassNullablePromise
   entryNumber: () => Promise<String>;
   entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
+  videoUrl: () => Promise<String>;
+  videoId: () => Promise<String>;
 }
 
 export interface Dancer {
@@ -8835,6 +8925,8 @@ export interface DanceClassPreviousValues {
   entryNumber?: String;
   entryTime?: String;
   entryDay?: String;
+  videoUrl?: String;
+  videoId?: String;
 }
 
 export interface DanceClassPreviousValuesPromise
@@ -8861,6 +8953,8 @@ export interface DanceClassPreviousValuesPromise
   entryNumber: () => Promise<String>;
   entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
+  videoUrl: () => Promise<String>;
+  videoId: () => Promise<String>;
 }
 
 export interface DanceClassPreviousValuesSubscription
@@ -8887,6 +8981,8 @@ export interface DanceClassPreviousValuesSubscription
   entryNumber: () => Promise<AsyncIterator<String>>;
   entryTime: () => Promise<AsyncIterator<String>>;
   entryDay: () => Promise<AsyncIterator<String>>;
+  videoUrl: () => Promise<AsyncIterator<String>>;
+  videoId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface DancerSubscriptionPayload {
