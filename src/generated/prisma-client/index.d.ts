@@ -678,7 +678,9 @@ export type StudioOrderByInput =
   | "agreeToTerms_ASC"
   | "agreeToTerms_DESC"
   | "readPrivacy_ASC"
-  | "readPrivacy_DESC";
+  | "readPrivacy_DESC"
+  | "agreedToTermsAndPrivacy_ASC"
+  | "agreedToTermsAndPrivacy_DESC";
 
 export type MakeupSetOrderByInput =
   | "createdAt_ASC"
@@ -788,7 +790,9 @@ export type ParentOrderByInput =
   | "agreeToTerms_ASC"
   | "agreeToTerms_DESC"
   | "readPrivacy_ASC"
-  | "readPrivacy_DESC";
+  | "readPrivacy_DESC"
+  | "agreedToTermsAndPrivacy_ASC"
+  | "agreedToTermsAndPrivacy_DESC";
 
 export type ParentEventOrderByInput =
   | "id_ASC"
@@ -1299,6 +1303,14 @@ export interface StudioWhereInput {
   readPrivacy_lte?: Maybe<DateTimeInput>;
   readPrivacy_gt?: Maybe<DateTimeInput>;
   readPrivacy_gte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_not?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_lt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_lte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   OR?: Maybe<StudioWhereInput[] | StudioWhereInput>;
   NOT?: Maybe<StudioWhereInput[] | StudioWhereInput>;
@@ -1854,6 +1866,14 @@ export interface ParentWhereInput {
   readPrivacy_lte?: Maybe<DateTimeInput>;
   readPrivacy_gt?: Maybe<DateTimeInput>;
   readPrivacy_gte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_not?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_lt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_lte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<ParentWhereInput[] | ParentWhereInput>;
   OR?: Maybe<ParentWhereInput[] | ParentWhereInput>;
   NOT?: Maybe<ParentWhereInput[] | ParentWhereInput>;
@@ -2656,6 +2676,7 @@ export interface StudioCreateWithoutAccessRequestsInput {
   enrollmentRequests?: Maybe<EnrollmentRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface DanceClassCreateManyWithoutStudioInput {
@@ -2730,6 +2751,7 @@ export interface ParentCreateWithoutDancersInput {
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface CustomRoutineCreateManyWithoutParentInput {
@@ -2792,6 +2814,7 @@ export interface StudioCreateInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioCreatestylesInput {
@@ -2890,6 +2913,7 @@ export interface StudioCreateWithoutDanceClassesInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface HairStyleCreateManyWithoutStudioInput {
@@ -2963,6 +2987,7 @@ export interface StudioCreateWithoutEnrollmentRequestsInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioEventCreateManyWithoutStudioInput {
@@ -3028,6 +3053,7 @@ export interface ParentCreateInput {
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface DancerCreateManyWithoutParentInput {
@@ -3130,6 +3156,7 @@ export interface StudioCreateWithoutMakeupSetsInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface EnrollmentRequestCreateManyWithoutStudioInput {
@@ -3219,6 +3246,7 @@ export interface ParentCreateWithoutCustomRoutinesInput {
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioCreateManyInput {
@@ -3257,6 +3285,7 @@ export interface StudioCreateWithoutDancersInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface DanceClassCreateManyInput {
@@ -3342,6 +3371,7 @@ export interface StudioUpdateWithoutAccessRequestsDataInput {
   enrollmentRequests?: Maybe<EnrollmentRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface DanceClassUpdateManyWithoutStudioInput {
@@ -3457,6 +3487,7 @@ export interface ParentUpdateWithoutDancersDataInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface CustomRoutineUpdateManyWithoutParentInput {
@@ -3548,6 +3579,7 @@ export interface StudioUpdateDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpdatestylesInput {
@@ -3687,6 +3719,7 @@ export interface StudioUpdateWithoutDanceClassesDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface HairStyleUpdateManyWithoutStudioInput {
@@ -3898,6 +3931,7 @@ export interface StudioUpdateWithoutEnrollmentRequestsDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioEventUpdateManyWithoutStudioInput {
@@ -4213,6 +4247,7 @@ export interface ParentUpdateDataInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface DancerUpdateManyWithoutParentInput {
@@ -4359,6 +4394,7 @@ export interface StudioUpdateWithoutMakeupSetsDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface EnrollmentRequestUpdateManyWithoutStudioInput {
@@ -4500,6 +4536,7 @@ export interface ParentUpdateWithoutCustomRoutinesDataInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpdateManyInput {
@@ -4673,6 +4710,14 @@ export interface StudioScalarWhereInput {
   readPrivacy_lte?: Maybe<DateTimeInput>;
   readPrivacy_gt?: Maybe<DateTimeInput>;
   readPrivacy_gte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_not?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  agreedToTermsAndPrivacy_lt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_lte?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gt?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   OR?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
   NOT?: Maybe<StudioScalarWhereInput[] | StudioScalarWhereInput>;
@@ -4696,6 +4741,7 @@ export interface StudioUpdateManyDataInput {
   website?: Maybe<String>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface ParentUpdateaccessRequestsInput {
@@ -5046,6 +5092,7 @@ export interface StudioUpdateWithoutDancersDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpsertWithWhereUniqueWithoutDancersInput {
@@ -6205,6 +6252,7 @@ export interface StudioCreateWithoutHairStylesInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface HairStyleUpdateInput {
@@ -6241,6 +6289,7 @@ export interface StudioUpdateWithoutHairStylesDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpsertWithoutHairStylesInput {
@@ -6322,6 +6371,7 @@ export interface ParentUpdateInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface ParentUpdateManyMutationInput {
@@ -6335,6 +6385,7 @@ export interface ParentUpdateManyMutationInput {
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface ParentEventCreateInput {
@@ -6463,6 +6514,7 @@ export interface StudioUpdateInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpdateManyMutationInput {
@@ -6478,6 +6530,7 @@ export interface StudioUpdateManyMutationInput {
   website?: Maybe<String>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioEventCreateInput {
@@ -6523,6 +6576,7 @@ export interface StudioCreateWithoutEventsInput {
   accessRequests?: Maybe<AccessRequestCreateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioEventUpdateInput {
@@ -6568,6 +6622,7 @@ export interface StudioUpdateWithoutEventsDataInput {
   accessRequests?: Maybe<AccessRequestUpdateManyWithoutStudioInput>;
   agreeToTerms?: Maybe<DateTimeInput>;
   readPrivacy?: Maybe<DateTimeInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface StudioUpsertWithoutEventsInput {
@@ -6828,6 +6883,7 @@ export interface Studio {
   website?: String;
   agreeToTerms?: DateTimeOutput;
   readPrivacy?: DateTimeOutput;
+  agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
 export interface StudioPromise extends Promise<Studio>, Fragmentable {
@@ -6909,6 +6965,7 @@ export interface StudioPromise extends Promise<Studio>, Fragmentable {
   }) => T;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface StudioSubscription
@@ -6996,6 +7053,7 @@ export interface StudioSubscription
   }) => T;
   agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
   readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
+  agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface StudioNullablePromise
@@ -7079,6 +7137,7 @@ export interface StudioNullablePromise
   }) => T;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface DanceClass {
@@ -7369,6 +7428,7 @@ export interface Parent {
   accessRequests: ID_Output[];
   agreeToTerms?: DateTimeOutput;
   readPrivacy?: DateTimeOutput;
+  agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
 export interface ParentPromise extends Promise<Parent>, Fragmentable {
@@ -7412,6 +7472,7 @@ export interface ParentPromise extends Promise<Parent>, Fragmentable {
   accessRequests: () => Promise<ID_Output[]>;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface ParentSubscription
@@ -7459,6 +7520,7 @@ export interface ParentSubscription
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
   agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
   readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
+  agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ParentNullablePromise
@@ -7504,6 +7566,7 @@ export interface ParentNullablePromise
   accessRequests: () => Promise<ID_Output[]>;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface CustomRoutine {
@@ -9269,6 +9332,7 @@ export interface ParentPreviousValues {
   accessRequests: ID_Output[];
   agreeToTerms?: DateTimeOutput;
   readPrivacy?: DateTimeOutput;
+  agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
 export interface ParentPreviousValuesPromise
@@ -9287,6 +9351,7 @@ export interface ParentPreviousValuesPromise
   accessRequests: () => Promise<ID_Output[]>;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface ParentPreviousValuesSubscription
@@ -9305,6 +9370,7 @@ export interface ParentPreviousValuesSubscription
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
   agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
   readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
+  agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ParentEventSubscriptionPayload {
@@ -9475,6 +9541,7 @@ export interface StudioPreviousValues {
   website?: String;
   agreeToTerms?: DateTimeOutput;
   readPrivacy?: DateTimeOutput;
+  agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
 export interface StudioPreviousValuesPromise
@@ -9495,6 +9562,7 @@ export interface StudioPreviousValuesPromise
   website: () => Promise<String>;
   agreeToTerms: () => Promise<DateTimeOutput>;
   readPrivacy: () => Promise<DateTimeOutput>;
+  agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
 export interface StudioPreviousValuesSubscription
@@ -9515,6 +9583,7 @@ export interface StudioPreviousValuesSubscription
   website: () => Promise<AsyncIterator<String>>;
   agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
   readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
+  agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface StudioEventSubscriptionPayload {
