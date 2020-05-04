@@ -4170,8 +4170,6 @@ type Parent {
   customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine!]
   studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio!]
   accessRequests: [ID!]!
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4198,8 +4196,6 @@ input ParentCreateInput {
   customRoutines: CustomRoutineCreateManyWithoutParentInput
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4230,8 +4226,6 @@ input ParentCreateWithoutCustomRoutinesInput {
   resetTokenExpiry: Float
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4247,8 +4241,6 @@ input ParentCreateWithoutDancersInput {
   customRoutines: CustomRoutineCreateManyWithoutParentInput
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4733,10 +4725,6 @@ enum ParentOrderByInput {
   resetToken_DESC
   resetTokenExpiry_ASC
   resetTokenExpiry_DESC
-  agreeToTerms_ASC
-  agreeToTerms_DESC
-  readPrivacy_ASC
-  readPrivacy_DESC
   agreedToTermsAndPrivacy_ASC
   agreedToTermsAndPrivacy_DESC
 }
@@ -4753,8 +4741,6 @@ type ParentPreviousValues {
   resetToken: String
   resetTokenExpiry: Float
   accessRequests: [ID!]!
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4792,8 +4778,6 @@ input ParentUpdateDataInput {
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4809,8 +4793,6 @@ input ParentUpdateInput {
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4823,8 +4805,6 @@ input ParentUpdateManyMutationInput {
   resetToken: String
   resetTokenExpiry: Float
   accessRequests: ParentUpdateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4860,8 +4840,6 @@ input ParentUpdateWithoutCustomRoutinesDataInput {
   resetTokenExpiry: Float
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -4876,8 +4854,6 @@ input ParentUpdateWithoutDancersDataInput {
   customRoutines: CustomRoutineUpdateManyWithoutParentInput
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5028,22 +5004,6 @@ input ParentWhereInput {
   studios_every: StudioWhereInput
   studios_some: StudioWhereInput
   studios_none: StudioWhereInput
-  agreeToTerms: DateTime
-  agreeToTerms_not: DateTime
-  agreeToTerms_in: [DateTime!]
-  agreeToTerms_not_in: [DateTime!]
-  agreeToTerms_lt: DateTime
-  agreeToTerms_lte: DateTime
-  agreeToTerms_gt: DateTime
-  agreeToTerms_gte: DateTime
-  readPrivacy: DateTime
-  readPrivacy_not: DateTime
-  readPrivacy_in: [DateTime!]
-  readPrivacy_not_in: [DateTime!]
-  readPrivacy_lt: DateTime
-  readPrivacy_lte: DateTime
-  readPrivacy_gt: DateTime
-  readPrivacy_gte: DateTime
   agreedToTermsAndPrivacy: DateTime
   agreedToTermsAndPrivacy_not: DateTime
   agreedToTermsAndPrivacy_in: [DateTime!]

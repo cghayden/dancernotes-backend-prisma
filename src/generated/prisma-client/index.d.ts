@@ -783,10 +783,6 @@ export type ParentOrderByInput =
   | "resetToken_DESC"
   | "resetTokenExpiry_ASC"
   | "resetTokenExpiry_DESC"
-  | "agreeToTerms_ASC"
-  | "agreeToTerms_DESC"
-  | "readPrivacy_ASC"
-  | "readPrivacy_DESC"
   | "agreedToTermsAndPrivacy_ASC"
   | "agreedToTermsAndPrivacy_DESC";
 
@@ -1830,22 +1826,6 @@ export interface ParentWhereInput {
   studios_every?: Maybe<StudioWhereInput>;
   studios_some?: Maybe<StudioWhereInput>;
   studios_none?: Maybe<StudioWhereInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  agreeToTerms_not?: Maybe<DateTimeInput>;
-  agreeToTerms_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  agreeToTerms_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  agreeToTerms_lt?: Maybe<DateTimeInput>;
-  agreeToTerms_lte?: Maybe<DateTimeInput>;
-  agreeToTerms_gt?: Maybe<DateTimeInput>;
-  agreeToTerms_gte?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
-  readPrivacy_not?: Maybe<DateTimeInput>;
-  readPrivacy_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  readPrivacy_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  readPrivacy_lt?: Maybe<DateTimeInput>;
-  readPrivacy_lte?: Maybe<DateTimeInput>;
-  readPrivacy_gt?: Maybe<DateTimeInput>;
-  readPrivacy_gte?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy_not?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -2727,8 +2707,6 @@ export interface ParentCreateWithoutDancersInput {
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -3023,8 +3001,6 @@ export interface ParentCreateInput {
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -3214,8 +3190,6 @@ export interface ParentCreateWithoutCustomRoutinesInput {
   resetTokenExpiry?: Maybe<Float>;
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -3451,8 +3425,6 @@ export interface ParentUpdateWithoutDancersDataInput {
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -4205,8 +4177,6 @@ export interface ParentUpdateDataInput {
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -4492,8 +4462,6 @@ export interface ParentUpdateWithoutCustomRoutinesDataInput {
   resetTokenExpiry?: Maybe<Float>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -6303,8 +6271,6 @@ export interface ParentUpdateInput {
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -6317,8 +6283,6 @@ export interface ParentUpdateManyMutationInput {
   resetToken?: Maybe<String>;
   resetTokenExpiry?: Maybe<Float>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
-  agreeToTerms?: Maybe<DateTimeInput>;
-  readPrivacy?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
@@ -7344,8 +7308,6 @@ export interface Parent {
   resetToken?: String;
   resetTokenExpiry?: Float;
   accessRequests: ID_Output[];
-  agreeToTerms?: DateTimeOutput;
-  readPrivacy?: DateTimeOutput;
   agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
@@ -7388,8 +7350,6 @@ export interface ParentPromise extends Promise<Parent>, Fragmentable {
     last?: Int;
   }) => T;
   accessRequests: () => Promise<ID_Output[]>;
-  agreeToTerms: () => Promise<DateTimeOutput>;
-  readPrivacy: () => Promise<DateTimeOutput>;
   agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
@@ -7436,8 +7396,6 @@ export interface ParentSubscription
     last?: Int;
   }) => T;
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
-  agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
-  readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
   agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -7482,8 +7440,6 @@ export interface ParentNullablePromise
     last?: Int;
   }) => T;
   accessRequests: () => Promise<ID_Output[]>;
-  agreeToTerms: () => Promise<DateTimeOutput>;
-  readPrivacy: () => Promise<DateTimeOutput>;
   agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
@@ -9248,8 +9204,6 @@ export interface ParentPreviousValues {
   resetToken?: String;
   resetTokenExpiry?: Float;
   accessRequests: ID_Output[];
-  agreeToTerms?: DateTimeOutput;
-  readPrivacy?: DateTimeOutput;
   agreedToTermsAndPrivacy?: DateTimeOutput;
 }
 
@@ -9267,8 +9221,6 @@ export interface ParentPreviousValuesPromise
   resetToken: () => Promise<String>;
   resetTokenExpiry: () => Promise<Float>;
   accessRequests: () => Promise<ID_Output[]>;
-  agreeToTerms: () => Promise<DateTimeOutput>;
-  readPrivacy: () => Promise<DateTimeOutput>;
   agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
 }
 
@@ -9286,8 +9238,6 @@ export interface ParentPreviousValuesSubscription
   resetToken: () => Promise<AsyncIterator<String>>;
   resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
-  agreeToTerms: () => Promise<AsyncIterator<DateTimeOutput>>;
-  readPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
   agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 

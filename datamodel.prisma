@@ -13,10 +13,7 @@ type Parent {
   customRoutines: [CustomRoutine!]! @relation(onDelete: CASCADE)
   studios: [Studio!]!
   accessRequests: [ID!]! @scalarList(strategy: RELATION)
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
-
 }
 
 type Studio {
