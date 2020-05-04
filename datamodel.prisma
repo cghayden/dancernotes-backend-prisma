@@ -15,6 +15,7 @@ type Parent {
   accessRequests: [ID!]! @scalarList(strategy: RELATION)
   agreeToTerms: DateTime
   readPrivacy: DateTime
+  agreedToTermsAndPrivacy: DateTime
 
 }
 
@@ -39,8 +40,8 @@ type Studio {
   website: String
   enrollmentRequests: [EnrollmentRequest!]!
   accessRequests: [AccessRequest!]!
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
+  agreedToTermsAndPrivacy: DateTime
+
 }
 
 type Dancer {
