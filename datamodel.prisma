@@ -40,8 +40,6 @@ type Studio {
   website: String
   enrollmentRequests: [EnrollmentRequest!]!
   accessRequests: [AccessRequest!]!
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 
 }

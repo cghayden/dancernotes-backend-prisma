@@ -5123,8 +5123,6 @@ type Studio {
   website: String
   enrollmentRequests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest!]
   accessRequests(where: AccessRequestWhereInput, orderBy: AccessRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AccessRequest!]
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5161,8 +5159,6 @@ input StudioCreateInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5233,8 +5229,6 @@ input StudioCreateWithoutAccessRequestsInput {
   events: StudioEventCreateManyWithoutStudioInput
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5256,8 +5250,6 @@ input StudioCreateWithoutDanceClassesInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5279,8 +5271,6 @@ input StudioCreateWithoutDancersInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5302,8 +5292,6 @@ input StudioCreateWithoutEnrollmentRequestsInput {
   events: StudioEventCreateManyWithoutStudioInput
   website: String
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5325,8 +5313,6 @@ input StudioCreateWithoutEventsInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5348,8 +5334,6 @@ input StudioCreateWithoutHairStylesInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5371,8 +5355,6 @@ input StudioCreateWithoutMakeupSetsInput {
   website: String
   enrollmentRequests: EnrollmentRequestCreateManyWithoutStudioInput
   accessRequests: AccessRequestCreateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -5993,10 +5975,6 @@ enum StudioOrderByInput {
   resetTokenExpiry_DESC
   website_ASC
   website_DESC
-  agreeToTerms_ASC
-  agreeToTerms_DESC
-  readPrivacy_ASC
-  readPrivacy_DESC
   agreedToTermsAndPrivacy_ASC
   agreedToTermsAndPrivacy_DESC
 }
@@ -6015,8 +5993,6 @@ type StudioPreviousValues {
   competitiveLevels: [String!]!
   ageDivisions: [String!]!
   website: String
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6143,22 +6119,6 @@ input StudioScalarWhereInput {
   website_not_starts_with: String
   website_ends_with: String
   website_not_ends_with: String
-  agreeToTerms: DateTime
-  agreeToTerms_not: DateTime
-  agreeToTerms_in: [DateTime!]
-  agreeToTerms_not_in: [DateTime!]
-  agreeToTerms_lt: DateTime
-  agreeToTerms_lte: DateTime
-  agreeToTerms_gt: DateTime
-  agreeToTerms_gte: DateTime
-  readPrivacy: DateTime
-  readPrivacy_not: DateTime
-  readPrivacy_in: [DateTime!]
-  readPrivacy_not_in: [DateTime!]
-  readPrivacy_lt: DateTime
-  readPrivacy_lte: DateTime
-  readPrivacy_gt: DateTime
-  readPrivacy_gte: DateTime
   agreedToTermsAndPrivacy: DateTime
   agreedToTermsAndPrivacy_not: DateTime
   agreedToTermsAndPrivacy_in: [DateTime!]
@@ -6216,8 +6176,6 @@ input StudioUpdateDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6239,8 +6197,6 @@ input StudioUpdateInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6255,8 +6211,6 @@ input StudioUpdateManyDataInput {
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
   website: String
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6283,8 +6237,6 @@ input StudioUpdateManyMutationInput {
   competitiveLevels: StudioUpdatecompetitiveLevelsInput
   ageDivisions: StudioUpdateageDivisionsInput
   website: String
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6377,8 +6329,6 @@ input StudioUpdateWithoutAccessRequestsDataInput {
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6399,8 +6349,6 @@ input StudioUpdateWithoutDanceClassesDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6421,8 +6369,6 @@ input StudioUpdateWithoutDancersDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6443,8 +6389,6 @@ input StudioUpdateWithoutEnrollmentRequestsDataInput {
   events: StudioEventUpdateManyWithoutStudioInput
   website: String
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6465,8 +6409,6 @@ input StudioUpdateWithoutEventsDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6487,8 +6429,6 @@ input StudioUpdateWithoutHairStylesDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6509,8 +6449,6 @@ input StudioUpdateWithoutMakeupSetsDataInput {
   website: String
   enrollmentRequests: EnrollmentRequestUpdateManyWithoutStudioInput
   accessRequests: AccessRequestUpdateManyWithoutStudioInput
-  agreeToTerms: DateTime
-  readPrivacy: DateTime
   agreedToTermsAndPrivacy: DateTime
 }
 
@@ -6715,22 +6653,6 @@ input StudioWhereInput {
   accessRequests_every: AccessRequestWhereInput
   accessRequests_some: AccessRequestWhereInput
   accessRequests_none: AccessRequestWhereInput
-  agreeToTerms: DateTime
-  agreeToTerms_not: DateTime
-  agreeToTerms_in: [DateTime!]
-  agreeToTerms_not_in: [DateTime!]
-  agreeToTerms_lt: DateTime
-  agreeToTerms_lte: DateTime
-  agreeToTerms_gt: DateTime
-  agreeToTerms_gte: DateTime
-  readPrivacy: DateTime
-  readPrivacy_not: DateTime
-  readPrivacy_in: [DateTime!]
-  readPrivacy_not_in: [DateTime!]
-  readPrivacy_lt: DateTime
-  readPrivacy_lte: DateTime
-  readPrivacy_gt: DateTime
-  readPrivacy_gte: DateTime
   agreedToTermsAndPrivacy: DateTime
   agreedToTermsAndPrivacy_not: DateTime
   agreedToTermsAndPrivacy_in: [DateTime!]
