@@ -14,6 +14,7 @@ type Parent {
   studios: [Studio!]!
   accessRequests: [ID!]! @scalarList(strategy: RELATION)
   agreedToTermsAndPrivacy: DateTime
+  customEvents: [ParentEvent!]! @relation(onDelete: CASCADE)
 }
 
 type Studio {
@@ -47,7 +48,7 @@ type Dancer {
   id: ID! @id
   firstName: String!
   parent: Parent!
-  requests: EnrollmentRequest @relation(link: INLINE)
+  requests: EnrollmentRequest @relation(link: INLINE, onDelete: CASCADE)
   danceClasses: [DanceClass!]!
   customRoutines: [CustomRoutine!]!
   avatar: String

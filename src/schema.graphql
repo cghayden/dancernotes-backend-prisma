@@ -186,7 +186,7 @@ type Mutation {
     zip: String
     url: String
     notes: String
-    appliesTo: String!
+    appliesTo: [String!]!
   ): ParentEvent
   deleteCloudinaryAsset(
     publicId: String!
@@ -200,6 +200,8 @@ type Mutation {
   withdrawFromClass(dancerId: ID!, danceClassId: ID!): SuccessMessage
   deleteCustomRoutine(id: ID!, musicId: String): SuccessMessage
   setTermsAndPrivacy(agreedToTermsAndPrivacy: DateTime!): SuccessMessage
+  deleteParentAccount: SuccessMessage
+  updateParent(firstName: String): Parent
 }
 
 type Query {
