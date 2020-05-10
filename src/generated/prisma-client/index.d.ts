@@ -3221,7 +3221,6 @@ export interface ParentEventCreateWithoutParentInput {
   name: String;
   type: String;
   dancerIds?: Maybe<ParentEventCreatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventCreateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -3236,10 +3235,6 @@ export interface ParentEventCreateWithoutParentInput {
 
 export interface ParentEventCreatedancerIdsInput {
   set?: Maybe<ID_Input[] | ID_Input>;
-}
-
-export interface ParentEventCreateappliesToInput {
-  set?: Maybe<String[] | String>;
 }
 
 export interface StudioCreateManyWithoutDancersInput {
@@ -4736,7 +4731,6 @@ export interface ParentEventUpdateWithoutParentDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -4751,10 +4745,6 @@ export interface ParentEventUpdateWithoutParentDataInput {
 
 export interface ParentEventUpdatedancerIdsInput {
   set?: Maybe<ID_Input[] | ID_Input>;
-}
-
-export interface ParentEventUpdateappliesToInput {
-  set?: Maybe<String[] | String>;
 }
 
 export interface ParentEventUpsertWithWhereUniqueWithoutParentInput {
@@ -4948,7 +4938,6 @@ export interface ParentEventUpdateManyDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6599,7 +6588,6 @@ export interface ParentEventCreateInput {
   name: String;
   type: String;
   dancerIds?: Maybe<ParentEventCreatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventCreateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6639,7 +6627,6 @@ export interface ParentEventUpdateInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6683,7 +6670,6 @@ export interface ParentEventUpdateManyMutationInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -7940,7 +7926,6 @@ export interface ParentEvent {
   name: String;
   type: String;
   dancerIds: ID_Output[];
-  appliesTo: String[];
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
@@ -7960,7 +7945,6 @@ export interface ParentEventPromise extends Promise<ParentEvent>, Fragmentable {
   name: () => Promise<String>;
   type: () => Promise<String>;
   dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -7982,7 +7966,6 @@ export interface ParentEventSubscription
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
   dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
@@ -8004,7 +7987,6 @@ export interface ParentEventNullablePromise
   name: () => Promise<String>;
   type: () => Promise<String>;
   dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -9636,7 +9618,6 @@ export interface ParentEventPreviousValues {
   name: String;
   type: String;
   dancerIds: ID_Output[];
-  appliesTo: String[];
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
@@ -9656,7 +9637,6 @@ export interface ParentEventPreviousValuesPromise
   name: () => Promise<String>;
   type: () => Promise<String>;
   dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -9676,7 +9656,6 @@ export interface ParentEventPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
   dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;

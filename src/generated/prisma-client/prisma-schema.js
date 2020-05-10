@@ -4281,7 +4281,6 @@ type ParentEvent {
   name: String!
   type: String!
   dancerIds: [ID!]!
-  appliesTo: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4300,10 +4299,6 @@ type ParentEventConnection {
   aggregate: AggregateParentEvent!
 }
 
-input ParentEventCreateappliesToInput {
-  set: [String!]
-}
-
 input ParentEventCreatedancerIdsInput {
   set: [ID!]
 }
@@ -4315,7 +4310,6 @@ input ParentEventCreateInput {
   name: String!
   type: String!
   dancerIds: ParentEventCreatedancerIdsInput
-  appliesTo: ParentEventCreateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4339,7 +4333,6 @@ input ParentEventCreateWithoutParentInput {
   name: String!
   type: String!
   dancerIds: ParentEventCreatedancerIdsInput
-  appliesTo: ParentEventCreateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4391,7 +4384,6 @@ type ParentEventPreviousValues {
   name: String!
   type: String!
   dancerIds: [ID!]!
-  appliesTo: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4598,10 +4590,6 @@ input ParentEventSubscriptionWhereInput {
   NOT: [ParentEventSubscriptionWhereInput!]
 }
 
-input ParentEventUpdateappliesToInput {
-  set: [String!]
-}
-
 input ParentEventUpdatedancerIdsInput {
   set: [ID!]
 }
@@ -4612,7 +4600,6 @@ input ParentEventUpdateInput {
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4629,7 +4616,6 @@ input ParentEventUpdateManyDataInput {
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4646,7 +4632,6 @@ input ParentEventUpdateManyMutationInput {
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4681,7 +4666,6 @@ input ParentEventUpdateWithoutParentDataInput {
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String

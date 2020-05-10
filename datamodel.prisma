@@ -173,7 +173,6 @@ type ParentEvent {
   name: String!
   type: String!
   dancerIds: [ID!]! @scalarList(strategy: RELATION)
-  appliesTo: [String!]! @scalarList(strategy: RELATION)
   beginDate: DateTime
   endDate: DateTime
   location: String

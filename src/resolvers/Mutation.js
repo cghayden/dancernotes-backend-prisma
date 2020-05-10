@@ -943,17 +943,23 @@ const Mutations = {
       where: { parent: { id: ctx.request.userId } },
     });
     //7. delete parentUser
-    await ctx.db.mutation.deleteParent({
-      where: { id: ctx.request.userId },
-    });
     //6. delete dancers - cascade from parent
     // delete enrollmentRequests - cascade from dancer
     //5. delete parentEvents - Cascade from parent
     //5. delete custom routines - cascade from parent
+    await ctx.db.mutation.deleteParent({
+      where: { id: ctx.request.userId },
+    });
     //8. signout user
     //8a.  remove cookies
+    ctx.response.clearCookie("token");
+
     //8b signout mutation
-    return { message: "delete mutation complete" };
+
+    return {
+      message:
+        "Your account and all related assets ahve been deleted.  Thank You for using dancernotes",
+    };
   },
   async updateParent(parent, args, ctx, info) {
     if (!ctx.request.userId) {

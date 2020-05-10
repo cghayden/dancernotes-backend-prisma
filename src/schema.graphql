@@ -186,7 +186,6 @@ type Mutation {
     zip: String
     url: String
     notes: String
-    appliesTo: [String!]!
   ): ParentEvent
   deleteCloudinaryAsset(
     publicId: String!
