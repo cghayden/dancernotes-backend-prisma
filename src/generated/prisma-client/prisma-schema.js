@@ -4171,6 +4171,7 @@ type Parent {
   studios(where: StudioWhereInput, orderBy: StudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Studio!]
   accessRequests: [ID!]!
   agreedToTermsAndPrivacy: DateTime
+  customEvents(where: ParentEventWhereInput, orderBy: ParentEventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentEvent!]
 }
 
 type ParentConnection {
@@ -4197,10 +4198,16 @@ input ParentCreateInput {
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventCreateManyWithoutParentInput
 }
 
 input ParentCreateOneInput {
   create: ParentCreateInput
+  connect: ParentWhereUniqueInput
+}
+
+input ParentCreateOneWithoutCustomEventsInput {
+  create: ParentCreateWithoutCustomEventsInput
   connect: ParentWhereUniqueInput
 }
 
@@ -4212,6 +4219,22 @@ input ParentCreateOneWithoutCustomRoutinesInput {
 input ParentCreateOneWithoutDancersInput {
   create: ParentCreateWithoutDancersInput
   connect: ParentWhereUniqueInput
+}
+
+input ParentCreateWithoutCustomEventsInput {
+  id: ID
+  email: String!
+  firstName: String!
+  lastName: String
+  userType: String!
+  dancers: DancerCreateManyWithoutParentInput
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  customRoutines: CustomRoutineCreateManyWithoutParentInput
+  studios: StudioCreateManyInput
+  accessRequests: ParentCreateaccessRequestsInput
+  agreedToTermsAndPrivacy: DateTime
 }
 
 input ParentCreateWithoutCustomRoutinesInput {
@@ -4227,6 +4250,7 @@ input ParentCreateWithoutCustomRoutinesInput {
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventCreateManyWithoutParentInput
 }
 
 input ParentCreateWithoutDancersInput {
@@ -4242,6 +4266,7 @@ input ParentCreateWithoutDancersInput {
   studios: StudioCreateManyInput
   accessRequests: ParentCreateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventCreateManyWithoutParentInput
 }
 
 type ParentEdge {
@@ -4256,7 +4281,6 @@ type ParentEvent {
   name: String!
   type: String!
   dancerIds: [ID!]!
-  appliesTo: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4275,22 +4299,40 @@ type ParentEventConnection {
   aggregate: AggregateParentEvent!
 }
 
-input ParentEventCreateappliesToInput {
-  set: [String!]
-}
-
 input ParentEventCreatedancerIdsInput {
   set: [ID!]
 }
 
 input ParentEventCreateInput {
   id: ID
-  parent: ParentCreateOneInput!
+  parent: ParentCreateOneWithoutCustomEventsInput!
   studio: StudioCreateOneInput
   name: String!
   type: String!
   dancerIds: ParentEventCreatedancerIdsInput
-  appliesTo: ParentEventCreateappliesToInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input ParentEventCreateManyWithoutParentInput {
+  create: [ParentEventCreateWithoutParentInput!]
+  connect: [ParentEventWhereUniqueInput!]
+}
+
+input ParentEventCreateWithoutParentInput {
+  id: ID
+  studio: StudioCreateOneInput
+  name: String!
+  type: String!
+  dancerIds: ParentEventCreatedancerIdsInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4342,7 +4384,6 @@ type ParentEventPreviousValues {
   name: String!
   type: String!
   dancerIds: [ID!]!
-  appliesTo: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4353,6 +4394,182 @@ type ParentEventPreviousValues {
   zip: String
   url: String
   notes: String
+}
+
+input ParentEventScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  beginDate: DateTime
+  beginDate_not: DateTime
+  beginDate_in: [DateTime!]
+  beginDate_not_in: [DateTime!]
+  beginDate_lt: DateTime
+  beginDate_lte: DateTime
+  beginDate_gt: DateTime
+  beginDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  address1: String
+  address1_not: String
+  address1_in: [String!]
+  address1_not_in: [String!]
+  address1_lt: String
+  address1_lte: String
+  address1_gt: String
+  address1_gte: String
+  address1_contains: String
+  address1_not_contains: String
+  address1_starts_with: String
+  address1_not_starts_with: String
+  address1_ends_with: String
+  address1_not_ends_with: String
+  address2: String
+  address2_not: String
+  address2_in: [String!]
+  address2_not_in: [String!]
+  address2_lt: String
+  address2_lte: String
+  address2_gt: String
+  address2_gte: String
+  address2_contains: String
+  address2_not_contains: String
+  address2_starts_with: String
+  address2_not_starts_with: String
+  address2_ends_with: String
+  address2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  AND: [ParentEventScalarWhereInput!]
+  OR: [ParentEventScalarWhereInput!]
+  NOT: [ParentEventScalarWhereInput!]
 }
 
 type ParentEventSubscriptionPayload {
@@ -4373,21 +4590,32 @@ input ParentEventSubscriptionWhereInput {
   NOT: [ParentEventSubscriptionWhereInput!]
 }
 
-input ParentEventUpdateappliesToInput {
-  set: [String!]
-}
-
 input ParentEventUpdatedancerIdsInput {
   set: [ID!]
 }
 
 input ParentEventUpdateInput {
-  parent: ParentUpdateOneRequiredInput
+  parent: ParentUpdateOneRequiredWithoutCustomEventsInput
   studio: StudioUpdateOneInput
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input ParentEventUpdateManyDataInput {
+  name: String
+  type: String
+  dancerIds: ParentEventUpdatedancerIdsInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4404,7 +4632,6 @@ input ParentEventUpdateManyMutationInput {
   name: String
   type: String
   dancerIds: ParentEventUpdatedancerIdsInput
-  appliesTo: ParentEventUpdateappliesToInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -4415,6 +4642,51 @@ input ParentEventUpdateManyMutationInput {
   zip: String
   url: String
   notes: String
+}
+
+input ParentEventUpdateManyWithoutParentInput {
+  create: [ParentEventCreateWithoutParentInput!]
+  delete: [ParentEventWhereUniqueInput!]
+  connect: [ParentEventWhereUniqueInput!]
+  set: [ParentEventWhereUniqueInput!]
+  disconnect: [ParentEventWhereUniqueInput!]
+  update: [ParentEventUpdateWithWhereUniqueWithoutParentInput!]
+  upsert: [ParentEventUpsertWithWhereUniqueWithoutParentInput!]
+  deleteMany: [ParentEventScalarWhereInput!]
+  updateMany: [ParentEventUpdateManyWithWhereNestedInput!]
+}
+
+input ParentEventUpdateManyWithWhereNestedInput {
+  where: ParentEventScalarWhereInput!
+  data: ParentEventUpdateManyDataInput!
+}
+
+input ParentEventUpdateWithoutParentDataInput {
+  studio: StudioUpdateOneInput
+  name: String
+  type: String
+  dancerIds: ParentEventUpdatedancerIdsInput
+  beginDate: DateTime
+  endDate: DateTime
+  location: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  url: String
+  notes: String
+}
+
+input ParentEventUpdateWithWhereUniqueWithoutParentInput {
+  where: ParentEventWhereUniqueInput!
+  data: ParentEventUpdateWithoutParentDataInput!
+}
+
+input ParentEventUpsertWithWhereUniqueWithoutParentInput {
+  where: ParentEventWhereUniqueInput!
+  update: ParentEventUpdateWithoutParentDataInput!
+  create: ParentEventCreateWithoutParentInput!
 }
 
 input ParentEventWhereInput {
@@ -4779,6 +5051,7 @@ input ParentUpdateDataInput {
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventUpdateManyWithoutParentInput
 }
 
 input ParentUpdateInput {
@@ -4794,6 +5067,7 @@ input ParentUpdateInput {
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventUpdateManyWithoutParentInput
 }
 
 input ParentUpdateManyMutationInput {
@@ -4815,6 +5089,13 @@ input ParentUpdateOneRequiredInput {
   connect: ParentWhereUniqueInput
 }
 
+input ParentUpdateOneRequiredWithoutCustomEventsInput {
+  create: ParentCreateWithoutCustomEventsInput
+  update: ParentUpdateWithoutCustomEventsDataInput
+  upsert: ParentUpsertWithoutCustomEventsInput
+  connect: ParentWhereUniqueInput
+}
+
 input ParentUpdateOneRequiredWithoutCustomRoutinesInput {
   create: ParentCreateWithoutCustomRoutinesInput
   update: ParentUpdateWithoutCustomRoutinesDataInput
@@ -4829,6 +5110,21 @@ input ParentUpdateOneRequiredWithoutDancersInput {
   connect: ParentWhereUniqueInput
 }
 
+input ParentUpdateWithoutCustomEventsDataInput {
+  email: String
+  firstName: String
+  lastName: String
+  userType: String
+  dancers: DancerUpdateManyWithoutParentInput
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  customRoutines: CustomRoutineUpdateManyWithoutParentInput
+  studios: StudioUpdateManyInput
+  accessRequests: ParentUpdateaccessRequestsInput
+  agreedToTermsAndPrivacy: DateTime
+}
+
 input ParentUpdateWithoutCustomRoutinesDataInput {
   email: String
   firstName: String
@@ -4841,6 +5137,7 @@ input ParentUpdateWithoutCustomRoutinesDataInput {
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventUpdateManyWithoutParentInput
 }
 
 input ParentUpdateWithoutDancersDataInput {
@@ -4855,11 +5152,17 @@ input ParentUpdateWithoutDancersDataInput {
   studios: StudioUpdateManyInput
   accessRequests: ParentUpdateaccessRequestsInput
   agreedToTermsAndPrivacy: DateTime
+  customEvents: ParentEventUpdateManyWithoutParentInput
 }
 
 input ParentUpsertNestedInput {
   update: ParentUpdateDataInput!
   create: ParentCreateInput!
+}
+
+input ParentUpsertWithoutCustomEventsInput {
+  update: ParentUpdateWithoutCustomEventsDataInput!
+  create: ParentCreateWithoutCustomEventsInput!
 }
 
 input ParentUpsertWithoutCustomRoutinesInput {
@@ -5012,6 +5315,9 @@ input ParentWhereInput {
   agreedToTermsAndPrivacy_lte: DateTime
   agreedToTermsAndPrivacy_gt: DateTime
   agreedToTermsAndPrivacy_gte: DateTime
+  customEvents_every: ParentEventWhereInput
+  customEvents_some: ParentEventWhereInput
+  customEvents_none: ParentEventWhereInput
   AND: [ParentWhereInput!]
   OR: [ParentWhereInput!]
   NOT: [ParentWhereInput!]

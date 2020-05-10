@@ -678,6 +678,34 @@ export type StudioOrderByInput =
   | "agreedToTermsAndPrivacy_ASC"
   | "agreedToTermsAndPrivacy_DESC";
 
+export type ParentEventOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "beginDate_ASC"
+  | "beginDate_DESC"
+  | "endDate_ASC"
+  | "endDate_DESC"
+  | "location_ASC"
+  | "location_DESC"
+  | "address1_ASC"
+  | "address1_DESC"
+  | "address2_ASC"
+  | "address2_DESC"
+  | "city_ASC"
+  | "city_DESC"
+  | "state_ASC"
+  | "state_DESC"
+  | "zip_ASC"
+  | "zip_DESC"
+  | "url_ASC"
+  | "url_DESC"
+  | "notes_ASC"
+  | "notes_DESC";
+
 export type MakeupSetOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
@@ -785,34 +813,6 @@ export type ParentOrderByInput =
   | "resetTokenExpiry_DESC"
   | "agreedToTermsAndPrivacy_ASC"
   | "agreedToTermsAndPrivacy_DESC";
-
-export type ParentEventOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "type_ASC"
-  | "type_DESC"
-  | "beginDate_ASC"
-  | "beginDate_DESC"
-  | "endDate_ASC"
-  | "endDate_DESC"
-  | "location_ASC"
-  | "location_DESC"
-  | "address1_ASC"
-  | "address1_DESC"
-  | "address2_ASC"
-  | "address2_DESC"
-  | "city_ASC"
-  | "city_DESC"
-  | "state_ASC"
-  | "state_DESC"
-  | "zip_ASC"
-  | "zip_DESC"
-  | "url_ASC"
-  | "url_DESC"
-  | "notes_ASC"
-  | "notes_DESC";
 
 export type ParentNoteOrderByInput =
   | "id_ASC"
@@ -1834,6 +1834,9 @@ export interface ParentWhereInput {
   agreedToTermsAndPrivacy_lte?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy_gt?: Maybe<DateTimeInput>;
   agreedToTermsAndPrivacy_gte?: Maybe<DateTimeInput>;
+  customEvents_every?: Maybe<ParentEventWhereInput>;
+  customEvents_some?: Maybe<ParentEventWhereInput>;
+  customEvents_none?: Maybe<ParentEventWhereInput>;
   AND?: Maybe<ParentWhereInput[] | ParentWhereInput>;
   OR?: Maybe<ParentWhereInput[] | ParentWhereInput>;
   NOT?: Maybe<ParentWhereInput[] | ParentWhereInput>;
@@ -2102,6 +2105,184 @@ export interface CustomRoutineWhereInput {
   AND?: Maybe<CustomRoutineWhereInput[] | CustomRoutineWhereInput>;
   OR?: Maybe<CustomRoutineWhereInput[] | CustomRoutineWhereInput>;
   NOT?: Maybe<CustomRoutineWhereInput[] | CustomRoutineWhereInput>;
+}
+
+export interface ParentEventWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  parent?: Maybe<ParentWhereInput>;
+  studio?: Maybe<StudioWhereInput>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  type?: Maybe<String>;
+  type_not?: Maybe<String>;
+  type_in?: Maybe<String[] | String>;
+  type_not_in?: Maybe<String[] | String>;
+  type_lt?: Maybe<String>;
+  type_lte?: Maybe<String>;
+  type_gt?: Maybe<String>;
+  type_gte?: Maybe<String>;
+  type_contains?: Maybe<String>;
+  type_not_contains?: Maybe<String>;
+  type_starts_with?: Maybe<String>;
+  type_not_starts_with?: Maybe<String>;
+  type_ends_with?: Maybe<String>;
+  type_not_ends_with?: Maybe<String>;
+  beginDate?: Maybe<DateTimeInput>;
+  beginDate_not?: Maybe<DateTimeInput>;
+  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_lt?: Maybe<DateTimeInput>;
+  beginDate_lte?: Maybe<DateTimeInput>;
+  beginDate_gt?: Maybe<DateTimeInput>;
+  beginDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  address1?: Maybe<String>;
+  address1_not?: Maybe<String>;
+  address1_in?: Maybe<String[] | String>;
+  address1_not_in?: Maybe<String[] | String>;
+  address1_lt?: Maybe<String>;
+  address1_lte?: Maybe<String>;
+  address1_gt?: Maybe<String>;
+  address1_gte?: Maybe<String>;
+  address1_contains?: Maybe<String>;
+  address1_not_contains?: Maybe<String>;
+  address1_starts_with?: Maybe<String>;
+  address1_not_starts_with?: Maybe<String>;
+  address1_ends_with?: Maybe<String>;
+  address1_not_ends_with?: Maybe<String>;
+  address2?: Maybe<String>;
+  address2_not?: Maybe<String>;
+  address2_in?: Maybe<String[] | String>;
+  address2_not_in?: Maybe<String[] | String>;
+  address2_lt?: Maybe<String>;
+  address2_lte?: Maybe<String>;
+  address2_gt?: Maybe<String>;
+  address2_gte?: Maybe<String>;
+  address2_contains?: Maybe<String>;
+  address2_not_contains?: Maybe<String>;
+  address2_starts_with?: Maybe<String>;
+  address2_not_starts_with?: Maybe<String>;
+  address2_ends_with?: Maybe<String>;
+  address2_not_ends_with?: Maybe<String>;
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
+  state?: Maybe<String>;
+  state_not?: Maybe<String>;
+  state_in?: Maybe<String[] | String>;
+  state_not_in?: Maybe<String[] | String>;
+  state_lt?: Maybe<String>;
+  state_lte?: Maybe<String>;
+  state_gt?: Maybe<String>;
+  state_gte?: Maybe<String>;
+  state_contains?: Maybe<String>;
+  state_not_contains?: Maybe<String>;
+  state_starts_with?: Maybe<String>;
+  state_not_starts_with?: Maybe<String>;
+  state_ends_with?: Maybe<String>;
+  state_not_ends_with?: Maybe<String>;
+  zip?: Maybe<String>;
+  zip_not?: Maybe<String>;
+  zip_in?: Maybe<String[] | String>;
+  zip_not_in?: Maybe<String[] | String>;
+  zip_lt?: Maybe<String>;
+  zip_lte?: Maybe<String>;
+  zip_gt?: Maybe<String>;
+  zip_gte?: Maybe<String>;
+  zip_contains?: Maybe<String>;
+  zip_not_contains?: Maybe<String>;
+  zip_starts_with?: Maybe<String>;
+  zip_not_starts_with?: Maybe<String>;
+  zip_ends_with?: Maybe<String>;
+  zip_not_ends_with?: Maybe<String>;
+  url?: Maybe<String>;
+  url_not?: Maybe<String>;
+  url_in?: Maybe<String[] | String>;
+  url_not_in?: Maybe<String[] | String>;
+  url_lt?: Maybe<String>;
+  url_lte?: Maybe<String>;
+  url_gt?: Maybe<String>;
+  url_gte?: Maybe<String>;
+  url_contains?: Maybe<String>;
+  url_not_contains?: Maybe<String>;
+  url_starts_with?: Maybe<String>;
+  url_not_starts_with?: Maybe<String>;
+  url_ends_with?: Maybe<String>;
+  url_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
+  OR?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
+  NOT?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
 }
 
 export interface EnrollmentRequestWhereInput {
@@ -2378,184 +2559,6 @@ export type ParentEventWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface ParentEventWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  parent?: Maybe<ParentWhereInput>;
-  studio?: Maybe<StudioWhereInput>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  type?: Maybe<String>;
-  type_not?: Maybe<String>;
-  type_in?: Maybe<String[] | String>;
-  type_not_in?: Maybe<String[] | String>;
-  type_lt?: Maybe<String>;
-  type_lte?: Maybe<String>;
-  type_gt?: Maybe<String>;
-  type_gte?: Maybe<String>;
-  type_contains?: Maybe<String>;
-  type_not_contains?: Maybe<String>;
-  type_starts_with?: Maybe<String>;
-  type_not_starts_with?: Maybe<String>;
-  type_ends_with?: Maybe<String>;
-  type_not_ends_with?: Maybe<String>;
-  beginDate?: Maybe<DateTimeInput>;
-  beginDate_not?: Maybe<DateTimeInput>;
-  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  beginDate_lt?: Maybe<DateTimeInput>;
-  beginDate_lte?: Maybe<DateTimeInput>;
-  beginDate_gt?: Maybe<DateTimeInput>;
-  beginDate_gte?: Maybe<DateTimeInput>;
-  endDate?: Maybe<DateTimeInput>;
-  endDate_not?: Maybe<DateTimeInput>;
-  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  endDate_lt?: Maybe<DateTimeInput>;
-  endDate_lte?: Maybe<DateTimeInput>;
-  endDate_gt?: Maybe<DateTimeInput>;
-  endDate_gte?: Maybe<DateTimeInput>;
-  location?: Maybe<String>;
-  location_not?: Maybe<String>;
-  location_in?: Maybe<String[] | String>;
-  location_not_in?: Maybe<String[] | String>;
-  location_lt?: Maybe<String>;
-  location_lte?: Maybe<String>;
-  location_gt?: Maybe<String>;
-  location_gte?: Maybe<String>;
-  location_contains?: Maybe<String>;
-  location_not_contains?: Maybe<String>;
-  location_starts_with?: Maybe<String>;
-  location_not_starts_with?: Maybe<String>;
-  location_ends_with?: Maybe<String>;
-  location_not_ends_with?: Maybe<String>;
-  address1?: Maybe<String>;
-  address1_not?: Maybe<String>;
-  address1_in?: Maybe<String[] | String>;
-  address1_not_in?: Maybe<String[] | String>;
-  address1_lt?: Maybe<String>;
-  address1_lte?: Maybe<String>;
-  address1_gt?: Maybe<String>;
-  address1_gte?: Maybe<String>;
-  address1_contains?: Maybe<String>;
-  address1_not_contains?: Maybe<String>;
-  address1_starts_with?: Maybe<String>;
-  address1_not_starts_with?: Maybe<String>;
-  address1_ends_with?: Maybe<String>;
-  address1_not_ends_with?: Maybe<String>;
-  address2?: Maybe<String>;
-  address2_not?: Maybe<String>;
-  address2_in?: Maybe<String[] | String>;
-  address2_not_in?: Maybe<String[] | String>;
-  address2_lt?: Maybe<String>;
-  address2_lte?: Maybe<String>;
-  address2_gt?: Maybe<String>;
-  address2_gte?: Maybe<String>;
-  address2_contains?: Maybe<String>;
-  address2_not_contains?: Maybe<String>;
-  address2_starts_with?: Maybe<String>;
-  address2_not_starts_with?: Maybe<String>;
-  address2_ends_with?: Maybe<String>;
-  address2_not_ends_with?: Maybe<String>;
-  city?: Maybe<String>;
-  city_not?: Maybe<String>;
-  city_in?: Maybe<String[] | String>;
-  city_not_in?: Maybe<String[] | String>;
-  city_lt?: Maybe<String>;
-  city_lte?: Maybe<String>;
-  city_gt?: Maybe<String>;
-  city_gte?: Maybe<String>;
-  city_contains?: Maybe<String>;
-  city_not_contains?: Maybe<String>;
-  city_starts_with?: Maybe<String>;
-  city_not_starts_with?: Maybe<String>;
-  city_ends_with?: Maybe<String>;
-  city_not_ends_with?: Maybe<String>;
-  state?: Maybe<String>;
-  state_not?: Maybe<String>;
-  state_in?: Maybe<String[] | String>;
-  state_not_in?: Maybe<String[] | String>;
-  state_lt?: Maybe<String>;
-  state_lte?: Maybe<String>;
-  state_gt?: Maybe<String>;
-  state_gte?: Maybe<String>;
-  state_contains?: Maybe<String>;
-  state_not_contains?: Maybe<String>;
-  state_starts_with?: Maybe<String>;
-  state_not_starts_with?: Maybe<String>;
-  state_ends_with?: Maybe<String>;
-  state_not_ends_with?: Maybe<String>;
-  zip?: Maybe<String>;
-  zip_not?: Maybe<String>;
-  zip_in?: Maybe<String[] | String>;
-  zip_not_in?: Maybe<String[] | String>;
-  zip_lt?: Maybe<String>;
-  zip_lte?: Maybe<String>;
-  zip_gt?: Maybe<String>;
-  zip_gte?: Maybe<String>;
-  zip_contains?: Maybe<String>;
-  zip_not_contains?: Maybe<String>;
-  zip_starts_with?: Maybe<String>;
-  zip_not_starts_with?: Maybe<String>;
-  zip_ends_with?: Maybe<String>;
-  zip_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  notes?: Maybe<String>;
-  notes_not?: Maybe<String>;
-  notes_in?: Maybe<String[] | String>;
-  notes_not_in?: Maybe<String[] | String>;
-  notes_lt?: Maybe<String>;
-  notes_lte?: Maybe<String>;
-  notes_gt?: Maybe<String>;
-  notes_gte?: Maybe<String>;
-  notes_contains?: Maybe<String>;
-  notes_not_contains?: Maybe<String>;
-  notes_starts_with?: Maybe<String>;
-  notes_not_starts_with?: Maybe<String>;
-  notes_ends_with?: Maybe<String>;
-  notes_not_ends_with?: Maybe<String>;
-  AND?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
-  OR?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
-  NOT?: Maybe<ParentEventWhereInput[] | ParentEventWhereInput>;
-}
-
 export type ParentNoteWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -2708,6 +2711,7 @@ export interface ParentCreateWithoutDancersInput {
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventCreateManyWithoutParentInput>;
 }
 
 export interface CustomRoutineCreateManyWithoutParentInput {
@@ -3002,6 +3006,7 @@ export interface ParentCreateInput {
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventCreateManyWithoutParentInput>;
 }
 
 export interface DancerCreateManyWithoutParentInput {
@@ -3191,6 +3196,7 @@ export interface ParentCreateWithoutCustomRoutinesInput {
   studios?: Maybe<StudioCreateManyInput>;
   accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventCreateManyWithoutParentInput>;
 }
 
 export interface StudioCreateManyInput {
@@ -3199,6 +3205,35 @@ export interface StudioCreateManyInput {
 }
 
 export interface ParentCreateaccessRequestsInput {
+  set?: Maybe<ID_Input[] | ID_Input>;
+}
+
+export interface ParentEventCreateManyWithoutParentInput {
+  create?: Maybe<
+    ParentEventCreateWithoutParentInput[] | ParentEventCreateWithoutParentInput
+  >;
+  connect?: Maybe<ParentEventWhereUniqueInput[] | ParentEventWhereUniqueInput>;
+}
+
+export interface ParentEventCreateWithoutParentInput {
+  id?: Maybe<ID_Input>;
+  studio?: Maybe<StudioCreateOneInput>;
+  name: String;
+  type: String;
+  dancerIds?: Maybe<ParentEventCreatedancerIdsInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface ParentEventCreatedancerIdsInput {
   set?: Maybe<ID_Input[] | ID_Input>;
 }
 
@@ -3426,6 +3461,7 @@ export interface ParentUpdateWithoutDancersDataInput {
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventUpdateManyWithoutParentInput>;
 }
 
 export interface CustomRoutineUpdateManyWithoutParentInput {
@@ -4178,6 +4214,7 @@ export interface ParentUpdateDataInput {
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventUpdateManyWithoutParentInput>;
 }
 
 export interface DancerUpdateManyWithoutParentInput {
@@ -4463,6 +4500,7 @@ export interface ParentUpdateWithoutCustomRoutinesDataInput {
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventUpdateManyWithoutParentInput>;
 }
 
 export interface StudioUpdateManyInput {
@@ -4654,6 +4692,262 @@ export interface StudioUpdateManyDataInput {
 
 export interface ParentUpdateaccessRequestsInput {
   set?: Maybe<ID_Input[] | ID_Input>;
+}
+
+export interface ParentEventUpdateManyWithoutParentInput {
+  create?: Maybe<
+    ParentEventCreateWithoutParentInput[] | ParentEventCreateWithoutParentInput
+  >;
+  delete?: Maybe<ParentEventWhereUniqueInput[] | ParentEventWhereUniqueInput>;
+  connect?: Maybe<ParentEventWhereUniqueInput[] | ParentEventWhereUniqueInput>;
+  set?: Maybe<ParentEventWhereUniqueInput[] | ParentEventWhereUniqueInput>;
+  disconnect?: Maybe<
+    ParentEventWhereUniqueInput[] | ParentEventWhereUniqueInput
+  >;
+  update?: Maybe<
+    | ParentEventUpdateWithWhereUniqueWithoutParentInput[]
+    | ParentEventUpdateWithWhereUniqueWithoutParentInput
+  >;
+  upsert?: Maybe<
+    | ParentEventUpsertWithWhereUniqueWithoutParentInput[]
+    | ParentEventUpsertWithWhereUniqueWithoutParentInput
+  >;
+  deleteMany?: Maybe<
+    ParentEventScalarWhereInput[] | ParentEventScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | ParentEventUpdateManyWithWhereNestedInput[]
+    | ParentEventUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ParentEventUpdateWithWhereUniqueWithoutParentInput {
+  where: ParentEventWhereUniqueInput;
+  data: ParentEventUpdateWithoutParentDataInput;
+}
+
+export interface ParentEventUpdateWithoutParentDataInput {
+  studio?: Maybe<StudioUpdateOneInput>;
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+  dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
+}
+
+export interface ParentEventUpdatedancerIdsInput {
+  set?: Maybe<ID_Input[] | ID_Input>;
+}
+
+export interface ParentEventUpsertWithWhereUniqueWithoutParentInput {
+  where: ParentEventWhereUniqueInput;
+  update: ParentEventUpdateWithoutParentDataInput;
+  create: ParentEventCreateWithoutParentInput;
+}
+
+export interface ParentEventScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  type?: Maybe<String>;
+  type_not?: Maybe<String>;
+  type_in?: Maybe<String[] | String>;
+  type_not_in?: Maybe<String[] | String>;
+  type_lt?: Maybe<String>;
+  type_lte?: Maybe<String>;
+  type_gt?: Maybe<String>;
+  type_gte?: Maybe<String>;
+  type_contains?: Maybe<String>;
+  type_not_contains?: Maybe<String>;
+  type_starts_with?: Maybe<String>;
+  type_not_starts_with?: Maybe<String>;
+  type_ends_with?: Maybe<String>;
+  type_not_ends_with?: Maybe<String>;
+  beginDate?: Maybe<DateTimeInput>;
+  beginDate_not?: Maybe<DateTimeInput>;
+  beginDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  beginDate_lt?: Maybe<DateTimeInput>;
+  beginDate_lte?: Maybe<DateTimeInput>;
+  beginDate_gt?: Maybe<DateTimeInput>;
+  beginDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  address1?: Maybe<String>;
+  address1_not?: Maybe<String>;
+  address1_in?: Maybe<String[] | String>;
+  address1_not_in?: Maybe<String[] | String>;
+  address1_lt?: Maybe<String>;
+  address1_lte?: Maybe<String>;
+  address1_gt?: Maybe<String>;
+  address1_gte?: Maybe<String>;
+  address1_contains?: Maybe<String>;
+  address1_not_contains?: Maybe<String>;
+  address1_starts_with?: Maybe<String>;
+  address1_not_starts_with?: Maybe<String>;
+  address1_ends_with?: Maybe<String>;
+  address1_not_ends_with?: Maybe<String>;
+  address2?: Maybe<String>;
+  address2_not?: Maybe<String>;
+  address2_in?: Maybe<String[] | String>;
+  address2_not_in?: Maybe<String[] | String>;
+  address2_lt?: Maybe<String>;
+  address2_lte?: Maybe<String>;
+  address2_gt?: Maybe<String>;
+  address2_gte?: Maybe<String>;
+  address2_contains?: Maybe<String>;
+  address2_not_contains?: Maybe<String>;
+  address2_starts_with?: Maybe<String>;
+  address2_not_starts_with?: Maybe<String>;
+  address2_ends_with?: Maybe<String>;
+  address2_not_ends_with?: Maybe<String>;
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
+  state?: Maybe<String>;
+  state_not?: Maybe<String>;
+  state_in?: Maybe<String[] | String>;
+  state_not_in?: Maybe<String[] | String>;
+  state_lt?: Maybe<String>;
+  state_lte?: Maybe<String>;
+  state_gt?: Maybe<String>;
+  state_gte?: Maybe<String>;
+  state_contains?: Maybe<String>;
+  state_not_contains?: Maybe<String>;
+  state_starts_with?: Maybe<String>;
+  state_not_starts_with?: Maybe<String>;
+  state_ends_with?: Maybe<String>;
+  state_not_ends_with?: Maybe<String>;
+  zip?: Maybe<String>;
+  zip_not?: Maybe<String>;
+  zip_in?: Maybe<String[] | String>;
+  zip_not_in?: Maybe<String[] | String>;
+  zip_lt?: Maybe<String>;
+  zip_lte?: Maybe<String>;
+  zip_gt?: Maybe<String>;
+  zip_gte?: Maybe<String>;
+  zip_contains?: Maybe<String>;
+  zip_not_contains?: Maybe<String>;
+  zip_starts_with?: Maybe<String>;
+  zip_not_starts_with?: Maybe<String>;
+  zip_ends_with?: Maybe<String>;
+  zip_not_ends_with?: Maybe<String>;
+  url?: Maybe<String>;
+  url_not?: Maybe<String>;
+  url_in?: Maybe<String[] | String>;
+  url_not_in?: Maybe<String[] | String>;
+  url_lt?: Maybe<String>;
+  url_lte?: Maybe<String>;
+  url_gt?: Maybe<String>;
+  url_gte?: Maybe<String>;
+  url_contains?: Maybe<String>;
+  url_not_contains?: Maybe<String>;
+  url_starts_with?: Maybe<String>;
+  url_not_starts_with?: Maybe<String>;
+  url_ends_with?: Maybe<String>;
+  url_not_ends_with?: Maybe<String>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ParentEventScalarWhereInput[] | ParentEventScalarWhereInput>;
+  OR?: Maybe<ParentEventScalarWhereInput[] | ParentEventScalarWhereInput>;
+  NOT?: Maybe<ParentEventScalarWhereInput[] | ParentEventScalarWhereInput>;
+}
+
+export interface ParentEventUpdateManyWithWhereNestedInput {
+  where: ParentEventScalarWhereInput;
+  data: ParentEventUpdateManyDataInput;
+}
+
+export interface ParentEventUpdateManyDataInput {
+  name?: Maybe<String>;
+  type?: Maybe<String>;
+  dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
+  beginDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  location?: Maybe<String>;
+  address1?: Maybe<String>;
+  address2?: Maybe<String>;
+  city?: Maybe<String>;
+  state?: Maybe<String>;
+  zip?: Maybe<String>;
+  url?: Maybe<String>;
+  notes?: Maybe<String>;
 }
 
 export interface ParentUpsertWithoutCustomRoutinesInput {
@@ -6272,6 +6566,7 @@ export interface ParentUpdateInput {
   studios?: Maybe<StudioUpdateManyInput>;
   accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+  customEvents?: Maybe<ParentEventUpdateManyWithoutParentInput>;
 }
 
 export interface ParentUpdateManyMutationInput {
@@ -6288,12 +6583,11 @@ export interface ParentUpdateManyMutationInput {
 
 export interface ParentEventCreateInput {
   id?: Maybe<ID_Input>;
-  parent: ParentCreateOneInput;
+  parent: ParentCreateOneWithoutCustomEventsInput;
   studio?: Maybe<StudioCreateOneInput>;
   name: String;
   type: String;
   dancerIds?: Maybe<ParentEventCreatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventCreateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6306,21 +6600,33 @@ export interface ParentEventCreateInput {
   notes?: Maybe<String>;
 }
 
-export interface ParentEventCreatedancerIdsInput {
-  set?: Maybe<ID_Input[] | ID_Input>;
+export interface ParentCreateOneWithoutCustomEventsInput {
+  create?: Maybe<ParentCreateWithoutCustomEventsInput>;
+  connect?: Maybe<ParentWhereUniqueInput>;
 }
 
-export interface ParentEventCreateappliesToInput {
-  set?: Maybe<String[] | String>;
+export interface ParentCreateWithoutCustomEventsInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  firstName: String;
+  lastName?: Maybe<String>;
+  userType: String;
+  dancers?: Maybe<DancerCreateManyWithoutParentInput>;
+  password: String;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  customRoutines?: Maybe<CustomRoutineCreateManyWithoutParentInput>;
+  studios?: Maybe<StudioCreateManyInput>;
+  accessRequests?: Maybe<ParentCreateaccessRequestsInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
 export interface ParentEventUpdateInput {
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
+  parent?: Maybe<ParentUpdateOneRequiredWithoutCustomEventsInput>;
   studio?: Maybe<StudioUpdateOneInput>;
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6333,19 +6639,37 @@ export interface ParentEventUpdateInput {
   notes?: Maybe<String>;
 }
 
-export interface ParentEventUpdatedancerIdsInput {
-  set?: Maybe<ID_Input[] | ID_Input>;
+export interface ParentUpdateOneRequiredWithoutCustomEventsInput {
+  create?: Maybe<ParentCreateWithoutCustomEventsInput>;
+  update?: Maybe<ParentUpdateWithoutCustomEventsDataInput>;
+  upsert?: Maybe<ParentUpsertWithoutCustomEventsInput>;
+  connect?: Maybe<ParentWhereUniqueInput>;
 }
 
-export interface ParentEventUpdateappliesToInput {
-  set?: Maybe<String[] | String>;
+export interface ParentUpdateWithoutCustomEventsDataInput {
+  email?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  userType?: Maybe<String>;
+  dancers?: Maybe<DancerUpdateManyWithoutParentInput>;
+  password?: Maybe<String>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  customRoutines?: Maybe<CustomRoutineUpdateManyWithoutParentInput>;
+  studios?: Maybe<StudioUpdateManyInput>;
+  accessRequests?: Maybe<ParentUpdateaccessRequestsInput>;
+  agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
+}
+
+export interface ParentUpsertWithoutCustomEventsInput {
+  update: ParentUpdateWithoutCustomEventsDataInput;
+  create: ParentCreateWithoutCustomEventsInput;
 }
 
 export interface ParentEventUpdateManyMutationInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
   dancerIds?: Maybe<ParentEventUpdatedancerIdsInput>;
-  appliesTo?: Maybe<ParentEventUpdateappliesToInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -7351,6 +7675,15 @@ export interface ParentPromise extends Promise<Parent>, Fragmentable {
   }) => T;
   accessRequests: () => Promise<ID_Output[]>;
   agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
+  customEvents: <T = FragmentableArray<ParentEvent>>(args?: {
+    where?: ParentEventWhereInput;
+    orderBy?: ParentEventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface ParentSubscription
@@ -7397,6 +7730,15 @@ export interface ParentSubscription
   }) => T;
   accessRequests: () => Promise<AsyncIterator<ID_Output[]>>;
   agreedToTermsAndPrivacy: () => Promise<AsyncIterator<DateTimeOutput>>;
+  customEvents: <T = Promise<AsyncIterator<ParentEventSubscription>>>(args?: {
+    where?: ParentEventWhereInput;
+    orderBy?: ParentEventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface ParentNullablePromise
@@ -7441,6 +7783,15 @@ export interface ParentNullablePromise
   }) => T;
   accessRequests: () => Promise<ID_Output[]>;
   agreedToTermsAndPrivacy: () => Promise<DateTimeOutput>;
+  customEvents: <T = FragmentableArray<ParentEvent>>(args?: {
+    where?: ParentEventWhereInput;
+    orderBy?: ParentEventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface CustomRoutine {
@@ -7568,6 +7919,84 @@ export interface CustomRoutineNullablePromise
   entryNumber: () => Promise<String>;
   entryTime: () => Promise<String>;
   entryDay: () => Promise<String>;
+}
+
+export interface ParentEvent {
+  id: ID_Output;
+  name: String;
+  type: String;
+  dancerIds: ID_Output[];
+  beginDate?: DateTimeOutput;
+  endDate?: DateTimeOutput;
+  location?: String;
+  address1?: String;
+  address2?: String;
+  city?: String;
+  state?: String;
+  zip?: String;
+  url?: String;
+  notes?: String;
+}
+
+export interface ParentEventPromise extends Promise<ParentEvent>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  parent: <T = ParentPromise>() => T;
+  studio: <T = StudioPromise>() => T;
+  name: () => Promise<String>;
+  type: () => Promise<String>;
+  dancerIds: () => Promise<ID_Output[]>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
+  location: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
+  city: () => Promise<String>;
+  state: () => Promise<String>;
+  zip: () => Promise<String>;
+  url: () => Promise<String>;
+  notes: () => Promise<String>;
+}
+
+export interface ParentEventSubscription
+  extends Promise<AsyncIterator<ParentEvent>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  parent: <T = ParentSubscription>() => T;
+  studio: <T = StudioSubscription>() => T;
+  name: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
+  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  location: () => Promise<AsyncIterator<String>>;
+  address1: () => Promise<AsyncIterator<String>>;
+  address2: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<String>>;
+  url: () => Promise<AsyncIterator<String>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ParentEventNullablePromise
+  extends Promise<ParentEvent | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  parent: <T = ParentPromise>() => T;
+  studio: <T = StudioPromise>() => T;
+  name: () => Promise<String>;
+  type: () => Promise<String>;
+  dancerIds: () => Promise<ID_Output[]>;
+  beginDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
+  location: () => Promise<String>;
+  address1: () => Promise<String>;
+  address2: () => Promise<String>;
+  city: () => Promise<String>;
+  state: () => Promise<String>;
+  zip: () => Promise<String>;
+  url: () => Promise<String>;
+  notes: () => Promise<String>;
 }
 
 export interface EnrollmentRequest {
@@ -8327,88 +8756,6 @@ export interface AggregateParentSubscription
   extends Promise<AsyncIterator<AggregateParent>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ParentEvent {
-  id: ID_Output;
-  name: String;
-  type: String;
-  dancerIds: ID_Output[];
-  appliesTo: String[];
-  beginDate?: DateTimeOutput;
-  endDate?: DateTimeOutput;
-  location?: String;
-  address1?: String;
-  address2?: String;
-  city?: String;
-  state?: String;
-  zip?: String;
-  url?: String;
-  notes?: String;
-}
-
-export interface ParentEventPromise extends Promise<ParentEvent>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  parent: <T = ParentPromise>() => T;
-  studio: <T = StudioPromise>() => T;
-  name: () => Promise<String>;
-  type: () => Promise<String>;
-  dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
-  beginDate: () => Promise<DateTimeOutput>;
-  endDate: () => Promise<DateTimeOutput>;
-  location: () => Promise<String>;
-  address1: () => Promise<String>;
-  address2: () => Promise<String>;
-  city: () => Promise<String>;
-  state: () => Promise<String>;
-  zip: () => Promise<String>;
-  url: () => Promise<String>;
-  notes: () => Promise<String>;
-}
-
-export interface ParentEventSubscription
-  extends Promise<AsyncIterator<ParentEvent>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  parent: <T = ParentSubscription>() => T;
-  studio: <T = StudioSubscription>() => T;
-  name: () => Promise<AsyncIterator<String>>;
-  type: () => Promise<AsyncIterator<String>>;
-  dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
-  beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-  location: () => Promise<AsyncIterator<String>>;
-  address1: () => Promise<AsyncIterator<String>>;
-  address2: () => Promise<AsyncIterator<String>>;
-  city: () => Promise<AsyncIterator<String>>;
-  state: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-  notes: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ParentEventNullablePromise
-  extends Promise<ParentEvent | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  parent: <T = ParentPromise>() => T;
-  studio: <T = StudioPromise>() => T;
-  name: () => Promise<String>;
-  type: () => Promise<String>;
-  dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
-  beginDate: () => Promise<DateTimeOutput>;
-  endDate: () => Promise<DateTimeOutput>;
-  location: () => Promise<String>;
-  address1: () => Promise<String>;
-  address2: () => Promise<String>;
-  city: () => Promise<String>;
-  state: () => Promise<String>;
-  zip: () => Promise<String>;
-  url: () => Promise<String>;
-  notes: () => Promise<String>;
 }
 
 export interface ParentEventConnection {
@@ -9271,7 +9618,6 @@ export interface ParentEventPreviousValues {
   name: String;
   type: String;
   dancerIds: ID_Output[];
-  appliesTo: String[];
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
@@ -9291,7 +9637,6 @@ export interface ParentEventPreviousValuesPromise
   name: () => Promise<String>;
   type: () => Promise<String>;
   dancerIds: () => Promise<ID_Output[]>;
-  appliesTo: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -9311,7 +9656,6 @@ export interface ParentEventPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
   dancerIds: () => Promise<AsyncIterator<ID_Output[]>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
