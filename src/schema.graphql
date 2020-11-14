@@ -234,6 +234,7 @@ type Query {
   customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
   parentEvents: [StudioEvent!]!
   customEvents: [ParentEvent!]!
+  studioDancer(id: ID!): Dancer
 }
 
 type SuccessMessage {

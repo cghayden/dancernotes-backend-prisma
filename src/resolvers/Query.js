@@ -47,9 +47,9 @@ const Query = {
       {
         where: {
           parent: {
-            id: ctx.request.userId
-          }
-        }
+            id: ctx.request.userId,
+          },
+        },
       },
       `{
       id
@@ -88,8 +88,8 @@ const Query = {
     const parentsClasses = await ctx.db.query.danceClasses(
       {
         where: {
-          dancers_some: { id_in: myDancersIds }
-        }
+          dancers_some: { id_in: myDancersIds },
+        },
       },
       info
     );
@@ -97,14 +97,14 @@ const Query = {
     const allParentsNotes = await ctx.db.query.parentNotes(
       {
         where: {
-          parent: { id: ctx.request.userId }
-        }
+          parent: { id: ctx.request.userId },
+        },
       },
       `{id note dance{id}}`
     );
 
     for (const dance of parentsClasses) {
-      const filteredDancers = dance.dancers.filter(dancer =>
+      const filteredDancers = dance.dancers.filter((dancer) =>
         myDancersIds.includes(dancer.id)
       );
       dance.dancers = filteredDancers;
@@ -127,8 +127,8 @@ const Query = {
     return await ctx.db.query.studios(
       {
         where: {
-          dancers_some: { parent: { id: ctx.request.userId } }
-        }
+          dancers_some: { parent: { id: ctx.request.userId } },
+        },
       },
       info
     );
@@ -158,7 +158,7 @@ const Query = {
     }
     return await ctx.db.query.danceClasses(
       {
-        where: { studio: { id: ctx.request.userId } }
+        where: { studio: { id: ctx.request.userId } },
       },
       info
     );
@@ -178,26 +178,12 @@ const Query = {
     }
     const dancers = await ctx.db.query.dancers(
       {
-        where: { studios_some: { id: ctx.request.userId } }
+        where: { studios_some: { id: ctx.request.userId } },
       },
-      `{
-        firstName
-        id
-        parent{
-          
-          id
-          firstName
-          email
-        }
-        danceClasses{
-          studio{
-          id}
-          name
-        }
-      }`
+      info
     );
     for (const dancer of dancers) {
-      const studioDances = dancer.danceClasses.filter(danceClass => {
+      const studioDances = dancer.danceClasses.filter((danceClass) => {
         return danceClass.studio.id === ctx.request.userId;
       });
       dancer.danceClasses = studioDances;
@@ -205,10 +191,28 @@ const Query = {
 
     return dancers;
   },
+  async studioDancer(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const dancer = await ctx.db.query.dancer(
+      {
+        where: { id: args.id },
+      },
+      info
+    );
+
+    const studioDances = dancer.danceClasses.filter((danceClass) => {
+      return danceClass.studio.id === ctx.request.userId;
+    });
+    dancer.danceClasses = studioDances;
+
+    return dancer;
+  },
   async parentNotes(parent, args, ctx, info) {
     return await ctx.db.query.parentNotes(
       {
-        where: { dance: { id: args.danceId } }
+        where: { dance: { id: args.danceId } },
       },
       info
     );
@@ -237,7 +241,7 @@ const Query = {
     }
     const studioIds = await ctx.db.query.parent(
       {
-        where: { id: ctx.request.userId }
+        where: { id: ctx.request.userId },
       },
       `{studios{id}}`
     );
@@ -249,9 +253,9 @@ const Query = {
       {
         where: {
           studio: {
-            id_in: allStudioIds
-          }
-        }
+            id_in: allStudioIds,
+          },
+        },
       },
       info
     );
@@ -263,11 +267,11 @@ const Query = {
     }
     return await ctx.db.query.parentEvents(
       {
-        where: { parent: { id: ctx.request.userId } }
+        where: { parent: { id: ctx.request.userId } },
       },
       info
     );
-  }
+  },
 };
 
 module.exports = Query;
