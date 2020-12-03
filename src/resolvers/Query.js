@@ -234,6 +234,19 @@ const Query = {
     //check to ensure studio id on returned hairstyle matches the userId(studioId)?
     return studioHairStyle
   },
+  async studioMakeupSet(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioMakeupSet = await ctx.db.query.makeupSet(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    //check to ensure studio id on returned hairstyle matches the userId(studioId)?
+    return studioMakeupSet
+  },
   async parentNotes(parent, args, ctx, info) {
     return await ctx.db.query.parentNotes(
       {

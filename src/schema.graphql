@@ -237,6 +237,7 @@ type Query {
   studioDancer(id: ID!): Dancer
   studioEvent(id: ID!): StudioEvent
   studioHairStyle(id: ID!): HairStyle
+  studioMakeupSet(id: ID!): MakeupSet
 }
 
 type SuccessMessage {
