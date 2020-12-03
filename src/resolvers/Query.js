@@ -209,6 +209,31 @@ const Query = {
 
     return dancer;
   },
+  async studioEvent(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioEvent = await ctx.db.query.studioEvent(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    return studioEvent
+  },
+  async studioHairStyle(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioHairStyle = await ctx.db.query.hairStyle(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    //check to ensure studio id on returned hairstyle matches the userId(studioId)?
+    return studioHairStyle
+  },
   async parentNotes(parent, args, ctx, info) {
     return await ctx.db.query.parentNotes(
       {

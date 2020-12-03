@@ -235,6 +235,8 @@ type Query {
   parentEvents: [StudioEvent!]!
   customEvents: [ParentEvent!]!
   studioDancer(id: ID!): Dancer
+  studioEvent(id: ID!): StudioEvent
+  studioHairStyle(id: ID!): HairStyle
 }
 
 type SuccessMessage {
