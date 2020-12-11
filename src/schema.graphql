@@ -238,6 +238,7 @@ type Query {
   studioEvent(id: ID!): StudioEvent
   studioHairStyle(id: ID!): HairStyle
   studioMakeupSet(id: ID!): MakeupSet
+  studioLinkedParents: [Parent!]!
 }
 
 type SuccessMessage {

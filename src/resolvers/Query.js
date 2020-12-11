@@ -310,6 +310,20 @@ const Query = {
       info
     );
   },
+  async studioLinkedParents(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const linkedParents = await ctx.db.query.parents(
+      {
+        where:{studios_some:{id:ctx.request.userId}}
+      }, info
+      )
+      
+      console.log('linkedParents', linkedParents);
+    return linkedParents
+  }
+
 };
 
 module.exports = Query;
