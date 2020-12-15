@@ -1,13 +1,61 @@
-const { forwardTo } = require("prisma-binding");
+// const { forwardTo } = require("prisma-binding");
 
 const Query = {
-  danceClass: forwardTo("db"),
-  parents: forwardTo("db"),
-  studios: forwardTo("db"),
-  studio: forwardTo("db"),
-  dancer: forwardTo("db"),
-  dancers: forwardTo("db"),
-  customRoutine: forwardTo("db"),
+  // parents: forwardTo("db"),
+  // dancers: forwardTo("db"),
+  async studio(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const studio = await ctx.db.query.studio(
+      { where: {id:args.id} } ,
+      info
+    );
+    return studio;
+      },
+  async customRoutine(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const customRoutine = await ctx.db.query.customRoutine(
+      { where: {id:args.id} } ,
+      info
+    );
+    return customRoutine;
+  },
+  async studios(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const studios = await ctx.db.query.studios(
+      { where: { studioName_contains: args.searchTerm } } ,
+      info
+    );
+    return studios;
+  },
+  async danceClass(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const danceClass = await ctx.db.query.danceClass(
+      { where: { id: args.id } } ,
+      info
+    );
+    return danceClass;
+  },
+  async dancer(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const dancer = await ctx.db.query.dancer(
+      { where: { id: args.id } } ,
+      info
+      );
+      console.log('dancer', dancer);
+    return dancer;
+  }
+  
+  ,
   async parentsDancers(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged in to do retrieve your dancers");
@@ -20,7 +68,7 @@ const Query = {
   },
   async parentUser(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      throw new Error("No Parent User was found");
+      throw new Error("No User was found");
     }
     const parentUser = await ctx.db.query.parent(
       { where: { id: ctx.request.userId } },
@@ -35,7 +83,7 @@ const Query = {
   },
   async parentMakeup(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      throw new Error("No Parent User was found");
+      throw new Error("You must be logged in to do that");
     }
     return await ctx.db.query.parent(
       { where: { id: ctx.request.userId } },
@@ -43,6 +91,9 @@ const Query = {
     );
   },
   async allRs(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     const customRoutines = await ctx.db.query.customRoutines(
       {
         where: {
@@ -124,6 +175,9 @@ const Query = {
     return allParentsClasses;
   },
   async parentHairstyles(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     return await ctx.db.query.studios(
       {
         where: {
@@ -136,12 +190,16 @@ const Query = {
 
   async myStudio(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      return null;
+      throw new Error("You must be logged in to do that");
     }
-    return await ctx.db.query.studio(
+    const studio = await ctx.db.query.studio(
       { where: { id: ctx.request.userId } },
       info
     );
+    if(!studio){
+      ctx.response.clearCookie("token");return;
+    }
+    return studio;
   },
   async studioCategories(parent, args, ctx, info) {
     if (!ctx.request.userId) {
@@ -248,6 +306,9 @@ const Query = {
     return studioMakeupSet
   },
   async parentNotes(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     return await ctx.db.query.parentNotes(
       {
         where: { dance: { id: args.danceId } },

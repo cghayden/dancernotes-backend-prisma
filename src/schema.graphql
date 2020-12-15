@@ -205,8 +205,8 @@ type Mutation {
 
 type Query {
   parents(where: ParentWhereInput): [Parent!]!
-  danceClass(where: DanceClassWhereUniqueInput!): DanceClass
-  studio(where: StudioWhereUniqueInput!): Studio
+  danceClass(id: ID!): DanceClass
+  studio(id: ID!): Studio
   studios(
     where: StudioWhereInput
     orderBy: StudioOrderByInput
@@ -219,8 +219,8 @@ type Query {
   parentsDancers: [Dancer!]!
   parentUser: Parent!
   parentMakeup: Parent!
-  myStudio: Studio!
-  dancer(where: DancerWhereUniqueInput!): Dancer
+  myStudio: Studio
+  dancer(id: ID!): Dancer
   dancers(where: DancerWhereInput): [Dancer!]!
   allStudioDanceClasses: [DanceClass!]!
   studioCategories: Studio!
@@ -231,7 +231,7 @@ type Query {
   parentNotes(danceId: ID!): ParentNote!
   accessRequests: [AccessRequest!]!
   enrollmentRequests: [EnrollmentRequest!]!
-  customRoutine(where: CustomRoutineWhereUniqueInput!): CustomRoutine
+  customRoutine(id: ID!): CustomRoutine
   parentEvents: [StudioEvent!]!
   customEvents: [ParentEvent!]!
   studioDancer(id: ID!): Dancer
