@@ -304,7 +304,6 @@ const Mutations = {
   },
   async requestDance(parent, args, ctx, info) {
     const authorizedEmails = [
-      "q@q.com",
       "cghayden@gmail.com",
       "sarah.hayden27@gmail.com",
       "yengbutler@gmail.com",

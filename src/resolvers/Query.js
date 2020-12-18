@@ -1,13 +1,61 @@
-const { forwardTo } = require("prisma-binding");
+// const { forwardTo } = require("prisma-binding");
 
 const Query = {
-  danceClass: forwardTo("db"),
-  parents: forwardTo("db"),
-  studios: forwardTo("db"),
-  studio: forwardTo("db"),
-  dancer: forwardTo("db"),
-  dancers: forwardTo("db"),
-  customRoutine: forwardTo("db"),
+  // parents: forwardTo("db"),
+  // dancers: forwardTo("db"),
+  async studio(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const studio = await ctx.db.query.studio(
+      { where: {id:args.id} } ,
+      info
+    );
+    return studio;
+      },
+  async customRoutine(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const customRoutine = await ctx.db.query.customRoutine(
+      { where: {id:args.id} } ,
+      info
+    );
+    return customRoutine;
+  },
+  async studios(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const studios = await ctx.db.query.studios(
+      { where: { studioName_contains: args.searchTerm } } ,
+      info
+    );
+    return studios;
+  },
+  async danceClass(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const danceClass = await ctx.db.query.danceClass(
+      { where: { id: args.id } } ,
+      info
+    );
+    return danceClass;
+  },
+  async dancer(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    const dancer = await ctx.db.query.dancer(
+      { where: { id: args.id } } ,
+      info
+      );
+      console.log('dancer', dancer);
+    return dancer;
+  }
+  
+  ,
   async parentsDancers(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged in to do retrieve your dancers");
@@ -20,7 +68,7 @@ const Query = {
   },
   async parentUser(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      throw new Error("No Parent User was found");
+      throw new Error("No User was found");
     }
     const parentUser = await ctx.db.query.parent(
       { where: { id: ctx.request.userId } },
@@ -35,7 +83,7 @@ const Query = {
   },
   async parentMakeup(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      throw new Error("No Parent User was found");
+      throw new Error("You must be logged in to do that");
     }
     return await ctx.db.query.parent(
       { where: { id: ctx.request.userId } },
@@ -43,13 +91,16 @@ const Query = {
     );
   },
   async allRs(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     const customRoutines = await ctx.db.query.customRoutines(
       {
         where: {
           parent: {
-            id: ctx.request.userId
-          }
-        }
+            id: ctx.request.userId,
+          },
+        },
       },
       `{
       id
@@ -88,8 +139,8 @@ const Query = {
     const parentsClasses = await ctx.db.query.danceClasses(
       {
         where: {
-          dancers_some: { id_in: myDancersIds }
-        }
+          dancers_some: { id_in: myDancersIds },
+        },
       },
       info
     );
@@ -97,14 +148,14 @@ const Query = {
     const allParentsNotes = await ctx.db.query.parentNotes(
       {
         where: {
-          parent: { id: ctx.request.userId }
-        }
+          parent: { id: ctx.request.userId },
+        },
       },
       `{id note dance{id}}`
     );
 
     for (const dance of parentsClasses) {
-      const filteredDancers = dance.dancers.filter(dancer =>
+      const filteredDancers = dance.dancers.filter((dancer) =>
         myDancersIds.includes(dancer.id)
       );
       dance.dancers = filteredDancers;
@@ -124,11 +175,14 @@ const Query = {
     return allParentsClasses;
   },
   async parentHairstyles(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     return await ctx.db.query.studios(
       {
         where: {
-          dancers_some: { parent: { id: ctx.request.userId } }
-        }
+          dancers_some: { parent: { id: ctx.request.userId } },
+        },
       },
       info
     );
@@ -136,12 +190,16 @@ const Query = {
 
   async myStudio(parent, args, ctx, info) {
     if (!ctx.request.userId) {
-      return null;
+      throw new Error("You must be logged in to do that");
     }
-    return await ctx.db.query.studio(
+    const studio = await ctx.db.query.studio(
       { where: { id: ctx.request.userId } },
       info
     );
+    if(!studio){
+      ctx.response.clearCookie("token");return;
+    }
+    return studio;
   },
   async studioCategories(parent, args, ctx, info) {
     if (!ctx.request.userId) {
@@ -158,7 +216,7 @@ const Query = {
     }
     return await ctx.db.query.danceClasses(
       {
-        where: { studio: { id: ctx.request.userId } }
+        where: { studio: { id: ctx.request.userId } },
       },
       info
     );
@@ -178,26 +236,12 @@ const Query = {
     }
     const dancers = await ctx.db.query.dancers(
       {
-        where: { studios_some: { id: ctx.request.userId } }
+        where: { studios_some: { id: ctx.request.userId } },
       },
-      `{
-        firstName
-        id
-        parent{
-          
-          id
-          firstName
-          email
-        }
-        danceClasses{
-          studio{
-          id}
-          name
-        }
-      }`
+      info
     );
     for (const dancer of dancers) {
-      const studioDances = dancer.danceClasses.filter(danceClass => {
+      const studioDances = dancer.danceClasses.filter((danceClass) => {
         return danceClass.studio.id === ctx.request.userId;
       });
       dancer.danceClasses = studioDances;
@@ -205,10 +249,69 @@ const Query = {
 
     return dancers;
   },
+  async studioDancer(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const dancer = await ctx.db.query.dancer(
+      {
+        where: { id: args.id },
+      },
+      info
+    );
+
+    const studioDances = dancer.danceClasses.filter((danceClass) => {
+      return danceClass.studio.id === ctx.request.userId;
+    });
+    dancer.danceClasses = studioDances;
+
+    return dancer;
+  },
+  async studioEvent(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioEvent = await ctx.db.query.studioEvent(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    return studioEvent
+  },
+  async studioHairStyle(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioHairStyle = await ctx.db.query.hairStyle(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    //check to ensure studio id on returned hairstyle matches the userId(studioId)?
+    return studioHairStyle
+  },
+  async studioMakeupSet(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const studioMakeupSet = await ctx.db.query.makeupSet(
+      {
+        where: {id: args.id},
+      },
+      info
+    );
+    //check to ensure studio id on returned hairstyle matches the userId(studioId)?
+    return studioMakeupSet
+  },
   async parentNotes(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
     return await ctx.db.query.parentNotes(
       {
-        where: { dance: { id: args.danceId } }
+        where: { dance: { id: args.danceId } },
       },
       info
     );
@@ -237,7 +340,7 @@ const Query = {
     }
     const studioIds = await ctx.db.query.parent(
       {
-        where: { id: ctx.request.userId }
+        where: { id: ctx.request.userId },
       },
       `{studios{id}}`
     );
@@ -249,9 +352,9 @@ const Query = {
       {
         where: {
           studio: {
-            id_in: allStudioIds
-          }
-        }
+            id_in: allStudioIds,
+          },
+        },
       },
       info
     );
@@ -263,11 +366,25 @@ const Query = {
     }
     return await ctx.db.query.parentEvents(
       {
-        where: { parent: { id: ctx.request.userId } }
+        where: { parent: { id: ctx.request.userId } },
       },
       info
     );
+  },
+  async studioLinkedParents(parent, args, ctx, info){
+    if (!ctx.request.userId) {
+      throw new Error("you must be logged in to do that");
+    }
+    const linkedParents = await ctx.db.query.parents(
+      {
+        where:{studios_some:{id:ctx.request.userId}}
+      }, info
+      )
+      
+      console.log('linkedParents', linkedParents);
+    return linkedParents
   }
+
 };
 
 module.exports = Query;
