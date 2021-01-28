@@ -1,5 +1,7 @@
 // const { forwardTo } = require("prisma-binding");
 
+const { createLexer } = require("graphql");
+
 const Query = {
   // parents: forwardTo("db"),
   // dancers: forwardTo("db"),
@@ -174,8 +176,58 @@ const Query = {
     }
     return allParentsClasses;
   },
-  async parentHairstyles(parent, args, ctx, info) {
+  async singleRoutine(parent, args, ctx, info){
     if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that");
+    }
+    let routine = await ctx.db.query.danceClass(
+      {where:{id:args.id}},info
+      );
+      //remover any dancers that do not belong to the requesting parent
+      
+        if (!routine){
+          console.log('is this a custom?')
+          routine = await ctx.db.query.customRoutine(
+            { where: {id: args.id }},info
+            // `{
+            //     id
+            //     name
+            //     custom
+            //     performanceName
+            //     tights
+            //     shoes
+            //     notes
+            //     music
+            //     day
+            //     startTime
+            //     endTime
+            //     entryNumber
+            //     entryDay
+            //     entryTime
+            //     dancers{
+            //         id
+            //         firstName
+            //         avatar
+            //         parent{
+            //           id
+            //         }
+            //       }
+            //       studio{
+            //           id
+            //         }}`
+                    );
+        }
+        if (routine) {
+          const filteredDancers = routine.dancers.filter(dancer => dancer.parent.id === ctx.request.userId
+            )
+          routine.dancers = filteredDancers
+        }
+        
+                console.log('routine', routine);
+                return routine;
+              },
+              async parentHairstyles(parent, args, ctx, info) {
+                if (!ctx.request.userId) {
       throw new Error("You must be logged in to do that");
     }
     return await ctx.db.query.studios(

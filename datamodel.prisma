@@ -48,7 +48,7 @@ type Dancer {
   id: ID! @id
   firstName: String!
   parent: Parent!
-  requests: EnrollmentRequest @relation(link: INLINE, onDelete: CASCADE)
+  requests: [EnrollmentRequest!]!
   danceClasses: [DanceClass!]!
   customRoutines: [CustomRoutine!]!
   avatar: String
@@ -185,12 +185,13 @@ type ParentEvent {
   notes: String
 }
 
+
 type EnrollmentRequest {
   id: ID! @id
   studio: Studio!
-  parent: Parent!
+  classRequested: DanceClass!
   dancer: Dancer!
-  classesRequested: [DanceClass!]!
+  parent: Parent!
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }

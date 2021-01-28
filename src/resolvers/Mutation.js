@@ -351,16 +351,22 @@ const Mutations = {
     }
     //TODO - make sure it is not already in requests
     else {
-      const enrollmentRequest = await ctx.db.mutation.upsertEnrollmentRequest(
+      const enrollmentRequest = await ctx.db.mutation.createEnrollmentRequest(
         {
-          where: { id: args.requestId },
-          create: {
-            dancer: { connect: { id: args.dancerId } },
-            studio: { connect: { id: args.studioId } },
-            parent: { connect: { id: ctx.request.userId } },
-            classesRequested: { connect: { id: args.danceId } },
+          data: {
+            studio: {
+              connect: { id: args.studioId },
+            },
+            classRequested: {
+              connect: { id: args.danceId },
+            },
+            dancer: {
+              connect: { id: args.dancerId },
+            },
+            parent: {
+              connect: { id: ctx.request.userId },
+            },
           },
-          update: { classesRequested: { connect: { id: args.danceId } } },
         },
         `{
         id
@@ -423,6 +429,7 @@ const Mutations = {
     // 1. confirm danceClass is in Studio.danceClasses?...
     // 1a. Is class full?
     // 2. Add dancerId to danceClass.dancers
+    // add studio to dancer if not there
     const updatedDanceClass = await ctx.db.mutation.updateDanceClass(
       {
         where: { id: args.danceClassId },
@@ -442,22 +449,13 @@ const Mutations = {
         where: { id: args.parentId },
         data: { studios: { connect: { id: ctx.request.userId } } },
       });
-      // 4. remove danceCLassId from enrollmentRequest.classesRequested
-      const enrollmentRequest = await ctx.db.mutation.updateEnrollmentRequest(
+      // 4. delete request
+      await ctx.db.mutation.deleteEnrollmentRequest(
         {
           where: { id: args.requestId },
-          data: { classesRequested: { disconnect: { id: args.danceClassId } } },
         },
-        `{classesRequested{name}}`
+        info
       );
-      if (enrollmentRequest.classesRequested.length === 0) {
-        await ctx.db.mutation.deleteEnrollmentRequest(
-          {
-            where: { id: args.requestId },
-          },
-          info
-        );
-      }
     }
   },
   async withdrawFromClass(parent, args, ctx, info) {
