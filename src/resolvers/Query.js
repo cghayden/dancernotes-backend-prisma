@@ -126,6 +126,7 @@ const Query = {
       }
       studio{
         id
+        studioName
       }}`
     );
     const parentsDancers = await ctx.db.query.parent(
