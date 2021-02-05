@@ -1,5 +1,4 @@
 # import * from './generated/prisma.graphql'
-
 type Mutation {
   signin(email: String!, password: String!): User!
   requestReset(email: String!): SuccessMessage
@@ -74,13 +73,7 @@ type Mutation {
   addDancer(dancerId: ID!, danceId: ID!): SuccessMessage
   removeDancerFromDance(dancerId: ID!, danceId: ID!): SuccessMessage
   deleteDanceClass(id: ID!): SuccessMessage
-  requestDance(
-    requestId: ID!
-    danceId: ID!
-    dancerId: ID!
-    studioId: ID!
-    parentEmail: String!
-  ): SuccessMessage
+  requestDance(danceId: ID!, dancerId: ID!, studioId: ID!): SuccessMessage
   removeClassFromRequest(requestId: ID!, danceClassId: ID!): SuccessMessage
   confirmEnrollmentRequest(
     parentId: ID!
@@ -225,6 +218,7 @@ type Query {
   allStudioDanceClasses: [DanceClass!]!
   studioCategories: Studio!
   allRs: [DanceClass!]!
+  singleRoutine(id: ID!): DanceClass
   studioHairStyles: [HairStyle!]!
   parentHairstyles: [Studio!]!
   studioDancers: [Dancer!]!

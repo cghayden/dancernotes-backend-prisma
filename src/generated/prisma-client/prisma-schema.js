@@ -1146,11 +1146,6 @@ input DanceClassCreateInput {
   videoId: String
 }
 
-input DanceClassCreateManyInput {
-  create: [DanceClassCreateInput!]
-  connect: [DanceClassWhereUniqueInput!]
-}
-
 input DanceClassCreateManyWithoutDancersInput {
   create: [DanceClassCreateWithoutDancersInput!]
   connect: [DanceClassWhereUniqueInput!]
@@ -1726,18 +1721,6 @@ input DanceClassUpdateManyDataInput {
   videoId: String
 }
 
-input DanceClassUpdateManyInput {
-  create: [DanceClassCreateInput!]
-  update: [DanceClassUpdateWithWhereUniqueNestedInput!]
-  upsert: [DanceClassUpsertWithWhereUniqueNestedInput!]
-  delete: [DanceClassWhereUniqueInput!]
-  connect: [DanceClassWhereUniqueInput!]
-  set: [DanceClassWhereUniqueInput!]
-  disconnect: [DanceClassWhereUniqueInput!]
-  deleteMany: [DanceClassScalarWhereInput!]
-  updateMany: [DanceClassUpdateManyWithWhereNestedInput!]
-}
-
 input DanceClassUpdateManyMutationInput {
   name: String
   music: String
@@ -1884,11 +1867,6 @@ input DanceClassUpdateWithoutStudioDataInput {
   videoId: String
 }
 
-input DanceClassUpdateWithWhereUniqueNestedInput {
-  where: DanceClassWhereUniqueInput!
-  data: DanceClassUpdateDataInput!
-}
-
 input DanceClassUpdateWithWhereUniqueWithoutDancersInput {
   where: DanceClassWhereUniqueInput!
   data: DanceClassUpdateWithoutDancersDataInput!
@@ -1905,12 +1883,6 @@ input DanceClassUpdateWithWhereUniqueWithoutStudioInput {
 }
 
 input DanceClassUpsertNestedInput {
-  update: DanceClassUpdateDataInput!
-  create: DanceClassCreateInput!
-}
-
-input DanceClassUpsertWithWhereUniqueNestedInput {
-  where: DanceClassWhereUniqueInput!
   update: DanceClassUpdateDataInput!
   create: DanceClassCreateInput!
 }
@@ -2252,7 +2224,7 @@ type Dancer {
   id: ID!
   firstName: String!
   parent: Parent!
-  requests: EnrollmentRequest
+  requests(where: EnrollmentRequestWhereInput, orderBy: EnrollmentRequestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EnrollmentRequest!]
   danceClasses(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
   customRoutines(where: CustomRoutineWhereInput, orderBy: CustomRoutineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CustomRoutine!]
   avatar: String
@@ -2271,7 +2243,7 @@ input DancerCreateInput {
   id: ID
   firstName: String!
   parent: ParentCreateOneWithoutDancersInput!
-  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  requests: EnrollmentRequestCreateManyWithoutDancerInput
   danceClasses: DanceClassCreateManyWithoutDancersInput
   customRoutines: CustomRoutineCreateManyWithoutDancersInput
   avatar: String
@@ -2309,7 +2281,7 @@ input DancerCreateWithoutCustomRoutinesInput {
   id: ID
   firstName: String!
   parent: ParentCreateOneWithoutDancersInput!
-  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  requests: EnrollmentRequestCreateManyWithoutDancerInput
   danceClasses: DanceClassCreateManyWithoutDancersInput
   avatar: String
   avatarId: String
@@ -2321,7 +2293,7 @@ input DancerCreateWithoutDanceClassesInput {
   id: ID
   firstName: String!
   parent: ParentCreateOneWithoutDancersInput!
-  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  requests: EnrollmentRequestCreateManyWithoutDancerInput
   customRoutines: CustomRoutineCreateManyWithoutDancersInput
   avatar: String
   avatarId: String
@@ -2332,7 +2304,7 @@ input DancerCreateWithoutDanceClassesInput {
 input DancerCreateWithoutParentInput {
   id: ID
   firstName: String!
-  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  requests: EnrollmentRequestCreateManyWithoutDancerInput
   danceClasses: DanceClassCreateManyWithoutDancersInput
   customRoutines: CustomRoutineCreateManyWithoutDancersInput
   avatar: String
@@ -2357,7 +2329,7 @@ input DancerCreateWithoutStudiosInput {
   id: ID
   firstName: String!
   parent: ParentCreateOneWithoutDancersInput!
-  requests: EnrollmentRequestCreateOneWithoutDancerInput
+  requests: EnrollmentRequestCreateManyWithoutDancerInput
   danceClasses: DanceClassCreateManyWithoutDancersInput
   customRoutines: CustomRoutineCreateManyWithoutDancersInput
   avatar: String
@@ -2510,7 +2482,7 @@ input DancerSubscriptionWhereInput {
 input DancerUpdateInput {
   firstName: String
   parent: ParentUpdateOneRequiredWithoutDancersInput
-  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  requests: EnrollmentRequestUpdateManyWithoutDancerInput
   danceClasses: DanceClassUpdateManyWithoutDancersInput
   customRoutines: CustomRoutineUpdateManyWithoutDancersInput
   avatar: String
@@ -2596,7 +2568,7 @@ input DancerUpdateOneRequiredWithoutRequestsInput {
 input DancerUpdateWithoutCustomRoutinesDataInput {
   firstName: String
   parent: ParentUpdateOneRequiredWithoutDancersInput
-  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  requests: EnrollmentRequestUpdateManyWithoutDancerInput
   danceClasses: DanceClassUpdateManyWithoutDancersInput
   avatar: String
   avatarId: String
@@ -2607,7 +2579,7 @@ input DancerUpdateWithoutCustomRoutinesDataInput {
 input DancerUpdateWithoutDanceClassesDataInput {
   firstName: String
   parent: ParentUpdateOneRequiredWithoutDancersInput
-  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  requests: EnrollmentRequestUpdateManyWithoutDancerInput
   customRoutines: CustomRoutineUpdateManyWithoutDancersInput
   avatar: String
   avatarId: String
@@ -2617,7 +2589,7 @@ input DancerUpdateWithoutDanceClassesDataInput {
 
 input DancerUpdateWithoutParentDataInput {
   firstName: String
-  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  requests: EnrollmentRequestUpdateManyWithoutDancerInput
   danceClasses: DanceClassUpdateManyWithoutDancersInput
   customRoutines: CustomRoutineUpdateManyWithoutDancersInput
   avatar: String
@@ -2640,7 +2612,7 @@ input DancerUpdateWithoutRequestsDataInput {
 input DancerUpdateWithoutStudiosDataInput {
   firstName: String
   parent: ParentUpdateOneRequiredWithoutDancersInput
-  requests: EnrollmentRequestUpdateOneWithoutDancerInput
+  requests: EnrollmentRequestUpdateManyWithoutDancerInput
   danceClasses: DanceClassUpdateManyWithoutDancersInput
   customRoutines: CustomRoutineUpdateManyWithoutDancersInput
   avatar: String
@@ -2743,7 +2715,9 @@ input DancerWhereInput {
   firstName_ends_with: String
   firstName_not_ends_with: String
   parent: ParentWhereInput
-  requests: EnrollmentRequestWhereInput
+  requests_every: EnrollmentRequestWhereInput
+  requests_some: EnrollmentRequestWhereInput
+  requests_none: EnrollmentRequestWhereInput
   danceClasses_every: DanceClassWhereInput
   danceClasses_some: DanceClassWhereInput
   danceClasses_none: DanceClassWhereInput
@@ -2809,9 +2783,9 @@ scalar DateTime
 type EnrollmentRequest {
   id: ID!
   studio: Studio!
-  parent: Parent!
+  classRequested: DanceClass!
   dancer: Dancer!
-  classesRequested(where: DanceClassWhereInput, orderBy: DanceClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DanceClass!]
+  parent: Parent!
   updatedAt: DateTime!
   createdAt: DateTime!
 }
@@ -2825,9 +2799,14 @@ type EnrollmentRequestConnection {
 input EnrollmentRequestCreateInput {
   id: ID
   studio: StudioCreateOneWithoutEnrollmentRequestsInput!
-  parent: ParentCreateOneInput!
+  classRequested: DanceClassCreateOneInput!
   dancer: DancerCreateOneWithoutRequestsInput!
-  classesRequested: DanceClassCreateManyInput
+  parent: ParentCreateOneInput!
+}
+
+input EnrollmentRequestCreateManyWithoutDancerInput {
+  create: [EnrollmentRequestCreateWithoutDancerInput!]
+  connect: [EnrollmentRequestWhereUniqueInput!]
 }
 
 input EnrollmentRequestCreateManyWithoutStudioInput {
@@ -2835,23 +2814,18 @@ input EnrollmentRequestCreateManyWithoutStudioInput {
   connect: [EnrollmentRequestWhereUniqueInput!]
 }
 
-input EnrollmentRequestCreateOneWithoutDancerInput {
-  create: EnrollmentRequestCreateWithoutDancerInput
-  connect: EnrollmentRequestWhereUniqueInput
-}
-
 input EnrollmentRequestCreateWithoutDancerInput {
   id: ID
   studio: StudioCreateOneWithoutEnrollmentRequestsInput!
+  classRequested: DanceClassCreateOneInput!
   parent: ParentCreateOneInput!
-  classesRequested: DanceClassCreateManyInput
 }
 
 input EnrollmentRequestCreateWithoutStudioInput {
   id: ID
-  parent: ParentCreateOneInput!
+  classRequested: DanceClassCreateOneInput!
   dancer: DancerCreateOneWithoutRequestsInput!
-  classesRequested: DanceClassCreateManyInput
+  parent: ParentCreateOneInput!
 }
 
 type EnrollmentRequestEdge {
@@ -2930,9 +2904,20 @@ input EnrollmentRequestSubscriptionWhereInput {
 
 input EnrollmentRequestUpdateInput {
   studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
-  parent: ParentUpdateOneRequiredInput
+  classRequested: DanceClassUpdateOneRequiredInput
   dancer: DancerUpdateOneRequiredWithoutRequestsInput
-  classesRequested: DanceClassUpdateManyInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input EnrollmentRequestUpdateManyWithoutDancerInput {
+  create: [EnrollmentRequestCreateWithoutDancerInput!]
+  delete: [EnrollmentRequestWhereUniqueInput!]
+  connect: [EnrollmentRequestWhereUniqueInput!]
+  set: [EnrollmentRequestWhereUniqueInput!]
+  disconnect: [EnrollmentRequestWhereUniqueInput!]
+  update: [EnrollmentRequestUpdateWithWhereUniqueWithoutDancerInput!]
+  upsert: [EnrollmentRequestUpsertWithWhereUniqueWithoutDancerInput!]
+  deleteMany: [EnrollmentRequestScalarWhereInput!]
 }
 
 input EnrollmentRequestUpdateManyWithoutStudioInput {
@@ -2946,25 +2931,21 @@ input EnrollmentRequestUpdateManyWithoutStudioInput {
   deleteMany: [EnrollmentRequestScalarWhereInput!]
 }
 
-input EnrollmentRequestUpdateOneWithoutDancerInput {
-  create: EnrollmentRequestCreateWithoutDancerInput
-  update: EnrollmentRequestUpdateWithoutDancerDataInput
-  upsert: EnrollmentRequestUpsertWithoutDancerInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: EnrollmentRequestWhereUniqueInput
-}
-
 input EnrollmentRequestUpdateWithoutDancerDataInput {
   studio: StudioUpdateOneRequiredWithoutEnrollmentRequestsInput
+  classRequested: DanceClassUpdateOneRequiredInput
   parent: ParentUpdateOneRequiredInput
-  classesRequested: DanceClassUpdateManyInput
 }
 
 input EnrollmentRequestUpdateWithoutStudioDataInput {
-  parent: ParentUpdateOneRequiredInput
+  classRequested: DanceClassUpdateOneRequiredInput
   dancer: DancerUpdateOneRequiredWithoutRequestsInput
-  classesRequested: DanceClassUpdateManyInput
+  parent: ParentUpdateOneRequiredInput
+}
+
+input EnrollmentRequestUpdateWithWhereUniqueWithoutDancerInput {
+  where: EnrollmentRequestWhereUniqueInput!
+  data: EnrollmentRequestUpdateWithoutDancerDataInput!
 }
 
 input EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
@@ -2972,7 +2953,8 @@ input EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
   data: EnrollmentRequestUpdateWithoutStudioDataInput!
 }
 
-input EnrollmentRequestUpsertWithoutDancerInput {
+input EnrollmentRequestUpsertWithWhereUniqueWithoutDancerInput {
+  where: EnrollmentRequestWhereUniqueInput!
   update: EnrollmentRequestUpdateWithoutDancerDataInput!
   create: EnrollmentRequestCreateWithoutDancerInput!
 }
@@ -2999,11 +2981,9 @@ input EnrollmentRequestWhereInput {
   id_ends_with: ID
   id_not_ends_with: ID
   studio: StudioWhereInput
-  parent: ParentWhereInput
+  classRequested: DanceClassWhereInput
   dancer: DancerWhereInput
-  classesRequested_every: DanceClassWhereInput
-  classesRequested_some: DanceClassWhereInput
-  classesRequested_none: DanceClassWhereInput
+  parent: ParentWhereInput
   updatedAt: DateTime
   updatedAt_not: DateTime
   updatedAt_in: [DateTime!]

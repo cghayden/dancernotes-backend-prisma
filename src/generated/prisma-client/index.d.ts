@@ -706,6 +706,14 @@ export type ParentEventOrderByInput =
   | "notes_ASC"
   | "notes_DESC";
 
+export type EnrollmentRequestOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
+
 export type MakeupSetOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
@@ -779,14 +787,6 @@ export type StudioEventOrderByInput =
   | "url_DESC"
   | "notes_ASC"
   | "notes_DESC";
-
-export type EnrollmentRequestOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC";
 
 export type AccessRequestOrderByInput = "id_ASC" | "id_DESC";
 
@@ -1637,7 +1637,9 @@ export interface DancerWhereInput {
   firstName_ends_with?: Maybe<String>;
   firstName_not_ends_with?: Maybe<String>;
   parent?: Maybe<ParentWhereInput>;
-  requests?: Maybe<EnrollmentRequestWhereInput>;
+  requests_every?: Maybe<EnrollmentRequestWhereInput>;
+  requests_some?: Maybe<EnrollmentRequestWhereInput>;
+  requests_none?: Maybe<EnrollmentRequestWhereInput>;
   danceClasses_every?: Maybe<DanceClassWhereInput>;
   danceClasses_some?: Maybe<DanceClassWhereInput>;
   danceClasses_none?: Maybe<DanceClassWhereInput>;
@@ -2301,11 +2303,9 @@ export interface EnrollmentRequestWhereInput {
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
   studio?: Maybe<StudioWhereInput>;
-  parent?: Maybe<ParentWhereInput>;
+  classRequested?: Maybe<DanceClassWhereInput>;
   dancer?: Maybe<DancerWhereInput>;
-  classesRequested_every?: Maybe<DanceClassWhereInput>;
-  classesRequested_some?: Maybe<DanceClassWhereInput>;
-  classesRequested_none?: Maybe<DanceClassWhereInput>;
+  parent?: Maybe<ParentWhereInput>;
   updatedAt?: Maybe<DateTimeInput>;
   updatedAt_not?: Maybe<DateTimeInput>;
   updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -2685,7 +2685,7 @@ export interface DancerCreateWithoutDanceClassesInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestCreateManyWithoutDancerInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
   avatarId?: Maybe<String>;
@@ -2898,7 +2898,7 @@ export interface DancerCreateWithoutStudiosInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestCreateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -2906,16 +2906,21 @@ export interface DancerCreateWithoutStudiosInput {
   lastName?: Maybe<String>;
 }
 
-export interface EnrollmentRequestCreateOneWithoutDancerInput {
-  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
-  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
+export interface EnrollmentRequestCreateManyWithoutDancerInput {
+  create?: Maybe<
+    | EnrollmentRequestCreateWithoutDancerInput[]
+    | EnrollmentRequestCreateWithoutDancerInput
+  >;
+  connect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
 }
 
 export interface EnrollmentRequestCreateWithoutDancerInput {
   id?: Maybe<ID_Input>;
   studio: StudioCreateOneWithoutEnrollmentRequestsInput;
+  classRequested: DanceClassCreateOneInput;
   parent: ParentCreateOneInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
 }
 
 export interface StudioCreateOneWithoutEnrollmentRequestsInput {
@@ -3019,7 +3024,7 @@ export interface DancerCreateManyWithoutParentInput {
 export interface DancerCreateWithoutParentInput {
   id?: Maybe<ID_Input>;
   firstName: String;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestCreateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -3122,9 +3127,41 @@ export interface EnrollmentRequestCreateManyWithoutStudioInput {
 
 export interface EnrollmentRequestCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
-  parent: ParentCreateOneInput;
+  classRequested: DanceClassCreateOneInput;
   dancer: DancerCreateOneWithoutRequestsInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
+  parent: ParentCreateOneInput;
+}
+
+export interface DanceClassCreateOneInput {
+  create?: Maybe<DanceClassCreateInput>;
+  connect?: Maybe<DanceClassWhereUniqueInput>;
+}
+
+export interface DanceClassCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  studio: StudioCreateOneWithoutDanceClassesInput;
+  music?: Maybe<String>;
+  musicId?: Maybe<String>;
+  performanceName?: Maybe<String>;
+  day?: Maybe<String>;
+  startTime?: Maybe<String>;
+  endTime?: Maybe<String>;
+  competitiveLevel?: Maybe<String>;
+  ageDivision?: Maybe<String>;
+  style?: Maybe<String>;
+  tights?: Maybe<String>;
+  shoes?: Maybe<String>;
+  notes?: Maybe<String>;
+  dancers?: Maybe<DancerCreateManyWithoutDanceClassesInput>;
+  makeupSet?: Maybe<MakeupSetCreateOneWithoutDanceClassesInput>;
+  size: String;
+  custom: Boolean;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
 }
 
 export interface DancerCreateOneWithoutRequestsInput {
@@ -3265,38 +3302,6 @@ export interface StudioCreateWithoutDancersInput {
   agreedToTermsAndPrivacy?: Maybe<DateTimeInput>;
 }
 
-export interface DanceClassCreateManyInput {
-  create?: Maybe<DanceClassCreateInput[] | DanceClassCreateInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-}
-
-export interface DanceClassCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  studio: StudioCreateOneWithoutDanceClassesInput;
-  music?: Maybe<String>;
-  musicId?: Maybe<String>;
-  performanceName?: Maybe<String>;
-  day?: Maybe<String>;
-  startTime?: Maybe<String>;
-  endTime?: Maybe<String>;
-  competitiveLevel?: Maybe<String>;
-  ageDivision?: Maybe<String>;
-  style?: Maybe<String>;
-  tights?: Maybe<String>;
-  shoes?: Maybe<String>;
-  notes?: Maybe<String>;
-  dancers?: Maybe<DancerCreateManyWithoutDanceClassesInput>;
-  makeupSet?: Maybe<MakeupSetCreateOneWithoutDanceClassesInput>;
-  size: String;
-  custom: Boolean;
-  entryNumber?: Maybe<String>;
-  entryTime?: Maybe<String>;
-  entryDay?: Maybe<String>;
-  videoUrl?: Maybe<String>;
-  videoId?: Maybe<String>;
-}
-
 export interface DancerCreateManyWithoutCustomRoutinesInput {
   create?: Maybe<
     | DancerCreateWithoutCustomRoutinesInput[]
@@ -3309,7 +3314,7 @@ export interface DancerCreateWithoutCustomRoutinesInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestCreateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
   avatarId?: Maybe<String>;
@@ -3434,7 +3439,7 @@ export interface DancerUpdateWithWhereUniqueWithoutDanceClassesInput {
 export interface DancerUpdateWithoutDanceClassesDataInput {
   firstName?: Maybe<String>;
   parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestUpdateManyWithoutDancerInput>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
   avatarId?: Maybe<String>;
@@ -3852,7 +3857,7 @@ export interface DancerUpdateWithWhereUniqueWithoutStudiosInput {
 export interface DancerUpdateWithoutStudiosDataInput {
   firstName?: Maybe<String>;
   parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestUpdateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -3860,19 +3865,45 @@ export interface DancerUpdateWithoutStudiosDataInput {
   lastName?: Maybe<String>;
 }
 
-export interface EnrollmentRequestUpdateOneWithoutDancerInput {
-  create?: Maybe<EnrollmentRequestCreateWithoutDancerInput>;
-  update?: Maybe<EnrollmentRequestUpdateWithoutDancerDataInput>;
-  upsert?: Maybe<EnrollmentRequestUpsertWithoutDancerInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<EnrollmentRequestWhereUniqueInput>;
+export interface EnrollmentRequestUpdateManyWithoutDancerInput {
+  create?: Maybe<
+    | EnrollmentRequestCreateWithoutDancerInput[]
+    | EnrollmentRequestCreateWithoutDancerInput
+  >;
+  delete?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  connect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  set?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    EnrollmentRequestWhereUniqueInput[] | EnrollmentRequestWhereUniqueInput
+  >;
+  update?: Maybe<
+    | EnrollmentRequestUpdateWithWhereUniqueWithoutDancerInput[]
+    | EnrollmentRequestUpdateWithWhereUniqueWithoutDancerInput
+  >;
+  upsert?: Maybe<
+    | EnrollmentRequestUpsertWithWhereUniqueWithoutDancerInput[]
+    | EnrollmentRequestUpsertWithWhereUniqueWithoutDancerInput
+  >;
+  deleteMany?: Maybe<
+    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
+  >;
+}
+
+export interface EnrollmentRequestUpdateWithWhereUniqueWithoutDancerInput {
+  where: EnrollmentRequestWhereUniqueInput;
+  data: EnrollmentRequestUpdateWithoutDancerDataInput;
 }
 
 export interface EnrollmentRequestUpdateWithoutDancerDataInput {
   studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
+  classRequested?: Maybe<DanceClassUpdateOneRequiredInput>;
   parent?: Maybe<ParentUpdateOneRequiredInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
 }
 
 export interface StudioUpdateOneRequiredWithoutEnrollmentRequestsInput {
@@ -4247,7 +4278,7 @@ export interface DancerUpdateWithWhereUniqueWithoutParentInput {
 
 export interface DancerUpdateWithoutParentDataInput {
   firstName?: Maybe<String>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestUpdateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -4398,9 +4429,47 @@ export interface EnrollmentRequestUpdateWithWhereUniqueWithoutStudioInput {
 }
 
 export interface EnrollmentRequestUpdateWithoutStudioDataInput {
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
+  classRequested?: Maybe<DanceClassUpdateOneRequiredInput>;
   dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
+}
+
+export interface DanceClassUpdateOneRequiredInput {
+  create?: Maybe<DanceClassCreateInput>;
+  update?: Maybe<DanceClassUpdateDataInput>;
+  upsert?: Maybe<DanceClassUpsertNestedInput>;
+  connect?: Maybe<DanceClassWhereUniqueInput>;
+}
+
+export interface DanceClassUpdateDataInput {
+  name?: Maybe<String>;
+  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
+  music?: Maybe<String>;
+  musicId?: Maybe<String>;
+  performanceName?: Maybe<String>;
+  day?: Maybe<String>;
+  startTime?: Maybe<String>;
+  endTime?: Maybe<String>;
+  competitiveLevel?: Maybe<String>;
+  ageDivision?: Maybe<String>;
+  style?: Maybe<String>;
+  tights?: Maybe<String>;
+  shoes?: Maybe<String>;
+  notes?: Maybe<String>;
+  dancers?: Maybe<DancerUpdateManyWithoutDanceClassesInput>;
+  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
+  size?: Maybe<String>;
+  custom?: Maybe<Boolean>;
+  entryNumber?: Maybe<String>;
+  entryTime?: Maybe<String>;
+  entryDay?: Maybe<String>;
+  videoUrl?: Maybe<String>;
+  videoId?: Maybe<String>;
+}
+
+export interface DanceClassUpsertNestedInput {
+  update: DanceClassUpdateDataInput;
+  create: DanceClassCreateInput;
 }
 
 export interface DancerUpdateOneRequiredWithoutRequestsInput {
@@ -5306,62 +5375,68 @@ export interface DancerUpsertWithoutRequestsInput {
   create: DancerCreateWithoutRequestsInput;
 }
 
-export interface DanceClassUpdateManyInput {
-  create?: Maybe<DanceClassCreateInput[] | DanceClassCreateInput>;
-  update?: Maybe<
-    | DanceClassUpdateWithWhereUniqueNestedInput[]
-    | DanceClassUpdateWithWhereUniqueNestedInput
+export interface EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
+  where: EnrollmentRequestWhereUniqueInput;
+  update: EnrollmentRequestUpdateWithoutStudioDataInput;
+  create: EnrollmentRequestCreateWithoutStudioInput;
+}
+
+export interface EnrollmentRequestScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<
+    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
   >;
-  upsert?: Maybe<
-    | DanceClassUpsertWithWhereUniqueNestedInput[]
-    | DanceClassUpsertWithWhereUniqueNestedInput
+  OR?: Maybe<
+    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
   >;
-  delete?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  set?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  disconnect?: Maybe<DanceClassWhereUniqueInput[] | DanceClassWhereUniqueInput>;
-  deleteMany?: Maybe<DanceClassScalarWhereInput[] | DanceClassScalarWhereInput>;
-  updateMany?: Maybe<
-    | DanceClassUpdateManyWithWhereNestedInput[]
-    | DanceClassUpdateManyWithWhereNestedInput
+  NOT?: Maybe<
+    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
   >;
 }
 
-export interface DanceClassUpdateWithWhereUniqueNestedInput {
+export interface StudioUpsertWithoutMakeupSetsInput {
+  update: StudioUpdateWithoutMakeupSetsDataInput;
+  create: StudioCreateWithoutMakeupSetsInput;
+}
+
+export interface MakeupSetUpsertWithoutDanceClassesInput {
+  update: MakeupSetUpdateWithoutDanceClassesDataInput;
+  create: MakeupSetCreateWithoutDanceClassesInput;
+}
+
+export interface DanceClassUpsertWithWhereUniqueWithoutDancersInput {
   where: DanceClassWhereUniqueInput;
-  data: DanceClassUpdateDataInput;
-}
-
-export interface DanceClassUpdateDataInput {
-  name?: Maybe<String>;
-  studio?: Maybe<StudioUpdateOneRequiredWithoutDanceClassesInput>;
-  music?: Maybe<String>;
-  musicId?: Maybe<String>;
-  performanceName?: Maybe<String>;
-  day?: Maybe<String>;
-  startTime?: Maybe<String>;
-  endTime?: Maybe<String>;
-  competitiveLevel?: Maybe<String>;
-  ageDivision?: Maybe<String>;
-  style?: Maybe<String>;
-  tights?: Maybe<String>;
-  shoes?: Maybe<String>;
-  notes?: Maybe<String>;
-  dancers?: Maybe<DancerUpdateManyWithoutDanceClassesInput>;
-  makeupSet?: Maybe<MakeupSetUpdateOneWithoutDanceClassesInput>;
-  size?: Maybe<String>;
-  custom?: Maybe<Boolean>;
-  entryNumber?: Maybe<String>;
-  entryTime?: Maybe<String>;
-  entryDay?: Maybe<String>;
-  videoUrl?: Maybe<String>;
-  videoId?: Maybe<String>;
-}
-
-export interface DanceClassUpsertWithWhereUniqueNestedInput {
-  where: DanceClassWhereUniqueInput;
-  update: DanceClassUpdateDataInput;
-  create: DanceClassCreateInput;
+  update: DanceClassUpdateWithoutDancersDataInput;
+  create: DanceClassCreateWithoutDancersInput;
 }
 
 export interface DanceClassScalarWhereInput {
@@ -5696,70 +5771,6 @@ export interface DanceClassUpdateManyDataInput {
   videoId?: Maybe<String>;
 }
 
-export interface EnrollmentRequestUpsertWithWhereUniqueWithoutStudioInput {
-  where: EnrollmentRequestWhereUniqueInput;
-  update: EnrollmentRequestUpdateWithoutStudioDataInput;
-  create: EnrollmentRequestCreateWithoutStudioInput;
-}
-
-export interface EnrollmentRequestScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<
-    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
-  >;
-  OR?: Maybe<
-    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
-  >;
-  NOT?: Maybe<
-    EnrollmentRequestScalarWhereInput[] | EnrollmentRequestScalarWhereInput
-  >;
-}
-
-export interface StudioUpsertWithoutMakeupSetsInput {
-  update: StudioUpdateWithoutMakeupSetsDataInput;
-  create: StudioCreateWithoutMakeupSetsInput;
-}
-
-export interface MakeupSetUpsertWithoutDanceClassesInput {
-  update: MakeupSetUpdateWithoutDanceClassesDataInput;
-  create: MakeupSetCreateWithoutDanceClassesInput;
-}
-
-export interface DanceClassUpsertWithWhereUniqueWithoutDancersInput {
-  where: DanceClassWhereUniqueInput;
-  update: DanceClassUpdateWithoutDancersDataInput;
-  create: DanceClassCreateWithoutDancersInput;
-}
-
 export interface DancerUpsertWithWhereUniqueWithoutParentInput {
   where: DancerWhereUniqueInput;
   update: DancerUpdateWithoutParentDataInput;
@@ -5906,7 +5917,8 @@ export interface StudioUpsertWithoutEnrollmentRequestsInput {
   create: StudioCreateWithoutEnrollmentRequestsInput;
 }
 
-export interface EnrollmentRequestUpsertWithoutDancerInput {
+export interface EnrollmentRequestUpsertWithWhereUniqueWithoutDancerInput {
+  where: EnrollmentRequestWhereUniqueInput;
   update: EnrollmentRequestUpdateWithoutDancerDataInput;
   create: EnrollmentRequestCreateWithoutDancerInput;
 }
@@ -6210,7 +6222,7 @@ export interface DancerUpdateWithWhereUniqueWithoutCustomRoutinesInput {
 export interface DancerUpdateWithoutCustomRoutinesDataInput {
   firstName?: Maybe<String>;
   parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestUpdateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
   avatarId?: Maybe<String>;
@@ -6375,7 +6387,7 @@ export interface DancerCreateInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   parent: ParentCreateOneWithoutDancersInput;
-  requests?: Maybe<EnrollmentRequestCreateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestCreateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassCreateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineCreateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -6387,7 +6399,7 @@ export interface DancerCreateInput {
 export interface DancerUpdateInput {
   firstName?: Maybe<String>;
   parent?: Maybe<ParentUpdateOneRequiredWithoutDancersInput>;
-  requests?: Maybe<EnrollmentRequestUpdateOneWithoutDancerInput>;
+  requests?: Maybe<EnrollmentRequestUpdateManyWithoutDancerInput>;
   danceClasses?: Maybe<DanceClassUpdateManyWithoutDancersInput>;
   customRoutines?: Maybe<CustomRoutineUpdateManyWithoutDancersInput>;
   avatar?: Maybe<String>;
@@ -6406,16 +6418,16 @@ export interface DancerUpdateManyMutationInput {
 export interface EnrollmentRequestCreateInput {
   id?: Maybe<ID_Input>;
   studio: StudioCreateOneWithoutEnrollmentRequestsInput;
-  parent: ParentCreateOneInput;
+  classRequested: DanceClassCreateOneInput;
   dancer: DancerCreateOneWithoutRequestsInput;
-  classesRequested?: Maybe<DanceClassCreateManyInput>;
+  parent: ParentCreateOneInput;
 }
 
 export interface EnrollmentRequestUpdateInput {
   studio?: Maybe<StudioUpdateOneRequiredWithoutEnrollmentRequestsInput>;
-  parent?: Maybe<ParentUpdateOneRequiredInput>;
+  classRequested?: Maybe<DanceClassUpdateOneRequiredInput>;
   dancer?: Maybe<DancerUpdateOneRequiredWithoutRequestsInput>;
-  classesRequested?: Maybe<DanceClassUpdateManyInput>;
+  parent?: Maybe<ParentUpdateOneRequiredInput>;
 }
 
 export interface HairStyleCreateInput {
@@ -6689,27 +6701,10 @@ export interface ParentNoteCreateInput {
   note: String;
 }
 
-export interface DanceClassCreateOneInput {
-  create?: Maybe<DanceClassCreateInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput>;
-}
-
 export interface ParentNoteUpdateInput {
   parent?: Maybe<ParentUpdateOneRequiredInput>;
   dance?: Maybe<DanceClassUpdateOneRequiredInput>;
   note?: Maybe<String>;
-}
-
-export interface DanceClassUpdateOneRequiredInput {
-  create?: Maybe<DanceClassCreateInput>;
-  update?: Maybe<DanceClassUpdateDataInput>;
-  upsert?: Maybe<DanceClassUpsertNestedInput>;
-  connect?: Maybe<DanceClassWhereUniqueInput>;
-}
-
-export interface DanceClassUpsertNestedInput {
-  update: DanceClassUpdateDataInput;
-  create: DanceClassCreateInput;
 }
 
 export interface ParentNoteUpdateManyMutationInput {
@@ -7503,7 +7498,15 @@ export interface DancerPromise extends Promise<Dancer>, Fragmentable {
   id: () => Promise<ID_Output>;
   firstName: () => Promise<String>;
   parent: <T = ParentPromise>() => T;
-  requests: <T = EnrollmentRequestPromise>() => T;
+  requests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -7544,7 +7547,15 @@ export interface DancerSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   firstName: () => Promise<AsyncIterator<String>>;
   parent: <T = ParentSubscription>() => T;
-  requests: <T = EnrollmentRequestSubscription>() => T;
+  requests: <T = Promise<AsyncIterator<EnrollmentRequestSubscription>>>(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   danceClasses: <T = Promise<AsyncIterator<DanceClassSubscription>>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -7587,7 +7598,15 @@ export interface DancerNullablePromise
   id: () => Promise<ID_Output>;
   firstName: () => Promise<String>;
   parent: <T = ParentPromise>() => T;
-  requests: <T = EnrollmentRequestPromise>() => T;
+  requests: <T = FragmentableArray<EnrollmentRequest>>(args?: {
+    where?: EnrollmentRequestWhereInput;
+    orderBy?: EnrollmentRequestOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   danceClasses: <T = FragmentableArray<DanceClass>>(args?: {
     where?: DanceClassWhereInput;
     orderBy?: DanceClassOrderByInput;
@@ -8010,17 +8029,9 @@ export interface EnrollmentRequestPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   studio: <T = StudioPromise>() => T;
-  parent: <T = ParentPromise>() => T;
+  classRequested: <T = DanceClassPromise>() => T;
   dancer: <T = DancerPromise>() => T;
-  classesRequested: <T = FragmentableArray<DanceClass>>(args?: {
-    where?: DanceClassWhereInput;
-    orderBy?: DanceClassOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  parent: <T = ParentPromise>() => T;
   updatedAt: () => Promise<DateTimeOutput>;
   createdAt: () => Promise<DateTimeOutput>;
 }
@@ -8030,19 +8041,9 @@ export interface EnrollmentRequestSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   studio: <T = StudioSubscription>() => T;
-  parent: <T = ParentSubscription>() => T;
+  classRequested: <T = DanceClassSubscription>() => T;
   dancer: <T = DancerSubscription>() => T;
-  classesRequested: <
-    T = Promise<AsyncIterator<DanceClassSubscription>>
-  >(args?: {
-    where?: DanceClassWhereInput;
-    orderBy?: DanceClassOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  parent: <T = ParentSubscription>() => T;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -8052,17 +8053,9 @@ export interface EnrollmentRequestNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   studio: <T = StudioPromise>() => T;
-  parent: <T = ParentPromise>() => T;
+  classRequested: <T = DanceClassPromise>() => T;
   dancer: <T = DancerPromise>() => T;
-  classesRequested: <T = FragmentableArray<DanceClass>>(args?: {
-    where?: DanceClassWhereInput;
-    orderBy?: DanceClassOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  parent: <T = ParentPromise>() => T;
   updatedAt: () => Promise<DateTimeOutput>;
   createdAt: () => Promise<DateTimeOutput>;
 }
