@@ -118,6 +118,7 @@ type MakeupSet {
   name: String!
   studio: Studio!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -138,6 +139,7 @@ type HairStyle {
   name: String!
   description: String
   image: String
+  imageId: String
   link: String
 }
 

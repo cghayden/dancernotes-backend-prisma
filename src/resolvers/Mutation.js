@@ -375,25 +375,14 @@ const Mutations = {
     }
     return { message: "Success!! - Requested!" };
   },
-  async removeClassFromRequest(parent, args, ctx, info) {
+  async deleteEnrollmentRequest(parent, args, ctx, info) {
     // TODO make sure class is in requests
     // remove danceCLass from classesRequested
-    const enrollmentRequest = await ctx.db.mutation.updateEnrollmentRequest(
+    const enrollmentRequest = await ctx.db.mutation.deleteEnrollmentRequest(
       {
         where: { id: args.requestId },
-        data: { classesRequested: { disconnect: { id: args.danceClassId } } },
-      },
-      `{classesRequested{name}}`
-    );
-    if (enrollmentRequest.classesRequested.length === 0) {
-      await ctx.db.mutation.deleteEnrollmentRequest(
-        {
-          where: { id: args.requestId },
-        },
-        info
-      );
-    }
-  },
+      },info
+    )},
   async confirmAccessRequest(parent, args, ctx, info) {
     const updatedParent = await ctx.db.mutation.updateParent(
       {
@@ -579,7 +568,7 @@ const Mutations = {
     );
   },
 
-  async createHairStyle(parent, args, ctx, info) {
+  async createHairstyle(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged to create a hairstyle");
     }
@@ -595,7 +584,7 @@ const Mutations = {
       info
     );
   },
-  async updateHairStyle(parent, args, ctx, info) {
+  async updateHairstyle(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       throw new Error("You must be logged to edit a Makeup Set");
     }
@@ -812,6 +801,7 @@ const Mutations = {
   },
   async requestStudioAccess(parent, args, ctx, info) {
     const authorizedEmails = [
+      "sljoyce1027@verizon.net","elenathach@gmail.com",
       "ella@ella.com",
       "q@q.com",
       "cghayden@gmail.com",
@@ -833,7 +823,7 @@ const Mutations = {
       "elcorredor@hotmail.com",
       "adelaidehayden@gmail.com",
       "hondacoupe2004@yahoo.com",
-      "svetlana.leeds83@gmail.com",
+      "svetlana.leeds83@gmail.com","shalinijay@gmail.com","tamaraimcgowan@yahoo.com",
     ];
 
     if (authorizedEmails.includes(args.parentEmail)) {

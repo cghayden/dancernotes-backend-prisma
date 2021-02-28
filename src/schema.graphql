@@ -24,7 +24,7 @@ type Mutation {
   signinParent(email: String!, password: String!): Parent!
   signinStudio(email: String!, password: String!): Studio!
   signout: SuccessMessage
-  createDancer(firstName: String!, avatar: String): Dancer!
+  createDancer(firstName: String!): Dancer!
   updateDancer(
     id: ID!
     firstName: String
@@ -74,7 +74,7 @@ type Mutation {
   removeDancerFromDance(dancerId: ID!, danceId: ID!): SuccessMessage
   deleteDanceClass(id: ID!): SuccessMessage
   requestDance(danceId: ID!, dancerId: ID!, studioId: ID!): SuccessMessage
-  removeClassFromRequest(requestId: ID!, danceClassId: ID!): SuccessMessage
+  deleteEnrollmentRequest(requestId: ID!): SuccessMessage
   confirmEnrollmentRequest(
     parentId: ID!
     danceClassId: ID!
@@ -86,29 +86,50 @@ type Mutation {
   createMakeupSet(
     name: String!
     lipstick: String
+    eyeNotes: String
     eyeShadow: String
-    applyTo: String
+    eyeLids: String
+    eyeCrease: String
+    eyeLiner: String
+    eyelashes: String
+    foundation: String
+    powder: String
+    blush: String
+    bronzer: String
+    applyToCategories: String
+    notes: String
   ): SuccessMessage
   updateMakeupSet(
-    id: ID!
-    name: String!
+    ID: ID!
+    name: String
     lipstick: String
+    eyeNotes: String
     eyeShadow: String
-    applyTo: String
+    eyeLids: String
+    eyeCrease: String
+    eyeLiner: String
+    eyelashes: String
+    foundation: String
+    powder: String
+    blush: String
+    bronzer: String
+    applyToCategories: String
+    notes: String
   ): SuccessMessage
-  createHairStyle(
+  createHairstyle(
     name: String!
     description: String
     image: String
     link: String
-  ): SuccessMessage
-  updateHairStyle(
+  ): HairStyle
+  updateHairstyle(
     id: ID!
     name: String
     description: String
     image: String
+    imageId: String
     link: String
-  ): SuccessMessage
+  ): HairStyle
   deleteHairStyle(id: ID!): SuccessMessage
   linkDancerToStudio(dancerId: ID!, studioId: ID!): Studio
   createCustomRoutine(

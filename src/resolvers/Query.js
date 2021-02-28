@@ -53,7 +53,6 @@ const Query = {
       { where: { id: args.id } } ,
       info
       );
-      console.log('dancer', dancer);
     return dancer;
   }
   
