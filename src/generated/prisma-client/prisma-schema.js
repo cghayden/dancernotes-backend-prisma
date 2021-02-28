@@ -3015,6 +3015,7 @@ type HairStyle {
   name: String!
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3030,6 +3031,7 @@ input HairStyleCreateInput {
   name: String!
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3043,6 +3045,7 @@ input HairStyleCreateWithoutStudioInput {
   name: String!
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3060,6 +3063,8 @@ enum HairStyleOrderByInput {
   description_DESC
   image_ASC
   image_DESC
+  imageId_ASC
+  imageId_DESC
   link_ASC
   link_DESC
 }
@@ -3069,6 +3074,7 @@ type HairStylePreviousValues {
   name: String!
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3129,6 +3135,20 @@ input HairStyleScalarWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  imageId: String
+  imageId_not: String
+  imageId_in: [String!]
+  imageId_not_in: [String!]
+  imageId_lt: String
+  imageId_lte: String
+  imageId_gt: String
+  imageId_gte: String
+  imageId_contains: String
+  imageId_not_contains: String
+  imageId_starts_with: String
+  imageId_not_starts_with: String
+  imageId_ends_with: String
+  imageId_not_ends_with: String
   link: String
   link_not: String
   link_in: [String!]
@@ -3171,6 +3191,7 @@ input HairStyleUpdateInput {
   name: String
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3178,6 +3199,7 @@ input HairStyleUpdateManyDataInput {
   name: String
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3185,6 +3207,7 @@ input HairStyleUpdateManyMutationInput {
   name: String
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3209,6 +3232,7 @@ input HairStyleUpdateWithoutStudioDataInput {
   name: String
   description: String
   image: String
+  imageId: String
   link: String
 }
 
@@ -3281,6 +3305,20 @@ input HairStyleWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  imageId: String
+  imageId_not: String
+  imageId_in: [String!]
+  imageId_not_in: [String!]
+  imageId_lt: String
+  imageId_lte: String
+  imageId_gt: String
+  imageId_gte: String
+  imageId_contains: String
+  imageId_not_contains: String
+  imageId_starts_with: String
+  imageId_not_starts_with: String
+  imageId_ends_with: String
+  imageId_not_ends_with: String
   link: String
   link_not: String
   link_in: [String!]
@@ -3313,6 +3351,7 @@ type MakeupSet {
   name: String!
   studio: Studio!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3338,6 +3377,7 @@ input MakeupSetCreateInput {
   name: String!
   studio: StudioCreateOneWithoutMakeupSetsInput!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3367,6 +3407,7 @@ input MakeupSetCreateWithoutDanceClassesInput {
   name: String!
   studio: StudioCreateOneWithoutMakeupSetsInput!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3384,6 +3425,7 @@ input MakeupSetCreateWithoutStudioInput {
   id: ID
   name: String!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3414,6 +3456,8 @@ enum MakeupSetOrderByInput {
   name_DESC
   lipstick_ASC
   lipstick_DESC
+  eyeNotes_ASC
+  eyeNotes_DESC
   eyeShadow_ASC
   eyeShadow_DESC
   eyeLids_ASC
@@ -3444,6 +3488,7 @@ type MakeupSetPreviousValues {
   id: ID!
   name: String!
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3516,6 +3561,20 @@ input MakeupSetScalarWhereInput {
   lipstick_not_starts_with: String
   lipstick_ends_with: String
   lipstick_not_ends_with: String
+  eyeNotes: String
+  eyeNotes_not: String
+  eyeNotes_in: [String!]
+  eyeNotes_not_in: [String!]
+  eyeNotes_lt: String
+  eyeNotes_lte: String
+  eyeNotes_gt: String
+  eyeNotes_gte: String
+  eyeNotes_contains: String
+  eyeNotes_not_contains: String
+  eyeNotes_starts_with: String
+  eyeNotes_not_starts_with: String
+  eyeNotes_ends_with: String
+  eyeNotes_not_ends_with: String
   eyeShadow: String
   eyeShadow_not: String
   eyeShadow_in: [String!]
@@ -3697,6 +3756,7 @@ input MakeupSetUpdateInput {
   name: String
   studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3714,6 +3774,7 @@ input MakeupSetUpdateInput {
 input MakeupSetUpdateManyDataInput {
   name: String
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3730,6 +3791,7 @@ input MakeupSetUpdateManyDataInput {
 input MakeupSetUpdateManyMutationInput {
   name: String
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3773,6 +3835,7 @@ input MakeupSetUpdateWithoutDanceClassesDataInput {
   name: String
   studio: StudioUpdateOneRequiredWithoutMakeupSetsInput
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3789,6 +3852,7 @@ input MakeupSetUpdateWithoutDanceClassesDataInput {
 input MakeupSetUpdateWithoutStudioDataInput {
   name: String
   lipstick: String
+  eyeNotes: String
   eyeShadow: String
   eyeLids: String
   eyeCrease: String
@@ -3879,6 +3943,20 @@ input MakeupSetWhereInput {
   lipstick_not_starts_with: String
   lipstick_ends_with: String
   lipstick_not_ends_with: String
+  eyeNotes: String
+  eyeNotes_not: String
+  eyeNotes_in: [String!]
+  eyeNotes_not_in: [String!]
+  eyeNotes_lt: String
+  eyeNotes_lte: String
+  eyeNotes_gt: String
+  eyeNotes_gte: String
+  eyeNotes_contains: String
+  eyeNotes_not_contains: String
+  eyeNotes_starts_with: String
+  eyeNotes_not_starts_with: String
+  eyeNotes_ends_with: String
+  eyeNotes_not_ends_with: String
   eyeShadow: String
   eyeShadow_not: String
   eyeShadow_in: [String!]

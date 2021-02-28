@@ -725,6 +725,8 @@ export type MakeupSetOrderByInput =
   | "name_DESC"
   | "lipstick_ASC"
   | "lipstick_DESC"
+  | "eyeNotes_ASC"
+  | "eyeNotes_DESC"
   | "eyeShadow_ASC"
   | "eyeShadow_DESC"
   | "eyeLids_ASC"
@@ -757,6 +759,8 @@ export type HairStyleOrderByInput =
   | "description_DESC"
   | "image_ASC"
   | "image_DESC"
+  | "imageId_ASC"
+  | "imageId_DESC"
   | "link_ASC"
   | "link_DESC";
 
@@ -1352,6 +1356,20 @@ export interface MakeupSetWhereInput {
   lipstick_not_starts_with?: Maybe<String>;
   lipstick_ends_with?: Maybe<String>;
   lipstick_not_ends_with?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
+  eyeNotes_not?: Maybe<String>;
+  eyeNotes_in?: Maybe<String[] | String>;
+  eyeNotes_not_in?: Maybe<String[] | String>;
+  eyeNotes_lt?: Maybe<String>;
+  eyeNotes_lte?: Maybe<String>;
+  eyeNotes_gt?: Maybe<String>;
+  eyeNotes_gte?: Maybe<String>;
+  eyeNotes_contains?: Maybe<String>;
+  eyeNotes_not_contains?: Maybe<String>;
+  eyeNotes_starts_with?: Maybe<String>;
+  eyeNotes_not_starts_with?: Maybe<String>;
+  eyeNotes_ends_with?: Maybe<String>;
+  eyeNotes_not_ends_with?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeShadow_not?: Maybe<String>;
   eyeShadow_in?: Maybe<String[] | String>;
@@ -1572,6 +1590,20 @@ export interface HairStyleWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
+  imageId?: Maybe<String>;
+  imageId_not?: Maybe<String>;
+  imageId_in?: Maybe<String[] | String>;
+  imageId_not_in?: Maybe<String[] | String>;
+  imageId_lt?: Maybe<String>;
+  imageId_lte?: Maybe<String>;
+  imageId_gt?: Maybe<String>;
+  imageId_gte?: Maybe<String>;
+  imageId_contains?: Maybe<String>;
+  imageId_not_contains?: Maybe<String>;
+  imageId_starts_with?: Maybe<String>;
+  imageId_not_starts_with?: Maybe<String>;
+  imageId_ends_with?: Maybe<String>;
+  imageId_not_ends_with?: Maybe<String>;
   link?: Maybe<String>;
   link_not?: Maybe<String>;
   link_in?: Maybe<String[] | String>;
@@ -2798,6 +2830,7 @@ export interface MakeupSetCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
   name: String;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -2884,6 +2917,7 @@ export interface HairStyleCreateWithoutStudioInput {
   name: String;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -3076,6 +3110,7 @@ export interface MakeupSetCreateWithoutDanceClassesInput {
   name: String;
   studio: StudioCreateOneWithoutMakeupSetsInput;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -3602,6 +3637,7 @@ export interface MakeupSetUpdateWithWhereUniqueWithoutStudioInput {
 export interface MakeupSetUpdateWithoutStudioDataInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -3729,6 +3765,7 @@ export interface HairStyleUpdateWithoutStudioDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -3795,6 +3832,20 @@ export interface HairStyleScalarWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
+  imageId?: Maybe<String>;
+  imageId_not?: Maybe<String>;
+  imageId_in?: Maybe<String[] | String>;
+  imageId_not_in?: Maybe<String[] | String>;
+  imageId_lt?: Maybe<String>;
+  imageId_lte?: Maybe<String>;
+  imageId_gt?: Maybe<String>;
+  imageId_gte?: Maybe<String>;
+  imageId_contains?: Maybe<String>;
+  imageId_not_contains?: Maybe<String>;
+  imageId_starts_with?: Maybe<String>;
+  imageId_not_starts_with?: Maybe<String>;
+  imageId_ends_with?: Maybe<String>;
+  imageId_not_ends_with?: Maybe<String>;
   link?: Maybe<String>;
   link_not?: Maybe<String>;
   link_in?: Maybe<String[] | String>;
@@ -3823,6 +3874,7 @@ export interface HairStyleUpdateManyDataInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -4353,6 +4405,7 @@ export interface MakeupSetUpdateWithoutDanceClassesDataInput {
   name?: Maybe<String>;
   studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -6005,6 +6058,20 @@ export interface MakeupSetScalarWhereInput {
   lipstick_not_starts_with?: Maybe<String>;
   lipstick_ends_with?: Maybe<String>;
   lipstick_not_ends_with?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
+  eyeNotes_not?: Maybe<String>;
+  eyeNotes_in?: Maybe<String[] | String>;
+  eyeNotes_not_in?: Maybe<String[] | String>;
+  eyeNotes_lt?: Maybe<String>;
+  eyeNotes_lte?: Maybe<String>;
+  eyeNotes_gt?: Maybe<String>;
+  eyeNotes_gte?: Maybe<String>;
+  eyeNotes_contains?: Maybe<String>;
+  eyeNotes_not_contains?: Maybe<String>;
+  eyeNotes_starts_with?: Maybe<String>;
+  eyeNotes_not_starts_with?: Maybe<String>;
+  eyeNotes_ends_with?: Maybe<String>;
+  eyeNotes_not_ends_with?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeShadow_not?: Maybe<String>;
   eyeShadow_in?: Maybe<String[] | String>;
@@ -6172,6 +6239,7 @@ export interface MakeupSetUpdateManyWithWhereNestedInput {
 export interface MakeupSetUpdateManyDataInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -6436,6 +6504,7 @@ export interface HairStyleCreateInput {
   name: String;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -6470,6 +6539,7 @@ export interface HairStyleUpdateInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -6509,6 +6579,7 @@ export interface HairStyleUpdateManyMutationInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
   image?: Maybe<String>;
+  imageId?: Maybe<String>;
   link?: Maybe<String>;
 }
 
@@ -6517,6 +6588,7 @@ export interface MakeupSetCreateInput {
   name: String;
   studio: StudioCreateOneWithoutMakeupSetsInput;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -6535,6 +6607,7 @@ export interface MakeupSetUpdateInput {
   name?: Maybe<String>;
   studio?: Maybe<StudioUpdateOneRequiredWithoutMakeupSetsInput>;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -6552,6 +6625,7 @@ export interface MakeupSetUpdateInput {
 export interface MakeupSetUpdateManyMutationInput {
   name?: Maybe<String>;
   lipstick?: Maybe<String>;
+  eyeNotes?: Maybe<String>;
   eyeShadow?: Maybe<String>;
   eyeLids?: Maybe<String>;
   eyeCrease?: Maybe<String>;
@@ -8066,6 +8140,7 @@ export interface MakeupSet {
   id: ID_Output;
   name: String;
   lipstick?: String;
+  eyeNotes?: String;
   eyeShadow?: String;
   eyeLids?: String;
   eyeCrease?: String;
@@ -8086,6 +8161,7 @@ export interface MakeupSetPromise extends Promise<MakeupSet>, Fragmentable {
   name: () => Promise<String>;
   studio: <T = StudioPromise>() => T;
   lipstick: () => Promise<String>;
+  eyeNotes: () => Promise<String>;
   eyeShadow: () => Promise<String>;
   eyeLids: () => Promise<String>;
   eyeCrease: () => Promise<String>;
@@ -8117,6 +8193,7 @@ export interface MakeupSetSubscription
   name: () => Promise<AsyncIterator<String>>;
   studio: <T = StudioSubscription>() => T;
   lipstick: () => Promise<AsyncIterator<String>>;
+  eyeNotes: () => Promise<AsyncIterator<String>>;
   eyeShadow: () => Promise<AsyncIterator<String>>;
   eyeLids: () => Promise<AsyncIterator<String>>;
   eyeCrease: () => Promise<AsyncIterator<String>>;
@@ -8148,6 +8225,7 @@ export interface MakeupSetNullablePromise
   name: () => Promise<String>;
   studio: <T = StudioPromise>() => T;
   lipstick: () => Promise<String>;
+  eyeNotes: () => Promise<String>;
   eyeShadow: () => Promise<String>;
   eyeLids: () => Promise<String>;
   eyeCrease: () => Promise<String>;
@@ -8175,6 +8253,7 @@ export interface HairStyle {
   name: String;
   description?: String;
   image?: String;
+  imageId?: String;
   link?: String;
 }
 
@@ -8184,6 +8263,7 @@ export interface HairStylePromise extends Promise<HairStyle>, Fragmentable {
   name: () => Promise<String>;
   description: () => Promise<String>;
   image: () => Promise<String>;
+  imageId: () => Promise<String>;
   link: () => Promise<String>;
 }
 
@@ -8195,6 +8275,7 @@ export interface HairStyleSubscription
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  imageId: () => Promise<AsyncIterator<String>>;
   link: () => Promise<AsyncIterator<String>>;
 }
 
@@ -8206,6 +8287,7 @@ export interface HairStyleNullablePromise
   name: () => Promise<String>;
   description: () => Promise<String>;
   image: () => Promise<String>;
+  imageId: () => Promise<String>;
   link: () => Promise<String>;
 }
 
@@ -9398,6 +9480,7 @@ export interface HairStylePreviousValues {
   name: String;
   description?: String;
   image?: String;
+  imageId?: String;
   link?: String;
 }
 
@@ -9408,6 +9491,7 @@ export interface HairStylePreviousValuesPromise
   name: () => Promise<String>;
   description: () => Promise<String>;
   image: () => Promise<String>;
+  imageId: () => Promise<String>;
   link: () => Promise<String>;
 }
 
@@ -9418,6 +9502,7 @@ export interface HairStylePreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  imageId: () => Promise<AsyncIterator<String>>;
   link: () => Promise<AsyncIterator<String>>;
 }
 
@@ -9452,6 +9537,7 @@ export interface MakeupSetPreviousValues {
   id: ID_Output;
   name: String;
   lipstick?: String;
+  eyeNotes?: String;
   eyeShadow?: String;
   eyeLids?: String;
   eyeCrease?: String;
@@ -9473,6 +9559,7 @@ export interface MakeupSetPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   lipstick: () => Promise<String>;
+  eyeNotes: () => Promise<String>;
   eyeShadow: () => Promise<String>;
   eyeLids: () => Promise<String>;
   eyeCrease: () => Promise<String>;
@@ -9494,6 +9581,7 @@ export interface MakeupSetPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   lipstick: () => Promise<AsyncIterator<String>>;
+  eyeNotes: () => Promise<AsyncIterator<String>>;
   eyeShadow: () => Promise<AsyncIterator<String>>;
   eyeLids: () => Promise<AsyncIterator<String>>;
   eyeCrease: () => Promise<AsyncIterator<String>>;
