@@ -73,7 +73,12 @@ type Mutation {
   addDancer(dancerId: ID!, danceId: ID!): SuccessMessage
   removeDancerFromDance(dancerId: ID!, danceId: ID!): SuccessMessage
   deleteDanceClass(id: ID!): SuccessMessage
-  requestDance(danceId: ID!, dancerId: ID!, studioId: ID!): SuccessMessage
+  requestDance(
+    danceId: ID!
+    dancerId: ID!
+    studioId: ID!
+    parentEmail: String!
+  ): SuccessMessage
   deleteEnrollmentRequest(requestId: ID!): SuccessMessage
   confirmEnrollmentRequest(
     parentId: ID!
