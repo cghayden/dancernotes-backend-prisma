@@ -226,15 +226,7 @@ type Query {
   parents(where: ParentWhereInput): [Parent!]!
   danceClass(id: ID!): DanceClass
   studio(id: ID!): Studio
-  studios(
-    where: StudioWhereInput
-    orderBy: StudioOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): [Studio]!
+  searchStudios(searchTerm: String): [Studio!]!
   parentsDancers: [Dancer!]!
   parentUser: Parent!
   parentMakeup: Parent!
