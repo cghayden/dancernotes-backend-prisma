@@ -88,6 +88,7 @@ const Query = {
     if (!ctx.request.userId) {
       throw new Error('You must be logged in to do that')
     }
+    //get parents custom routines...
     const customRoutines = await ctx.db.query.customRoutines(
       {
         where: {
@@ -121,17 +122,13 @@ const Query = {
         studioName
       }}`
     )
-    const parentsDancers = await ctx.db.query.parent(
-      { where: { id: ctx.request.userId } },
-      `{dancers{id}}`
+    // get parent's dancers, and put their ids in an array`
+    const dancers = await ctx.db.query.dancers(
+      { where: { parent: { id: ctx.request.userId } } },
+      `{id}`
     )
-    const myDancersIds = []
-    console.log('parentsDancers', parentsDancers)
-
-    for (const dancer of parentsDancers.dancers) {
-      myDancersIds.push(dancer.id)
-    }
-
+    const myDancersIds = await dancers.map((dancer) => dancer.id)
+    // get dance classes that have a dancer id that matches the parents dancers
     const parentsClasses = await ctx.db.query.danceClasses(
       {
         where: {
@@ -140,7 +137,17 @@ const Query = {
       },
       info
     )
-    //NEW .... //
+    //remove any dancer that is not a dancer of the parent
+    for (const dance of parentsClasses) {
+      const filteredDancers = dance.dancers.filter((dancer) =>
+        myDancersIds.includes(dancer.id)
+      )
+      dance.dancers = filteredDancers
+    }
+    //combine custom routines and studio defined routines
+    const allParentsClasses = [...parentsClasses, ...customRoutines]
+
+    //get parent's custom notes
     const allParentsNotes = await ctx.db.query.parentNotes(
       {
         where: {
@@ -149,19 +156,8 @@ const Query = {
       },
       `{id note dance{id}}`
     )
-
-    for (const dance of parentsClasses) {
-      const filteredDancers = dance.dancers.filter((dancer) =>
-        myDancersIds.includes(dancer.id)
-      )
-      dance.dancers = filteredDancers
-    }
-
-    const allParentsClasses = [...parentsClasses, ...customRoutines]
-
-    //....NEW //
+    //match each parent note to its proper dance
     for (const dance of allParentsClasses) {
-      // dance.parentsNotes = [];
       for (const note of allParentsNotes) {
         if (note.dance.id === dance.id) {
           dance.parentsNotes = note
@@ -220,7 +216,6 @@ const Query = {
       routine.dancers = filteredDancers
     }
 
-    console.log('routine', routine)
     return routine
   },
   async parentHairstyles(parent, args, ctx, info) {
