@@ -73,6 +73,8 @@ const Query = {
       dancersIds.push(dancer.id)
     }
     parentUser.dancersIds = dancersIds
+
+    console.log('parentUser', parentUser.dancers)
     return parentUser
   },
   async parentMakeup(parent, args, ctx, info) {

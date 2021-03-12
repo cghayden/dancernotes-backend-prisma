@@ -21,6 +21,7 @@ const Mutations = {
       },
       info
     )
+    console.log('new parentUser:', parentUser)
     const token = jwt.sign(
       { userId: parentUser.id, userType: 'parent' },
       process.env.APP_SECRET
@@ -128,6 +129,7 @@ const Mutations = {
     const studioUser = await ctx.db.query.studio({
       where: { email: args.email },
     })
+    console.log('studioUser', studioUser)
     const parentUser = await ctx.db.query.parent({
       where: { email: args.email },
     })
