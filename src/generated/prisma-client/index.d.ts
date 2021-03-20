@@ -2994,7 +2994,9 @@ export interface StudioEventCreateWithoutStudioInput {
   id?: Maybe<ID_Input>;
   name: String;
   type: String;
-  appliesTo?: Maybe<StudioEventCreateappliesToInput>;
+  ageDivision?: Maybe<StudioEventCreateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventCreatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventCreatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -3007,7 +3009,15 @@ export interface StudioEventCreateWithoutStudioInput {
   notes?: Maybe<String>;
 }
 
-export interface StudioEventCreateappliesToInput {
+export interface StudioEventCreateageDivisionInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface StudioEventCreatecompetitiveLevelInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface StudioEventCreatestyleInput {
   set?: Maybe<String[] | String>;
 }
 
@@ -4020,7 +4030,9 @@ export interface StudioEventUpdateWithWhereUniqueWithoutStudioInput {
 export interface StudioEventUpdateWithoutStudioDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
-  appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
+  ageDivision?: Maybe<StudioEventUpdateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventUpdatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventUpdatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -4033,7 +4045,15 @@ export interface StudioEventUpdateWithoutStudioDataInput {
   notes?: Maybe<String>;
 }
 
-export interface StudioEventUpdateappliesToInput {
+export interface StudioEventUpdateageDivisionInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface StudioEventUpdatecompetitiveLevelInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface StudioEventUpdatestyleInput {
   set?: Maybe<String[] | String>;
 }
 
@@ -4227,7 +4247,9 @@ export interface StudioEventUpdateManyWithWhereNestedInput {
 export interface StudioEventUpdateManyDataInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
-  appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
+  ageDivision?: Maybe<StudioEventUpdateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventUpdatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventUpdatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6825,7 +6847,9 @@ export interface StudioEventCreateInput {
   studio: StudioCreateOneWithoutEventsInput;
   name: String;
   type: String;
-  appliesTo?: Maybe<StudioEventCreateappliesToInput>;
+  ageDivision?: Maybe<StudioEventCreateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventCreatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventCreatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6868,7 +6892,9 @@ export interface StudioEventUpdateInput {
   studio?: Maybe<StudioUpdateOneRequiredWithoutEventsInput>;
   name?: Maybe<String>;
   type?: Maybe<String>;
-  appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
+  ageDivision?: Maybe<StudioEventUpdateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventUpdatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventUpdatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -6916,7 +6942,9 @@ export interface StudioUpsertWithoutEventsInput {
 export interface StudioEventUpdateManyMutationInput {
   name?: Maybe<String>;
   type?: Maybe<String>;
-  appliesTo?: Maybe<StudioEventUpdateappliesToInput>;
+  ageDivision?: Maybe<StudioEventUpdateageDivisionInput>;
+  competitiveLevel?: Maybe<StudioEventUpdatecompetitiveLevelInput>;
+  style?: Maybe<StudioEventUpdatestyleInput>;
   beginDate?: Maybe<DateTimeInput>;
   endDate?: Maybe<DateTimeInput>;
   location?: Maybe<String>;
@@ -8295,7 +8323,9 @@ export interface StudioEvent {
   id: ID_Output;
   name: String;
   type: String;
-  appliesTo: String[];
+  ageDivision: String[];
+  competitiveLevel: String[];
+  style: String[];
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
@@ -8313,7 +8343,9 @@ export interface StudioEventPromise extends Promise<StudioEvent>, Fragmentable {
   studio: <T = StudioPromise>() => T;
   name: () => Promise<String>;
   type: () => Promise<String>;
-  appliesTo: () => Promise<String[]>;
+  ageDivision: () => Promise<String[]>;
+  competitiveLevel: () => Promise<String[]>;
+  style: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -8333,7 +8365,9 @@ export interface StudioEventSubscription
   studio: <T = StudioSubscription>() => T;
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
+  ageDivision: () => Promise<AsyncIterator<String[]>>;
+  competitiveLevel: () => Promise<AsyncIterator<String[]>>;
+  style: () => Promise<AsyncIterator<String[]>>;
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;
@@ -8353,7 +8387,9 @@ export interface StudioEventNullablePromise
   studio: <T = StudioPromise>() => T;
   name: () => Promise<String>;
   type: () => Promise<String>;
-  appliesTo: () => Promise<String[]>;
+  ageDivision: () => Promise<String[]>;
+  competitiveLevel: () => Promise<String[]>;
+  style: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -9902,7 +9938,9 @@ export interface StudioEventPreviousValues {
   id: ID_Output;
   name: String;
   type: String;
-  appliesTo: String[];
+  ageDivision: String[];
+  competitiveLevel: String[];
+  style: String[];
   beginDate?: DateTimeOutput;
   endDate?: DateTimeOutput;
   location?: String;
@@ -9921,7 +9959,9 @@ export interface StudioEventPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   type: () => Promise<String>;
-  appliesTo: () => Promise<String[]>;
+  ageDivision: () => Promise<String[]>;
+  competitiveLevel: () => Promise<String[]>;
+  style: () => Promise<String[]>;
   beginDate: () => Promise<DateTimeOutput>;
   endDate: () => Promise<DateTimeOutput>;
   location: () => Promise<String>;
@@ -9940,7 +9980,9 @@ export interface StudioEventPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<String>>;
-  appliesTo: () => Promise<AsyncIterator<String[]>>;
+  ageDivision: () => Promise<AsyncIterator<String[]>>;
+  competitiveLevel: () => Promise<AsyncIterator<String[]>>;
+  style: () => Promise<AsyncIterator<String[]>>;
   beginDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   location: () => Promise<AsyncIterator<String>>;

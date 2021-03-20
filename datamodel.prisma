@@ -155,7 +155,9 @@ type StudioEvent {
   studio: Studio!
   name: String!
   type: String!
-  appliesTo: [String!]! @scalarList(strategy: RELATION)
+  ageDivision: [String!]! @scalarList(strategy: RELATION)
+  competitiveLevel: [String!]! @scalarList(strategy: RELATION)
+  style: [String!]! @scalarList(strategy: RELATION)
   beginDate: DateTime
   endDate: DateTime
   location: String
