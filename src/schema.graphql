@@ -179,7 +179,9 @@ type Mutation {
   createStudioEvent(
     name: String!
     type: String!
-    appliesTo: [String!]!
+    ageDivision: [String!]!
+    competitiveLevel: [String!]!
+    style: [String!]!
     beginDate: DateTime
     endDate: DateTime
     location: String

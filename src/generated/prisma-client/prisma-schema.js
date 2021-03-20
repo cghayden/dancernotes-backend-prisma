@@ -5692,7 +5692,9 @@ type StudioEvent {
   studio: Studio!
   name: String!
   type: String!
-  appliesTo: [String!]!
+  ageDivision: [String!]!
+  competitiveLevel: [String!]!
+  style: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -5711,7 +5713,11 @@ type StudioEventConnection {
   aggregate: AggregateStudioEvent!
 }
 
-input StudioEventCreateappliesToInput {
+input StudioEventCreateageDivisionInput {
+  set: [String!]
+}
+
+input StudioEventCreatecompetitiveLevelInput {
   set: [String!]
 }
 
@@ -5720,7 +5726,9 @@ input StudioEventCreateInput {
   studio: StudioCreateOneWithoutEventsInput!
   name: String!
   type: String!
-  appliesTo: StudioEventCreateappliesToInput
+  ageDivision: StudioEventCreateageDivisionInput
+  competitiveLevel: StudioEventCreatecompetitiveLevelInput
+  style: StudioEventCreatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -5738,11 +5746,17 @@ input StudioEventCreateManyWithoutStudioInput {
   connect: [StudioEventWhereUniqueInput!]
 }
 
+input StudioEventCreatestyleInput {
+  set: [String!]
+}
+
 input StudioEventCreateWithoutStudioInput {
   id: ID
   name: String!
   type: String!
-  appliesTo: StudioEventCreateappliesToInput
+  ageDivision: StudioEventCreateageDivisionInput
+  competitiveLevel: StudioEventCreatecompetitiveLevelInput
+  style: StudioEventCreatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -5793,7 +5807,9 @@ type StudioEventPreviousValues {
   id: ID!
   name: String!
   type: String!
-  appliesTo: [String!]!
+  ageDivision: [String!]!
+  competitiveLevel: [String!]!
+  style: [String!]!
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -6000,7 +6016,11 @@ input StudioEventSubscriptionWhereInput {
   NOT: [StudioEventSubscriptionWhereInput!]
 }
 
-input StudioEventUpdateappliesToInput {
+input StudioEventUpdateageDivisionInput {
+  set: [String!]
+}
+
+input StudioEventUpdatecompetitiveLevelInput {
   set: [String!]
 }
 
@@ -6008,7 +6028,9 @@ input StudioEventUpdateInput {
   studio: StudioUpdateOneRequiredWithoutEventsInput
   name: String
   type: String
-  appliesTo: StudioEventUpdateappliesToInput
+  ageDivision: StudioEventUpdateageDivisionInput
+  competitiveLevel: StudioEventUpdatecompetitiveLevelInput
+  style: StudioEventUpdatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -6024,7 +6046,9 @@ input StudioEventUpdateInput {
 input StudioEventUpdateManyDataInput {
   name: String
   type: String
-  appliesTo: StudioEventUpdateappliesToInput
+  ageDivision: StudioEventUpdateageDivisionInput
+  competitiveLevel: StudioEventUpdatecompetitiveLevelInput
+  style: StudioEventUpdatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -6040,7 +6064,9 @@ input StudioEventUpdateManyDataInput {
 input StudioEventUpdateManyMutationInput {
   name: String
   type: String
-  appliesTo: StudioEventUpdateappliesToInput
+  ageDivision: StudioEventUpdateageDivisionInput
+  competitiveLevel: StudioEventUpdatecompetitiveLevelInput
+  style: StudioEventUpdatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
@@ -6070,10 +6096,16 @@ input StudioEventUpdateManyWithWhereNestedInput {
   data: StudioEventUpdateManyDataInput!
 }
 
+input StudioEventUpdatestyleInput {
+  set: [String!]
+}
+
 input StudioEventUpdateWithoutStudioDataInput {
   name: String
   type: String
-  appliesTo: StudioEventUpdateappliesToInput
+  ageDivision: StudioEventUpdateageDivisionInput
+  competitiveLevel: StudioEventUpdatecompetitiveLevelInput
+  style: StudioEventUpdatestyleInput
   beginDate: DateTime
   endDate: DateTime
   location: String
