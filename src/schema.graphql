@@ -7,6 +7,11 @@ type Mutation {
     password: String!
     confirmPassword: String!
   ): User!
+  resetStudioPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
   signupParent(
     email: String!
     firstName: String!

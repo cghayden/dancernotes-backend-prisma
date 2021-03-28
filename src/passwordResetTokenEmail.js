@@ -12,7 +12,7 @@ const passwordResetTokenEmail = (link) => `
     </p>
     <div>${link}</div>
     <p>This link will expire in one hour</p>
-    <p>If you believe this email was sent in error, or you did not make this request, you can ignore this email, or request assistance by sending a message to admin@coreyhayden.tech </p>
+    <p>If you believe this email was sent in error, or you did not make this request, you can ignore this email, or request assistance by sending a message to cghayden@gmail.com </p>
     <p>Thank You,</p>
     <p>Dancer Notes</p>
   </div>

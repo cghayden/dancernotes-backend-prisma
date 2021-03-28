@@ -21,7 +21,6 @@ const Mutations = {
       },
       info
     );
-    console.log('new parentUser:', parentUser);
     const token = jwt.sign(
       { userId: parentUser.id, userType: 'parent' },
       process.env.APP_SECRET
@@ -34,6 +33,7 @@ const Mutations = {
     return parentUser;
   },
   async requestReset(parent, args, ctx, info) {
+    console.log('args', args);
     //1. check if real user
     const studioUser = await ctx.db.query.studio({
       where: { email: args.email },
@@ -41,12 +41,14 @@ const Mutations = {
     const parentUser = await ctx.db.query.parent({
       where: { email: args.email },
     });
+    console.log('studioUser', studioUser);
     if (!parentUser && !studioUser) {
       throw new Error(`No user found for ${args.email}`);
     }
     // 2. Set a reset token and expiry on that user
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString('hex');
+    console.log('newresetToken', resetToken);
     const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
     if (parentUser) {
       const res = await ctx.db.mutation.updateParent({
@@ -71,8 +73,8 @@ const Mutations = {
       // 3. Email them that reset token
 
       const mailRes = await transporter.sendMail({
-        from: 'cghayden@gmail.com',
-        to: email,
+        from: 'admin@coreyhayden.tech',
+        to: args.email,
         subject: 'Your Password Reset Token',
         html: passwordResetTokenEmail(`
         <a href="${
@@ -122,6 +124,46 @@ const Mutations = {
     });
     // 8. return the new user
     return updatedParentUser;
+  },
+  async resetStudioPassword(parent, args, ctx, info) {
+    // 1. check if the passwords match
+    if (args.password !== args.confirmPassword) {
+      throw new Error("Your Passwords don't match!");
+    }
+    // 2. check if its a legit reset token
+    // 3. Check if its expired
+    const [studioUser] = await ctx.db.query.studios({
+      where: {
+        resetToken: args.resetToken,
+        resetTokenExpiry_gte: Date.now() - 3600000,
+      },
+    });
+    if (!studioUser) {
+      throw new Error('This token is either invalid or expired!');
+    }
+    // 4. Hash their new password
+    const password = await bcrypt.hash(args.password, 10);
+    // 5. Save the new password to the user and remove old resetToken fields
+    const updatedStudioUser = await ctx.db.mutation.updateStudio({
+      where: { email: studioUser.email },
+      data: {
+        password,
+        resetToken: null,
+        resetTokenExpiry: null,
+      },
+    });
+    // 6. Generate JWT
+    const token = jwt.sign(
+      { userId: studioUser.id, userType: 'studio' },
+      process.env.APP_SECRET
+    );
+    // 7. Set the JWT cookie
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365,
+    });
+    // 8. return the new user
+    return updatedStudioUser;
   },
 
   async signin(parent, args, ctx, info) {
